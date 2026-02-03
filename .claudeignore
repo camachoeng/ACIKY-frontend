@@ -3,6 +3,7 @@ node_modules/
 
 # Build output
 dist/
+dist-ssr/
 
 # Lock files
 package-lock.json
@@ -17,6 +18,12 @@ package-lock.json
 # Images (binary files)
 public/images/
 
+# Logs
+*.log
+
 # Environment
 .env
 .env.*
+
+# Claude Code local settings
+.claude/settings.local.json
