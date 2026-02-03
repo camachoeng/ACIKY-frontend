@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Panel de administracion ACIKY" />
+    <title>Dashboard - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <h1 class="text-2xl font-bold text-primary-dark mb-8">Dashboard</h1>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
+            <span class="material-symbols-outlined text-primary text-3xl">group</span>
+            <p id="statUsers" class="text-2xl font-bold text-primary-dark mt-2">--</p>
+            <p class="text-xs text-slate-500">Usuarios</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
+            <span class="material-symbols-outlined text-accent-teal text-3xl">event</span>
+            <p id="statActivities" class="text-2xl font-bold text-primary-dark mt-2">--</p>
+            <p class="text-xs text-slate-500">Clases Activas</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
+            <span class="material-symbols-outlined text-accent-terracotta text-3xl">school</span>
+            <p id="statInstructors" class="text-2xl font-bold text-primary-dark mt-2">--</p>
+            <p class="text-xs text-slate-500">Instructores</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
+            <span class="material-symbols-outlined text-accent-rose text-3xl">location_on</span>
+            <p id="statSpaces" class="text-2xl font-bold text-primary-dark mt-2">--</p>
+            <p class="text-xs text-slate-500">Ubicaciones</p>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <h2 class="text-xl font-bold text-primary-dark mb-4">Acciones Rapidas</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <a href="/pages/admin/users.html" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:border-primary transition-colors flex items-center gap-4">
+            <span class="material-symbols-outlined text-primary text-2xl">person_add</span>
+            <div>
+              <h3 class="font-bold text-primary-dark">Gestionar Usuarios</h3>
+              <p class="text-xs text-slate-500">Ver, crear y editar usuarios</p>
+            </div>
+          </a>
+          <a href="/pages/admin/schedule.html" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:border-primary transition-colors flex items-center gap-4">
+            <span class="material-symbols-outlined text-accent-teal text-2xl">edit_calendar</span>
+            <div>
+              <h3 class="font-bold text-primary-dark">Gestionar Clases</h3>
+              <p class="text-xs text-slate-500">Crear y editar horarios</p>
+            </div>
+          </a>
+          <a href="/pages/schedule.html" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:border-primary transition-colors flex items-center gap-4">
+            <span class="material-symbols-outlined text-accent-rose text-2xl">visibility</span>
+            <div>
+              <h3 class="font-bold text-primary-dark">Ver Sitio</h3>
+              <p class="text-xs text-slate-500">Vista publica del horario</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

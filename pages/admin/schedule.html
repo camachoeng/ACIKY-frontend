@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestion de clases - Admin ACIKY" />
+    <title>Clases - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <div class="flex items-center justify-between mb-8">
+          <h1 class="text-2xl font-bold text-primary-dark">Clases</h1>
+          <button id="createActivityBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">add</span>
+            Nueva Clase
+          </button>
+        </div>
+
+        <!-- Loading -->
+        <div id="activitiesLoading" class="text-center py-12">
+          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2">Cargando clases...</p>
+        </div>
+
+        <!-- Activities Container -->
+        <div id="activitiesContainer" class="hidden space-y-4"></div>
+      </section>
+
+      <!-- Activity Modal -->
+      <div id="activityModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" id="activityModalOverlay"></div>
+        <div class="absolute inset-x-4 top-4 bottom-4 max-w-lg mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
+          <div class="p-8">
+            <h2 id="activityModalTitle" class="text-xl font-bold text-primary-dark mb-6">Nueva Clase</h2>
+            <form id="activityForm" class="space-y-4">
+              <input type="hidden" id="activityId" />
+
+              <div>
+                <label for="activityName" class="block text-sm font-medium text-primary-dark mb-1">Nombre *</label>
+                <input type="text" id="activityName" required
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       placeholder="Kundalini Yoga" />
+              </div>
+
+              <div>
+                <label for="activityDescription" class="block text-sm font-medium text-primary-dark mb-1">Descripcion</label>
+                <textarea id="activityDescription" rows="3"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          placeholder="Descripcion de la clase..."></textarea>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="activitySchedule" class="block text-sm font-medium text-primary-dark mb-1">Horario</label>
+                  <input type="text" id="activitySchedule"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         placeholder="Martes 11:30 AM" />
+                </div>
+                <div>
+                  <label for="activityDuration" class="block text-sm font-medium text-primary-dark mb-1">Duracion (min)</label>
+                  <input type="number" id="activityDuration" min="15" max="240"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         placeholder="90" />
+                </div>
+              </div>
+
+              <div>
+                <label for="activityLocation" class="block text-sm font-medium text-primary-dark mb-1">Ubicacion</label>
+                <input type="text" id="activityLocation"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       placeholder="Casa Museo de Asia" />
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="activityInstructor" class="block text-sm font-medium text-primary-dark mb-1">Instructor</label>
+                  <select id="activityInstructor"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white">
+                    <option value="">Sin instructor</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="activityPrice" class="block text-sm font-medium text-primary-dark mb-1">Precio</label>
+                  <input type="number" id="activityPrice" min="0" step="0.01"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         placeholder="0" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="activityIcon" class="block text-sm font-medium text-primary-dark mb-1">Icono (emoji)</label>
+                  <input type="text" id="activityIcon"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         placeholder="🧘" />
+                </div>
+                <div>
+                  <label for="activityDifficulty" class="block text-sm font-medium text-primary-dark mb-1">Nivel</label>
+                  <select id="activityDifficulty"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white">
+                    <option value="all">Todos los niveles</option>
+                    <option value="beginner">Principiante</option>
+                    <option value="intermediate">Intermedio</option>
+                    <option value="advanced">Avanzado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-6 pt-2">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" id="activityActive" checked
+                         class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
+                  <span class="text-sm font-medium text-primary-dark">Activa</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" id="activityFeatured"
+                         class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
+                  <span class="text-sm font-medium text-primary-dark">Destacada</span>
+                </label>
+              </div>
+
+              <div id="activityFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelActivityBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors">Cancelar</button>
+                <button type="submit" id="saveActivityBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

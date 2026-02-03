@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Crea tu cuenta en ACIKY - Yoga para Todos" />
+    <title>Registrarse - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <!-- Hero -->
+      <section class="bg-gradient-to-br from-primary to-primary-dark text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+          <h1 class="text-4xl lg:text-5xl font-bold">Registrarse</h1>
+          <p class="mt-4 text-white/80">Unete a nuestra comunidad de yoga</p>
+        </div>
+      </section>
+
+      <!-- Register Form -->
+      <section class="px-6 py-8">
+        <div class="max-w-md mx-auto bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+
+          <!-- Error message -->
+          <div id="registerError" class="hidden mb-4 p-4 bg-red-50 border border-red-200 rounded-2xl text-red-600 text-sm flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">error</span>
+            <span></span>
+          </div>
+
+          <form id="registerForm" class="space-y-5">
+            <div>
+              <label for="username" class="block text-sm font-medium text-primary-dark mb-2">Nombre de Usuario</label>
+              <input type="text" id="username" name="username" required minlength="3"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     placeholder="Tu nombre de usuario" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-primary-dark mb-2">Correo Electronico</label>
+              <input type="email" id="email" name="email" required
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     placeholder="tu@correo.com" />
+            </div>
+            <div>
+              <label for="password" class="block text-sm font-medium text-primary-dark mb-2">Contrasena</label>
+              <input type="password" id="password" name="password" required minlength="8"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     placeholder="Minimo 8 caracteres" />
+              <p class="mt-1 text-xs text-slate-400">Debe incluir mayusculas, minusculas, numeros y caracteres especiales</p>
+            </div>
+            <div>
+              <label for="confirmPassword" class="block text-sm font-medium text-primary-dark mb-2">Confirmar Contrasena</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" required
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     placeholder="Repite tu contrasena" />
+            </div>
+            <button type="submit" id="registerBtn"
+                    class="w-full bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary">
+              Registrarse
+            </button>
+          </form>
+
+          <p class="mt-6 text-center text-sm text-slate-500">
+            Ya tienes cuenta?
+            <a href="/pages/login.html" class="text-primary font-semibold hover:underline">Inicia Sesion</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Horario de clases de Kundalini Yoga en ACIKY. Reserva tu lugar ahora." />
+    <title>Clases - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <!-- Hero -->
+      <section class="bg-gradient-to-br from-primary to-primary-dark text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+          <h1 class="text-4xl lg:text-5xl font-bold">Clases</h1>
+          <p class="mt-4 text-white/80">Encuentra el horario perfecto para tu práctica</p>
+        </div>
+      </section>
+
+      <!-- Quote Section -->
+      <section class="px-6 py-6">
+        <div class="relative p-8 bg-white rounded-2xl shadow-sm border-l-4 border-primary">
+          <span class="absolute top-4 left-4 text-primary/10 text-6xl font-serif">"</span>
+          <p class="italic text-lg leading-relaxed text-slate-600 relative z-10">
+            El yoga no cambia la manera en que vemos las cosas, cambia a la persona que ve.
+          </p>
+          <p class="mt-4 text-right text-sm font-bold text-primary-dark">— Yogi Bhajan</p>
+        </div>
+      </section>
+
+      <!-- Schedule Section -->
+      <section class="px-6 mb-12">
+        <h2 class="text-2xl font-bold text-primary-dark mb-6">Horario Semanal</h2>
+
+        <!-- Loading State -->
+        <div id="scheduleLoading" class="text-center py-12">
+          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2">Cargando horario...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="scheduleError" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-accent-terracotta text-4xl">error</span>
+          <p class="text-slate-500 text-sm mt-2">No se pudo cargar el horario</p>
+          <button id="scheduleRetry" class="mt-4 text-primary font-semibold text-sm hover:underline">Reintentar</button>
+        </div>
+
+        <!-- Dynamic Cards Container -->
+        <div id="scheduleContainer" class="hidden space-y-4"></div>
+
+        <!-- Empty State -->
+        <div id="scheduleEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">event_busy</span>
+          <p class="text-slate-500 text-sm mt-2">No hay clases programadas en este momento</p>
+        </div>
+      </section>
+
+      <!-- Info Section -->
+      <section class="px-6 mb-12">
+        <div class="bg-primary-dark rounded-3xl p-8 text-white">
+          <h3 class="text-xl font-bold mb-4">Informacion Importante</h3>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary-light">check_circle</span>
+              <span>Llega 10 minutos antes de la clase</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary-light">check_circle</span>
+              <span>Trae ropa comoda y una manta</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary-light">check_circle</span>
+              <span>No comas 2 horas antes de la practica</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary-light">check_circle</span>
+              <span>Confirma tu reserva por WhatsApp</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="px-6">
+        <div class="relative bg-white rounded-3xl overflow-hidden p-8 text-center border border-slate-100 shadow-sm">
+          <div class="relative z-10">
+            <h3 class="text-2xl font-bold text-primary-dark mb-4">Primera clase gratis</h3>
+            <p class="text-sm text-slate-600 mb-8 leading-relaxed max-w-xs mx-auto">
+              Prueba una clase sin compromiso y descubre los beneficios del Kundalini Yoga.
+            </p>
+            <a href="https://wa.me/5350759360?text=Hola,%20quiero%20probar%20mi%20primera%20clase%20gratis%20de%20Kundalini%20Yoga"
+               target="_blank"
+               class="block w-full bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary">
+              Reservar Clase Gratis
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

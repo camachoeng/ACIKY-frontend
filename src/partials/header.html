@@ -1,0 +1,86 @@
+<header class="sticky top-0 z-50 px-6 py-4 bg-white/80 backdrop-blur-md flex items-center justify-between border-b border-slate-200/50">
+  <div class="flex items-center gap-3">
+    <a href="/" class="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+      <img alt="ACIKY Logo" class="w-full h-full object-contain" src="/images/logo.svg"/>
+    </a>
+    <div>
+      <h1 class="text-lg font-bold text-primary-dark tracking-tight">ACIKY</h1>
+      <p class="text-[10px] uppercase font-bold text-primary tracking-widest">Yoga para Todos</p>
+    </div>
+  </div>
+
+  <!-- Desktop Navigation -->
+  <nav class="hidden lg:flex items-center gap-6">
+    <div class="relative group">
+      <button class="text-text hover:text-primary transition-colors font-medium flex items-center gap-1">
+        Actividades
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-2xl shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all py-2">
+        <a href="/pages/schedule.html" class="block px-4 py-2 hover:bg-background text-text hover:text-primary text-sm">Clases</a>
+        <a href="/pages/spaces.html" class="block px-4 py-2 hover:bg-background text-text hover:text-primary text-sm">Espacios</a>
+        <a href="/pages/golden-routes.html" class="block px-4 py-2 hover:bg-background text-text hover:text-primary text-sm">Rutas Doradas</a>
+        <a href="/pages/rebirthing.html" class="block px-4 py-2 hover:bg-background text-text hover:text-primary text-sm">Renacimientos</a>
+        <a href="/pages/sadhanasonline.html" class="block px-4 py-2 hover:bg-background text-text hover:text-primary text-sm">Sadhanas Online</a>
+        <a href="/pages/festival.html" class="block px-4 py-2 hover:bg-background text-text hover:text-primary text-sm">Festival</a>
+      </div>
+    </div>
+    <a href="/pages/gallery.html" class="text-text hover:text-primary transition-colors font-medium">Galería</a>
+    <a href="/pages/blog.html" class="text-text hover:text-primary transition-colors font-medium">Blog</a>
+    <a href="/pages/about.html" class="text-text hover:text-primary transition-colors font-medium">Nosotros</a>
+  </nav>
+
+  <!-- Desktop Auth -->
+  <div class="hidden lg:flex items-center gap-3" id="authButtons">
+    <a href="/pages/login.html" class="text-primary-dark hover:text-primary transition-colors font-medium text-sm">
+      Iniciar Sesión
+    </a>
+    <a href="/pages/register.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition-colors font-medium text-sm">
+      Registrarse
+    </a>
+  </div>
+
+  <!-- Desktop User Menu (hidden by default) -->
+  <div class="hidden lg:flex items-center gap-3" id="userMenu" style="display: none;">
+    <span id="userDisplayName" class="text-text-light text-sm"></span>
+    <a href="/pages/admin/dashboard.html" id="adminLink" class="inline-flex items-center gap-1 text-primary-dark hover:text-primary transition-colors font-medium text-sm" style="display: none;">
+      <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+      Admin
+    </a>
+    <a href="/pages/dashboard.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition-colors font-medium text-sm">
+      Mi Perfil
+    </a>
+    <button id="desktopLogoutBtn" class="text-accent-terracotta hover:text-red-600 transition-colors font-medium text-sm">
+      Salir
+    </button>
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <button class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-sm border border-slate-100 text-primary-dark" id="mobileMenuBtn" aria-label="Abrir menú">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+
+  <!-- Mobile Menu Dropdown -->
+  <div class="lg:hidden hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-lg" id="mobileMenu">
+    <nav class="px-6 py-4 space-y-1">
+      <a href="/pages/schedule.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100">Clases</a>
+      <a href="/pages/spaces.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100">Espacios</a>
+      <a href="/pages/golden-routes.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100">Rutas Doradas</a>
+      <a href="/pages/rebirthing.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100">Renacimientos</a>
+      <a href="/pages/gallery.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100">Galería</a>
+      <a href="/pages/blog.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100">Blog</a>
+      <a href="/pages/about.html" class="block py-3 text-text hover:text-primary font-medium">Nosotros</a>
+      <div class="pt-4 space-y-2" id="mobileAuthButtons">
+        <a href="/pages/login.html" class="block w-full text-center py-3 text-primary-dark font-semibold border border-primary-dark rounded-full">Iniciar Sesión</a>
+        <a href="/pages/register.html" class="block w-full text-center py-3 bg-primary text-white font-semibold rounded-full">Registrarse</a>
+      </div>
+      <div class="pt-4 space-y-2" id="mobileUserMenu" style="display: none;">
+        <a href="/pages/admin/dashboard.html" id="mobileAdminLink" class="block w-full text-center py-3 bg-primary-dark text-white font-semibold rounded-full" style="display: none;">Panel Admin</a>
+        <a href="/pages/dashboard.html" class="block w-full text-center py-3 bg-primary text-white font-semibold rounded-full">Mi Perfil</a>
+        <button id="mobileLogoutBtn" class="block w-full text-center py-3 text-accent-terracotta font-semibold">Cerrar Sesión</button>
+      </div>
+    </nav>
+  </div>
+</header>

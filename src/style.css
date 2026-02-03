@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* ACIKY Brand Theme - Soft & Calming */
+@theme {
+  /* Primary palette - soft sage green (easy on the eyes) */
+  --color-primary: #708558;
+  --color-primary-dark: #5c6c4a;
+  --color-primary-light: #a3be84;
+
+  /* Accent colors - muted versions of logo colors */
+  --color-accent-teal: #5AACCC;
+  --color-accent-terracotta: #E8A090;
+  --color-accent-rose: #E87A9A;
+
+  /* Backgrounds */
+  --color-background: #FAFCFA;
+  --color-surface: #FFFFFF;
+
+  /* Text */
+  --color-text: #3D4A3D;
+  --color-text-light: #6B7B6B;
+}
+
+/* Base styles */
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  margin: 0;
+  min-height: 100dvh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar utility */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Active state for touch devices */
+.active\:scale-95:active {
+  transform: scale(0.95);
+}

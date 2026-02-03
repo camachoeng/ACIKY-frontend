@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestion de usuarios - Admin ACIKY" />
+    <title>Usuarios - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <div class="flex items-center justify-between mb-8">
+          <h1 class="text-2xl font-bold text-primary-dark">Usuarios</h1>
+          <button id="createUserBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">add</span>
+            Nuevo
+          </button>
+        </div>
+
+        <!-- Users Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-slate-50 border-b border-slate-100">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase">Usuario</th>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase">Email</th>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase">Rol</th>
+                  <th class="px-6 py-3 text-right text-xs font-bold text-slate-500 uppercase">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- User Modal -->
+      <div id="userModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" id="userModalOverlay"></div>
+        <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 max-w-lg mx-auto bg-white rounded-3xl p-8 shadow-xl">
+          <h2 id="userModalTitle" class="text-xl font-bold text-primary-dark mb-6">Nuevo Usuario</h2>
+          <form id="userForm" class="space-y-4">
+            <input type="hidden" id="userId" />
+            <div>
+              <label for="userUsername" class="block text-sm font-medium text-primary-dark mb-1">Nombre de Usuario</label>
+              <input type="text" id="userUsername" required minlength="3"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     placeholder="nombre_usuario" />
+            </div>
+            <div>
+              <label for="userEmail" class="block text-sm font-medium text-primary-dark mb-1">Email</label>
+              <input type="email" id="userEmail" required
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     placeholder="correo@ejemplo.com" />
+            </div>
+            <div id="passwordFields">
+              <label for="userPassword" class="block text-sm font-medium text-primary-dark mb-1">Contrasena</label>
+              <input type="password" id="userPassword" minlength="8"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     placeholder="Dejar vacio para no cambiar" />
+            </div>
+            <div>
+              <label for="userRole" class="block text-sm font-medium text-primary-dark mb-1">Rol</label>
+              <select id="userRole"
+                      class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white">
+                <option value="user">Usuario</option>
+                <option value="instructor">Instructor</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div id="userFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+            <div class="flex gap-3 pt-2">
+              <button type="button" id="cancelUserBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors">Cancelar</button>
+              <button type="submit" id="saveUserBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
