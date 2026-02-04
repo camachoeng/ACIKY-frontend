@@ -25,6 +25,10 @@ export async function initAdminUsers() {
   const form = document.getElementById('userForm')
   if (form) form.addEventListener('submit', saveUser)
 
+  // Toggle position field visibility based on role
+  const roleSelect = document.getElementById('userRole')
+  if (roleSelect) roleSelect.addEventListener('change', togglePositionField)
+
   // Table event delegation
   const tbody = document.getElementById('usersTableBody')
   if (tbody) {
@@ -108,6 +112,7 @@ function openCreateModal() {
   document.getElementById('userId').value = ''
   if (passwordFields) passwordFields.style.display = 'block'
   if (passwordInput) passwordInput.required = true
+  togglePositionField()
   hideFormError()
   if (modal) modal.classList.remove('hidden')
 }
@@ -128,6 +133,8 @@ async function openEditModal(id) {
     document.getElementById('userEmail').value = user.email
     document.getElementById('userRole').value = user.role
     document.getElementById('userPassword').value = ''
+    document.getElementById('userPosition').value = user.position || ''
+    togglePositionField()
 
     // Password optional when editing
     if (passwordFields) passwordFields.style.display = 'block'
@@ -153,8 +160,11 @@ async function saveUser(e) {
   const password = document.getElementById('userPassword').value
   const role = document.getElementById('userRole').value
 
+  const position = document.getElementById('userPosition').value.trim()
+
   const body = { username, email, role }
   if (password) body.password = password
+  if (role !== 'user') body.position = position || null
 
   try {
     if (id) {
@@ -202,6 +212,14 @@ async function confirmDelete(id) {
     await loadUsers()
   } catch (err) {
     alert('Error al eliminar: ' + err.message)
+  }
+}
+
+function togglePositionField() {
+  const role = document.getElementById('userRole').value
+  const positionField = document.getElementById('positionField')
+  if (positionField) {
+    positionField.classList.toggle('hidden', role === 'user')
   }
 }
 

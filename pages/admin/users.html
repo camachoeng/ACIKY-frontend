@@ -77,6 +77,12 @@
                 <option value="admin">Admin</option>
               </select>
             </div>
+            <div id="positionField" class="hidden">
+              <label for="userPosition" class="block text-sm font-medium text-primary-dark mb-1">Cargo / Titulo</label>
+              <input type="text" id="userPosition" maxlength="255"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     placeholder="Ej: Instructora de Kundalini Yoga" />
+            </div>
             <div id="userFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
             <div class="flex gap-3 pt-2">
               <button type="button" id="cancelUserBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors">Cancelar</button>

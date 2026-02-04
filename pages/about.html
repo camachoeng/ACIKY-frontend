@@ -64,11 +64,33 @@
             vital que reside en la base de la columna vertebral.
           </p>
 
-          <h2 class="text-2xl font-bold text-primary-dark mb-4">Nuestro Equipo</h2>
-          <p class="text-sm leading-relaxed text-slate-600">
-            Contamos con instructores certificados y apasionados que guían
-            a nuestros estudiantes en cada paso de su viaje yogui.
-          </p>
+        </div>
+      </section>
+
+      <!-- Nuestro Equipo Section (Dynamic) -->
+      <section class="px-6 mb-12">
+        <h2 class="text-2xl font-bold text-primary-dark mb-6">Nuestro Equipo</h2>
+
+        <!-- Loading State -->
+        <div id="teamLoading" class="text-center py-12">
+          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2">Cargando equipo...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="teamError" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-accent-terracotta text-4xl">error</span>
+          <p class="text-slate-500 text-sm mt-2">No se pudo cargar el equipo</p>
+          <button id="teamRetry" class="mt-4 text-primary font-semibold text-sm hover:underline">Reintentar</button>
+        </div>
+
+        <!-- Dynamic Cards Container -->
+        <div id="teamContainer" class="hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+
+        <!-- Empty State -->
+        <div id="teamEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">groups</span>
+          <p class="text-slate-500 text-sm mt-2">Pronto conocerás a nuestro equipo</p>
         </div>
       </section>
 

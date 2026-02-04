@@ -85,6 +85,20 @@ function escapeHtml(str) {
   return div.innerHTML
 }
 
+// Password visibility toggle
+function initPasswordToggles() {
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.toggle-password')
+    if (!btn) return
+    const input = document.getElementById(btn.dataset.target)
+    if (!input) return
+    const isPassword = input.type === 'password'
+    input.type = isPassword ? 'text' : 'password'
+    const icon = btn.querySelector('.material-symbols-outlined')
+    if (icon) icon.textContent = isPassword ? 'visibility_off' : 'visibility'
+  })
+}
+
 // Page-specific initialization via dynamic imports
 async function initPage() {
   const path = window.location.pathname
@@ -100,6 +114,15 @@ async function initPage() {
   } else if (path.includes('/pages/schedule.html')) {
     const { initSchedule } = await import('./js/schedule.js')
     initSchedule()
+  } else if (path.includes('/pages/about.html')) {
+    const { initAbout } = await import('./js/about.js')
+    initAbout()
+  } else if (path.includes('/pages/verify-email.html')) {
+    const { initVerifyEmail } = await import('./js/verify-email.js')
+    initVerifyEmail()
+  } else if (path.includes('/pages/dashboard.html')) {
+    const { initDashboard } = await import('./js/dashboard.js')
+    initDashboard()
   } else if (path.includes('/pages/admin/dashboard.html')) {
     const { initAdminDashboard } = await import('./js/admin/dashboard.js')
     initAdminDashboard()
@@ -116,6 +139,7 @@ async function initPage() {
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu()
   initLogout()
+  initPasswordToggles()
   checkAuth()
   initPage()
 })
