@@ -78,7 +78,7 @@ export function updateAuthUI(isAuthenticated, user) {
 export async function requireAuth() {
   const user = await checkAuth()
   if (!user) {
-    window.location.href = '/pages/login.html'
+    window.location.href = import.meta.env.BASE_URL + 'pages/login.html'
     return null
   }
   return user
@@ -89,7 +89,7 @@ export async function requireAdmin() {
   const user = await requireAuth()
   if (!user) return null
   if (user.role !== 'admin') {
-    window.location.href = '/'
+    window.location.href = import.meta.env.BASE_URL
     return null
   }
   return user
