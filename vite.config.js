@@ -23,9 +23,11 @@ export default defineConfig({
         schedule: resolve(__dirname, 'pages/schedule.html'),
         login: resolve(__dirname, 'pages/login.html'),
         register: resolve(__dirname, 'pages/register.html'),
+        dashboard: resolve(__dirname, 'pages/dashboard.html'),
         adminDashboard: resolve(__dirname, 'pages/admin/dashboard.html'),
         adminUsers: resolve(__dirname, 'pages/admin/users.html'),
-        adminSchedule: resolve(__dirname, 'pages/admin/schedule.html')
+        adminSchedule: resolve(__dirname, 'pages/admin/schedule.html'),
+        verifyEmail: resolve(__dirname, 'pages/verify-email.html')
       }
     }
   }

@@ -29,12 +29,16 @@ export function initRegister() {
     submitBtn.textContent = 'Registrando...'
 
     try {
-      await apiFetch('/api/auth/register', {
+      const data = await apiFetch('/api/auth/register', {
         method: 'POST',
         body: JSON.stringify({ username, email, password })
       })
 
-      window.location.href = '/pages/login.html?registered=true'
+      const redirectParams = data.emailVerified
+        ? 'registered=true'
+        : 'registered=true&needsVerification=true'
+
+      window.location.href = `/pages/login.html?${redirectParams}`
     } catch (err) {
       const errorSpan = errorDiv.querySelector('span:last-child')
       if (errorSpan) errorSpan.textContent = err.message || 'Error al registrarse'
