@@ -41,7 +41,7 @@ function initLogout() {
         }
         localStorage.clear()
         sessionStorage.clear()
-        window.location.href = '/pages/login.html'
+        window.location.href = import.meta.env.BASE_URL + 'pages/login.html'
       })
     }
   })
@@ -103,7 +103,8 @@ function initPasswordToggles() {
 async function initPage() {
   const path = window.location.pathname
 
-  if (path === '/' || path === '/index.html') {
+  const base = import.meta.env.BASE_URL
+  if (path === base || path === base + 'index.html') {
     initHeroSchedule()
   } else if (path.includes('/pages/login.html')) {
     const { initLogin } = await import('./js/login.js')

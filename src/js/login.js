@@ -40,7 +40,8 @@ export function initLogin() {
       localStorage.setItem('authToken', 'session')
       localStorage.setItem('loginTime', Date.now().toString())
 
-      window.location.href = data.user.role === 'admin' ? '/pages/admin/dashboard.html' : '/'
+      const base = import.meta.env.BASE_URL
+      window.location.href = data.user.role === 'admin' ? base + 'pages/admin/dashboard.html' : base
     } catch (err) {
       const errorSpan = errorDiv.querySelector('span:last-child')
       if (errorSpan) errorSpan.textContent = err.message || 'Error al iniciar sesion'

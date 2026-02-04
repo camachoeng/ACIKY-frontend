@@ -38,7 +38,7 @@ export function initRegister() {
         ? 'registered=true'
         : 'registered=true&needsVerification=true'
 
-      window.location.href = `/pages/login.html?${redirectParams}`
+      window.location.href = `${import.meta.env.BASE_URL}pages/login.html?${redirectParams}`
     } catch (err) {
       const errorSpan = errorDiv.querySelector('span:last-child')
       if (errorSpan) errorSpan.textContent = err.message || 'Error al registrarse'
