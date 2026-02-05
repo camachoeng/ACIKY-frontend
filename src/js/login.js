@@ -9,8 +9,10 @@ export function initLogin() {
 
   if (!form) return
 
-  // Show success message if redirected from register
   const params = new URLSearchParams(window.location.search)
+  const infoDiv = document.getElementById('loginInfo')
+
+  // Show success message if redirected from register
   if (params.get('registered') === 'true' && successDiv) {
     const successSpan = successDiv.querySelector('span:last-child')
     if (params.get('needsVerification') === 'true') {
@@ -19,10 +21,16 @@ export function initLogin() {
     successDiv.classList.remove('hidden')
   }
 
+  // Show info message if redirected for booking
+  if (params.get('reason') === 'booking' && infoDiv) {
+    infoDiv.classList.remove('hidden')
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
     errorDiv.classList.add('hidden')
     if (successDiv) successDiv.classList.add('hidden')
+    if (infoDiv) infoDiv.classList.add('hidden')
     if (resendDiv) resendDiv.classList.add('hidden')
     submitBtn.disabled = true
     submitBtn.textContent = 'Iniciando...'
@@ -40,8 +48,14 @@ export function initLogin() {
       localStorage.setItem('authToken', 'session')
       localStorage.setItem('loginTime', Date.now().toString())
 
-      const base = import.meta.env.BASE_URL
-      window.location.href = data.user.role === 'admin' ? base + 'pages/admin/dashboard.html' : base
+      // Check for return URL (used when redirected from protected pages)
+      const returnUrl = params.get('return')
+      if (returnUrl) {
+        window.location.href = decodeURIComponent(returnUrl)
+      } else {
+        const base = import.meta.env.BASE_URL
+        window.location.href = data.user.role === 'admin' ? base + 'pages/admin/dashboard.html' : base
+      }
     } catch (err) {
       const errorSpan = errorDiv.querySelector('span:last-child')
       if (errorSpan) errorSpan.textContent = err.message || 'Error al iniciar sesion'

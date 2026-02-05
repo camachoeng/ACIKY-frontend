@@ -57,22 +57,29 @@
             <div id="profileError" class="hidden mb-4 p-3 bg-accent-terracotta/10 text-accent-terracotta text-sm rounded-xl"></div>
             <div id="profileSuccess" class="hidden mb-4 p-3 bg-primary/10 text-primary text-sm rounded-xl"></div>
 
-            <form id="profileForm" class="space-y-4">
+            <div class="space-y-4">
               <div>
-                <label for="profileUsername" class="block text-sm font-medium text-slate-600 mb-1">Nombre</label>
-                <input type="text" id="profileUsername" name="username"
-                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
+                <label for="profileUsername" class="block text-sm font-medium text-slate-600 mb-1">Nombre de Usuario</label>
+                <input type="text" id="profileUsername" name="username" readonly
+                       class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 outline-none text-sm cursor-not-allowed" />
               </div>
               <div>
                 <label for="profileEmail" class="block text-sm font-medium text-slate-600 mb-1">Email</label>
                 <input type="email" id="profileEmail" name="email" readonly
                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 outline-none text-sm cursor-not-allowed" />
               </div>
-              <button type="submit" id="profileSaveBtn"
-                      class="w-full bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary">
-                Guardar Cambios
-              </button>
-            </form>
+            </div>
+          </div>
+
+          <!-- Instructor Section (hidden by default, shown for instructors/admins) -->
+          <div id="instructorSection" class="hidden bg-white rounded-3xl p-8 shadow-sm border border-slate-100 mt-6">
+            <h2 class="text-xl font-bold text-primary-dark mb-4">Zona Instructor</h2>
+            <p class="text-slate-500 text-sm mb-4">Gestiona las clases que tienes asignadas</p>
+            <a href="{{basePath}}/pages/instructor/my-classes.html"
+               class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary-dark transition-colors">
+              <span class="material-symbols-outlined text-sm">self_improvement</span>
+              Mis Clases
+            </a>
           </div>
         </div>
       </section>

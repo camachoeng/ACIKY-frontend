@@ -29,6 +29,12 @@ export async function initAdminUsers() {
   const roleSelect = document.getElementById('userRole')
   if (roleSelect) roleSelect.addEventListener('change', togglePositionField)
 
+  // Show/hide password confirm field when password is entered
+  const passwordInput = document.getElementById('userPassword')
+  if (passwordInput) {
+    passwordInput.addEventListener('input', togglePasswordConfirmField)
+  }
+
   // Table event delegation
   const tbody = document.getElementById('usersTableBody')
   if (tbody) {
@@ -106,12 +112,14 @@ function openCreateModal() {
   const form = document.getElementById('userForm')
   const passwordFields = document.getElementById('passwordFields')
   const passwordInput = document.getElementById('userPassword')
+  const passwordConfirmFields = document.getElementById('passwordConfirmFields')
 
   if (title) title.textContent = 'Nuevo Usuario'
   if (form) form.reset()
   document.getElementById('userId').value = ''
   if (passwordFields) passwordFields.style.display = 'block'
   if (passwordInput) passwordInput.required = true
+  if (passwordConfirmFields) passwordConfirmFields.classList.add('hidden')
   togglePositionField()
   hideFormError()
   if (modal) modal.classList.remove('hidden')
@@ -122,6 +130,8 @@ async function openEditModal(id) {
   const title = document.getElementById('userModalTitle')
   const passwordFields = document.getElementById('passwordFields')
   const passwordInput = document.getElementById('userPassword')
+  const passwordConfirmFields = document.getElementById('passwordConfirmFields')
+  const passwordConfirmInput = document.getElementById('userPasswordConfirm')
 
   try {
     const data = await apiFetch(`/api/users/${id}`)
@@ -133,12 +143,14 @@ async function openEditModal(id) {
     document.getElementById('userEmail').value = user.email
     document.getElementById('userRole').value = user.role
     document.getElementById('userPassword').value = ''
+    if (passwordConfirmInput) passwordConfirmInput.value = ''
     document.getElementById('userPosition').value = user.position || ''
     togglePositionField()
 
     // Password optional when editing
     if (passwordFields) passwordFields.style.display = 'block'
     if (passwordInput) passwordInput.required = false
+    if (passwordConfirmFields) passwordConfirmFields.classList.add('hidden')
 
     hideFormError()
     if (modal) modal.classList.remove('hidden')
@@ -158,9 +170,18 @@ async function saveUser(e) {
   const username = document.getElementById('userUsername').value.trim()
   const email = document.getElementById('userEmail').value.trim()
   const password = document.getElementById('userPassword').value
+  const passwordConfirm = document.getElementById('userPasswordConfirm').value
   const role = document.getElementById('userRole').value
 
   const position = document.getElementById('userPosition').value.trim()
+
+  // Validate password confirmation
+  if (password && password !== passwordConfirm) {
+    showFormError('Las contrasenas no coinciden')
+    saveBtn.disabled = false
+    saveBtn.textContent = 'Guardar'
+    return
+  }
 
   const body = { username, email, role }
   if (password) body.password = password
@@ -220,6 +241,14 @@ function togglePositionField() {
   const positionField = document.getElementById('positionField')
   if (positionField) {
     positionField.classList.toggle('hidden', role === 'user')
+  }
+}
+
+function togglePasswordConfirmField() {
+  const password = document.getElementById('userPassword').value
+  const passwordConfirmFields = document.getElementById('passwordConfirmFields')
+  if (passwordConfirmFields) {
+    passwordConfirmFields.classList.toggle('hidden', !password)
   }
 }
 

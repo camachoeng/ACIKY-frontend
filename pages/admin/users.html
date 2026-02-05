@@ -64,9 +64,26 @@
             </div>
             <div id="passwordFields">
               <label for="userPassword" class="block text-sm font-medium text-primary-dark mb-1">Contrasena</label>
-              <input type="password" id="userPassword" minlength="8"
-                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                     placeholder="Dejar vacio para no cambiar" />
+              <div class="relative">
+                <input type="password" id="userPassword" minlength="8"
+                       class="w-full px-4 py-3 pr-12 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       placeholder="Dejar vacio para no cambiar" />
+                <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors" data-target="userPassword">
+                  <span class="material-symbols-outlined text-xl">visibility</span>
+                </button>
+              </div>
+              <p class="mt-1 text-xs text-slate-400">Min. 8 caracteres, debe incluir mayusculas, minusculas, numeros y caracteres especiales</p>
+            </div>
+            <div id="passwordConfirmFields" class="hidden">
+              <label for="userPasswordConfirm" class="block text-sm font-medium text-primary-dark mb-1">Confirmar Contrasena</label>
+              <div class="relative">
+                <input type="password" id="userPasswordConfirm" minlength="8"
+                       class="w-full px-4 py-3 pr-12 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       placeholder="Escribe la contrasena de nuevo" />
+                <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors" data-target="userPasswordConfirm">
+                  <span class="material-symbols-outlined text-xl">visibility</span>
+                </button>
+              </div>
             </div>
             <div>
               <label for="userRole" class="block text-sm font-medium text-primary-dark mb-1">Rol</label>
