@@ -1,4 +1,5 @@
 import { apiFetch } from './api.js'
+import { t } from './i18n.js'
 
 export function initRegister() {
   const form = document.getElementById('registerForm')
@@ -19,14 +20,14 @@ export function initRegister() {
     // Client-side validation
     if (password !== confirmPassword) {
       const errorSpan = errorDiv.querySelector('span:last-child')
-      if (errorSpan) errorSpan.textContent = 'Las contrasenas no coinciden'
-      else errorDiv.textContent = 'Las contrasenas no coinciden'
+      if (errorSpan) errorSpan.textContent = t('errors.passwordMismatch')
+      else errorDiv.textContent = t('errors.passwordMismatch')
       errorDiv.classList.remove('hidden')
       return
     }
 
     submitBtn.disabled = true
-    submitBtn.textContent = 'Registrando...'
+    submitBtn.textContent = t('submitting')
 
     try {
       const data = await apiFetch('/api/auth/register', {
@@ -41,11 +42,18 @@ export function initRegister() {
       window.location.href = `${import.meta.env.BASE_URL}pages/login.html?${redirectParams}`
     } catch (err) {
       const errorSpan = errorDiv.querySelector('span:last-child')
-      if (errorSpan) errorSpan.textContent = err.message || 'Error al registrarse'
-      else errorDiv.textContent = err.message || 'Error al registrarse'
+      if (errorSpan) errorSpan.textContent = err.message || t('errors.default')
+      else errorDiv.textContent = err.message || t('errors.default')
       errorDiv.classList.remove('hidden')
       submitBtn.disabled = false
-      submitBtn.textContent = 'Registrarse'
+      submitBtn.textContent = t('submitBtn')
+    }
+  })
+
+  // Listen for language changes
+  window.addEventListener('languageChanged', () => {
+    if (!submitBtn.disabled) {
+      submitBtn.textContent = t('submitBtn')
     }
   })
 }

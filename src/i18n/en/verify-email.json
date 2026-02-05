@@ -1,0 +1,16 @@
+{
+  "title": "Email Verification",
+  "loading": "Processing verification...",
+  "success": {
+    "title": "Account verified",
+    "description": "Your email has been verified successfully. You can now sign in.",
+    "button": "Sign In"
+  },
+  "error": {
+    "title": "Verification error",
+    "button": "Go to sign in",
+    "INVALID_TOKEN": "The verification link is invalid. You may have already verified your account.",
+    "TOKEN_EXPIRED": "The verification link has expired. Request a new one from the sign in page.",
+    "default": "An error occurred while verifying your account. Please try again."
+  }
+}

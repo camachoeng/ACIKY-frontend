@@ -1,6 +1,7 @@
 import './style.css'
 import { checkAuth } from './js/auth.js'
 import { apiFetch } from './js/api.js'
+import { initI18n, switchLanguage, getLanguage, t } from './js/i18n.js'
 
 // Mobile Menu Toggle
 function initMobileMenu() {
@@ -58,7 +59,7 @@ async function initHeroSchedule() {
 
     if (activities.length === 0) {
       container.innerHTML = `
-        <div class="text-xs opacity-70 text-white">No hay clases programadas</div>`
+        <div class="text-xs opacity-70 text-white">${t('hero.noClasses')}</div>`
       return
     }
 
@@ -69,14 +70,19 @@ async function initHeroSchedule() {
         </div>
         <div class="text-xs">
           <p class="font-semibold text-primary-light">${escapeHtml(a.schedule || a.name)}</p>
-          <p class="opacity-70 text-white">${a.instructor_name ? 'Instructor: ' + escapeHtml(a.instructor_name) : escapeHtml(a.name)}</p>
+          <p class="opacity-70 text-white">${a.instructor_name ? t('hero.instructor') + ': ' + escapeHtml(a.instructor_name) : escapeHtml(a.name)}</p>
         </div>
       </div>`).join('')
   } catch {
     container.innerHTML = `
-      <div class="text-xs opacity-70 text-white">Visita la seccion de clases para ver el horario</div>`
+      <div class="text-xs opacity-70 text-white">${t('hero.visitSchedule')}</div>`
   }
 }
+
+// Listen for language changes to re-render hero schedule
+window.addEventListener('languageChanged', () => {
+  initHeroSchedule()
+})
 
 function escapeHtml(str) {
   if (!str) return ''
@@ -96,6 +102,36 @@ function initPasswordToggles() {
     input.type = isPassword ? 'text' : 'password'
     const icon = btn.querySelector('.material-symbols-outlined')
     if (icon) icon.textContent = isPassword ? 'visibility_off' : 'visibility'
+  })
+}
+
+// Language Toggle
+function initLanguageToggle() {
+  const toggles = [
+    document.getElementById('langToggle'),
+    document.getElementById('mobileLangToggle')
+  ]
+  const toggleTexts = [
+    document.getElementById('langToggleText'),
+    document.getElementById('mobileLangToggleText')
+  ]
+
+  const updateToggleUI = (lang) => {
+    toggleTexts.forEach(el => {
+      if (el) el.textContent = lang.toUpperCase()
+    })
+  }
+
+  updateToggleUI(getLanguage())
+
+  const handleToggle = async () => {
+    const newLang = getLanguage() === 'es' ? 'en' : 'es'
+    await switchLanguage(newLang)
+    updateToggleUI(newLang)
+  }
+
+  toggles.forEach(toggle => {
+    if (toggle) toggle.addEventListener('click', handleToggle)
   })
 }
 
@@ -140,10 +176,14 @@ async function initPage() {
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Initialize i18n first (load translations)
+  await initI18n()
+
   initMobileMenu()
   initLogout()
   initPasswordToggles()
+  initLanguageToggle()
   checkAuth()
-  initPage()
+  await initPage()
 })

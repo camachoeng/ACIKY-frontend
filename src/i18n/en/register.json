@@ -1,0 +1,21 @@
+{
+  "title": "Sign Up",
+  "subtitle": "Join our yoga community",
+  "username": "Username",
+  "usernamePlaceholder": "Your username",
+  "email": "Email Address",
+  "emailPlaceholder": "you@email.com",
+  "password": "Password",
+  "passwordPlaceholder": "Minimum 8 characters",
+  "passwordHint": "Must include uppercase, lowercase, numbers and special characters",
+  "confirmPassword": "Confirm Password",
+  "confirmPasswordPlaceholder": "Repeat your password",
+  "submitBtn": "Sign Up",
+  "submitting": "Signing up...",
+  "hasAccount": "Already have an account?",
+  "loginLink": "Sign In",
+  "errors": {
+    "default": "Error signing up",
+    "passwordMismatch": "Passwords do not match"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Dashboard",
+  "stats": {
+    "users": "Usuarios",
+    "activeClasses": "Clases Activas",
+    "instructors": "Instructores",
+    "locations": "Ubicaciones"
+  },
+  "quickActions": {
+    "title": "Acciones Rápidas",
+    "manageUsers": {
+      "title": "Gestionar Usuarios",
+      "description": "Ver, crear y editar usuarios"
+    },
+    "manageClasses": {
+      "title": "Gestionar Clases",
+      "description": "Crear y editar horarios"
+    },
+    "viewSite": {
+      "title": "Ver Sitio",
+      "description": "Vista pública del horario"
+    }
+  }
+}

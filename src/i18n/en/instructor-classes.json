@@ -1,0 +1,47 @@
+{
+  "title": "My Classes",
+  "subtitle": "Classes assigned to you as instructor",
+  "backToProfile": "Back to profile",
+  "loading": "Loading your classes...",
+  "empty": {
+    "title": "You have no assigned classes",
+    "description": "Contact the administrator to assign classes to you"
+  },
+  "card": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "noSchedule": "No schedule",
+    "noLocation": "No location",
+    "min": "min",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "edit": "Edit"
+  },
+  "difficulty": {
+    "all": "All levels",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
+  "modal": {
+    "title": "Edit Class",
+    "name": "Name",
+    "namePlaceholder": "Class name",
+    "description": "Description",
+    "descriptionPlaceholder": "Class description...",
+    "schedule": "Schedule",
+    "schedulePlaceholder": "Tuesday 11:30 AM",
+    "duration": "Duration (min)",
+    "durationPlaceholder": "90",
+    "level": "Level",
+    "activeClass": "Active class",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "loadError": "Error loading classes",
+    "notFound": "Class not found",
+    "saveError": "Error saving class"
+  }
+}

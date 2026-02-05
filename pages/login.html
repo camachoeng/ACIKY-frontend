@@ -17,8 +17,8 @@
       <!-- Hero -->
       <section class="bg-gradient-to-br from-primary to-primary-dark text-white py-16">
         <div class="container mx-auto px-4 text-center">
-          <h1 class="text-4xl lg:text-5xl font-bold">Iniciar Sesion</h1>
-          <p class="mt-4 text-white/80">Bienvenido de vuelta a tu practica</p>
+          <h1 class="text-4xl lg:text-5xl font-bold" data-i18n="title">Iniciar Sesion</h1>
+          <p class="mt-4 text-white/80" data-i18n="subtitle">Bienvenido de vuelta a tu practica</p>
         </div>
       </section>
 
@@ -29,13 +29,13 @@
           <!-- Success message (shown after registration) -->
           <div id="loginSuccess" class="hidden mb-4 p-4 bg-green-50 border border-green-200 rounded-2xl text-green-700 text-sm flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">check_circle</span>
-            <span>Cuenta creada exitosamente. Inicia sesion.</span>
+            <span data-i18n="success.registered">Cuenta creada exitosamente. Inicia sesion.</span>
           </div>
 
           <!-- Info message (shown when redirected for booking) -->
           <div id="loginInfo" class="hidden mb-4 p-4 bg-blue-50 border border-blue-200 rounded-2xl text-blue-700 text-sm flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">info</span>
-            <span>Debes iniciar sesion para reservar una clase.</span>
+            <span data-i18n="info.bookingRedirect">Debes iniciar sesion para reservar una clase.</span>
           </div>
 
           <!-- Error message -->
@@ -48,10 +48,11 @@
           <div id="resendVerification" class="hidden mb-4 p-4 bg-amber-50 border border-amber-200 rounded-2xl text-sm">
             <p class="text-amber-700 mb-3 flex items-center gap-2">
               <span class="material-symbols-outlined text-sm">mail</span>
-              Tu cuenta no ha sido verificada.
+              <span data-i18n="verification.notVerified">Tu cuenta no ha sido verificada.</span>
             </p>
             <button type="button"
-                    class="w-full bg-amber-500 text-white font-semibold py-2 rounded-xl hover:bg-amber-600 transition-colors text-sm">
+                    class="w-full bg-amber-500 text-white font-semibold py-2 rounded-xl hover:bg-amber-600 transition-colors text-sm"
+                    data-i18n="verification.resendBtn">
               Reenviar correo de verificacion
             </button>
             <p class="resend-message hidden mt-2 text-xs text-amber-600 text-center"></p>
@@ -59,31 +60,32 @@
 
           <form id="loginForm" class="space-y-6">
             <div>
-              <label for="email" class="block text-sm font-medium text-primary-dark mb-2">Correo Electronico</label>
+              <label for="email" class="block text-sm font-medium text-primary-dark mb-2" data-i18n="email">Correo Electronico</label>
               <input type="email" id="email" name="email" required
                      class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                     placeholder="tu@correo.com" />
+                     data-i18n-placeholder="emailPlaceholder" placeholder="tu@correo.com" />
             </div>
             <div>
-              <label for="password" class="block text-sm font-medium text-primary-dark mb-2">Contrasena</label>
+              <label for="password" class="block text-sm font-medium text-primary-dark mb-2" data-i18n="password">Contrasena</label>
               <div class="relative">
                 <input type="password" id="password" name="password" required
                        class="w-full px-4 py-3 pr-12 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                       placeholder="Tu contrasena" />
+                       data-i18n-placeholder="passwordPlaceholder" placeholder="Tu contrasena" />
                 <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors" data-target="password">
                   <span class="material-symbols-outlined text-xl">visibility</span>
                 </button>
               </div>
             </div>
             <button type="submit" id="loginBtn"
-                    class="w-full bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary">
+                    class="w-full bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary"
+                    data-i18n="submitBtn">
               Iniciar Sesion
             </button>
           </form>
 
           <p class="mt-6 text-center text-sm text-slate-500">
-            No tienes cuenta?
-            <a href="{{basePath}}/pages/register.html" class="text-primary font-semibold hover:underline">Registrate</a>
+            <span data-i18n="noAccount">No tienes cuenta?</span>
+            <a href="{{basePath}}/pages/register.html" class="text-primary font-semibold hover:underline" data-i18n="registerLink">Registrate</a>
           </p>
         </div>
       </section>

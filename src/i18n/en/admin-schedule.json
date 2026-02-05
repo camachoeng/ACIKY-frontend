@@ -1,0 +1,56 @@
+{
+  "title": "Classes",
+  "newButton": "New Class",
+  "loading": "Loading classes...",
+  "empty": "No classes created",
+  "loadError": "Error loading classes",
+  "card": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "featured": "Featured",
+    "noSchedule": "No schedule",
+    "noLocation": "No location",
+    "noInstructor": "No instructor",
+    "min": "min",
+    "activate": "Activate",
+    "deactivate": "Deactivate"
+  },
+  "modal": {
+    "newTitle": "New Class",
+    "editTitle": "Edit Class",
+    "name": "Name",
+    "namePlaceholder": "Kundalini Yoga",
+    "description": "Description",
+    "descriptionPlaceholder": "Class description...",
+    "schedule": "Schedule",
+    "schedulePlaceholder": "Tuesday 11:30 AM",
+    "duration": "Duration (min)",
+    "durationPlaceholder": "90",
+    "location": "Location",
+    "locationPlaceholder": "Casa Museo de Asia",
+    "instructor": "Instructor",
+    "noInstructor": "No instructor",
+    "price": "Price",
+    "pricePlaceholder": "0",
+    "icon": "Icon (emoji)",
+    "iconPlaceholder": "🧘",
+    "level": "Level",
+    "levelAll": "All levels",
+    "levelBeginner": "Beginner",
+    "levelIntermediate": "Intermediate",
+    "levelAdvanced": "Advanced",
+    "active": "Active",
+    "featured": "Featured",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "loadClass": "Error loading class",
+    "saveError": "Error saving class",
+    "deleteError": "Error deleting"
+  },
+  "confirm": {
+    "delete": "Delete class \"{{name}}\"?"
+  }
+}

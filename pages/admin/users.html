@@ -17,10 +17,10 @@
     <main class="pb-12">
       <section class="px-6 py-8">
         <div class="flex items-center justify-between mb-8">
-          <h1 class="text-2xl font-bold text-primary-dark">Usuarios</h1>
+          <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Usuarios</h1>
           <button id="createUserBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
             <span class="material-symbols-outlined text-sm">add</span>
-            Nuevo
+            <span data-i18n="newButton">Nuevo</span>
           </button>
         </div>
 
@@ -30,10 +30,10 @@
             <table class="w-full">
               <thead class="bg-slate-50 border-b border-slate-100">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase">Usuario</th>
-                  <th class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase">Email</th>
-                  <th class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase">Rol</th>
-                  <th class="px-6 py-3 text-right text-xs font-bold text-slate-500 uppercase">Acciones</th>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase" data-i18n="table.user">Usuario</th>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase" data-i18n="table.email">Email</th>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase" data-i18n="table.role">Rol</th>
+                  <th class="px-6 py-3 text-right text-xs font-bold text-slate-500 uppercase" data-i18n="table.actions">Acciones</th>
                 </tr>
               </thead>
               <tbody id="usersTableBody">
@@ -102,8 +102,8 @@
             </div>
             <div id="userFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
             <div class="flex gap-3 pt-2">
-              <button type="button" id="cancelUserBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors">Cancelar</button>
-              <button type="submit" id="saveUserBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors">Guardar</button>
+              <button type="button" id="cancelUserBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+              <button type="submit" id="saveUserBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.save">Guardar</button>
             </div>
           </form>
         </div>

@@ -1,4 +1,5 @@
 import { apiFetch } from './api.js'
+import { t } from './i18n.js'
 
 const DEFAULT_AVATAR = '/public/images/default-avatar.svg'
 
@@ -36,6 +37,10 @@ export async function initAbout() {
   }
 
   if (retryBtn) retryBtn.addEventListener('click', loadTeam)
+
+  // Listen for language changes to re-render
+  window.addEventListener('languageChanged', loadTeam)
+
   loadTeam()
 }
 
@@ -43,12 +48,13 @@ function renderTeamCard(instructor) {
   const imageUrl = instructor.profile_image_url || DEFAULT_AVATAR
   const name = escapeHtml(instructor.username)
   const position = escapeHtml(instructor.position)
+  const altText = t('team.photoAlt', { name })
 
   return `
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
       <img
         src="${imageUrl}"
-        alt="Foto de ${name}"
+        alt="${altText}"
         class="w-24 h-24 rounded-full object-cover mx-auto mb-4 bg-slate-100"
         loading="lazy"
         onerror="this.src='${DEFAULT_AVATAR}'"

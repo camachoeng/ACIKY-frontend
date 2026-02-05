@@ -1,0 +1,46 @@
+{
+  "title": "Clases",
+  "subtitle": "Encuentra el horario perfecto para tu práctica",
+  "quote": {
+    "text": "El yoga no cambia la manera en que vemos las cosas, cambia a la persona que ve.",
+    "author": "Yogi Bhajan"
+  },
+  "weeklySchedule": "Horario Semanal",
+  "loading": "Cargando horario...",
+  "error": "No se pudo cargar el horario",
+  "retry": "Reintentar",
+  "empty": "No hay clases programadas en este momento",
+  "info": {
+    "title": "Información Importante",
+    "item1": "Llega 10 minutos antes de la clase",
+    "item2": "Trae ropa cómoda y una manta",
+    "item3": "No comas 2 horas antes de la práctica",
+    "item4": "Confirma tu reserva por WhatsApp"
+  },
+  "cta": {
+    "title": "Primera clase gratis",
+    "description": "Prueba una clase sin compromiso y descubre los beneficios del Kundalini Yoga.",
+    "button": "Reservar Clase Gratis"
+  },
+  "card": {
+    "minutes": "minutos",
+    "free": "Gratis",
+    "book": "Reservar",
+    "bookMessage": "Hola, quiero reservar la clase de {{name}} con el instructor {{instructor}}"
+  },
+  "days": {
+    "mon": "Lun",
+    "tue": "Mar",
+    "wed": "Mie",
+    "thu": "Jue",
+    "fri": "Vie",
+    "sat": "Sab",
+    "sun": "Dom"
+  },
+  "difficulty": {
+    "beginner": "Principiante",
+    "intermediate": "Intermedio",
+    "advanced": "Avanzado",
+    "all": "Todos los niveles"
+  }
+}

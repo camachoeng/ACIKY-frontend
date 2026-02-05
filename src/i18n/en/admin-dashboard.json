@@ -1,0 +1,24 @@
+{
+  "title": "Dashboard",
+  "stats": {
+    "users": "Users",
+    "activeClasses": "Active Classes",
+    "instructors": "Instructors",
+    "locations": "Locations"
+  },
+  "quickActions": {
+    "title": "Quick Actions",
+    "manageUsers": {
+      "title": "Manage Users",
+      "description": "View, create and edit users"
+    },
+    "manageClasses": {
+      "title": "Manage Classes",
+      "description": "Create and edit schedules"
+    },
+    "viewSite": {
+      "title": "View Site",
+      "description": "Public view of schedule"
+    }
+  }
+}

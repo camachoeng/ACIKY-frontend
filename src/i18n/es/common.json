@@ -1,0 +1,57 @@
+{
+  "header": {
+    "tagline": "Yoga para Todos",
+    "activities": "Actividades",
+    "classes": "Clases",
+    "spaces": "Espacios",
+    "goldenRoutes": "Rutas Doradas",
+    "rebirthing": "Renacimientos",
+    "sadhanasOnline": "Sadhanas Online",
+    "festival": "Festival",
+    "gallery": "Galería",
+    "blog": "Blog",
+    "about": "Nosotros",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "myProfile": "Mi Perfil",
+    "logout": "Salir",
+    "logoutMobile": "Cerrar Sesión",
+    "admin": "Admin",
+    "adminPanel": "Panel Admin",
+    "greeting": "Hola, {{name}}",
+    "openMenu": "Abrir menú"
+  },
+  "footer": {
+    "copyright": "ACIKY - Todos los derechos reservados."
+  },
+  "adminNav": {
+    "admin": "Admin",
+    "dashboard": "Dashboard",
+    "users": "Usuarios",
+    "classes": "Clases",
+    "backToSite": "Volver al sitio"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar",
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "new": "Nuevo",
+    "create": "Crear",
+    "update": "Actualizar",
+    "close": "Cerrar",
+    "confirm": "Confirmar",
+    "yes": "Si",
+    "no": "No",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "noResults": "Sin resultados",
+    "actions": "Acciones"
+  }
+}

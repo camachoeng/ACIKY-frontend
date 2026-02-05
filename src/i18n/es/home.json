@@ -1,0 +1,48 @@
+{
+  "quote": {
+    "text": "Si no puedes ver a Dios en todo, no puedes ver a Dios en nada.",
+    "author": "Yogi Bhajan"
+  },
+  "hero": {
+    "badge": "Próxima Clase",
+    "title": "Kundalini Yoga",
+    "description": "Clases y meditación presencial en Casa Museo de Asia.",
+    "loading": "Cargando horario...",
+    "noClasses": "No hay clases programadas",
+    "visitSchedule": "Visita la sección de clases para ver el horario",
+    "instructor": "Instructor"
+  },
+  "activities": {
+    "title": "Nuestras Actividades",
+    "subtitle": "Explora todas las experiencias que ACIKY tiene para ofrecerte.",
+    "classes": {
+      "title": "Clases",
+      "description": "Sesiones dinámicas para todos los niveles."
+    },
+    "rebirthing": {
+      "title": "Renacimientos",
+      "description": "Ceremonias transformadoras profundas."
+    },
+    "goldenRoutes": {
+      "title": "Rutas Doradas",
+      "description": "Expandiendo la conciencia en comunidad."
+    },
+    "spaces": {
+      "title": "Espacios",
+      "description": "Conoce nuestros centros de práctica."
+    },
+    "festival": {
+      "title": "Festival Faro de Luz",
+      "description": "Evento anual de yoga y bienestar."
+    },
+    "sadhanas": {
+      "title": "Sadhanas Online",
+      "description": "Práctica diaria virtual."
+    }
+  },
+  "contact": {
+    "title": "¿Tienes Preguntas?",
+    "description": "Nuestro equipo está aquí para ayudarte en tu camino hacia el bienestar. Contáctanos para más información.",
+    "button": "Contáctanos"
+  }
+}

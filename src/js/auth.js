@@ -1,4 +1,5 @@
 import { apiFetch } from './api.js'
+import { t } from './i18n.js'
 
 let currentUser = null
 
@@ -53,23 +54,23 @@ export function updateAuthUI(isAuthenticated, user) {
   const mobileAdminLink = document.getElementById('mobileAdminLink')
 
   if (isAuthenticated && user) {
-    // Hide auth buttons completely when logged in
+    // Hide auth buttons when logged in
     if (authButtons) {
       authButtons.classList.add('hidden')
-      authButtons.classList.remove('lg:flex')
     }
-    // Show user menu on desktop only (keep hidden for mobile)
+    // Show user menu
     if (userMenu) {
-      userMenu.classList.add('lg:flex')
+      userMenu.classList.remove('hidden')
+      userMenu.classList.add('flex')
       if (userDisplayName) {
-        userDisplayName.textContent = `Hola, ${user.username || user.name || ''}`
+        userDisplayName.textContent = t('header.greeting', { name: user.username || user.name || '' })
       }
     }
     // Mobile: hide auth, show user menu with greeting
     if (mobileAuthButtons) mobileAuthButtons.classList.add('hidden')
     if (mobileUserMenu) mobileUserMenu.classList.remove('hidden')
     if (mobileUserGreeting) {
-      mobileUserGreeting.textContent = `Hola, ${user.username || user.name || ''}`
+      mobileUserGreeting.textContent = t('header.greeting', { name: user.username || user.name || '' })
     }
     // Show admin links only for admins (desktop and mobile)
     const isAdmin = user.role === 'admin'
@@ -92,15 +93,14 @@ export function updateAuthUI(isAuthenticated, user) {
       }
     }
   } else {
-    // Show auth buttons on desktop only (hidden lg:flex keeps them hidden on mobile)
+    // Show auth buttons when logged out
     if (authButtons) {
-      authButtons.classList.add('hidden')
-      authButtons.classList.add('lg:flex')
+      authButtons.classList.remove('hidden')
     }
     // Hide user menu
     if (userMenu) {
       userMenu.classList.add('hidden')
-      userMenu.classList.remove('lg:flex')
+      userMenu.classList.remove('flex')
     }
     // Mobile: show auth, hide user menu
     if (mobileAuthButtons) mobileAuthButtons.classList.remove('hidden')
@@ -147,3 +147,10 @@ export async function requireInstructor() {
   }
   return user
 }
+
+// Update greeting on language change
+window.addEventListener('languageChanged', () => {
+  if (currentUser) {
+    updateAuthUI(true, currentUser)
+  }
+})

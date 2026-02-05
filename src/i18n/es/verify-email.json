@@ -1,0 +1,16 @@
+{
+  "title": "Verificación de Email",
+  "loading": "Procesando verificación...",
+  "success": {
+    "title": "Cuenta verificada",
+    "description": "Tu correo electrónico ha sido verificado exitosamente. Ya puedes iniciar sesión.",
+    "button": "Iniciar Sesión"
+  },
+  "error": {
+    "title": "Error de verificación",
+    "button": "Ir al inicio de sesión",
+    "INVALID_TOKEN": "El enlace de verificación no es válido. Es posible que ya hayas verificado tu cuenta.",
+    "TOKEN_EXPIRED": "El enlace de verificación ha expirado. Solicita uno nuevo desde la página de inicio de sesión.",
+    "default": "Ocurrió un error al verificar tu cuenta. Intenta de nuevo."
+  }
+}

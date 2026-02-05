@@ -1,0 +1,32 @@
+{
+  "pageTitle": "Sign In - ACIKY",
+  "pageDescription": "Sign in to ACIKY - Yoga for Everyone",
+  "title": "Sign In",
+  "subtitle": "Welcome back to your practice",
+  "email": "Email Address",
+  "emailPlaceholder": "you@email.com",
+  "password": "Password",
+  "passwordPlaceholder": "Your password",
+  "submitBtn": "Sign In",
+  "submitting": "Signing in...",
+  "noAccount": "Don't have an account?",
+  "registerLink": "Sign up",
+  "success": {
+    "registered": "Account created successfully. Please sign in.",
+    "needsVerification": "Account created successfully. Check your email to verify your account."
+  },
+  "info": {
+    "bookingRedirect": "You must sign in to book a class."
+  },
+  "errors": {
+    "default": "Error signing in"
+  },
+  "verification": {
+    "notVerified": "Your account has not been verified.",
+    "resendBtn": "Resend verification email",
+    "sending": "Sending...",
+    "sent": "Email sent",
+    "resent": "Verification email resent. Check your inbox.",
+    "resendError": "Error resending email"
+  }
+}

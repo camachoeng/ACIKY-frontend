@@ -1,5 +1,6 @@
 import { apiFetch, API_BASE } from './api.js'
 import { requireAuth } from './auth.js'
+import { t } from './i18n.js'
 
 export async function initDashboard() {
   const user = await requireAuth()
@@ -50,7 +51,7 @@ export async function initDashboard() {
       if (!file) return
 
       if (file.size > 5 * 1024 * 1024) {
-        uploadError.textContent = 'La imagen no puede superar 5MB'
+        uploadError.textContent = t('profileImage.sizeError')
         uploadError.classList.remove('hidden')
         return
       }
@@ -82,7 +83,7 @@ export async function initDashboard() {
         uploadProgress.classList.add('hidden')
       } catch (err) {
         uploadProgress.classList.add('hidden')
-        uploadError.textContent = err.message || 'Error al subir la imagen'
+        uploadError.textContent = err.message || t('profileImage.uploadError')
         uploadError.classList.remove('hidden')
       }
 

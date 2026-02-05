@@ -1,0 +1,56 @@
+{
+  "title": "Clases",
+  "newButton": "Nueva Clase",
+  "loading": "Cargando clases...",
+  "empty": "No hay clases creadas",
+  "loadError": "Error al cargar clases",
+  "card": {
+    "active": "Activa",
+    "inactive": "Inactiva",
+    "featured": "Destacada",
+    "noSchedule": "Sin horario",
+    "noLocation": "Sin ubicación",
+    "noInstructor": "Sin instructor",
+    "min": "min",
+    "activate": "Activar",
+    "deactivate": "Desactivar"
+  },
+  "modal": {
+    "newTitle": "Nueva Clase",
+    "editTitle": "Editar Clase",
+    "name": "Nombre",
+    "namePlaceholder": "Kundalini Yoga",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Descripción de la clase...",
+    "schedule": "Horario",
+    "schedulePlaceholder": "Martes 11:30 AM",
+    "duration": "Duración (min)",
+    "durationPlaceholder": "90",
+    "location": "Ubicación",
+    "locationPlaceholder": "Casa Museo de Asia",
+    "instructor": "Instructor",
+    "noInstructor": "Sin instructor",
+    "price": "Precio",
+    "pricePlaceholder": "0",
+    "icon": "Icono (emoji)",
+    "iconPlaceholder": "🧘",
+    "level": "Nivel",
+    "levelAll": "Todos los niveles",
+    "levelBeginner": "Principiante",
+    "levelIntermediate": "Intermedio",
+    "levelAdvanced": "Avanzado",
+    "active": "Activa",
+    "featured": "Destacada",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "errors": {
+    "loadClass": "Error al cargar clase",
+    "saveError": "Error al guardar clase",
+    "deleteError": "Error al eliminar"
+  },
+  "confirm": {
+    "delete": "Eliminar clase \"{{name}}\"?"
+  }
+}
