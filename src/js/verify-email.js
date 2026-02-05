@@ -1,3 +1,5 @@
+import { t } from './i18n.js'
+
 export function initVerifyEmail() {
   const params = new URLSearchParams(window.location.search)
   const status = params.get('status')
@@ -16,10 +18,8 @@ export function initVerifyEmail() {
     success.classList.remove('hidden')
   } else {
     error.classList.remove('hidden')
-    const messages = {
-      'INVALID_TOKEN': 'El enlace de verificacion no es valido. Es posible que ya hayas verificado tu cuenta.',
-      'TOKEN_EXPIRED': 'El enlace de verificacion ha expirado. Solicita uno nuevo desde la pagina de inicio de sesion.'
-    }
-    errorMsg.textContent = messages[reason] || 'Ocurrio un error al verificar tu cuenta. Intenta de nuevo.'
+    const errorKey = `error.${reason}`
+    const translated = t(errorKey)
+    errorMsg.textContent = translated !== errorKey ? translated : t('error.default')
   }
 }

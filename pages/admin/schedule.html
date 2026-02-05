@@ -17,17 +17,17 @@
     <main class="pb-12">
       <section class="px-6 py-8">
         <div class="flex items-center justify-between mb-8">
-          <h1 class="text-2xl font-bold text-primary-dark">Clases</h1>
+          <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Clases</h1>
           <button id="createActivityBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
             <span class="material-symbols-outlined text-sm">add</span>
-            Nueva Clase
+            <span data-i18n="newButton">Nueva Clase</span>
           </button>
         </div>
 
         <!-- Loading -->
         <div id="activitiesLoading" class="text-center py-12">
           <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
-          <p class="text-slate-500 text-sm mt-2">Cargando clases...</p>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando clases...</p>
         </div>
 
         <!-- Activities Container -->
@@ -130,8 +130,8 @@
               <div id="activityFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
 
               <div class="flex gap-3 pt-2">
-                <button type="button" id="cancelActivityBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors">Cancelar</button>
-                <button type="submit" id="saveActivityBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors">Guardar</button>
+                <button type="button" id="cancelActivityBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+                <button type="submit" id="saveActivityBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.save">Guardar</button>
               </div>
             </form>
           </div>

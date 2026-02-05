@@ -1,4 +1,5 @@
 import { apiFetch } from './api.js'
+import { t } from './i18n.js'
 
 export function initLogin() {
   const form = document.getElementById('loginForm')
@@ -14,9 +15,9 @@ export function initLogin() {
 
   // Show success message if redirected from register
   if (params.get('registered') === 'true' && successDiv) {
-    const successSpan = successDiv.querySelector('span:last-child')
-    if (params.get('needsVerification') === 'true') {
-      if (successSpan) successSpan.textContent = 'Cuenta creada exitosamente. Revisa tu correo electronico para verificar tu cuenta.'
+    const successSpan = successDiv.querySelector('[data-i18n="success.registered"]')
+    if (params.get('needsVerification') === 'true' && successSpan) {
+      successSpan.textContent = t('success.needsVerification')
     }
     successDiv.classList.remove('hidden')
   }
@@ -33,7 +34,7 @@ export function initLogin() {
     if (infoDiv) infoDiv.classList.add('hidden')
     if (resendDiv) resendDiv.classList.add('hidden')
     submitBtn.disabled = true
-    submitBtn.textContent = 'Iniciando...'
+    submitBtn.textContent = t('submitting')
 
     const email = form.email.value.trim()
     const password = form.password.value
@@ -58,8 +59,8 @@ export function initLogin() {
       }
     } catch (err) {
       const errorSpan = errorDiv.querySelector('span:last-child')
-      if (errorSpan) errorSpan.textContent = err.message || 'Error al iniciar sesion'
-      else errorDiv.textContent = err.message || 'Error al iniciar sesion'
+      if (errorSpan) errorSpan.textContent = err.message || t('errors.default')
+      else errorDiv.textContent = err.message || t('errors.default')
       errorDiv.classList.remove('hidden')
 
       // Show resend option if email not verified
@@ -69,7 +70,14 @@ export function initLogin() {
       }
 
       submitBtn.disabled = false
-      submitBtn.textContent = 'Iniciar Sesion'
+      submitBtn.textContent = t('submitBtn')
+    }
+  })
+
+  // Listen for language changes
+  window.addEventListener('languageChanged', () => {
+    if (!submitBtn.disabled) {
+      submitBtn.textContent = t('submitBtn')
     }
   })
 }
@@ -85,24 +93,24 @@ function setupResendButton(resendDiv, email) {
 
   newBtn.addEventListener('click', async () => {
     newBtn.disabled = true
-    newBtn.textContent = 'Enviando...'
+    newBtn.textContent = t('verification.sending')
     try {
       await apiFetch('/api/auth/resend-verification', {
         method: 'POST',
         body: JSON.stringify({ email })
       })
       if (resendMsg) {
-        resendMsg.textContent = 'Correo de verificacion reenviado. Revisa tu bandeja de entrada.'
+        resendMsg.textContent = t('verification.resent')
         resendMsg.classList.remove('hidden')
       }
-      newBtn.textContent = 'Correo enviado'
+      newBtn.textContent = t('verification.sent')
     } catch (err) {
       if (resendMsg) {
-        resendMsg.textContent = err.message || 'Error al reenviar el correo'
+        resendMsg.textContent = err.message || t('verification.resendError')
         resendMsg.classList.remove('hidden')
       }
       newBtn.disabled = false
-      newBtn.textContent = 'Reenviar correo de verificacion'
+      newBtn.textContent = t('verification.resendBtn')
     }
   })
 }

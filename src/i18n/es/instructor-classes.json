@@ -1,0 +1,47 @@
+{
+  "title": "Mis Clases",
+  "subtitle": "Clases asignadas a ti como instructor",
+  "backToProfile": "Volver al perfil",
+  "loading": "Cargando tus clases...",
+  "empty": {
+    "title": "No tienes clases asignadas",
+    "description": "Contacta al administrador para que te asigne clases"
+  },
+  "card": {
+    "active": "Activa",
+    "inactive": "Inactiva",
+    "noSchedule": "Sin horario",
+    "noLocation": "Sin ubicación",
+    "min": "min",
+    "activate": "Activar",
+    "deactivate": "Desactivar",
+    "edit": "Editar"
+  },
+  "difficulty": {
+    "all": "Todos los niveles",
+    "beginner": "Principiante",
+    "intermediate": "Intermedio",
+    "advanced": "Avanzado"
+  },
+  "modal": {
+    "title": "Editar Clase",
+    "name": "Nombre",
+    "namePlaceholder": "Nombre de la clase",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Descripción de la clase...",
+    "schedule": "Horario",
+    "schedulePlaceholder": "Martes 11:30 AM",
+    "duration": "Duración (min)",
+    "durationPlaceholder": "90",
+    "level": "Nivel",
+    "activeClass": "Clase activa",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "errors": {
+    "loadError": "Error al cargar clases",
+    "notFound": "Clase no encontrada",
+    "saveError": "Error al guardar clase"
+  }
+}

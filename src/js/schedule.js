@@ -1,5 +1,6 @@
 import { apiFetch } from './api.js'
 import { getUser } from './auth.js'
+import { t } from './i18n.js'
 
 // Static color class mappings (full class names for Tailwind scanner)
 const COLOR_CLASSES = [
@@ -60,12 +61,17 @@ export async function initSchedule() {
   })
 
   if (retryBtn) retryBtn.addEventListener('click', loadSchedule)
+
+  // Listen for language changes to re-render
+  window.addEventListener('languageChanged', loadSchedule)
+
   loadSchedule()
 }
 
 function renderClassCard(activity, index) {
   const colors = COLOR_CLASSES[index % COLOR_CLASSES.length]
   const { dayAbbr, timeStr } = parseSchedule(activity.schedule)
+  const bookMessage = t('card.bookMessage', { name: activity.name, instructor: activity.instructor_name || '' })
 
   return `
     <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100">
@@ -86,7 +92,7 @@ function renderClassCard(activity, index) {
           </div>` : ''}
           <div class="flex items-center gap-2 text-xs text-slate-400">
             <span class="material-symbols-outlined text-sm">schedule</span>
-            <span>${activity.duration || '--'} minutos</span>
+            <span>${activity.duration || '--'} ${t('card.minutes')}</span>
             ${activity.difficulty_level ? `
             <span class="mx-2">|</span>
             <span class="material-symbols-outlined text-sm">group</span>
@@ -96,10 +102,10 @@ function renderClassCard(activity, index) {
       </div>
       <div class="mt-4 flex items-center justify-between">
         ${activity.price !== null && activity.price !== undefined ? `
-        <span class="text-sm font-bold text-primary-dark">${activity.price > 0 ? '$' + activity.price : 'Gratis'}</span>` : '<span></span>'}
-        <button data-book="https://wa.me/5350759360?text=${encodeURIComponent('Hola, quiero reservar la clase de ' + activity.name + ' con el instructor ' + (activity.instructor_name || '') )}"
+        <span class="text-sm font-bold text-primary-dark">${activity.price > 0 ? '$' + activity.price : t('card.free')}</span>` : '<span></span>'}
+        <button data-book="https://wa.me/5350759360?text=${encodeURIComponent(bookMessage)}"
            class="inline-flex items-center gap-2 bg-primary-dark text-white text-sm font-medium px-4 py-2 rounded-2xl hover:bg-primary transition-colors cursor-pointer">
-          Reservar
+          ${t('card.book')}
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.252-.149-2.868.852.852-2.868-.149-.252A8 8 0 1112 20z"/></svg>
         </button>
       </div>
@@ -110,13 +116,13 @@ function renderClassCard(activity, index) {
 function parseSchedule(schedule) {
   if (!schedule) return { dayAbbr: '---', timeStr: '--:--' }
   const dayMap = {
-    'lunes': 'Lun', 'martes': 'Mar', 'miercoles': 'Mie', 'miércoles': 'Mie',
-    'jueves': 'Jue', 'viernes': 'Vie', 'sabado': 'Sab', 'sábado': 'Sab', 'domingo': 'Dom'
+    'lunes': 'days.mon', 'martes': 'days.tue', 'miercoles': 'days.wed', 'miércoles': 'days.wed',
+    'jueves': 'days.thu', 'viernes': 'days.fri', 'sabado': 'days.sat', 'sábado': 'days.sat', 'domingo': 'days.sun'
   }
   const lower = schedule.toLowerCase()
   let dayAbbr = schedule.substring(0, 3)
-  for (const [full, abbr] of Object.entries(dayMap)) {
-    if (lower.includes(full)) { dayAbbr = abbr; break }
+  for (const [full, key] of Object.entries(dayMap)) {
+    if (lower.includes(full)) { dayAbbr = t(key); break }
   }
   const timeMatch = schedule.match(/(\d{1,2}:\d{2})/)
   const timeStr = timeMatch ? timeMatch[1] : '--:--'
@@ -124,8 +130,8 @@ function parseSchedule(schedule) {
 }
 
 function formatDifficulty(level) {
-  const map = { beginner: 'Principiante', intermediate: 'Intermedio', advanced: 'Avanzado', all: 'Todos los niveles' }
-  return map[level] || level
+  const map = { beginner: 'difficulty.beginner', intermediate: 'difficulty.intermediate', advanced: 'difficulty.advanced', all: 'difficulty.all' }
+  return t(map[level]) || level
 }
 
 function escapeHtml(str) {

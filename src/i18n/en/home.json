@@ -1,0 +1,48 @@
+{
+  "quote": {
+    "text": "If you can't see God in all, you can't see God at all.",
+    "author": "Yogi Bhajan"
+  },
+  "hero": {
+    "badge": "Next Class",
+    "title": "Kundalini Yoga",
+    "description": "In-person classes and meditation at Casa Museo de Asia.",
+    "loading": "Loading schedule...",
+    "noClasses": "No classes scheduled",
+    "visitSchedule": "Visit the classes section to see the schedule",
+    "instructor": "Instructor"
+  },
+  "activities": {
+    "title": "Our Activities",
+    "subtitle": "Explore all the experiences that ACIKY has to offer.",
+    "classes": {
+      "title": "Classes",
+      "description": "Dynamic sessions for all levels."
+    },
+    "rebirthing": {
+      "title": "Rebirthing",
+      "description": "Deep transformative ceremonies."
+    },
+    "goldenRoutes": {
+      "title": "Golden Routes",
+      "description": "Expanding consciousness in community."
+    },
+    "spaces": {
+      "title": "Spaces",
+      "description": "Discover our practice centers."
+    },
+    "festival": {
+      "title": "Lighthouse Festival",
+      "description": "Annual yoga and wellness event."
+    },
+    "sadhanas": {
+      "title": "Sadhanas Online",
+      "description": "Daily virtual practice."
+    }
+  },
+  "contact": {
+    "title": "Have Questions?",
+    "description": "Our team is here to help you on your path to wellness. Contact us for more information.",
+    "button": "Contact Us"
+  }
+}

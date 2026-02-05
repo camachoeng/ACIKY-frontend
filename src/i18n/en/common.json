@@ -1,0 +1,57 @@
+{
+  "header": {
+    "tagline": "Yoga for Everyone",
+    "activities": "Activities",
+    "classes": "Classes",
+    "spaces": "Spaces",
+    "goldenRoutes": "Golden Routes",
+    "rebirthing": "Rebirthing",
+    "sadhanasOnline": "Sadhanas Online",
+    "festival": "Festival",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "about": "About Us",
+    "login": "Sign In",
+    "register": "Sign Up",
+    "myProfile": "My Profile",
+    "logout": "Logout",
+    "logoutMobile": "Sign Out",
+    "admin": "Admin",
+    "adminPanel": "Admin Panel",
+    "greeting": "Hello, {{name}}",
+    "openMenu": "Open menu"
+  },
+  "footer": {
+    "copyright": "ACIKY - All rights reserved."
+  },
+  "adminNav": {
+    "admin": "Admin",
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "classes": "Classes",
+    "backToSite": "Back to site"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "new": "New",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "noResults": "No results",
+    "actions": "Actions"
+  }
+}

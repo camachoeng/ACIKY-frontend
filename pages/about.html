@@ -17,7 +17,7 @@
       <!-- Hero -->
       <section class="bg-gradient-to-br from-primary to-primary-dark text-white py-16">
         <div class="container mx-auto px-4 text-center">
-          <h1 class="text-4xl lg:text-5xl font-bold">Sobre Nosotros</h1>
+          <h1 class="text-4xl lg:text-5xl font-bold" data-i18n="title">Sobre Nosotros</h1>
         </div>
       </section>
 
@@ -25,22 +25,22 @@
       <section class="px-6 py-6">
         <div class="relative p-8 bg-white rounded-2xl shadow-sm border-l-4 border-primary">
           <span class="absolute top-4 left-4 text-primary/10 text-6xl font-serif">"</span>
-          <p class="italic text-lg leading-relaxed text-slate-600 relative z-10">
+          <p class="italic text-lg leading-relaxed text-slate-600 relative z-10" data-i18n="quote.text">
             El amor es la experiencia última. No hay obstáculo que el amor no pueda superar.
           </p>
-          <p class="mt-4 text-right text-sm font-bold text-primary-dark">— Yogi Bhajan</p>
+          <p class="mt-4 text-right text-sm font-bold text-primary-dark">— <span data-i18n="quote.author">Yogi Bhajan</span></p>
         </div>
       </section>
 
       <!-- Content -->
       <section class="px-6 mb-12">
         <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-          <h2 class="text-2xl font-bold text-primary-dark mb-4">Nuestra Historia</h2>
+          <h2 class="text-2xl font-bold text-primary-dark mb-4" data-i18n="history.title">Nuestra Historia</h2>
           <div class="space-y-4 text-sm leading-relaxed text-slate-600">
-            <p>
+            <p data-i18n="history.p1">
               ACIKY nació de la visión de compartir las herramientas transformadoras del yoga y la meditación con cada rincón de nuestra comunidad. Creemos que el bienestar no es un lujo, sino un derecho fundamental para todos.
             </p>
-            <p>
+            <p data-i18n="history.p2">
               A través de los años, hemos construido un refugio de paz donde la tradición ancestral se encuentra con el ritmo de la vida moderna, ofreciendo un camino hacia el equilibrio físico, mental y espiritual.
             </p>
           </div>
@@ -50,15 +50,15 @@
       <!-- Mission Section -->
       <section class="px-6 mb-12">
         <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-          <h2 class="text-2xl font-bold text-primary-dark mb-4">Nuestra Misión</h2>
-          <p class="text-sm leading-relaxed text-slate-600 mb-6">
+          <h2 class="text-2xl font-bold text-primary-dark mb-4" data-i18n="mission.title">Nuestra Misión</h2>
+          <p class="text-sm leading-relaxed text-slate-600 mb-6" data-i18n="mission.description">
             ACIKY nació con el propósito de expandir el Kundalini Yoga en Cuba,
             haciendo accesible esta práctica transformadora a todas las personas
             que buscan equilibrio, paz interior y crecimiento personal.
           </p>
 
-          <h2 class="text-2xl font-bold text-primary-dark mb-4">¿Qué es el Kundalini Yoga?</h2>
-          <p class="text-sm leading-relaxed text-slate-600 mb-6">
+          <h2 class="text-2xl font-bold text-primary-dark mb-4" data-i18n="kundalini.title">¿Qué es el Kundalini Yoga?</h2>
+          <p class="text-sm leading-relaxed text-slate-600 mb-6" data-i18n="kundalini.description">
             El Kundalini Yoga es una práctica milenaria que combina posturas físicas,
             técnicas de respiración, meditación y mantras para despertar la energía
             vital que reside en la base de la columna vertebral.
@@ -69,19 +69,19 @@
 
       <!-- Nuestro Equipo Section (Dynamic) -->
       <section class="px-6 mb-12">
-        <h2 class="text-2xl font-bold text-primary-dark mb-6">Nuestro Equipo</h2>
+        <h2 class="text-2xl font-bold text-primary-dark mb-6" data-i18n="team.title">Nuestro Equipo</h2>
 
         <!-- Loading State -->
         <div id="teamLoading" class="text-center py-12">
           <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
-          <p class="text-slate-500 text-sm mt-2">Cargando equipo...</p>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="team.loading">Cargando equipo...</p>
         </div>
 
         <!-- Error State -->
         <div id="teamError" class="hidden text-center py-12">
           <span class="material-symbols-outlined text-accent-terracotta text-4xl">error</span>
-          <p class="text-slate-500 text-sm mt-2">No se pudo cargar el equipo</p>
-          <button id="teamRetry" class="mt-4 text-primary font-semibold text-sm hover:underline">Reintentar</button>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="team.error">No se pudo cargar el equipo</p>
+          <button id="teamRetry" class="mt-4 text-primary font-semibold text-sm hover:underline" data-i18n="team.retry">Reintentar</button>
         </div>
 
         <!-- Dynamic Cards Container -->
@@ -90,41 +90,41 @@
         <!-- Empty State -->
         <div id="teamEmpty" class="hidden text-center py-12">
           <span class="material-symbols-outlined text-slate-300 text-4xl">groups</span>
-          <p class="text-slate-500 text-sm mt-2">Pronto conocerás a nuestro equipo</p>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="team.empty">Pronto conocerás a nuestro equipo</p>
         </div>
       </section>
 
       <!-- Nuestros Valores Section -->
       <section class="px-6 mb-12">
-        <h3 class="text-2xl font-bold text-primary-dark mb-6">Nuestros Valores</h3>
+        <h3 class="text-2xl font-bold text-primary-dark mb-6" data-i18n="values.title">Nuestros Valores</h3>
         <div class="grid grid-cols-2 gap-4">
           <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
             <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
               <span class="material-symbols-outlined text-primary">self_improvement</span>
             </div>
-            <h4 class="font-bold text-primary-dark text-sm mb-1">Paz</h4>
-            <p class="text-[10px] text-slate-500">Fomentamos la calma interior.</p>
+            <h4 class="font-bold text-primary-dark text-sm mb-1" data-i18n="values.peace.title">Paz</h4>
+            <p class="text-[10px] text-slate-500" data-i18n="values.peace.description">Fomentamos la calma interior.</p>
           </div>
           <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
             <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
               <span class="material-symbols-outlined text-primary">groups</span>
             </div>
-            <h4 class="font-bold text-primary-dark text-sm mb-1">Comunidad</h4>
-            <p class="text-[10px] text-slate-500">Crecemos juntos en armonía.</p>
+            <h4 class="font-bold text-primary-dark text-sm mb-1" data-i18n="values.community.title">Comunidad</h4>
+            <p class="text-[10px] text-slate-500" data-i18n="values.community.description">Crecemos juntos en armonía.</p>
           </div>
           <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
             <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
               <span class="material-symbols-outlined text-primary">psychology</span>
             </div>
-            <h4 class="font-bold text-primary-dark text-sm mb-1">Mindfulness</h4>
-            <p class="text-[10px] text-slate-500">Presencia plena en cada acto.</p>
+            <h4 class="font-bold text-primary-dark text-sm mb-1" data-i18n="values.mindfulness.title">Mindfulness</h4>
+            <p class="text-[10px] text-slate-500" data-i18n="values.mindfulness.description">Presencia plena en cada acto.</p>
           </div>
           <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
             <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
               <span class="material-symbols-outlined text-primary">favorite</span>
             </div>
-            <h4 class="font-bold text-primary-dark text-sm mb-1">Compasión</h4>
-            <p class="text-[10px] text-slate-500">Amor y respeto por la vida.</p>
+            <h4 class="font-bold text-primary-dark text-sm mb-1" data-i18n="values.compassion.title">Compasión</h4>
+            <p class="text-[10px] text-slate-500" data-i18n="values.compassion.description">Amor y respeto por la vida.</p>
           </div>
         </div>
       </section>
@@ -133,11 +133,11 @@
       <section class="px-6">
         <div class="relative bg-white rounded-3xl overflow-hidden p-8 text-center border border-slate-100 shadow-sm">
           <div class="relative z-10">
-            <h3 class="text-2xl font-bold text-primary-dark mb-4">¿Listo para comenzar?</h3>
-            <p class="text-sm text-slate-600 mb-8 leading-relaxed max-w-xs mx-auto">
+            <h3 class="text-2xl font-bold text-primary-dark mb-4" data-i18n="cta.title">¿Listo para comenzar?</h3>
+            <p class="text-sm text-slate-600 mb-8 leading-relaxed max-w-xs mx-auto" data-i18n="cta.description">
               Únete a nuestra comunidad y comienza tu viaje hacia el bienestar integral.
             </p>
-            <a href="{{basePath}}/pages/schedule.html" class="block w-full bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary">
+            <a href="{{basePath}}/pages/schedule.html" class="block w-full bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary" data-i18n="cta.button">
               Ver Clases
             </a>
           </div>

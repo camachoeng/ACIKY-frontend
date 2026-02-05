@@ -1,0 +1,47 @@
+{
+  "title": "Usuarios",
+  "newButton": "Nuevo",
+  "table": {
+    "user": "Usuario",
+    "email": "Email",
+    "role": "Rol",
+    "actions": "Acciones",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "empty": "No hay usuarios registrados",
+    "loadError": "Error al cargar usuarios"
+  },
+  "modal": {
+    "newTitle": "Nuevo Usuario",
+    "editTitle": "Editar Usuario",
+    "username": "Nombre de Usuario",
+    "usernamePlaceholder": "nombre_usuario",
+    "email": "Email",
+    "emailPlaceholder": "correo@ejemplo.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Dejar vacio para no cambiar",
+    "passwordHint": "Min. 8 caracteres, debe incluir mayusculas, minusculas, numeros y caracteres especiales",
+    "confirmPassword": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "Escribe la contraseña de nuevo",
+    "role": "Rol",
+    "roleUser": "Usuario",
+    "roleInstructor": "Instructor",
+    "roleAdmin": "Admin",
+    "position": "Cargo / Título",
+    "positionPlaceholder": "Ej: Instructora de Kundalini Yoga",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "errors": {
+    "loadUser": "Error al cargar usuario",
+    "passwordMismatch": "Las contrasenas no coinciden",
+    "passwordRequired": "La contrasena es requerida para nuevos usuarios",
+    "saveError": "Error al guardar usuario",
+    "deleteError": "Error al eliminar",
+    "cannotDeleteSelf": "No puedes eliminar tu propia cuenta"
+  },
+  "confirm": {
+    "delete": "Eliminar usuario \"{{username}}\"?"
+  }
+}

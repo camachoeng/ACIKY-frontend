@@ -1,0 +1,22 @@
+{
+  "title": "My Profile",
+  "loading": "Loading profile...",
+  "profileImage": {
+    "alt": "Your profile photo",
+    "hint": "Tap the camera icon to change your photo",
+    "format": "JPG, PNG or WEBP - Max. 5MB",
+    "uploading": "Uploading image...",
+    "sizeError": "Image cannot exceed 5MB",
+    "uploadError": "Error uploading image"
+  },
+  "form": {
+    "title": "Profile Data",
+    "username": "Username",
+    "email": "Email"
+  },
+  "instructor": {
+    "title": "Instructor Zone",
+    "description": "Manage your assigned classes",
+    "button": "My Classes"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "pageTitle": "Iniciar Sesión - ACIKY",
+  "pageDescription": "Inicia sesión en ACIKY - Yoga para Todos",
+  "title": "Iniciar Sesión",
+  "subtitle": "Bienvenido de vuelta a tu práctica",
+  "email": "Correo Electrónico",
+  "emailPlaceholder": "tu@correo.com",
+  "password": "Contraseña",
+  "passwordPlaceholder": "Tu contraseña",
+  "submitBtn": "Iniciar Sesión",
+  "submitting": "Iniciando...",
+  "noAccount": "No tienes cuenta?",
+  "registerLink": "Regístrate",
+  "success": {
+    "registered": "Cuenta creada exitosamente. Inicia sesión.",
+    "needsVerification": "Cuenta creada exitosamente. Revisa tu correo electrónico para verificar tu cuenta."
+  },
+  "info": {
+    "bookingRedirect": "Debes iniciar sesión para reservar una clase."
+  },
+  "errors": {
+    "default": "Error al iniciar sesión"
+  },
+  "verification": {
+    "notVerified": "Tu cuenta no ha sido verificada.",
+    "resendBtn": "Reenviar correo de verificación",
+    "sending": "Enviando...",
+    "sent": "Correo enviado",
+    "resent": "Correo de verificación reenviado. Revisa tu bandeja de entrada.",
+    "resendError": "Error al reenviar el correo"
+  }
+}

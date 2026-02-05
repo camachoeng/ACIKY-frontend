@@ -1,0 +1,46 @@
+{
+  "title": "Classes",
+  "subtitle": "Find the perfect schedule for your practice",
+  "quote": {
+    "text": "Yoga does not change the way we see things, it changes the person who sees.",
+    "author": "Yogi Bhajan"
+  },
+  "weeklySchedule": "Weekly Schedule",
+  "loading": "Loading schedule...",
+  "error": "Could not load schedule",
+  "retry": "Retry",
+  "empty": "No classes scheduled at this time",
+  "info": {
+    "title": "Important Information",
+    "item1": "Arrive 10 minutes before class",
+    "item2": "Bring comfortable clothes and a blanket",
+    "item3": "Don't eat 2 hours before practice",
+    "item4": "Confirm your reservation via WhatsApp"
+  },
+  "cta": {
+    "title": "First class free",
+    "description": "Try a class with no commitment and discover the benefits of Kundalini Yoga.",
+    "button": "Book Free Class"
+  },
+  "card": {
+    "minutes": "minutes",
+    "free": "Free",
+    "book": "Book",
+    "bookMessage": "Hello, I want to book the {{name}} class with instructor {{instructor}}"
+  },
+  "days": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
+  },
+  "difficulty": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "all": "All levels"
+  }
+}

@@ -16,54 +16,54 @@
 
     <main class="pb-12">
       <section class="px-6 py-8">
-        <h1 class="text-2xl font-bold text-primary-dark mb-8">Dashboard</h1>
+        <h1 class="text-2xl font-bold text-primary-dark mb-8" data-i18n="title">Dashboard</h1>
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
             <span class="material-symbols-outlined text-primary text-3xl">group</span>
             <p id="statUsers" class="text-2xl font-bold text-primary-dark mt-2">--</p>
-            <p class="text-xs text-slate-500">Usuarios</p>
+            <p class="text-xs text-slate-500" data-i18n="stats.users">Usuarios</p>
           </div>
           <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
             <span class="material-symbols-outlined text-accent-teal text-3xl">event</span>
             <p id="statActivities" class="text-2xl font-bold text-primary-dark mt-2">--</p>
-            <p class="text-xs text-slate-500">Clases Activas</p>
+            <p class="text-xs text-slate-500" data-i18n="stats.activeClasses">Clases Activas</p>
           </div>
           <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
             <span class="material-symbols-outlined text-accent-terracotta text-3xl">school</span>
             <p id="statInstructors" class="text-2xl font-bold text-primary-dark mt-2">--</p>
-            <p class="text-xs text-slate-500">Instructores</p>
+            <p class="text-xs text-slate-500" data-i18n="stats.instructors">Instructores</p>
           </div>
           <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
             <span class="material-symbols-outlined text-accent-rose text-3xl">location_on</span>
             <p id="statSpaces" class="text-2xl font-bold text-primary-dark mt-2">--</p>
-            <p class="text-xs text-slate-500">Ubicaciones</p>
+            <p class="text-xs text-slate-500" data-i18n="stats.locations">Ubicaciones</p>
           </div>
         </div>
 
         <!-- Quick Actions -->
-        <h2 class="text-xl font-bold text-primary-dark mb-4">Acciones Rapidas</h2>
+        <h2 class="text-xl font-bold text-primary-dark mb-4" data-i18n="quickActions.title">Acciones Rapidas</h2>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <a href="{{basePath}}/pages/admin/users.html" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:border-primary transition-colors flex items-center gap-4">
             <span class="material-symbols-outlined text-primary text-2xl">person_add</span>
             <div>
-              <h3 class="font-bold text-primary-dark">Gestionar Usuarios</h3>
-              <p class="text-xs text-slate-500">Ver, crear y editar usuarios</p>
+              <h3 class="font-bold text-primary-dark" data-i18n="quickActions.manageUsers.title">Gestionar Usuarios</h3>
+              <p class="text-xs text-slate-500" data-i18n="quickActions.manageUsers.description">Ver, crear y editar usuarios</p>
             </div>
           </a>
           <a href="{{basePath}}/pages/admin/schedule.html" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:border-primary transition-colors flex items-center gap-4">
             <span class="material-symbols-outlined text-accent-teal text-2xl">edit_calendar</span>
             <div>
-              <h3 class="font-bold text-primary-dark">Gestionar Clases</h3>
-              <p class="text-xs text-slate-500">Crear y editar horarios</p>
+              <h3 class="font-bold text-primary-dark" data-i18n="quickActions.manageClasses.title">Gestionar Clases</h3>
+              <p class="text-xs text-slate-500" data-i18n="quickActions.manageClasses.description">Crear y editar horarios</p>
             </div>
           </a>
           <a href="{{basePath}}/pages/schedule.html" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:border-primary transition-colors flex items-center gap-4">
             <span class="material-symbols-outlined text-accent-rose text-2xl">visibility</span>
             <div>
-              <h3 class="font-bold text-primary-dark">Ver Sitio</h3>
-              <p class="text-xs text-slate-500">Vista publica del horario</p>
+              <h3 class="font-bold text-primary-dark" data-i18n="quickActions.viewSite.title">Ver Sitio</h3>
+              <p class="text-xs text-slate-500" data-i18n="quickActions.viewSite.description">Vista publica del horario</p>
             </div>
           </a>
         </div>

@@ -1,0 +1,52 @@
+{
+  "title": "About Us",
+  "quote": {
+    "text": "Love is the ultimate experience. There is no obstacle that love cannot overcome.",
+    "author": "Yogi Bhajan"
+  },
+  "history": {
+    "title": "Our Story",
+    "p1": "ACIKY was born from the vision of sharing the transformative tools of yoga and meditation with every corner of our community. We believe that wellness is not a luxury, but a fundamental right for all.",
+    "p2": "Over the years, we have built a refuge of peace where ancestral tradition meets the rhythm of modern life, offering a path towards physical, mental, and spiritual balance."
+  },
+  "mission": {
+    "title": "Our Mission",
+    "description": "ACIKY was founded with the purpose of expanding Kundalini Yoga in Cuba, making this transformative practice accessible to all people seeking balance, inner peace, and personal growth."
+  },
+  "kundalini": {
+    "title": "What is Kundalini Yoga?",
+    "description": "Kundalini Yoga is an ancient practice that combines physical postures, breathing techniques, meditation, and mantras to awaken the vital energy that resides at the base of the spine."
+  },
+  "team": {
+    "title": "Our Team",
+    "loading": "Loading team...",
+    "error": "Could not load team",
+    "retry": "Retry",
+    "empty": "You will soon meet our team",
+    "photoAlt": "Photo of {{name}}"
+  },
+  "values": {
+    "title": "Our Values",
+    "peace": {
+      "title": "Peace",
+      "description": "We foster inner calm."
+    },
+    "community": {
+      "title": "Community",
+      "description": "We grow together in harmony."
+    },
+    "mindfulness": {
+      "title": "Mindfulness",
+      "description": "Full presence in every action."
+    },
+    "compassion": {
+      "title": "Compassion",
+      "description": "Love and respect for life."
+    }
+  },
+  "cta": {
+    "title": "Ready to begin?",
+    "description": "Join our community and start your journey towards holistic wellness.",
+    "button": "View Classes"
+  }
+}

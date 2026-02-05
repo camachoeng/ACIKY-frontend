@@ -1,0 +1,22 @@
+{
+  "title": "Mi Perfil",
+  "loading": "Cargando perfil...",
+  "profileImage": {
+    "alt": "Tu foto de perfil",
+    "hint": "Toca el icono de cámara para cambiar tu foto",
+    "format": "JPG, PNG o WEBP - Max. 5MB",
+    "uploading": "Subiendo imagen...",
+    "sizeError": "La imagen no puede superar 5MB",
+    "uploadError": "Error al subir la imagen"
+  },
+  "form": {
+    "title": "Datos del Perfil",
+    "username": "Nombre de Usuario",
+    "email": "Email"
+  },
+  "instructor": {
+    "title": "Zona Instructor",
+    "description": "Gestiona las clases que tienes asignadas",
+    "button": "Mis Clases"
+  }
+}

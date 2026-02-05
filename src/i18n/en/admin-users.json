@@ -1,0 +1,47 @@
+{
+  "title": "Users",
+  "newButton": "New",
+  "table": {
+    "user": "User",
+    "email": "Email",
+    "role": "Role",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "empty": "No registered users",
+    "loadError": "Error loading users"
+  },
+  "modal": {
+    "newTitle": "New User",
+    "editTitle": "Edit User",
+    "username": "Username",
+    "usernamePlaceholder": "username",
+    "email": "Email",
+    "emailPlaceholder": "email@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Leave empty to keep current",
+    "passwordHint": "Min. 8 characters, must include uppercase, lowercase, numbers and special characters",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Type password again",
+    "role": "Role",
+    "roleUser": "User",
+    "roleInstructor": "Instructor",
+    "roleAdmin": "Admin",
+    "position": "Position / Title",
+    "positionPlaceholder": "E.g.: Kundalini Yoga Instructor",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "loadUser": "Error loading user",
+    "passwordMismatch": "Passwords do not match",
+    "passwordRequired": "Password is required for new users",
+    "saveError": "Error saving user",
+    "deleteError": "Error deleting",
+    "cannotDeleteSelf": "You cannot delete your own account"
+  },
+  "confirm": {
+    "delete": "Delete user \"{{username}}\"?"
+  }
+}
