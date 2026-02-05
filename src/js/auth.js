@@ -48,29 +48,71 @@ export function updateAuthUI(isAuthenticated, user) {
   const userDisplayName = document.getElementById('userDisplayName')
   const mobileAuthButtons = document.getElementById('mobileAuthButtons')
   const mobileUserMenu = document.getElementById('mobileUserMenu')
+  const mobileUserGreeting = document.getElementById('mobileUserGreeting')
   const adminLink = document.getElementById('adminLink')
   const mobileAdminLink = document.getElementById('mobileAdminLink')
 
   if (isAuthenticated && user) {
-    if (authButtons) authButtons.style.display = 'none'
+    // Hide auth buttons completely when logged in
+    if (authButtons) {
+      authButtons.classList.add('hidden')
+      authButtons.classList.remove('lg:flex')
+    }
+    // Show user menu on desktop only (keep hidden for mobile)
     if (userMenu) {
-      userMenu.style.display = 'flex'
+      userMenu.classList.add('lg:flex')
       if (userDisplayName) {
         userDisplayName.textContent = `Hola, ${user.username || user.name || ''}`
       }
     }
-    if (mobileAuthButtons) mobileAuthButtons.style.display = 'none'
-    if (mobileUserMenu) mobileUserMenu.style.display = 'block'
-    // Show admin links only for admins
-    if (adminLink) adminLink.style.display = user.role === 'admin' ? 'inline-flex' : 'none'
-    if (mobileAdminLink) mobileAdminLink.style.display = user.role === 'admin' ? 'block' : 'none'
+    // Mobile: hide auth, show user menu with greeting
+    if (mobileAuthButtons) mobileAuthButtons.classList.add('hidden')
+    if (mobileUserMenu) mobileUserMenu.classList.remove('hidden')
+    if (mobileUserGreeting) {
+      mobileUserGreeting.textContent = `Hola, ${user.username || user.name || ''}`
+    }
+    // Show admin links only for admins (desktop and mobile)
+    const isAdmin = user.role === 'admin'
+    if (adminLink) {
+      if (isAdmin) {
+        adminLink.classList.remove('hidden')
+        adminLink.classList.add('inline-flex')
+      } else {
+        adminLink.classList.add('hidden')
+        adminLink.classList.remove('inline-flex')
+      }
+    }
+    if (mobileAdminLink) {
+      if (isAdmin) {
+        mobileAdminLink.classList.remove('hidden')
+        mobileAdminLink.classList.add('flex')
+      } else {
+        mobileAdminLink.classList.add('hidden')
+        mobileAdminLink.classList.remove('flex')
+      }
+    }
   } else {
-    if (authButtons) authButtons.style.display = 'flex'
-    if (userMenu) userMenu.style.display = 'none'
-    if (mobileAuthButtons) mobileAuthButtons.style.display = 'block'
-    if (mobileUserMenu) mobileUserMenu.style.display = 'none'
-    if (adminLink) adminLink.style.display = 'none'
-    if (mobileAdminLink) mobileAdminLink.style.display = 'none'
+    // Show auth buttons on desktop only (hidden lg:flex keeps them hidden on mobile)
+    if (authButtons) {
+      authButtons.classList.add('hidden')
+      authButtons.classList.add('lg:flex')
+    }
+    // Hide user menu
+    if (userMenu) {
+      userMenu.classList.add('hidden')
+      userMenu.classList.remove('lg:flex')
+    }
+    // Mobile: show auth, hide user menu
+    if (mobileAuthButtons) mobileAuthButtons.classList.remove('hidden')
+    if (mobileUserMenu) mobileUserMenu.classList.add('hidden')
+    if (adminLink) {
+      adminLink.classList.add('hidden')
+      adminLink.classList.remove('inline-flex')
+    }
+    if (mobileAdminLink) {
+      mobileAdminLink.classList.add('hidden')
+      mobileAdminLink.classList.remove('flex')
+    }
   }
 }
 
@@ -89,6 +131,17 @@ export async function requireAdmin() {
   const user = await requireAuth()
   if (!user) return null
   if (user.role !== 'admin') {
+    window.location.href = import.meta.env.BASE_URL
+    return null
+  }
+  return user
+}
+
+/** Redirect to home if not instructor or admin. Returns the user or null. */
+export async function requireInstructor() {
+  const user = await requireAuth()
+  if (!user) return null
+  if (!['admin', 'instructor'].includes(user.role)) {
     window.location.href = import.meta.env.BASE_URL
     return null
   }

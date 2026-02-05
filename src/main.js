@@ -133,6 +133,9 @@ async function initPage() {
   } else if (path.includes('/pages/admin/schedule.html')) {
     const { initAdminSchedule } = await import('./js/admin/schedule.js')
     initAdminSchedule()
+  } else if (path.includes('/pages/instructor/my-classes.html')) {
+    const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
+    initInstructorClasses()
   }
 }
 

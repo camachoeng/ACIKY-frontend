@@ -32,7 +32,7 @@
     <a href="{{basePath}}/pages/about.html" class="text-text hover:text-primary transition-colors font-medium">Nosotros</a>
   </nav>
 
-  <!-- Desktop Auth -->
+  <!-- Desktop Auth (visible only on lg screens, hidden when logged in) -->
   <div class="hidden lg:flex items-center gap-3" id="authButtons">
     <a href="{{basePath}}/pages/login.html" class="text-primary-dark hover:text-primary transition-colors font-medium text-sm">
       Iniciar Sesión
@@ -42,17 +42,17 @@
     </a>
   </div>
 
-  <!-- Desktop User Menu (hidden by default) -->
-  <div class="hidden lg:flex items-center gap-3" id="userMenu" style="display: none;">
-    <span id="userDisplayName" class="text-text-light text-sm"></span>
-    <a href="{{basePath}}/pages/admin/dashboard.html" id="adminLink" class="inline-flex items-center gap-1 text-primary-dark hover:text-primary transition-colors font-medium text-sm" style="display: none;">
+  <!-- Desktop User Menu (hidden by default, only visible on lg screens when logged in) -->
+  <div class="hidden items-center gap-3" id="userMenu">
+    <span id="userDisplayName" class="text-text-light text-sm hidden xl:inline"></span>
+    <a href="{{basePath}}/pages/admin/dashboard.html" id="adminLink" class="hidden items-center gap-1 text-primary-dark hover:text-primary transition-colors font-medium text-sm">
       <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
       Admin
     </a>
-    <a href="{{basePath}}/pages/dashboard.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition-colors font-medium text-sm">
+    <a href="{{basePath}}/pages/dashboard.html" class="bg-primary text-white px-3 py-2 rounded-full hover:bg-primary-dark transition-colors font-medium text-sm whitespace-nowrap">
       Mi Perfil
     </a>
-    <button id="desktopLogoutBtn" class="text-accent-terracotta hover:text-red-600 transition-colors font-medium text-sm">
+    <button id="desktopLogoutBtn" class="text-accent-terracotta hover:text-red-600 transition-colors font-medium text-sm whitespace-nowrap">
       Salir
     </button>
   </div>
@@ -63,7 +63,7 @@
   </button>
 
   <!-- Mobile Menu Dropdown -->
-  <div class="lg:hidden hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-lg" id="mobileMenu">
+  <div class="lg:hidden hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-lg max-h-[calc(100vh-80px)] overflow-y-auto" id="mobileMenu">
     <nav class="px-6 py-4 space-y-1">
       <a href="{{basePath}}/pages/schedule.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100">Clases</a>
       <a href="{{basePath}}/pages/spaces.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100">Espacios</a>
@@ -76,10 +76,14 @@
         <a href="{{basePath}}/pages/login.html" class="block w-full text-center py-3 text-primary-dark font-semibold border border-primary-dark rounded-full">Iniciar Sesión</a>
         <a href="{{basePath}}/pages/register.html" class="block w-full text-center py-3 bg-primary text-white font-semibold rounded-full">Registrarse</a>
       </div>
-      <div class="pt-4 space-y-2" id="mobileUserMenu" style="display: none;">
-        <a href="{{basePath}}/pages/admin/dashboard.html" id="mobileAdminLink" class="block w-full text-center py-3 bg-primary-dark text-white font-semibold rounded-full" style="display: none;">Panel Admin</a>
+      <div class="pt-4 space-y-2 hidden" id="mobileUserMenu">
+        <p id="mobileUserGreeting" class="text-center text-primary-dark font-medium mb-2"></p>
+        <a href="{{basePath}}/pages/admin/dashboard.html" id="mobileAdminLink" class="hidden w-full text-center py-3 bg-primary-dark text-white font-semibold rounded-full items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+          Panel Admin
+        </a>
         <a href="{{basePath}}/pages/dashboard.html" class="block w-full text-center py-3 bg-primary text-white font-semibold rounded-full">Mi Perfil</a>
-        <button id="mobileLogoutBtn" class="block w-full text-center py-3 text-accent-terracotta font-semibold">Cerrar Sesión</button>
+        <button id="mobileLogoutBtn" class="block w-full text-center py-3 text-accent-terracotta font-semibold border border-accent-terracotta/30 rounded-full">Cerrar Sesión</button>
       </div>
     </nav>
   </div>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mis clases - Instructor ACIKY" />
+    <title>Mis Clases - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> header}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8 max-w-4xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark">Mis Clases</h1>
+            <p class="text-sm text-slate-500 mt-1">Clases asignadas a ti como instructor</p>
+          </div>
+          <a href="{{basePath}}/pages/dashboard.html" class="text-primary hover:text-primary-dark transition-colors text-sm font-medium flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            Volver al perfil
+          </a>
+        </div>
+
+        <!-- Loading -->
+        <div id="classesLoading" class="text-center py-12">
+          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2">Cargando tus clases...</p>
+        </div>
+
+        <!-- Classes Container -->
+        <div id="classesContainer" class="hidden space-y-4"></div>
+      </section>
+
+      <!-- Edit Class Modal -->
+      <div id="classModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" id="classModalOverlay"></div>
+        <div class="absolute inset-x-4 top-4 bottom-4 max-w-lg mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
+          <div class="p-8">
+            <h2 class="text-xl font-bold text-primary-dark mb-6">Editar Clase</h2>
+            <form id="classForm" class="space-y-4">
+              <input type="hidden" id="classId" />
+
+              <div>
+                <label for="className" class="block text-sm font-medium text-primary-dark mb-1">Nombre</label>
+                <input type="text" id="className" required
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       placeholder="Nombre de la clase" />
+              </div>
+
+              <div>
+                <label for="classDescription" class="block text-sm font-medium text-primary-dark mb-1">Descripcion</label>
+                <textarea id="classDescription" rows="3"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          placeholder="Descripcion de la clase..."></textarea>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="classSchedule" class="block text-sm font-medium text-primary-dark mb-1">Horario</label>
+                  <input type="text" id="classSchedule"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         placeholder="Martes 11:30 AM" />
+                </div>
+                <div>
+                  <label for="classDuration" class="block text-sm font-medium text-primary-dark mb-1">Duracion (min)</label>
+                  <input type="number" id="classDuration" min="15" max="240"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         placeholder="90" />
+                </div>
+              </div>
+
+              <div>
+                <label for="classDifficulty" class="block text-sm font-medium text-primary-dark mb-1">Nivel</label>
+                <select id="classDifficulty"
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white">
+                  <option value="all">Todos los niveles</option>
+                  <option value="beginner">Principiante</option>
+                  <option value="intermediate">Intermedio</option>
+                  <option value="advanced">Avanzado</option>
+                </select>
+              </div>
+
+              <div class="flex items-center gap-2 pt-2">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" id="classActive" checked
+                         class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
+                  <span class="text-sm font-medium text-primary-dark">Clase activa</span>
+                </label>
+              </div>
+
+              <div id="classFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelClassBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors">Cancelar</button>
+                <button type="submit" id="saveClassBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
