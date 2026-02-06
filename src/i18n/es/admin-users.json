@@ -19,8 +19,8 @@
     "email": "Email",
     "emailPlaceholder": "correo@ejemplo.com",
     "password": "Contraseña",
-    "passwordPlaceholder": "Dejar vacio para no cambiar",
-    "passwordHint": "Min. 8 caracteres, debe incluir mayusculas, minusculas, numeros y caracteres especiales",
+    "passwordPlaceholder": "Dejar vacío para no cambiar",
+    "passwordHint": "Min. 8 caracteres, debe incluir mayúsculas, minúsculas, números y caracteres especiales",
     "confirmPassword": "Confirmar Contraseña",
     "confirmPasswordPlaceholder": "Escribe la contraseña de nuevo",
     "role": "Rol",
@@ -35,8 +35,8 @@
   },
   "errors": {
     "loadUser": "Error al cargar usuario",
-    "passwordMismatch": "Las contrasenas no coinciden",
-    "passwordRequired": "La contrasena es requerida para nuevos usuarios",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "passwordRequired": "La contraseña es requerida para nuevos usuarios",
     "saveError": "Error al guardar usuario",
     "deleteError": "Error al eliminar",
     "cannotDeleteSelf": "No puedes eliminar tu propia cuenta"
