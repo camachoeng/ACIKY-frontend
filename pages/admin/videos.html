@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestión de videos - Admin ACIKY" />
+    <title>Videos - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <div class="mb-8">
+          <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Videos</h1>
+          <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Vincula videos de YouTube a las posturas existentes</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="videosLoading" class="text-center py-12">
+          <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando posturas...</p>
+        </div>
+
+        <!-- Posturas Grid -->
+        <div id="videosContainer" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        </div>
+
+        <!-- Empty State -->
+        <div id="videosEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-5xl text-slate-300">image</span>
+          <p class="text-slate-400 text-sm mt-2" data-i18n="empty">No hay posturas registradas</p>
+          <p class="text-slate-400 text-xs mt-1" data-i18n="emptyHint">Primero agrega imágenes en la sección Posturas</p>
+        </div>
+      </section>
+
+      <!-- Video Link Modal -->
+      <div id="videoModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" id="videoModalOverlay"></div>
+        <div class="absolute inset-x-4 top-8 bottom-8 max-w-lg mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
+          <div class="p-8">
+            <h2 id="videoModalTitle" class="text-xl font-bold text-primary-dark mb-2" data-i18n="modal.title">Vincular Video</h2>
+            <p id="posturaName" class="text-slate-500 text-sm mb-6"></p>
+
+            <!-- Postura Image Preview -->
+            <div class="mb-6">
+              <div class="aspect-video bg-slate-100 rounded-2xl overflow-hidden">
+                <img id="posturaImage" src="" alt="" class="w-full h-full object-cover" />
+              </div>
+            </div>
+
+            <form id="videoForm" class="space-y-4">
+              <input type="hidden" id="posturaId" />
+
+              <!-- YouTube URL -->
+              <div>
+                <label for="videoYoutubeUrl" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.youtubeUrl">URL de YouTube</label>
+                <input type="url" id="videoYoutubeUrl"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.youtubeUrlPlaceholder" placeholder="https://www.youtube.com/watch?v=..." />
+                <p class="mt-1 text-xs text-slate-400" data-i18n="modal.youtubeHint">Pega el enlace de youtube.com, youtu.be o shorts</p>
+              </div>
+
+              <!-- Video Preview -->
+              <div id="videoPreview" class="hidden">
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.videoPreview">Vista previa del video</label>
+                <div class="aspect-video bg-black rounded-2xl overflow-hidden">
+                  <iframe id="videoIframe" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
+
+              <div id="videoFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelVideoBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+                <button type="button" id="removeVideoBtn" class="hidden py-3 px-4 rounded-2xl border border-red-200 text-red-600 font-medium hover:bg-red-50 transition-colors" data-i18n="modal.removeVideo">
+                  <span class="material-symbols-outlined text-sm">link_off</span>
+                </button>
+                <button type="submit" id="saveVideoBtn" class="flex-1 py-3 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-colors" data-i18n="modal.save">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

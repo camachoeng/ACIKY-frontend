@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Videos de yoga - ACIKY" />
+    <title>Videos - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <!-- Hero -->
+      <section class="bg-gradient-to-br from-accent-terracotta to-red-700 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+          <h1 class="text-4xl lg:text-5xl font-bold" data-i18n="videos.title">Videos</h1>
+          <p class="mt-4 text-white/80 max-w-xl mx-auto" data-i18n="videos.subtitle">Aprende yoga con nuestros videos tutoriales</p>
+        </div>
+      </section>
+
+      <!-- Videos Grid -->
+      <section class="px-6 py-8">
+        <!-- Loading State -->
+        <div id="videosLoading" class="text-center py-12">
+          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="videos.loading">Cargando videos...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="videosError" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-accent-terracotta text-4xl">error</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="videos.error">No se pudo cargar los videos</p>
+          <button id="videosRetry" class="mt-4 text-primary font-semibold text-sm hover:underline" data-i18n="common.retry">Reintentar</button>
+        </div>
+
+        <!-- Empty State -->
+        <div id="videosEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">videocam_off</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="videos.empty">No hay videos disponibles</p>
+        </div>
+
+        <!-- Videos Container -->
+        <div id="videosContainer" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </section>
+    </main>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4">
+      <button id="closeVideo" class="absolute top-4 right-4 text-white/80 hover:text-white z-10">
+        <span class="material-symbols-outlined text-3xl">close</span>
+      </button>
+      <div class="max-w-4xl w-full">
+        <!-- Video Container -->
+        <div class="aspect-video bg-black rounded-lg overflow-hidden">
+          <iframe id="videoIframe" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <!-- Info -->
+        <div class="mt-4 text-center text-white">
+          <h3 id="videoTitle" class="text-xl font-bold"></h3>
+          <p id="videoDescription" class="mt-2 text-white/80 text-sm max-w-2xl mx-auto"></p>
+        </div>
+      </div>
+    </div>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

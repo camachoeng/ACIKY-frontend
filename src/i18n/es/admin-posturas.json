@@ -1,0 +1,36 @@
+{
+  "title": "Posturas",
+  "subtitle": "Gestiona las imágenes de posturas de yoga",
+  "newButton": "Nueva Postura",
+  "loading": "Cargando posturas...",
+  "empty": "No hay posturas registradas",
+  "modal": {
+    "newTitle": "Nueva Postura",
+    "editTitle": "Editar Postura",
+    "title": "Nombre",
+    "titlePlaceholder": "Postura del Guerrero",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Beneficios y cómo realizar esta postura...",
+    "image": "Imagen",
+    "uploadHint": "Arrastra una imagen o haz clic para seleccionar",
+    "uploadFormats": "JPEG, PNG, WebP (max 5MB)",
+    "uploading": "Subiendo imagen...",
+    "removeImage": "Quitar imagen",
+    "altText": "Texto Alternativo",
+    "altTextPlaceholder": "Descripción para accesibilidad",
+    "displayOrder": "Orden",
+    "visible": "Visible en la galería pública",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "errors": {
+    "loadError": "Error al cargar posturas",
+    "saveError": "Error al guardar postura",
+    "deleteError": "Error al eliminar",
+    "imageRequired": "Debes subir una imagen"
+  },
+  "confirm": {
+    "delete": "¿Eliminar \"{{title}}\"?"
+  }
+}

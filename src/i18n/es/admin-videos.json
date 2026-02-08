@@ -1,0 +1,28 @@
+{
+  "title": "Videos",
+  "subtitle": "Vincula videos de YouTube a las posturas existentes",
+  "loading": "Cargando posturas...",
+  "empty": "No hay posturas registradas",
+  "emptyHint": "Primero agrega imágenes en la sección Posturas",
+  "noVideo": "Sin video",
+  "hasVideo": "Video",
+  "modal": {
+    "title": "Vincular Video",
+    "youtubeUrl": "URL de YouTube",
+    "youtubeUrlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "youtubeHint": "Pega el enlace de youtube.com, youtu.be o shorts",
+    "videoPreview": "Vista previa del video",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "removeVideo": "Desvincular"
+  },
+  "errors": {
+    "loadError": "Error al cargar",
+    "saveError": "Error al guardar",
+    "youtubeInvalid": "La URL de YouTube no es válida"
+  },
+  "confirm": {
+    "unlink": "¿Desvincular el video de \"{{title}}\"?"
+  }
+}

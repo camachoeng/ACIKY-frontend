@@ -9,6 +9,8 @@
     "sadhanasOnline": "Sadhanas Online",
     "festival": "Festival",
     "gallery": "Galería",
+    "posturas": "Posturas",
+    "videos": "Videos",
     "blog": "Blog",
     "about": "Nosotros",
     "login": "Iniciar Sesión",
@@ -29,6 +31,8 @@
     "dashboard": "Dashboard",
     "users": "Usuarios",
     "classes": "Clases",
+    "posturas": "Posturas",
+    "videos": "Videos",
     "backToSite": "Volver al sitio"
   },
   "common": {

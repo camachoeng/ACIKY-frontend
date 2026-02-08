@@ -27,7 +27,18 @@
         <a href="{{basePath}}/pages/festival.html" class="block px-4 py-2 hover:bg-background text-text hover:text-primary text-sm" data-i18n="header.festival">Festival</a>
       </div>
     </div>
-    <a href="{{basePath}}/pages/gallery.html" class="text-text hover:text-primary transition-colors font-medium" data-i18n="header.gallery">Galeria</a>
+    <div class="relative group">
+      <button class="text-text hover:text-primary transition-colors font-medium flex items-center gap-1">
+        <span data-i18n="header.gallery">Galería</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-2xl shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all py-2">
+        <a href="{{basePath}}/pages/posturas.html" class="block px-4 py-2 hover:bg-background text-text hover:text-primary text-sm" data-i18n="header.posturas">Posturas</a>
+        <a href="{{basePath}}/pages/videos.html" class="block px-4 py-2 hover:bg-background text-text hover:text-primary text-sm" data-i18n="header.videos">Videos</a>
+      </div>
+    </div>
     <a href="{{basePath}}/pages/blog.html" class="text-text hover:text-primary transition-colors font-medium" data-i18n="header.blog">Blog</a>
     <a href="{{basePath}}/pages/about.html" class="text-text hover:text-primary transition-colors font-medium" data-i18n="header.about">Nosotros</a>
   </nav>
@@ -78,7 +89,8 @@
       <a href="{{basePath}}/pages/spaces.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100" data-i18n="header.spaces">Espacios</a>
       <a href="{{basePath}}/pages/golden-routes.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100" data-i18n="header.goldenRoutes">Rutas Doradas</a>
       <a href="{{basePath}}/pages/rebirthing.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100" data-i18n="header.rebirthing">Renacimientos</a>
-      <a href="{{basePath}}/pages/gallery.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100" data-i18n="header.gallery">Galeria</a>
+      <a href="{{basePath}}/pages/posturas.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100" data-i18n="header.posturas">Posturas</a>
+      <a href="{{basePath}}/pages/videos.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100" data-i18n="header.videos">Videos</a>
       <a href="{{basePath}}/pages/blog.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100" data-i18n="header.blog">Blog</a>
       <a href="{{basePath}}/pages/about.html" class="block py-3 text-text hover:text-primary font-medium border-b border-slate-100" data-i18n="header.about">Nosotros</a>
 
