@@ -1,0 +1,9 @@
+{
+  "posturas": {
+    "title": "Postures",
+    "subtitle": "Explore yoga postures and their benefits",
+    "loading": "Loading postures...",
+    "error": "Could not load postures",
+    "empty": "No postures available"
+  }
+}

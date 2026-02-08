@@ -1,0 +1,36 @@
+{
+  "title": "Postures",
+  "subtitle": "Manage yoga posture images",
+  "newButton": "New Posture",
+  "loading": "Loading postures...",
+  "empty": "No postures registered",
+  "modal": {
+    "newTitle": "New Posture",
+    "editTitle": "Edit Posture",
+    "title": "Name",
+    "titlePlaceholder": "Warrior Pose",
+    "description": "Description",
+    "descriptionPlaceholder": "Benefits and how to perform this posture...",
+    "image": "Image",
+    "uploadHint": "Drag an image or click to select",
+    "uploadFormats": "JPEG, PNG, WebP (max 5MB)",
+    "uploading": "Uploading image...",
+    "removeImage": "Remove image",
+    "altText": "Alt Text",
+    "altTextPlaceholder": "Description for accessibility",
+    "displayOrder": "Order",
+    "visible": "Visible in public gallery",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "loadError": "Error loading postures",
+    "saveError": "Error saving posture",
+    "deleteError": "Error deleting",
+    "imageRequired": "You must upload an image"
+  },
+  "confirm": {
+    "delete": "Delete \"{{title}}\"?"
+  }
+}

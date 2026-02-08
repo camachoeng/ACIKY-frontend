@@ -1,0 +1,9 @@
+{
+  "videos": {
+    "title": "Videos",
+    "subtitle": "Aprende yoga con nuestros videos tutoriales",
+    "loading": "Cargando videos...",
+    "error": "No se pudo cargar los videos",
+    "empty": "No hay videos disponibles"
+  }
+}

@@ -49,6 +49,8 @@ function getPageName() {
     'index.html': 'home',
     'pages/about.html': 'about',
     'pages/schedule.html': 'schedule',
+    'pages/posturas.html': 'posturas',
+    'pages/videos.html': 'videos',
     'pages/login.html': 'login',
     'pages/register.html': 'register',
     'pages/verify-email.html': 'verify-email',
@@ -56,6 +58,8 @@ function getPageName() {
     'pages/admin/dashboard.html': 'admin-dashboard',
     'pages/admin/users.html': 'admin-users',
     'pages/admin/schedule.html': 'admin-schedule',
+    'pages/admin/posturas.html': 'admin-posturas',
+    'pages/admin/videos.html': 'admin-videos',
     'pages/instructor/my-classes.html': 'instructor-classes'
   }
 

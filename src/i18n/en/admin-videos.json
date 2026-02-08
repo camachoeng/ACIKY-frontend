@@ -1,0 +1,28 @@
+{
+  "title": "Videos",
+  "subtitle": "Link YouTube videos to existing postures",
+  "loading": "Loading postures...",
+  "empty": "No postures registered",
+  "emptyHint": "First add images in the Postures section",
+  "noVideo": "No video",
+  "hasVideo": "Video",
+  "modal": {
+    "title": "Link Video",
+    "youtubeUrl": "YouTube URL",
+    "youtubeUrlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "youtubeHint": "Paste a youtube.com, youtu.be or shorts link",
+    "videoPreview": "Video preview",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving...",
+    "removeVideo": "Unlink"
+  },
+  "errors": {
+    "loadError": "Error loading",
+    "saveError": "Error saving",
+    "youtubeInvalid": "Invalid YouTube URL"
+  },
+  "confirm": {
+    "unlink": "Unlink video from \"{{title}}\"?"
+  }
+}

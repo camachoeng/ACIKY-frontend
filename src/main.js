@@ -154,6 +154,12 @@ async function initPage() {
   } else if (path.includes('/pages/about.html')) {
     const { initAbout } = await import('./js/about.js')
     initAbout()
+  } else if (path.includes('/pages/posturas.html')) {
+    const { initPosturas } = await import('./js/posturas.js')
+    initPosturas()
+  } else if (path.includes('/pages/videos.html')) {
+    const { initVideos } = await import('./js/videos.js')
+    initVideos()
   } else if (path.includes('/pages/verify-email.html')) {
     const { initVerifyEmail } = await import('./js/verify-email.js')
     initVerifyEmail()
@@ -169,6 +175,12 @@ async function initPage() {
   } else if (path.includes('/pages/admin/schedule.html')) {
     const { initAdminSchedule } = await import('./js/admin/schedule.js')
     initAdminSchedule()
+  } else if (path.includes('/pages/admin/posturas.html')) {
+    const { initAdminPosturas } = await import('./js/admin/posturas.js')
+    initAdminPosturas()
+  } else if (path.includes('/pages/admin/videos.html')) {
+    const { initAdminVideos } = await import('./js/admin/videos.js')
+    initAdminVideos()
   } else if (path.includes('/pages/instructor/my-classes.html')) {
     const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
     initInstructorClasses()

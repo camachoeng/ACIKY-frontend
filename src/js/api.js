@@ -6,6 +6,13 @@ export const API_BASE = window.location.hostname === 'camachoeng.github.io'
   : 'http://localhost:3000'
 
 /**
+ * Get full API URL for a path
+ */
+export function getApiUrl(path) {
+  return `${API_BASE}${path}`
+}
+
+/**
  * Fetch wrapper with credentials and JSON handling.
  * Throws on non-ok responses with the server's error message.
  */

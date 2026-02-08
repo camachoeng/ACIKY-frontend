@@ -1,0 +1,9 @@
+{
+  "videos": {
+    "title": "Videos",
+    "subtitle": "Learn yoga with our tutorial videos",
+    "loading": "Loading videos...",
+    "error": "Could not load videos",
+    "empty": "No videos available"
+  }
+}
