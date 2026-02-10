@@ -1,0 +1,30 @@
+{
+  "title": "Testimonials",
+  "subtitle": "Manage user testimonials",
+  "loading": "Loading testimonials...",
+  "empty": "No testimonials registered",
+  "status": {
+    "approved": "Approved",
+    "pending": "Pending"
+  },
+  "modal": {
+    "editTitle": "Edit Testimonial",
+    "contentEs": "Content (ES)",
+    "contentEn": "Content (EN)",
+    "contentEsPlaceholder": "Testimonial in Spanish...",
+    "contentEnPlaceholder": "English translation (optional)",
+    "approved": "Approved",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "loadError": "Error loading testimonials",
+    "saveError": "Error saving testimonial",
+    "deleteError": "Error deleting",
+    "toggleError": "Error changing status"
+  },
+  "confirm": {
+    "delete": "Delete testimonial by \"{{author}}\"?"
+  }
+}

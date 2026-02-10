@@ -40,6 +40,11 @@
       "description": "Daily virtual practice."
     }
   },
+  "testimonials": {
+    "title": "What our students say",
+    "subtitle": "Real experiences from our community",
+    "viewAll": "View all testimonials"
+  },
   "contact": {
     "title": "Have Questions?",
     "description": "Our team is here to help you on your path to wellness. Contact us for more information.",
