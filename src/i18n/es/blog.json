@@ -1,0 +1,11 @@
+{
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Artículos, reflexiones y novedades sobre yoga y bienestar",
+    "loading": "Cargando artículos...",
+    "error": "No se pudo cargar los artículos",
+    "empty": "No hay artículos disponibles",
+    "readMore": "Leer más",
+    "backToList": "Volver al blog"
+  }
+}

@@ -198,6 +198,12 @@ async function initPage() {
   } else if (path.includes('/pages/admin/videos.html')) {
     const { initAdminVideos } = await import('./js/admin/videos.js')
     initAdminVideos()
+  } else if (path.includes('/pages/admin/blog.html')) {
+    const { initAdminBlog } = await import('./js/admin/blog.js')
+    initAdminBlog()
+  } else if (path.includes('/pages/blog.html')) {
+    const { initBlog } = await import('./js/blog.js')
+    initBlog()
   } else if (path.includes('/pages/instructor/my-classes.html')) {
     const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
     initInstructorClasses()

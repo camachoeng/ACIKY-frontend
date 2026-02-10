@@ -36,6 +36,8 @@ export default defineConfig(({ command }) => {
           adminSchedule: resolve(__dirname, 'pages/admin/schedule.html'),
           adminPosturas: resolve(__dirname, 'pages/admin/posturas.html'),
           adminVideos: resolve(__dirname, 'pages/admin/videos.html'),
+          adminBlog: resolve(__dirname, 'pages/admin/blog.html'),
+          blog: resolve(__dirname, 'pages/blog.html'),
           instructorClasses: resolve(__dirname, 'pages/instructor/my-classes.html'),
           verifyEmail: resolve(__dirname, 'pages/verify-email.html')
         }

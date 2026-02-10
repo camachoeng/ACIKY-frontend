@@ -1,0 +1,32 @@
+{
+  "title": "Blog",
+  "subtitle": "Manage blog articles",
+  "newButton": "New Article",
+  "loading": "Loading articles...",
+  "empty": "No articles registered",
+  "status": {
+    "published": "Published",
+    "draft": "Draft"
+  },
+  "modal": {
+    "newTitle": "New Article",
+    "editTitle": "Edit Article",
+    "title": "Title",
+    "titlePlaceholder": "Article title",
+    "content": "Content",
+    "contentPlaceholder": "Write the article content...",
+    "published": "Published",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "loadError": "Error loading articles",
+    "saveError": "Error saving article",
+    "deleteError": "Error deleting",
+    "toggleError": "Error changing status"
+  },
+  "confirm": {
+    "delete": "Delete \"{{title}}\"?"
+  }
+}

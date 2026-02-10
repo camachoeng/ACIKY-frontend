@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Blog - ACIKY Yoga para Todos" />
+    <title>Blog - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <!-- Hero -->
+      <section id="blogHero" class="bg-gradient-to-br from-primary to-primary-dark text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+          <h1 class="text-4xl lg:text-5xl font-bold" data-i18n="blog.title">Blog</h1>
+          <p class="mt-4 text-white/80 max-w-xl mx-auto" data-i18n="blog.subtitle">Artículos, reflexiones y novedades sobre yoga y bienestar</p>
+        </div>
+      </section>
+
+      <!-- Blog List -->
+      <section id="blogListSection" class="px-4 md:px-8 lg:px-16 py-8">
+        <!-- Loading State -->
+        <div id="blogLoading" class="text-center py-12">
+          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="blog.loading">Cargando artículos...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="blogError" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-accent-terracotta text-4xl">error</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="blog.error">No se pudo cargar los artículos</p>
+          <button id="blogRetry" class="mt-4 text-primary font-semibold text-sm hover:underline" data-i18n="common.retry">Reintentar</button>
+        </div>
+
+        <!-- Empty State -->
+        <div id="blogEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">article</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="blog.empty">No hay artículos disponibles</p>
+        </div>
+
+        <!-- Blog Cards Grid -->
+        <div id="blogContainer" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </section>
+
+      <!-- Single Post Detail (hidden by default) -->
+      <section id="blogDetail" class="hidden px-4 md:px-8 lg:px-16 py-8">
+        <button id="blogBackBtn" class="flex items-center gap-1 text-primary font-medium text-sm mb-6 hover:underline">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span data-i18n="blog.backToList">Volver al blog</span>
+        </button>
+        <article class="max-w-3xl mx-auto">
+          <h2 id="blogDetailTitle" class="text-3xl font-bold text-primary-dark"></h2>
+          <div class="flex items-center gap-3 mt-4 text-sm text-slate-500">
+            <span id="blogDetailAuthor"></span>
+            <span>&middot;</span>
+            <time id="blogDetailDate"></time>
+          </div>
+          <div id="blogDetailContent" class="mt-8 text-text leading-relaxed"></div>
+        </article>
+      </section>
+    </main>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

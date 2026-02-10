@@ -1,0 +1,11 @@
+{
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articles, reflections and news about yoga and wellness",
+    "loading": "Loading articles...",
+    "error": "Could not load articles",
+    "empty": "No articles available",
+    "readMore": "Read more",
+    "backToList": "Back to blog"
+  }
+}
