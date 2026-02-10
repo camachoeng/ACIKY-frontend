@@ -67,7 +67,7 @@ After successful deployment, your site will be available at:
 
 **Production URL:** `https://camachoeng.github.io/ACIKY-frontend/`
 
-**Note:** It may take a few minutes for changes to appear after deployment completes.
+**Note:** It may take 2-5 minutes for changes to appear after deployment completes.
 
 ## How It Works
 
