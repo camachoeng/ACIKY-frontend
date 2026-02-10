@@ -1,7 +1,7 @@
 import './style.css'
 import { checkAuth } from './js/auth.js'
 import { apiFetch } from './js/api.js'
-import { initI18n, switchLanguage, getLanguage, t } from './js/i18n.js'
+import { initI18n, switchLanguage, getLanguage, t, localized } from './js/i18n.js'
 
 // Mobile Menu Toggle
 function initMobileMenu() {
@@ -69,8 +69,8 @@ async function initHeroSchedule() {
           <span class="text-sm">${a.icon || '🧘'}</span>
         </div>
         <div class="text-xs">
-          <p class="font-semibold text-primary-light">${escapeHtml(a.schedule || a.name)}</p>
-          <p class="opacity-70 text-white">${a.instructor_name ? t('hero.instructor') + ': ' + escapeHtml(a.instructor_name) : escapeHtml(a.name)}</p>
+          <p class="font-semibold text-primary-light">${escapeHtml(translateSchedule(a.schedule) || localized(a, 'name'))}</p>
+          <p class="opacity-70 text-white">${a.instructor_name ? t('hero.instructor') + ': ' + escapeHtml(a.instructor_name) : escapeHtml(localized(a, 'name'))}</p>
         </div>
       </div>`).join('')
   } catch {
@@ -83,6 +83,23 @@ async function initHeroSchedule() {
 window.addEventListener('languageChanged', () => {
   initHeroSchedule()
 })
+
+function translateSchedule(schedule) {
+  if (!schedule) return ''
+  const dayMap = {
+    'lunes': 'days.monFull', 'martes': 'days.tueFull', 'miercoles': 'days.wedFull', 'miércoles': 'days.wedFull',
+    'jueves': 'days.thuFull', 'viernes': 'days.friFull', 'sabado': 'days.satFull', 'sábado': 'days.satFull', 'domingo': 'days.sunFull'
+  }
+  let result = schedule
+  for (const [es, key] of Object.entries(dayMap)) {
+    const regex = new RegExp(es, 'i')
+    if (regex.test(result)) {
+      result = result.replace(regex, t(key))
+      break
+    }
+  }
+  return result
+}
 
 function escapeHtml(str) {
   if (!str) return ''

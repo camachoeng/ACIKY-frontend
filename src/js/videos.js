@@ -1,10 +1,16 @@
 import { apiFetch } from './api.js'
+import { localized } from './i18n.js'
 
 let allVideos = []
 
 export async function initVideos() {
   await loadVideos()
   setupVideoModal()
+
+  // Re-render with localized text when language changes (no re-fetch needed)
+  window.addEventListener('languageChanged', () => {
+    if (allVideos.length > 0) renderVideos()
+  })
 }
 
 async function loadVideos() {
@@ -42,14 +48,18 @@ function renderVideos() {
   const container = document.getElementById('videosContainer')
   if (!container) return
 
-  container.innerHTML = allVideos.map(item => `
+  container.innerHTML = allVideos.map(item => {
+    const title = localized(item, 'title')
+    const description = localized(item, 'description')
+    const altText = localized(item, 'alt_text') || title
+    return `
     <div class="video-card group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
          data-youtube="${escapeAttr(item.youtube_url)}"
-         data-title="${escapeAttr(item.title)}"
-         data-description="${escapeAttr(item.description || '')}">
+         data-title="${escapeAttr(title)}"
+         data-description="${escapeAttr(description)}">
       <div class="relative aspect-video overflow-hidden">
         <img src="${escapeAttr(item.thumbnail_url || item.image_url || getYoutubeThumbnail(item.youtube_url))}"
-             alt="${escapeAttr(item.alt_text || item.title)}"
+             alt="${escapeAttr(altText)}"
              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
              onerror="this.src='${getYoutubeThumbnail(item.youtube_url)}'" />
         <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
@@ -63,11 +73,11 @@ function renderVideos() {
         </div>
       </div>
       <div class="p-4">
-        <h3 class="font-bold text-primary-dark text-sm">${escapeHtml(item.title)}</h3>
-        ${item.description ? `<p class="text-xs text-slate-500 mt-1 line-clamp-2">${escapeHtml(item.description)}</p>` : ''}
+        <h3 class="font-bold text-primary-dark text-sm">${escapeHtml(title)}</h3>
+        ${description ? `<p class="text-xs text-slate-500 mt-1 line-clamp-2">${escapeHtml(description)}</p>` : ''}
       </div>
-    </div>
-  `).join('')
+    </div>`
+  }).join('')
 }
 
 function setupVideoModal() {

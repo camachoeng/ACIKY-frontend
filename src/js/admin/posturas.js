@@ -181,6 +181,9 @@ function openEditModal(id) {
   document.getElementById('posturaAltText').value = item.alt_text || ''
   document.getElementById('posturaDisplayOrder').value = item.display_order || 0
   document.getElementById('posturaVisible').checked = !!item.visible
+  document.getElementById('posturaTitleEn').value = item.title_en || ''
+  document.getElementById('posturaDescriptionEn').value = item.description_en || ''
+  document.getElementById('posturaAltTextEn').value = item.alt_text_en || ''
 
   if (item.image_url) {
     showUploadPreview(item.thumbnail_url || item.image_url)
@@ -311,6 +314,10 @@ async function savePostura(e) {
     return
   }
 
+  const title_en = document.getElementById('posturaTitleEn').value.trim()
+  const description_en = document.getElementById('posturaDescriptionEn').value.trim()
+  const alt_text_en = document.getElementById('posturaAltTextEn').value.trim()
+
   const body = {
     title,
     description: description || null,
@@ -320,7 +327,10 @@ async function savePostura(e) {
     category: 'posturas', // Fixed category
     alt_text: alt_text || null,
     display_order,
-    visible
+    visible,
+    title_en: title_en || null,
+    description_en: description_en || null,
+    alt_text_en: alt_text_en || null
   }
 
   try {

@@ -214,6 +214,20 @@ export async function switchLanguage(lang) {
 }
 
 /**
+ * Get a localized field from an API item (dual-column approach)
+ * Falls back to Spanish (default) if English translation is missing
+ * @param {object} item - API response object (e.g., activity, gallery item, user)
+ * @param {string} field - Base field name (e.g., 'name', 'title', 'position')
+ */
+export function localized(item, field) {
+  if (getLanguage() !== 'es') {
+    const value = item[`${field}_en`]
+    if (value) return value
+  }
+  return item[field] || ''
+}
+
+/**
  * Get all translations for current page (useful for page modules)
  */
 export function getTranslations() {

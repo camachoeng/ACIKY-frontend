@@ -35,6 +35,15 @@
     "videos": "Videos",
     "backToSite": "Volver al sitio"
   },
+  "days": {
+    "monFull": "Lunes",
+    "tueFull": "Martes",
+    "wedFull": "Miércoles",
+    "thuFull": "Jueves",
+    "friFull": "Viernes",
+    "satFull": "Sábado",
+    "sunFull": "Domingo"
+  },
   "common": {
     "loading": "Cargando...",
     "error": "Error",

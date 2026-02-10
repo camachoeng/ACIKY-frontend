@@ -1,10 +1,16 @@
 import { apiFetch } from './api.js'
+import { localized } from './i18n.js'
 
 let allItems = []
 
 export async function initPosturas() {
   await loadPosturas()
   setupLightbox()
+
+  // Re-render with localized text when language changes (no re-fetch needed)
+  window.addEventListener('languageChanged', () => {
+    if (allItems.length > 0) renderPosturas()
+  })
 }
 
 async function loadPosturas() {
@@ -42,23 +48,27 @@ function renderPosturas() {
   const container = document.getElementById('posturasContainer')
   if (!container) return
 
-  container.innerHTML = allItems.map(item => `
+  container.innerHTML = allItems.map(item => {
+    const title = localized(item, 'title')
+    const description = localized(item, 'description')
+    const altText = localized(item, 'alt_text') || title
+    return `
     <div class="postura-card group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
          data-image="${escapeAttr(item.image_url)}"
-         data-title="${escapeAttr(item.title)}"
-         data-description="${escapeAttr(item.description || '')}">
+         data-title="${escapeAttr(title)}"
+         data-description="${escapeAttr(description)}">
       <div class="relative aspect-square overflow-hidden">
         <img src="${escapeAttr(item.thumbnail_url || item.image_url)}"
-             alt="${escapeAttr(item.alt_text || item.title)}"
+             alt="${escapeAttr(altText)}"
              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
              onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23e2e8f0%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2210%22>Sin imagen</text></svg>'" />
       </div>
       <div class="p-4">
-        <h3 class="font-bold text-primary-dark text-sm">${escapeHtml(item.title)}</h3>
-        ${item.description ? `<p class="text-xs text-slate-500 mt-1 line-clamp-2">${escapeHtml(item.description)}</p>` : ''}
+        <h3 class="font-bold text-primary-dark text-sm">${escapeHtml(title)}</h3>
+        ${description ? `<p class="text-xs text-slate-500 mt-1 line-clamp-2">${escapeHtml(description)}</p>` : ''}
       </div>
-    </div>
-  `).join('')
+    </div>`
+  }).join('')
 }
 
 function setupLightbox() {

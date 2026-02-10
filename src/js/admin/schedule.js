@@ -151,6 +151,9 @@ async function openEditModal(id) {
     document.getElementById('activityDifficulty').value = a.difficulty_level || 'all'
     document.getElementById('activityActive').checked = !!a.active
     document.getElementById('activityFeatured').checked = !!a.featured
+    document.getElementById('activityNameEn').value = a.name_en || ''
+    document.getElementById('activityDescriptionEn').value = a.description_en || ''
+    document.getElementById('activityLocationEn').value = a.location_en || ''
 
     hideFormError()
     if (modal) modal.classList.remove('hidden')
@@ -178,7 +181,10 @@ async function saveActivity(e) {
     icon: document.getElementById('activityIcon').value.trim(),
     difficulty_level: document.getElementById('activityDifficulty').value,
     active: document.getElementById('activityActive').checked,
-    featured: document.getElementById('activityFeatured').checked
+    featured: document.getElementById('activityFeatured').checked,
+    name_en: document.getElementById('activityNameEn').value.trim() || null,
+    description_en: document.getElementById('activityDescriptionEn').value.trim() || null,
+    location_en: document.getElementById('activityLocationEn').value.trim() || null
   }
 
   try {
