@@ -112,7 +112,9 @@ async function openEditModal(id) {
 
   document.getElementById('classId').value = activity.id
   document.getElementById('className').value = activity.name || ''
+  document.getElementById('classNameEn').value = activity.name_en || ''
   document.getElementById('classDescription').value = activity.description || ''
+  document.getElementById('classDescriptionEn').value = activity.description_en || ''
   document.getElementById('classSchedule').value = activity.schedule || ''
   document.getElementById('classDuration').value = activity.duration || ''
   document.getElementById('classDifficulty').value = activity.difficulty_level || 'all'
@@ -136,7 +138,9 @@ async function saveClass(e) {
     schedule: document.getElementById('classSchedule').value.trim(),
     duration: document.getElementById('classDuration').value || null,
     difficulty_level: document.getElementById('classDifficulty').value,
-    active: document.getElementById('classActive').checked
+    active: document.getElementById('classActive').checked,
+    name_en: document.getElementById('classNameEn').value.trim() || null,
+    description_en: document.getElementById('classDescriptionEn').value.trim() || null
   }
 
   try {

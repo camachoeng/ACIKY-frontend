@@ -1,6 +1,6 @@
 import { apiFetch } from './api.js'
 import { getUser } from './auth.js'
-import { t } from './i18n.js'
+import { t, localized } from './i18n.js'
 
 // Static color class mappings (full class names for Tailwind scanner)
 const COLOR_CLASSES = [
@@ -71,7 +71,10 @@ export async function initSchedule() {
 function renderClassCard(activity, index) {
   const colors = COLOR_CLASSES[index % COLOR_CLASSES.length]
   const { dayAbbr, timeStr } = parseSchedule(activity.schedule)
-  const bookMessage = t('card.bookMessage', { name: activity.name, instructor: activity.instructor_name || '' })
+  const activityName = localized(activity, 'name')
+  const activityDescription = localized(activity, 'description')
+  const activityLocation = localized(activity, 'location')
+  const bookMessage = t('card.bookMessage', { name: activityName, instructor: activity.instructor_name || '' })
 
   return `
     <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100">
@@ -81,8 +84,9 @@ function renderClassCard(activity, index) {
           <span class="text-xl font-bold text-primary-dark">${timeStr}</span>
         </div>
         <div class="flex-1">
-          <h3 class="font-bold text-primary-dark text-lg">${escapeHtml(activity.name)}</h3>
-          <p class="text-sm text-slate-500 mb-2">${escapeHtml(activity.location || '')}</p>
+          <h3 class="font-bold text-primary-dark text-lg">${escapeHtml(activityName)}</h3>
+          <p class="text-sm text-slate-500 mb-2">${escapeHtml(activityLocation)}</p>
+          ${activityDescription ? `<p class="text-xs text-slate-500 mb-2 line-clamp-2">${escapeHtml(activityDescription)}</p>` : ''}
           ${activity.instructor_name ? `
           <div class="flex items-center gap-2 mb-3">
             <div class="w-8 h-8 rounded-full ${colors.bg20} flex items-center justify-center">

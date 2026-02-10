@@ -145,6 +145,7 @@ async function openEditModal(id) {
     document.getElementById('userPassword').value = ''
     if (passwordConfirmInput) passwordConfirmInput.value = ''
     document.getElementById('userPosition').value = user.position || ''
+    document.getElementById('userPositionEn').value = user.position_en || ''
     togglePositionField()
 
     // Password optional when editing
@@ -183,9 +184,14 @@ async function saveUser(e) {
     return
   }
 
+  const positionEn = document.getElementById('userPositionEn').value.trim()
+
   const body = { username, email, role }
   if (password) body.password = password
-  if (role !== 'user') body.position = position || null
+  if (role !== 'user') {
+    body.position = position || null
+    body.position_en = positionEn || null
+  }
 
   try {
     if (id) {
