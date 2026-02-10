@@ -61,7 +61,9 @@ function getPageName() {
     'pages/admin/posturas.html': 'admin-posturas',
     'pages/admin/videos.html': 'admin-videos',
     'pages/admin/blog.html': 'admin-blog',
+    'pages/admin/testimonials.html': 'admin-testimonials',
     'pages/blog.html': 'blog',
+    'pages/testimonials.html': 'testimonials',
     'pages/instructor/my-classes.html': 'instructor-classes'
   }
 

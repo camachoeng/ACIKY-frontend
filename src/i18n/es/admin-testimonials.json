@@ -1,0 +1,30 @@
+{
+  "title": "Testimonios",
+  "subtitle": "Gestiona los testimonios de los usuarios",
+  "loading": "Cargando testimonios...",
+  "empty": "No hay testimonios registrados",
+  "status": {
+    "approved": "Aprobado",
+    "pending": "Pendiente"
+  },
+  "modal": {
+    "editTitle": "Editar Testimonio",
+    "contentEs": "Contenido (ES)",
+    "contentEn": "Content (EN)",
+    "contentEsPlaceholder": "Testimonio en espanol...",
+    "contentEnPlaceholder": "English translation (optional)",
+    "approved": "Aprobado",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "errors": {
+    "loadError": "Error al cargar testimonios",
+    "saveError": "Error al guardar testimonio",
+    "deleteError": "Error al eliminar",
+    "toggleError": "Error al cambiar estado"
+  },
+  "confirm": {
+    "delete": "Eliminar testimonio de \"{{author}}\"?"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "What our practitioners say about their experience at ACIKY",
+    "loading": "Loading testimonials...",
+    "error": "Could not load testimonials",
+    "empty": "No testimonials available yet",
+    "retry": "Retry",
+    "writeTitle": "Share your experience",
+    "writeSubtitle": "Your testimonial will be reviewed before publishing",
+    "placeholder": "Write your testimonial here...",
+    "submit": "Submit Testimonial",
+    "submitting": "Submitting...",
+    "successMessage": "Your testimonial has been submitted and is pending approval. Thank you for sharing your experience.",
+    "loginPrompt": "Sign in to share your experience",
+    "loginButton": "Sign In"
+  }
+}

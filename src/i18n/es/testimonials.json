@@ -1,0 +1,18 @@
+{
+  "testimonials": {
+    "title": "Testimonios",
+    "subtitle": "Lo que dicen nuestros practicantes sobre su experiencia en ACIKY",
+    "loading": "Cargando testimonios...",
+    "error": "No se pudieron cargar los testimonios",
+    "empty": "Aún no hay testimonios disponibles",
+    "retry": "Reintentar",
+    "writeTitle": "Comparte tu experiencia",
+    "writeSubtitle": "Tu testimonio será revisado antes de publicarse",
+    "placeholder": "Escribe tu testimonio aquí...",
+    "submit": "Enviar Testimonio",
+    "submitting": "Enviando...",
+    "successMessage": "Tu testimonio ha sido enviado y está pendiente de aprobación. Gracias por compartir tu experiencia.",
+    "loginPrompt": "Inicia sesión para compartir tu experiencia",
+    "loginButton": "Iniciar Sesión"
+  }
+}

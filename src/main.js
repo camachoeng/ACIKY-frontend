@@ -79,9 +79,37 @@ async function initHeroSchedule() {
   }
 }
 
-// Listen for language changes to re-render hero schedule
+// Home page: load featured testimonials
+async function initHomeTestimonials() {
+  const container = document.getElementById('homeTestimonialsContainer')
+  if (!container) return
+
+  try {
+    const data = await apiFetch('/api/testimonials/approved')
+    const testimonials = (data.data || []).filter(t => t.featured)
+
+    if (testimonials.length === 0) {
+      const section = document.getElementById('homeTestimonialsSection')
+      if (section) section.classList.add('hidden')
+      return
+    }
+
+    container.innerHTML = testimonials.slice(0, 3).map(item => `
+      <div class="min-w-[280px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <span class="material-symbols-outlined text-primary/20 text-2xl">format_quote</span>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed line-clamp-4">${escapeHtml(localized(item, 'content'))}</p>
+        <p class="mt-4 text-primary-dark font-semibold text-sm">${escapeHtml(item.author_name || '')}</p>
+      </div>`).join('')
+  } catch {
+    const section = document.getElementById('homeTestimonialsSection')
+    if (section) section.classList.add('hidden')
+  }
+}
+
+// Listen for language changes to re-render home dynamic sections
 window.addEventListener('languageChanged', () => {
   initHeroSchedule()
+  initHomeTestimonials()
 })
 
 function translateSchedule(schedule) {
@@ -159,6 +187,7 @@ async function initPage() {
   const base = import.meta.env.BASE_URL
   if (path === base || path === base + 'index.html') {
     initHeroSchedule()
+    initHomeTestimonials()
   } else if (path.includes('/pages/login.html')) {
     const { initLogin } = await import('./js/login.js')
     initLogin()
@@ -201,9 +230,15 @@ async function initPage() {
   } else if (path.includes('/pages/admin/blog.html')) {
     const { initAdminBlog } = await import('./js/admin/blog.js')
     initAdminBlog()
+  } else if (path.includes('/pages/admin/testimonials.html')) {
+    const { initAdminTestimonials } = await import('./js/admin/testimonials.js')
+    initAdminTestimonials()
   } else if (path.includes('/pages/blog.html')) {
     const { initBlog } = await import('./js/blog.js')
     initBlog()
+  } else if (path.includes('/pages/testimonials.html')) {
+    const { initTestimonials } = await import('./js/testimonials.js')
+    initTestimonials()
   } else if (path.includes('/pages/instructor/my-classes.html')) {
     const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
     initInstructorClasses()
