@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestión de blog - Admin ACIKY" />
+    <title>Blog - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Blog</h1>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Gestiona los artículos del blog</p>
+          </div>
+          <button id="createPostBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">add</span>
+            <span data-i18n="newButton">Nuevo Artículo</span>
+          </button>
+        </div>
+
+        <!-- Loading State -->
+        <div id="blogLoading" class="text-center py-12">
+          <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando artículos...</p>
+        </div>
+
+        <!-- Posts List -->
+        <div id="blogContainer" class="hidden space-y-4"></div>
+
+        <!-- Empty State -->
+        <div id="blogEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-5xl text-slate-300">article</span>
+          <p class="text-slate-400 text-sm mt-2" data-i18n="empty">No hay artículos registrados</p>
+        </div>
+      </section>
+
+      <!-- Blog Post Modal -->
+      <div id="blogModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" id="blogModalOverlay"></div>
+        <div class="absolute inset-x-4 top-4 bottom-4 max-w-lg mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
+          <div class="p-8">
+            <h2 id="blogModalTitle" class="text-xl font-bold text-primary-dark mb-6" data-i18n="modal.newTitle">Nuevo Artículo</h2>
+
+            <form id="blogForm" class="space-y-4">
+              <input type="hidden" id="postId" />
+
+              <!-- Title (ES) -->
+              <div>
+                <label for="postTitle" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.title">Título</label>
+                <input type="text" id="postTitle" required
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.titlePlaceholder" placeholder="Título del artículo" />
+
+                <!-- Title (EN) -->
+                <label for="postTitleEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1">Title (EN)</label>
+                <input type="text" id="postTitleEn"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       placeholder="English translation (optional)" />
+              </div>
+
+              <!-- Content (ES) -->
+              <div>
+                <label for="postContent" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.content">Contenido</label>
+                <textarea id="postContent" rows="8" required
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="modal.contentPlaceholder" placeholder="Escribe el contenido del artículo..."></textarea>
+
+                <!-- Content (EN) -->
+                <label for="postContentEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1">Content (EN)</label>
+                <textarea id="postContentEn" rows="8"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          placeholder="English translation (optional)"></textarea>
+              </div>
+
+              <!-- Published toggle -->
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="postPublished"
+                       class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" />
+                <label for="postPublished" class="text-sm font-medium text-primary-dark" data-i18n="modal.published">Publicado</label>
+              </div>
+
+              <!-- Form error -->
+              <div id="blogFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+              <!-- Action buttons -->
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelPostBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+                <button type="submit" id="savePostBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.save">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

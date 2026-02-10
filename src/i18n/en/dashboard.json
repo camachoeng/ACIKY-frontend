@@ -17,6 +17,7 @@
   "instructor": {
     "title": "Instructor Zone",
     "description": "Manage your assigned classes",
-    "button": "My Classes"
+    "button": "My Classes",
+    "blogButton": "My Blog"
   }
 }

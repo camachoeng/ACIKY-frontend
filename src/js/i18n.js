@@ -60,6 +60,8 @@ function getPageName() {
     'pages/admin/schedule.html': 'admin-schedule',
     'pages/admin/posturas.html': 'admin-posturas',
     'pages/admin/videos.html': 'admin-videos',
+    'pages/admin/blog.html': 'admin-blog',
+    'pages/blog.html': 'blog',
     'pages/instructor/my-classes.html': 'instructor-classes'
   }
 

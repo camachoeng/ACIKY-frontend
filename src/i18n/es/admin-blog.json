@@ -1,0 +1,32 @@
+{
+  "title": "Blog",
+  "subtitle": "Gestiona los artículos del blog",
+  "newButton": "Nuevo Artículo",
+  "loading": "Cargando artículos...",
+  "empty": "No hay artículos registrados",
+  "status": {
+    "published": "Publicado",
+    "draft": "Borrador"
+  },
+  "modal": {
+    "newTitle": "Nuevo Artículo",
+    "editTitle": "Editar Artículo",
+    "title": "Título",
+    "titlePlaceholder": "Título del artículo",
+    "content": "Contenido",
+    "contentPlaceholder": "Escribe el contenido del artículo...",
+    "published": "Publicado",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "errors": {
+    "loadError": "Error al cargar artículos",
+    "saveError": "Error al guardar artículo",
+    "deleteError": "Error al eliminar",
+    "toggleError": "Error al cambiar estado"
+  },
+  "confirm": {
+    "delete": "¿Eliminar \"{{title}}\"?"
+  }
+}

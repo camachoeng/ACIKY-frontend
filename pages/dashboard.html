@@ -75,11 +75,18 @@
           <div id="instructorSection" class="hidden bg-white rounded-3xl p-8 shadow-sm border border-slate-100 mt-6">
             <h2 class="text-xl font-bold text-primary-dark mb-4" data-i18n="instructor.title">Zona Instructor</h2>
             <p class="text-slate-500 text-sm mb-4" data-i18n="instructor.description">Gestiona las clases que tienes asignadas</p>
-            <a href="{{basePath}}/pages/instructor/my-classes.html"
-               class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary-dark transition-colors">
-              <span class="material-symbols-outlined text-sm">self_improvement</span>
-              <span data-i18n="instructor.button">Mis Clases</span>
-            </a>
+            <div class="flex flex-wrap gap-3">
+              <a href="{{basePath}}/pages/instructor/my-classes.html"
+                 class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary-dark transition-colors">
+                <span class="material-symbols-outlined text-sm">self_improvement</span>
+                <span data-i18n="instructor.button">Mis Clases</span>
+              </a>
+              <a href="{{basePath}}/pages/admin/blog.html"
+                 class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-primary-dark transition-colors">
+                <span class="material-symbols-outlined text-sm">article</span>
+                <span data-i18n="instructor.blogButton">Mi Blog</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
