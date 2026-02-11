@@ -1,0 +1,48 @@
+{
+  "title": "Rutas Doradas",
+  "subtitle": "Gestiona las rutas de expansión",
+  "loading": "Cargando rutas...",
+  "empty": "No hay rutas registradas",
+  "newButton": "Nueva Ruta",
+  "status": {
+    "active": "Activa",
+    "planning": "En planificación"
+  },
+  "card": {
+    "participants": "participantes",
+    "spaces": "espacios",
+    "frequency": "Frecuencia"
+  },
+  "modal": {
+    "newTitle": "Nueva Ruta",
+    "editTitle": "Editar Ruta",
+    "name": "Nombre",
+    "nameEn": "Name (EN)",
+    "namePlaceholder": "Nombre de la ruta",
+    "nameEnPlaceholder": "English name (optional)",
+    "origin": "Origen",
+    "originPlaceholder": "Ciudad de origen",
+    "destination": "Destino",
+    "destinationPlaceholder": "Ciudad de destino",
+    "description": "Descripción",
+    "descriptionEn": "Description (EN)",
+    "descriptionPlaceholder": "Descripción de la ruta...",
+    "descriptionEnPlaceholder": "English description (optional)",
+    "frequency": "Frecuencia",
+    "frequencyPlaceholder": "Ej: Anual, Marzo 2026",
+    "status": "Estado",
+    "participants": "Participantes",
+    "spaces": "Espacios establecidos",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "errors": {
+    "loadError": "Error al cargar rutas",
+    "saveError": "Error al guardar ruta",
+    "deleteError": "Error al eliminar ruta"
+  },
+  "confirm": {
+    "delete": "¿Eliminar la ruta \"{{name}}\"?"
+  }
+}

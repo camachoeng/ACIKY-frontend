@@ -62,8 +62,10 @@ function getPageName() {
     'pages/admin/videos.html': 'admin-videos',
     'pages/admin/blog.html': 'admin-blog',
     'pages/admin/testimonials.html': 'admin-testimonials',
+    'pages/admin/golden-routes.html': 'admin-golden-routes',
     'pages/blog.html': 'blog',
     'pages/testimonials.html': 'testimonials',
+    'pages/golden-routes.html': 'golden-routes',
     'pages/instructor/my-classes.html': 'instructor-classes'
   }
 

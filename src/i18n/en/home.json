@@ -29,7 +29,7 @@
     },
     "spaces": {
       "title": "Other Spaces",
-      "description": "Discover our practice centers."
+      "description": "Find places to practice near you."
     },
     "festival": {
       "title": "Lighthouse Festival",
@@ -44,6 +44,11 @@
     "title": "What our students say",
     "subtitle": "Real experiences from our community",
     "viewAll": "View all testimonials"
+  },
+  "goldenRoutes": {
+    "title": "Golden Routes",
+    "subtitle": "Bringing Kundalini Yoga to all of Cuba",
+    "viewAll": "View all routes"
   },
   "contact": {
     "title": "Have Questions?",
