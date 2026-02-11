@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestion de Rutas Doradas - Admin ACIKY" />
+    <title>Rutas Doradas - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Rutas Doradas</h1>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Gestiona las rutas de expansion</p>
+          </div>
+          <button id="createRouteBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">add</span>
+            <span data-i18n="newButton">Nueva Ruta</span>
+          </button>
+        </div>
+
+        <!-- Loading State -->
+        <div id="routesLoading" class="text-center py-12">
+          <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando rutas...</p>
+        </div>
+
+        <!-- Routes List -->
+        <div id="routesContainer" class="hidden space-y-4"></div>
+
+        <!-- Empty State -->
+        <div id="routesEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-5xl text-slate-300">route</span>
+          <p class="text-slate-400 text-sm mt-2" data-i18n="empty">No hay rutas registradas</p>
+        </div>
+      </section>
+
+      <!-- Route Modal -->
+      <div id="routeModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" id="routeModalOverlay"></div>
+        <div class="absolute inset-x-4 top-4 bottom-4 max-w-lg mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
+          <div class="p-8">
+            <h2 id="routeModalTitle" class="text-xl font-bold text-primary-dark mb-6" data-i18n="modal.newTitle">Nueva Ruta</h2>
+
+            <form id="routeForm" class="space-y-4">
+              <input type="hidden" id="routeId" />
+
+              <!-- Name (ES) -->
+              <div>
+                <label for="routeName" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.name">Nombre</label>
+                <input type="text" id="routeName" required
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.namePlaceholder" placeholder="Nombre de la ruta" />
+                <label for="routeNameEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="modal.nameEn">Name (EN)</label>
+                <input type="text" id="routeNameEn"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.nameEnPlaceholder" placeholder="English name (optional)" />
+              </div>
+
+              <!-- Origin / Destination -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="routeOrigin" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.origin">Origen</label>
+                  <input type="text" id="routeOrigin" required
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         data-i18n-placeholder="modal.originPlaceholder" placeholder="Ciudad de origen" />
+                </div>
+                <div>
+                  <label for="routeDestination" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.destination">Destino</label>
+                  <input type="text" id="routeDestination" required
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         data-i18n-placeholder="modal.destinationPlaceholder" placeholder="Ciudad de destino" />
+                </div>
+              </div>
+
+              <!-- Description (ES) -->
+              <div>
+                <label for="routeDescription" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.description">Descripcion</label>
+                <textarea id="routeDescription" rows="3"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="modal.descriptionPlaceholder" placeholder="Descripcion de la ruta..."></textarea>
+                <label for="routeDescriptionEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="modal.descriptionEn">Description (EN)</label>
+                <textarea id="routeDescriptionEn" rows="3"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="modal.descriptionEnPlaceholder" placeholder="English description (optional)"></textarea>
+              </div>
+
+              <!-- Frequency / Status -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="routeFrequency" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.frequency">Frecuencia</label>
+                  <input type="text" id="routeFrequency"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         data-i18n-placeholder="modal.frequencyPlaceholder" placeholder="Ej: Anual" />
+                </div>
+                <div>
+                  <label for="routeStatus" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.status">Estado</label>
+                  <select id="routeStatus"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm">
+                    <option value="active">Activa</option>
+                    <option value="planning">En planificacion</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Participants / Spaces -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="routeParticipants" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.participants">Participantes</label>
+                  <input type="number" id="routeParticipants" min="0" value="0"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
+                </div>
+                <div>
+                  <label for="routeSpaces" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.spaces">Espacios establecidos</label>
+                  <input type="number" id="routeSpaces" min="0" value="0"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
+                </div>
+              </div>
+
+              <!-- Form error -->
+              <div id="routeFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+              <!-- Action buttons -->
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelRouteBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+                <button type="submit" id="saveRouteBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.save">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

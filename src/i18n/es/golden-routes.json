@@ -1,0 +1,148 @@
+{
+  "hero": {
+    "title": "Rutas Doradas",
+    "subtitle": "Llevando el Kundalini Yoga a Toda Cuba",
+    "location": "Conectando corazones a través de la isla",
+    "badge1": "Expansión Nacional",
+    "badge2": "Hermandad",
+    "badge3": "Transformación Social"
+  },
+  "mission": {
+    "title": "Nuestra Misión: Yoga para Toda Cuba",
+    "subtitle": "Rompiendo barreras geográficas para llevar la luz del Kundalini Yoga a cada rincón de nuestra isla",
+    "description": "Las Rutas Doradas son el corazón de la expansión de ACIKY por toda Cuba. Nuestros instructores certificados viajan desde los principales centros hacia otras provincias, llevando las enseñanzas del Kundalini Yoga a comunidades que no tienen acceso regular a estas prácticas transformadoras.",
+    "coverage": {
+      "title": "Cobertura Nacional",
+      "text": "Llegamos a todas las provincias de Cuba, creando una red dorada de práctica y enseñanza."
+    },
+    "instructors": {
+      "title": "Instructores Viajeros",
+      "text": "Nuestros maestros certificados dedican tiempo y energía para llevar conocimiento auténtico."
+    },
+    "seeds": {
+      "title": "Semillas de Transformación",
+      "text": "Cada visita planta semillas que florecen en comunidades locales de práctica."
+    },
+    "unity": {
+      "title": "Unidad en la Diversidad",
+      "text": "Conectamos personas de diferentes regiones bajo la luz unificadora del Kundalini Yoga."
+    }
+  },
+  "routes": {
+    "title": "Rutas Doradas Activas",
+    "subtitle": "Conoce las conexiones que estamos creando a través de Cuba",
+    "loading": "Cargando rutas...",
+    "empty": "No hay rutas activas en este momento",
+    "error": "No se pudieron cargar las rutas",
+    "retry": "Reintentar",
+    "participants": "Participantes",
+    "spaces": "Espacios",
+    "frequency": "Frecuencia",
+    "origin": "Origen",
+    "planned": {
+      "title": "Próximas Rutas",
+      "subtitle": "Rutas en planificación para expandir nuestra red",
+      "empty": "No hay rutas planificadas en este momento",
+      "badge": "En planificación"
+    }
+  },
+  "impact": {
+    "title": "Impacto de las Rutas Doradas",
+    "subtitle": "Los frutos de nuestro trabajo en la expansión nacional",
+    "provinces": "Provincias Alcanzadas",
+    "provincesDesc": "De las 15 provincias de Cuba, hemos llegado con nuestras enseñanzas",
+    "people": "Personas Impactadas",
+    "peopleDesc": "Cubanos que han experimentado el Kundalini Yoga a través de las rutas",
+    "spacesEstablished": "Espacios Establecidos",
+    "spacesDesc": "Comunidades locales de práctica creadas en todo el país"
+  },
+  "process": {
+    "title": "¿Cómo Funcionan las Rutas Doradas?",
+    "subtitle": "El proceso completo desde la planificación hasta el establecimiento de comunidades locales",
+    "step1": {
+      "title": "1. Identificación de Necesidad",
+      "text": "Identificamos comunidades interesadas en el Kundalini Yoga a través de contactos locales y solicitudes directas."
+    },
+    "step2": {
+      "title": "2. Planificación de la Ruta",
+      "text": "Coordinamos fechas, transporte, alojamiento y espacios locales. Seleccionamos instructores especializados."
+    },
+    "step3": {
+      "title": "3. Viaje e Inmersión",
+      "text": "Nuestros instructores viajan y se establecen temporalmente en la comunidad, creando conexiones auténticas."
+    },
+    "step4": {
+      "title": "4. Enseñanza Intensiva",
+      "text": "Ofrecemos talleres, clases abiertas, meditaciones grupales y formaciones básicas."
+    },
+    "step5": {
+      "title": "5. Establecimiento de Grupo Local",
+      "text": "Identificamos líderes locales y los capacitamos para mantener la práctica."
+    },
+    "step6": {
+      "title": "6. Seguimiento y Apoyo",
+      "text": "Mantenemos contacto regular, programamos visitas de refuerzo y ofrecemos apoyo continuo."
+    }
+  },
+  "involve": {
+    "title": "Únete a las Rutas Doradas",
+    "subtitle": "Forma parte de este movimiento de expansión espiritual",
+    "instructor": {
+      "title": "Como Instructor Viajero",
+      "text": "Si eres instructor certificado, únete a nuestras rutas y comparte tu conocimiento por toda Cuba.",
+      "req1": "Certificación KRI válida",
+      "req2": "Experiencia mínima de 1 año",
+      "req3": "Disponibilidad para viajar",
+      "req4": "Compromiso con la misión"
+    },
+    "host": {
+      "title": "Como Anfitrión Local",
+      "text": "Facilita que las Rutas Doradas lleguen a tu provincia ofreciendo espacio y apoyo logístico.",
+      "req1": "Ofrecer espacio para clases",
+      "req2": "Coordinar participantes locales",
+      "req3": "Apoyo con alojamiento",
+      "req4": "Promoción en la comunidad"
+    },
+    "leader": {
+      "title": "Como Líder Emergente",
+      "text": "Capacítate para mantener la práctica en tu región y convertirte en el núcleo de una nueva comunidad.",
+      "req1": "Formación especializada gratuita",
+      "req2": "Materiales y recursos",
+      "req3": "Apoyo continuo de ACIKY",
+      "req4": "Red nacional de contactos"
+    },
+    "sponsor": {
+      "title": "Como Patrocinador",
+      "text": "Apoya financieramente las rutas cubriendo gastos de transporte, alojamiento o materiales.",
+      "req1": "Patrocinio completo de ruta",
+      "req2": "Gastos de transporte",
+      "req3": "Materiales educativos",
+      "req4": "Equipamiento para espacios"
+    }
+  },
+  "vision": {
+    "title": "Visión 2025-2027",
+    "subtitle": "Hacia dónde se dirigen las Rutas Doradas",
+    "goal2025": {
+      "title": "Meta 2025",
+      "text": "Continuar la cobertura de las 15 provincias de Cuba."
+    },
+    "goal2026": {
+      "title": "Meta 2026",
+      "text": "Completar las 15 provincias de Cuba."
+    },
+    "goal2027": {
+      "title": "Meta 2027",
+      "text": "Crear una red autosustentable donde cada provincia tenga instructores propios."
+    }
+  },
+  "cta": {
+    "title": "Conecta con las Rutas Doradas",
+    "subtitle": "¿Listo para ser parte de esta hermosa expansión?",
+    "button": "Contáctanos"
+  },
+  "quote": {
+    "text": "Cada kilómetro recorrido es una oportunidad de sembrar luz. Cada provincia alcanzada es un corazón más que late en unidad con el universo.",
+    "author": "Filosofía de las Rutas Doradas ACIKY"
+  }
+}

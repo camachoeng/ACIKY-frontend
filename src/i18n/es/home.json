@@ -29,7 +29,7 @@
     },
     "spaces": {
       "title": "Otros Espacios",
-      "description": "Conoce nuestros centros de práctica."
+      "description": "Encuentra donde practicar cerca de ti."
     },
     "festival": {
       "title": "Festival Faro de Luz",
@@ -44,6 +44,11 @@
     "title": "Lo que dicen nuestros alumnos",
     "subtitle": "Experiencias reales de nuestra comunidad",
     "viewAll": "Ver todos los testimonios"
+  },
+  "goldenRoutes": {
+    "title": "Rutas Doradas",
+    "subtitle": "Llevando el Kundalini Yoga a toda Cuba",
+    "viewAll": "Ver todas las rutas"
   },
   "contact": {
     "title": "¿Tienes Preguntas?",

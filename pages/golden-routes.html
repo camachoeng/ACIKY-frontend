@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rutas Doradas - Expandiendo el Kundalini Yoga por toda Cuba" />
+    <title>Rutas Doradas - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <!-- Quote -->
+      <section class="px-6 py-6">
+        <div class="relative p-8 bg-white rounded-2xl shadow-sm border-l-4 border-primary">
+          <span class="absolute top-4 left-4 text-primary/10 text-6xl font-serif">"</span>
+          <p class="italic text-lg leading-relaxed text-slate-600 relative z-10" data-i18n="quote.text">Cada kilómetro recorrido es una oportunidad de sembrar luz.</p>
+          <p class="mt-4 text-right text-sm font-bold text-primary-dark">— <span data-i18n="quote.author">Filosofía de las Rutas Doradas ACIKY</span></p>
+        </div>
+      </section>
+
+      <!-- Hero -->
+      <section class="px-6 mb-10">
+        <div class="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
+          <img alt="Rutas Doradas" class="absolute inset-0 w-full h-full object-cover" src="{{basePath}}/images/activities/activity-rutas.jpeg" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <h1 class="text-3xl font-bold mb-2" data-i18n="hero.title">Rutas Doradas</h1>
+            <p class="text-sm opacity-90 mb-6" data-i18n="hero.subtitle">Llevando el Kundalini Yoga a Toda Cuba</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="inline-block px-3 py-1 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg" data-i18n="hero.badge1">Expansión Nacional</span>
+              <span class="inline-block px-3 py-1 bg-accent-teal text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg" data-i18n="hero.badge2">Hermandad</span>
+              <span class="inline-block px-3 py-1 bg-accent-terracotta text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg" data-i18n="hero.badge3">Transformación Social</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission -->
+      <section class="px-4 md:px-8 lg:px-16 py-12">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="mission.title">Nuestra Mision: Yoga para Toda Cuba</h2>
+          <p class="text-slate-500 text-sm mt-2 max-w-2xl mx-auto" data-i18n="mission.subtitle">Rompiendo barreras geograficas para llevar la luz del Kundalini Yoga a cada rincon de nuestra isla</p>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed max-w-3xl mx-auto text-center mb-10" data-i18n="mission.description">Las Rutas Doradas son el corazon de la expansion de ACIKY por toda Cuba.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <span class="material-symbols-outlined text-3xl text-primary mb-3">map</span>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="mission.coverage.title">Cobertura Nacional</h3>
+            <p class="text-slate-500 text-xs" data-i18n="mission.coverage.text">Llegamos a todas las provincias de Cuba.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <span class="material-symbols-outlined text-3xl text-accent-teal mb-3">directions_walk</span>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="mission.instructors.title">Instructores Viajeros</h3>
+            <p class="text-slate-500 text-xs" data-i18n="mission.instructors.text">Nuestros maestros certificados dedican tiempo y energia.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <span class="material-symbols-outlined text-3xl text-accent-terracotta mb-3">spa</span>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="mission.seeds.title">Semillas de Transformacion</h3>
+            <p class="text-slate-500 text-xs" data-i18n="mission.seeds.text">Cada visita planta semillas que florecen en comunidades.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <span class="material-symbols-outlined text-3xl text-accent-rose mb-3">diversity_3</span>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="mission.unity.title">Unidad en la Diversidad</h3>
+            <p class="text-slate-500 text-xs" data-i18n="mission.unity.text">Conectamos personas de diferentes regiones.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Active Routes (dynamic) -->
+      <section class="px-4 md:px-8 lg:px-16 py-8">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="routes.title">Rutas Doradas Activas</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="routes.subtitle">Conoce las conexiones que estamos creando a traves de Cuba</p>
+        </div>
+
+        <div id="routesLoading" class="text-center py-12">
+          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="routes.loading">Cargando rutas...</p>
+        </div>
+
+        <div id="routesError" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-accent-terracotta text-4xl">error</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="routes.error">No se pudieron cargar las rutas</p>
+          <button id="routesRetry" class="mt-4 text-primary font-semibold text-sm hover:underline" data-i18n="routes.retry">Reintentar</button>
+        </div>
+
+        <div id="routesEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">route</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="routes.empty">No hay rutas activas en este momento</p>
+        </div>
+
+        <div id="activeRoutesContainer" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </section>
+
+      <!-- Planned Routes (dynamic) -->
+      <section id="plannedSection" class="hidden px-4 md:px-8 lg:px-16 py-8">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="routes.planned.title">Proximas Rutas</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="routes.planned.subtitle">Rutas en planificacion para expandir nuestra red</p>
+        </div>
+        <div id="plannedRoutesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+
+      <!-- Impact Stats -->
+      <section class="px-4 md:px-8 lg:px-16 py-12 bg-white">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="impact.title">Impacto de las Rutas Doradas</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="impact.subtitle">Los frutos de nuestro trabajo en la expansion nacional</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <div class="text-center p-6">
+            <p id="statProvinces" class="text-4xl font-bold text-primary">0</p>
+            <p class="font-semibold text-primary-dark mt-2" data-i18n="impact.provinces">Provincias Alcanzadas</p>
+            <p class="text-slate-500 text-xs mt-1" data-i18n="impact.provincesDesc">De las 15 provincias de Cuba</p>
+          </div>
+          <div class="text-center p-6">
+            <p id="statPeople" class="text-4xl font-bold text-accent-teal">0</p>
+            <p class="font-semibold text-primary-dark mt-2" data-i18n="impact.people">Personas Impactadas</p>
+            <p class="text-slate-500 text-xs mt-1" data-i18n="impact.peopleDesc">Cubanos que han experimentado el Kundalini Yoga</p>
+          </div>
+          <div class="text-center p-6">
+            <p id="statSpaces" class="text-4xl font-bold text-accent-terracotta">0</p>
+            <p class="font-semibold text-primary-dark mt-2" data-i18n="impact.spacesEstablished">Espacios Establecidos</p>
+            <p class="text-slate-500 text-xs mt-1" data-i18n="impact.spacesDesc">Comunidades locales de practica creadas</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- How Routes Work (timeline) -->
+      <section class="px-4 md:px-8 lg:px-16 py-12">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="process.title">Como Funcionan las Rutas Doradas?</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="process.subtitle">El proceso completo desde la planificacion hasta el establecimiento de comunidades</p>
+        </div>
+        <div class="max-w-2xl mx-auto space-y-6">
+          <div class="flex gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-sm">search</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-primary-dark text-sm" data-i18n="process.step1.title">1. Identificacion de Necesidad</h3>
+              <p class="text-slate-500 text-xs mt-1" data-i18n="process.step1.text">Identificamos comunidades interesadas.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-sm">calendar_month</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-primary-dark text-sm" data-i18n="process.step2.title">2. Planificacion de la Ruta</h3>
+              <p class="text-slate-500 text-xs mt-1" data-i18n="process.step2.text">Coordinamos fechas y recursos.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-sm">flight</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-primary-dark text-sm" data-i18n="process.step3.title">3. Viaje e Inmersion</h3>
+              <p class="text-slate-500 text-xs mt-1" data-i18n="process.step3.text">Nuestros instructores viajan y se establecen.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-sm">self_improvement</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-primary-dark text-sm" data-i18n="process.step4.title">4. Ensenanza Intensiva</h3>
+              <p class="text-slate-500 text-xs mt-1" data-i18n="process.step4.text">Ofrecemos talleres y clases abiertas.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-sm">groups</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-primary-dark text-sm" data-i18n="process.step5.title">5. Establecimiento de Grupo Local</h3>
+              <p class="text-slate-500 text-xs mt-1" data-i18n="process.step5.text">Identificamos y capacitamos lideres locales.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-sm">sync</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-primary-dark text-sm" data-i18n="process.step6.title">6. Seguimiento y Apoyo</h3>
+              <p class="text-slate-500 text-xs mt-1" data-i18n="process.step6.text">Mantenemos contacto y apoyo continuo.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Get Involved -->
+      <section class="px-4 md:px-8 lg:px-16 py-12 bg-white">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="involve.title">Unete a las Rutas Doradas</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="involve.subtitle">Forma parte de este movimiento de expansion espiritual</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-background rounded-2xl p-6">
+            <span class="material-symbols-outlined text-2xl text-primary mb-3">self_improvement</span>
+            <h3 class="font-bold text-primary-dark text-sm mb-2" data-i18n="involve.instructor.title">Como Instructor Viajero</h3>
+            <p class="text-slate-500 text-xs mb-4" data-i18n="involve.instructor.text">Si eres instructor certificado, unete.</p>
+            <ul class="space-y-1 text-xs text-slate-600">
+              <li class="flex items-start gap-1"><span class="text-primary">•</span> <span data-i18n="involve.instructor.req1">Certificacion KRI</span></li>
+              <li class="flex items-start gap-1"><span class="text-primary">•</span> <span data-i18n="involve.instructor.req2">Experiencia minima 1 ano</span></li>
+              <li class="flex items-start gap-1"><span class="text-primary">•</span> <span data-i18n="involve.instructor.req3">Disponibilidad para viajar</span></li>
+              <li class="flex items-start gap-1"><span class="text-primary">•</span> <span data-i18n="involve.instructor.req4">Compromiso con la mision</span></li>
+            </ul>
+          </div>
+          <div class="bg-background rounded-2xl p-6">
+            <span class="material-symbols-outlined text-2xl text-accent-teal mb-3">home</span>
+            <h3 class="font-bold text-primary-dark text-sm mb-2" data-i18n="involve.host.title">Como Anfitrion Local</h3>
+            <p class="text-slate-500 text-xs mb-4" data-i18n="involve.host.text">Facilita que las rutas lleguen a tu provincia.</p>
+            <ul class="space-y-1 text-xs text-slate-600">
+              <li class="flex items-start gap-1"><span class="text-accent-teal">•</span> <span data-i18n="involve.host.req1">Ofrecer espacio para clases</span></li>
+              <li class="flex items-start gap-1"><span class="text-accent-teal">•</span> <span data-i18n="involve.host.req2">Coordinar participantes</span></li>
+              <li class="flex items-start gap-1"><span class="text-accent-teal">•</span> <span data-i18n="involve.host.req3">Apoyo con alojamiento</span></li>
+              <li class="flex items-start gap-1"><span class="text-accent-teal">•</span> <span data-i18n="involve.host.req4">Promocion en comunidad</span></li>
+            </ul>
+          </div>
+          <div class="bg-background rounded-2xl p-6">
+            <span class="material-symbols-outlined text-2xl text-accent-terracotta mb-3">school</span>
+            <h3 class="font-bold text-primary-dark text-sm mb-2" data-i18n="involve.leader.title">Como Lider Emergente</h3>
+            <p class="text-slate-500 text-xs mb-4" data-i18n="involve.leader.text">Capacitate para mantener la practica.</p>
+            <ul class="space-y-1 text-xs text-slate-600">
+              <li class="flex items-start gap-1"><span class="text-accent-terracotta">•</span> <span data-i18n="involve.leader.req1">Formacion gratuita</span></li>
+              <li class="flex items-start gap-1"><span class="text-accent-terracotta">•</span> <span data-i18n="involve.leader.req2">Materiales y recursos</span></li>
+              <li class="flex items-start gap-1"><span class="text-accent-terracotta">•</span> <span data-i18n="involve.leader.req3">Apoyo continuo</span></li>
+              <li class="flex items-start gap-1"><span class="text-accent-terracotta">•</span> <span data-i18n="involve.leader.req4">Red de contactos</span></li>
+            </ul>
+          </div>
+          <div class="bg-background rounded-2xl p-6">
+            <span class="material-symbols-outlined text-2xl text-accent-rose mb-3">volunteer_activism</span>
+            <h3 class="font-bold text-primary-dark text-sm mb-2" data-i18n="involve.sponsor.title">Como Patrocinador</h3>
+            <p class="text-slate-500 text-xs mb-4" data-i18n="involve.sponsor.text">Apoya financieramente las rutas.</p>
+            <ul class="space-y-1 text-xs text-slate-600">
+              <li class="flex items-start gap-1"><span class="text-accent-rose">•</span> <span data-i18n="involve.sponsor.req1">Patrocinio de ruta</span></li>
+              <li class="flex items-start gap-1"><span class="text-accent-rose">•</span> <span data-i18n="involve.sponsor.req2">Gastos de transporte</span></li>
+              <li class="flex items-start gap-1"><span class="text-accent-rose">•</span> <span data-i18n="involve.sponsor.req3">Materiales educativos</span></li>
+              <li class="flex items-start gap-1"><span class="text-accent-rose">•</span> <span data-i18n="involve.sponsor.req4">Equipamiento</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vision -->
+      <section class="px-4 md:px-8 lg:px-16 py-12">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="vision.title">Vision 2025-2027</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="vision.subtitle">Hacia donde se dirigen las Rutas Doradas</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <span class="material-symbols-outlined text-2xl text-primary mb-2">target</span>
+            <h3 class="font-bold text-primary-dark text-sm" data-i18n="vision.goal2025.title">Meta 2025</h3>
+            <p class="text-slate-500 text-xs mt-2" data-i18n="vision.goal2025.text">Continuar la cobertura de las 15 provincias.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <span class="material-symbols-outlined text-2xl text-accent-teal mb-2">star</span>
+            <h3 class="font-bold text-primary-dark text-sm" data-i18n="vision.goal2026.title">Meta 2026</h3>
+            <p class="text-slate-500 text-xs mt-2" data-i18n="vision.goal2026.text">Completar las 15 provincias de Cuba.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <span class="material-symbols-outlined text-2xl text-accent-terracotta mb-2">rocket_launch</span>
+            <h3 class="font-bold text-primary-dark text-sm" data-i18n="vision.goal2027.title">Meta 2027</h3>
+            <p class="text-slate-500 text-xs mt-2" data-i18n="vision.goal2027.text">Red autosustentable con instructores locales.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="px-4 md:px-8 lg:px-16 py-8">
+        <div class="bg-white rounded-3xl overflow-hidden p-8 text-center border border-slate-100 shadow-sm max-w-lg mx-auto">
+          <h3 class="text-2xl font-bold text-primary-dark mb-2" data-i18n="cta.title">Conecta con las Rutas Doradas</h3>
+          <p class="text-slate-500 text-sm mb-6" data-i18n="cta.subtitle">Listo para ser parte de esta hermosa expansion?</p>
+          <a href="{{basePath}}/pages/contact.html" class="block w-full bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary" data-i18n="cta.button">
+            Contactanos
+          </a>
+        </div>
+      </section>
+    </main>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

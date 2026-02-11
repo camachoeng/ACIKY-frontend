@@ -1,0 +1,148 @@
+{
+  "hero": {
+    "title": "Golden Routes",
+    "subtitle": "Bringing Kundalini Yoga to All of Cuba",
+    "location": "Connecting hearts across the island",
+    "badge1": "National Expansion",
+    "badge2": "Brotherhood",
+    "badge3": "Social Transformation"
+  },
+  "mission": {
+    "title": "Our Mission: Yoga for All of Cuba",
+    "subtitle": "Breaking geographic barriers to bring the light of Kundalini Yoga to every corner of our island",
+    "description": "The Golden Routes are the heart of ACIKY's expansion across Cuba. Our certified instructors travel from main centers to other provinces, bringing the teachings of Kundalini Yoga to communities that don't have regular access to these transformative practices.",
+    "coverage": {
+      "title": "National Coverage",
+      "text": "We reach all provinces of Cuba, creating a golden network of practice and teaching."
+    },
+    "instructors": {
+      "title": "Traveling Instructors",
+      "text": "Our certified teachers dedicate time and energy to bring authentic knowledge."
+    },
+    "seeds": {
+      "title": "Seeds of Transformation",
+      "text": "Each visit plants seeds that blossom into local practice communities."
+    },
+    "unity": {
+      "title": "Unity in Diversity",
+      "text": "We connect people from different regions under the unifying light of Kundalini Yoga."
+    }
+  },
+  "routes": {
+    "title": "Active Golden Routes",
+    "subtitle": "Discover the connections we are creating across Cuba",
+    "loading": "Loading routes...",
+    "empty": "No active routes at this time",
+    "error": "Could not load routes",
+    "retry": "Retry",
+    "participants": "Participants",
+    "spaces": "Spaces",
+    "frequency": "Frequency",
+    "origin": "Origin",
+    "planned": {
+      "title": "Upcoming Routes",
+      "subtitle": "Routes in planning to expand our network",
+      "empty": "No planned routes at this time",
+      "badge": "In planning"
+    }
+  },
+  "impact": {
+    "title": "Golden Routes Impact",
+    "subtitle": "The fruits of our work in national expansion",
+    "provinces": "Provinces Reached",
+    "provincesDesc": "Of Cuba's 15 provinces, we have arrived with our teachings",
+    "people": "People Impacted",
+    "peopleDesc": "Cubans who have experienced Kundalini Yoga through the routes",
+    "spacesEstablished": "Spaces Established",
+    "spacesDesc": "Local practice communities created across the country"
+  },
+  "process": {
+    "title": "How Do Golden Routes Work?",
+    "subtitle": "The complete process from planning to establishing local communities",
+    "step1": {
+      "title": "1. Need Identification",
+      "text": "We identify communities interested in Kundalini Yoga through local contacts and direct requests."
+    },
+    "step2": {
+      "title": "2. Route Planning",
+      "text": "We coordinate dates, transportation, lodging, and local spaces. We select specialized instructors."
+    },
+    "step3": {
+      "title": "3. Travel & Immersion",
+      "text": "Our instructors travel and temporarily settle in the community, creating authentic connections."
+    },
+    "step4": {
+      "title": "4. Intensive Teaching",
+      "text": "We offer workshops, open classes, group meditations, and basic training."
+    },
+    "step5": {
+      "title": "5. Local Group Establishment",
+      "text": "We identify local leaders and train them to maintain the practice."
+    },
+    "step6": {
+      "title": "6. Follow-up & Support",
+      "text": "We maintain regular contact, schedule reinforcement visits, and offer continuous support."
+    }
+  },
+  "involve": {
+    "title": "Join the Golden Routes",
+    "subtitle": "Be part of this spiritual expansion movement",
+    "instructor": {
+      "title": "As a Traveling Instructor",
+      "text": "If you're a certified instructor, join our routes and share your knowledge across Cuba.",
+      "req1": "Valid KRI certification",
+      "req2": "Minimum 1 year experience",
+      "req3": "Availability to travel",
+      "req4": "Commitment to the mission"
+    },
+    "host": {
+      "title": "As a Local Host",
+      "text": "Help the Golden Routes reach your province by offering space and logistical support.",
+      "req1": "Offer space for classes",
+      "req2": "Coordinate local participants",
+      "req3": "Lodging support",
+      "req4": "Community outreach"
+    },
+    "leader": {
+      "title": "As an Emerging Leader",
+      "text": "Train to maintain practice in your region and become the core of a new community.",
+      "req1": "Free specialized training",
+      "req2": "Materials and resources",
+      "req3": "Continuous ACIKY support",
+      "req4": "National contact network"
+    },
+    "sponsor": {
+      "title": "As a Sponsor",
+      "text": "Financially support the routes by covering transportation, lodging, or material costs.",
+      "req1": "Full route sponsorship",
+      "req2": "Transportation costs",
+      "req3": "Educational materials",
+      "req4": "Space equipment"
+    }
+  },
+  "vision": {
+    "title": "Vision 2025-2027",
+    "subtitle": "Where the Golden Routes are heading",
+    "goal2025": {
+      "title": "Goal 2025",
+      "text": "Continue coverage of Cuba's 15 provinces."
+    },
+    "goal2026": {
+      "title": "Goal 2026",
+      "text": "Complete all 15 provinces of Cuba."
+    },
+    "goal2027": {
+      "title": "Goal 2027",
+      "text": "Create a self-sustaining network where each province has its own instructors."
+    }
+  },
+  "cta": {
+    "title": "Connect with the Golden Routes",
+    "subtitle": "Ready to be part of this beautiful expansion?",
+    "button": "Contact Us"
+  },
+  "quote": {
+    "text": "Every kilometer traveled is an opportunity to sow light. Every province reached is one more heart beating in unity with the universe.",
+    "author": "Golden Routes ACIKY Philosophy"
+  }
+}

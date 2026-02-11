@@ -106,10 +106,46 @@ async function initHomeTestimonials() {
   }
 }
 
+// Home page: load active golden routes
+async function initHomeGoldenRoutes() {
+  const container = document.getElementById('homeGoldenRoutesContainer')
+  if (!container) return
+
+  try {
+    const data = await apiFetch('/api/routes?status=active')
+    const routes = data.data || []
+
+    if (routes.length === 0) {
+      const section = document.getElementById('homeGoldenRoutesSection')
+      if (section) section.classList.add('hidden')
+      return
+    }
+
+    container.innerHTML = routes.slice(0, 4).map(item => `
+      <div class="min-w-[280px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="material-symbols-outlined text-primary text-lg">route</span>
+          <h4 class="font-bold text-primary-dark text-sm">${escapeHtml(localized(item, 'name'))}</h4>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
+          <span class="material-symbols-outlined text-xs">location_on</span>
+          <span>${escapeHtml(item.origin || '')}</span>
+          <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <span>${escapeHtml(item.destination || '')}</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed line-clamp-2">${escapeHtml(localized(item, 'description'))}</p>
+      </div>`).join('')
+  } catch {
+    const section = document.getElementById('homeGoldenRoutesSection')
+    if (section) section.classList.add('hidden')
+  }
+}
+
 // Listen for language changes to re-render home dynamic sections
 window.addEventListener('languageChanged', () => {
   initHeroSchedule()
   initHomeTestimonials()
+  initHomeGoldenRoutes()
 })
 
 function translateSchedule(schedule) {
@@ -188,6 +224,7 @@ async function initPage() {
   if (path === base || path === base + 'index.html') {
     initHeroSchedule()
     initHomeTestimonials()
+    initHomeGoldenRoutes()
   } else if (path.includes('/pages/login.html')) {
     const { initLogin } = await import('./js/login.js')
     initLogin()
@@ -239,6 +276,12 @@ async function initPage() {
   } else if (path.includes('/pages/testimonials.html')) {
     const { initTestimonials } = await import('./js/testimonials.js')
     initTestimonials()
+  } else if (path.includes('/pages/admin/golden-routes.html')) {
+    const { initAdminGoldenRoutes } = await import('./js/admin/goldenRoutes.js')
+    initAdminGoldenRoutes()
+  } else if (path.includes('/pages/golden-routes.html')) {
+    const { initGoldenRoutes } = await import('./js/goldenRoutes.js')
+    initGoldenRoutes()
   } else if (path.includes('/pages/instructor/my-classes.html')) {
     const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
     initInstructorClasses()

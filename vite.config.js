@@ -38,8 +38,10 @@ export default defineConfig(({ command }) => {
           adminVideos: resolve(__dirname, 'pages/admin/videos.html'),
           adminBlog: resolve(__dirname, 'pages/admin/blog.html'),
           adminTestimonials: resolve(__dirname, 'pages/admin/testimonials.html'),
+          adminGoldenRoutes: resolve(__dirname, 'pages/admin/golden-routes.html'),
           blog: resolve(__dirname, 'pages/blog.html'),
           testimonials: resolve(__dirname, 'pages/testimonials.html'),
+          goldenRoutes: resolve(__dirname, 'pages/golden-routes.html'),
           instructorClasses: resolve(__dirname, 'pages/instructor/my-classes.html'),
           verifyEmail: resolve(__dirname, 'pages/verify-email.html')
         }

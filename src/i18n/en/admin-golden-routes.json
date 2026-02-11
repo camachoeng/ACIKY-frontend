@@ -1,0 +1,48 @@
+{
+  "title": "Golden Routes",
+  "subtitle": "Manage expansion routes",
+  "loading": "Loading routes...",
+  "empty": "No routes registered",
+  "newButton": "New Route",
+  "status": {
+    "active": "Active",
+    "planning": "In planning"
+  },
+  "card": {
+    "participants": "participants",
+    "spaces": "spaces",
+    "frequency": "Frequency"
+  },
+  "modal": {
+    "newTitle": "New Route",
+    "editTitle": "Edit Route",
+    "name": "Name",
+    "nameEn": "Name (EN)",
+    "namePlaceholder": "Route name",
+    "nameEnPlaceholder": "English name (optional)",
+    "origin": "Origin",
+    "originPlaceholder": "Origin city",
+    "destination": "Destination",
+    "destinationPlaceholder": "Destination city",
+    "description": "Description",
+    "descriptionEn": "Description (EN)",
+    "descriptionPlaceholder": "Route description...",
+    "descriptionEnPlaceholder": "English description (optional)",
+    "frequency": "Frequency",
+    "frequencyPlaceholder": "E.g.: Annual, March 2026",
+    "status": "Status",
+    "participants": "Participants",
+    "spaces": "Spaces established",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "loadError": "Error loading routes",
+    "saveError": "Error saving route",
+    "deleteError": "Error deleting route"
+  },
+  "confirm": {
+    "delete": "Delete route \"{{name}}\"?"
+  }
+}
