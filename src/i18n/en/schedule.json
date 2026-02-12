@@ -20,13 +20,14 @@
   "cta": {
     "title": "First class free",
     "description": "Try a class with no commitment and discover the benefits of Kundalini Yoga.",
-    "button": "Book Free Class"
+    "button": "Book Free Class",
+    "whatsappMessage": "Hello, I want to try my first free Kundalini Yoga class (this message is from the ACIKY website)"
   },
   "card": {
     "minutes": "minutes",
     "free": "Free",
     "book": "Book",
-    "bookMessage": "Hello, I want to book the {{name}} class with instructor {{instructor}}"
+    "bookMessage": "Hello, I want to book the {{name}} class with instructor {{instructor}} (this message is from the ACIKY website)"
   },
   "days": {
     "mon": "Mon",

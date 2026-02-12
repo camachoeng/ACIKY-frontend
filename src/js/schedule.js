@@ -19,6 +19,15 @@ export async function initSchedule() {
 
   if (!container) return
 
+  // Update WhatsApp CTA button with current language message
+  function updateWhatsAppCta() {
+    const ctaBtn = document.getElementById('ctaBookBtn')
+    if (ctaBtn) {
+      const message = t('cta.whatsappMessage')
+      ctaBtn.href = `https://wa.me/5350759360?text=${encodeURIComponent(message)}`
+    }
+  }
+
   async function loadSchedule() {
     loading.classList.remove('hidden')
     errorEl.classList.add('hidden')
@@ -62,9 +71,14 @@ export async function initSchedule() {
 
   if (retryBtn) retryBtn.addEventListener('click', loadSchedule)
 
-  // Listen for language changes to re-render
-  window.addEventListener('languageChanged', loadSchedule)
+  // Listen for language changes to re-render and update WhatsApp CTA
+  window.addEventListener('languageChanged', () => {
+    loadSchedule()
+    updateWhatsAppCta()
+  })
 
+  // Initialize WhatsApp CTA
+  updateWhatsAppCta()
   loadSchedule()
 }
 
