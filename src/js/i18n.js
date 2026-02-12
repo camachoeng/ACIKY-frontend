@@ -68,6 +68,7 @@ function getPageName() {
     'pages/golden-routes.html': 'golden-routes',
     'pages/contact.html': 'contact',
     'pages/rebirthing.html': 'rebirthing',
+    'pages/onlinesadhana.html': 'onlinesadhana',
     'pages/instructor/my-classes.html': 'instructor-classes'
   }
 

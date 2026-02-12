@@ -44,6 +44,7 @@ export default defineConfig(({ command }) => {
           goldenRoutes: resolve(__dirname, 'pages/golden-routes.html'),
           contact: resolve(__dirname, 'pages/contact.html'),
           rebirthing: resolve(__dirname, 'pages/rebirthing.html'),
+          onlinesadhana: resolve(__dirname, 'pages/onlinesadhana.html'),
           instructorClasses: resolve(__dirname, 'pages/instructor/my-classes.html'),
           verifyEmail: resolve(__dirname, 'pages/verify-email.html')
         }
