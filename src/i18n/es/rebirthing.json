@@ -78,6 +78,7 @@
   "cta": {
     "title": "Únete a una Ceremonia de Renacimiento",
     "description": "¿Listo para tu transformación profunda? Contáctanos para conocer fechas disponibles y más información.",
-    "button": "Escribir por WhatsApp"
+    "button": "Escribir por WhatsApp",
+    "whatsappMessage": "Hola, quiero información sobre las ceremonias de renacimiento (este mensaje es desde el sitio web de ACIKY)"
   }
 }

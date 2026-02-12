@@ -1,0 +1,140 @@
+{
+  "quote": {
+    "text": "Si quieres aprender algo, léelo. Si quieres entender algo, escríbelo. Si quieres dominar algo, enséñalo. Si quieres experimentar algo, practícalo todos los días.",
+    "author": "Sabiduría de la Práctica Diaria"
+  },
+  "hero": {
+    "title": "Sadhanas Online",
+    "subtitle": "Práctica Espiritual Diaria Virtual",
+    "badge1": "Práctica Diaria",
+    "badge2": "Comunidad Virtual",
+    "badge3": "Transformación"
+  },
+  "overview": {
+    "title": "¿Qué es la Sadhana?",
+    "subtitle": "La práctica espiritual más poderosa para despertar tu conciencia cada amanecer",
+    "description": "La Sadhana es una práctica espiritual diaria que se realiza en las horas ambrosiales antes del amanecer, cuando la energía de la Tierra está más calmada y receptiva. En ACIKY, nos conectamos virtualmente cada mañana para crear una poderosa onda de conciencia que se extiende por toda Cuba y más allá. Es un momento sagrado donde nos unimos como comunidad espiritual, independientemente de nuestra ubicación física.",
+    "card1": {
+      "title": "Horas Ambrosiales",
+      "text": "Practicamos entre las 6:30 y 7:30 AM, aprovechando la energía más pura y silenciosa del día para la meditación profunda."
+    },
+    "card2": {
+      "title": "Conexión Virtual",
+      "text": "A través de plataformas digitales, creamos un círculo sagrado que trasciende las distancias físicas y une corazones."
+    },
+    "card3": {
+      "title": "Práctica Estructurada",
+      "text": "Seguimos la secuencia: japji sahib, apertura, calentamiento, kriya, meditación y cierre con oración."
+    },
+    "card4": {
+      "title": "Transformación Gradual",
+      "text": "La constancia diaria genera cambios profundos en la conciencia, creando nuevos patrones de pensamiento y ser."
+    }
+  },
+  "benefits": {
+    "title": "Beneficios de la Práctica Diaria",
+    "subtitle": "Transformaciones que experimenta quien mantiene la disciplina de la sadhana",
+    "card1": {
+      "title": "Claridad Mental",
+      "text": "La mente se vuelve más clara, enfocada y capaz de tomar decisiones desde la sabiduría interior."
+    },
+    "card2": {
+      "title": "Energía Elevada",
+      "text": "Empiezas cada día con vitalidad renovada y una frecuencia energética más alta y estable."
+    },
+    "card3": {
+      "title": "Conexión Espiritual",
+      "text": "Desarrollas una relación íntima y constante con tu ser superior y la divinidad universal."
+    },
+    "card4": {
+      "title": "Disciplina Interna",
+      "text": "Cultivas la fuerza de voluntad y la autodisciplina que se extiende a todas las áreas de tu vida."
+    },
+    "card5": {
+      "title": "Estabilidad Emocional",
+      "text": "Las emociones se equilibran, desarrollando mayor resistencia al estrés y reactividad emocional."
+    },
+    "card6": {
+      "title": "Comunidad Sagrada",
+      "text": "Formas vínculos profundos con otros practicantes comprometidos con el crecimiento espiritual."
+    },
+    "card7": {
+      "title": "Propósito Claro",
+      "text": "Te conectas diariamente con tu propósito de vida y misión espiritual en el mundo."
+    },
+    "card8": {
+      "title": "Manifestación Poderosa",
+      "text": "Desarrollas la capacidad de materializar tus intenciones más elevadas con mayor facilidad."
+    }
+  },
+  "join": {
+    "title": "¿Cómo Unirte a las Sadhanas Online?",
+    "subtitle": "Pasos simples para formar parte de nuestra comunidad de práctica diaria",
+    "step1": {
+      "title": "Regístrate en Nuestra Plataforma",
+      "text": "Contáctanos para recibir los enlaces de acceso a las sesiones diarias y unirte a nuestro grupo de practicantes."
+    },
+    "step2": {
+      "title": "Prepara tu Espacio Sagrado",
+      "text": "Crea un lugar tranquilo en tu hogar, con una manta, vela o cualquier elemento que te ayude a concentrarte."
+    },
+    "step3": {
+      "title": "Ajusta tu Rutina de Sueño",
+      "text": "Gradualmente ajusta tu horario para despertar temprano. Acuéstate más temprano para mantener las horas de descanso."
+    },
+    "step4": {
+      "title": "Comienza con Compromiso",
+      "text": "Comprométete inicialmente por 40 días seguidos para establecer el hábito y experimentar los beneficios completos."
+    }
+  },
+  "tech": {
+    "title": "Requisitos Técnicos",
+    "subtitle": "Lo que necesitas para participar en nuestras sadhanas virtuales",
+    "card1": {
+      "title": "Dispositivo Conectado",
+      "text": "Teléfono móvil, tablet o computadora con conexión a internet estable."
+    },
+    "card2": {
+      "title": "Audio Claro",
+      "text": "Auriculares o altavoces para escuchar claramente las instrucciones y mantras."
+    },
+    "card3": {
+      "title": "Plataforma de Video",
+      "text": "Usamos Zoom para nuestras sesiones virtuales de sadhana."
+    },
+    "card4": {
+      "title": "Micrófono en Silencio",
+      "text": "Mantén tu micrófono silenciado para preservar la atmósfera sagrada grupal."
+    }
+  },
+  "tips": {
+    "title": "Consejos para una Práctica Exitosa",
+    "subtitle": "Recomendaciones de instructores experimentados para mantener la disciplina",
+    "card1": {
+      "title": "Preparación Nocturna",
+      "text": "Deja la ropa lista, prepara el espacio de práctica y pon el despertador lejos de la cama para evitar quedarte dormido."
+    },
+    "card2": {
+      "title": "Hidratación Temprana",
+      "text": "Bebe un vaso de agua al despertar para activar el sistema y luego espera 15 minutos antes de la práctica."
+    },
+    "card3": {
+      "title": "Comienza Gradualmente",
+      "text": "Si eres nuevo, únete primero a las sesiones de domingo, luego agrega más días progresivamente."
+    },
+    "card4": {
+      "title": "Crear Atmósfera",
+      "text": "Enciende una vela, usa aceites esenciales o coloca cristales para crear un ambiente sagrado."
+    },
+    "card5": {
+      "title": "Compañero de Práctica",
+      "text": "Encuentra un amigo que también practique para motivarse mutuamente y mantener la responsabilidad."
+    }
+  },
+  "cta": {
+    "title": "Únete a Nuestras Sadhanas Online",
+    "description": "¿Listo para comenzar tu práctica espiritual diaria? Contáctanos para recibir los enlaces de acceso.",
+    "button": "Escribir por WhatsApp",
+    "whatsappMessage": "Hola, quiero información sobre las sadhanas online (este mensaje es desde el sitio web de ACIKY)"
+  }
+}

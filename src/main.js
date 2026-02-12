@@ -311,6 +311,12 @@ async function initPage() {
   } else if (path.includes('/pages/contact.html')) {
     const { initContact } = await import('./js/contact.js')
     initContact()
+  } else if (path.includes('/pages/rebirthing.html')) {
+    const { initRebirthing } = await import('./js/rebirthing.js')
+    initRebirthing()
+  } else if (path.includes('/pages/onlinesadhana.html')) {
+    const { initOnlineSadhana } = await import('./js/onlinesadhana.js')
+    initOnlineSadhana()
   } else if (path.includes('/pages/instructor/my-classes.html')) {
     const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
     initInstructorClasses()
