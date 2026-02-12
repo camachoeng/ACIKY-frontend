@@ -6,6 +6,21 @@ const PROD_EMAIL = 'acikyrespiray@gmail.com'
 const DEV_EMAIL = 'randyrandom.content@gmail.com'
 
 export function initContact() {
+  const user = getUser()
+
+  // Redirect instructor away from contact page
+  if (user && user.role === 'instructor') {
+    window.location.href = import.meta.env.BASE_URL
+    return
+  }
+
+  // Redirect non-logged-in users to login
+  if (!user) {
+    const returnUrl = encodeURIComponent(window.location.pathname + window.location.search)
+    window.location.href = import.meta.env.BASE_URL + 'pages/login.html?reason=contact&return=' + returnUrl
+    return
+  }
+
   const email = window.location.hostname === 'camachoeng.github.io'
     ? PROD_EMAIL
     : DEV_EMAIL
