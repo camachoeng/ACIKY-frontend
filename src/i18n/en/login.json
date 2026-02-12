@@ -16,7 +16,8 @@
     "needsVerification": "Account created successfully. Check your email to verify your account."
   },
   "info": {
-    "bookingRedirect": "You must sign in to book a class."
+    "bookingRedirect": "You must sign in to book a class.",
+    "contactRedirect": "You must sign in to send us a message."
   },
   "errors": {
     "default": "Error signing in"

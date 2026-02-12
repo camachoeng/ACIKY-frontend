@@ -42,6 +42,7 @@ export default defineConfig(({ command }) => {
           blog: resolve(__dirname, 'pages/blog.html'),
           testimonials: resolve(__dirname, 'pages/testimonials.html'),
           goldenRoutes: resolve(__dirname, 'pages/golden-routes.html'),
+          contact: resolve(__dirname, 'pages/contact.html'),
           instructorClasses: resolve(__dirname, 'pages/instructor/my-classes.html'),
           verifyEmail: resolve(__dirname, 'pages/verify-email.html')
         }

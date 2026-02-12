@@ -1,5 +1,5 @@
 import './style.css'
-import { checkAuth } from './js/auth.js'
+import { checkAuth, getUser } from './js/auth.js'
 import { apiFetch } from './js/api.js'
 import { initI18n, switchLanguage, getLanguage, t, localized } from './js/i18n.js'
 
@@ -141,6 +141,31 @@ async function initHomeGoldenRoutes() {
   }
 }
 
+// Home page: handle contact CTA for auth state
+function initHomeContactCta() {
+  const section = document.getElementById('contactCtaSection')
+  const btn = document.getElementById('contactCtaBtn')
+  if (!section || !btn) return
+
+  const user = getUser()
+
+  // Hide button for admin and instructor
+  if (user && (user.role === 'instructor' || user.role === 'admin')) {
+    section.classList.add('hidden')
+    return
+  }
+
+  // For non-logged-in users: redirect to login
+  if (!user) {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault()
+      const returnUrl = encodeURIComponent(window.location.pathname + window.location.search)
+      window.location.href = import.meta.env.BASE_URL + 'pages/login.html?reason=contact&return=' + returnUrl
+    })
+  }
+  // For logged-in regular users: allow normal navigation (no preventDefault)
+}
+
 // Listen for language changes to re-render home dynamic sections
 window.addEventListener('languageChanged', () => {
   initHeroSchedule()
@@ -225,6 +250,7 @@ async function initPage() {
     initHeroSchedule()
     initHomeTestimonials()
     initHomeGoldenRoutes()
+    initHomeContactCta()
   } else if (path.includes('/pages/login.html')) {
     const { initLogin } = await import('./js/login.js')
     initLogin()
@@ -282,6 +308,9 @@ async function initPage() {
   } else if (path.includes('/pages/golden-routes.html')) {
     const { initGoldenRoutes } = await import('./js/goldenRoutes.js')
     initGoldenRoutes()
+  } else if (path.includes('/pages/contact.html')) {
+    const { initContact } = await import('./js/contact.js')
+    initContact()
   } else if (path.includes('/pages/instructor/my-classes.html')) {
     const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
     initInstructorClasses()
@@ -297,6 +326,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   initLogout()
   initPasswordToggles()
   initLanguageToggle()
-  checkAuth()
+  await checkAuth()
   await initPage()
 })
