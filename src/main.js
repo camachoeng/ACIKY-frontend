@@ -149,8 +149,8 @@ function initHomeContactCta() {
 
   const user = getUser()
 
-  // Hide button for admin and instructor
-  if (user && (user.role === 'instructor' || user.role === 'admin')) {
+  // Hide button for instructor only
+  if (user && user.role === 'instructor') {
     section.classList.add('hidden')
     return
   }
