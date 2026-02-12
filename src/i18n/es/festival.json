@@ -1,0 +1,197 @@
+{
+  "quote": {
+    "text": "La luz que brilla en el corazón de todos es la misma luz.",
+    "author": "Yogi Bhajan"
+  },
+  "hero": {
+    "title": "Festival Faro de Luz",
+    "subtitle": "Nuestro evento anual más importante",
+    "badge1": "3 Días de Yoga",
+    "badge2": "Comunidad Global",
+    "badge3": "Transformación"
+  },
+  "overview": {
+    "title": "El Evento Más Esperado del Año",
+    "subtitle": "Una experiencia transformadora que ilumina el camino del yoga",
+    "description": "El Festival Faro de Luz es la celebración anual más importante de ACIKY, donde la comunidad del Kundalini Yoga se reúne para experimentar una transformación profunda y colectiva. Durante este evento especial, participantes de toda Cuba y más allá se conectan en una experiencia única que combina enseñanzas ancestrales, prácticas intensivas, música sagrada y la energía colectiva que solo un festival de esta magnitud puede ofrecer."
+  },
+  "stats": {
+    "card1": {
+      "number": "1",
+      "label": "Evento Único"
+    },
+    "card2": {
+      "number": "3",
+      "label": "Días de Yoga"
+    },
+    "card3": {
+      "number": "50+",
+      "label": "Participantes"
+    },
+    "card4": {
+      "number": "24",
+      "label": "Horas de Práctica"
+    }
+  },
+  "program": {
+    "title": "Programa del Festival",
+    "subtitle": "Tres días de inmersión completa en la práctica del Kundalini Yoga",
+    "day1": {
+      "title": "Día 1: Despertar",
+      "theme": "Conexión con la Energía Interna",
+      "time1": "6:00 AM",
+      "activity1": {
+        "title": "Sadhana Colectiva de Apertura",
+        "desc": "Práctica matutina que unifica a todos los participantes"
+      },
+      "time2": "9:00 AM",
+      "activity2": {
+        "title": "Ceremonias de Bienvenida",
+        "desc": "Rituales sagrados para recibir a la comunidad"
+      },
+      "time3": "11:00 AM",
+      "activity3": {
+        "title": "Talleres Especializados",
+        "desc": "Enseñanzas profundas sobre técnicas avanzadas"
+      },
+      "time4": "4:00 PM",
+      "activity4": {
+        "title": "Kirtan y Música Sagrada",
+        "desc": "Cantos devocionales que elevan la vibración"
+      },
+      "time5": "7:00 PM",
+      "activity5": {
+        "title": "Meditación Grupal de Cierre",
+        "desc": "Integración de las experiencias del día"
+      }
+    },
+    "day2": {
+      "title": "Día 2: Transformación",
+      "theme": "Purificación y Sanación",
+      "time1": "5:30 AM",
+      "activity1": {
+        "title": "Sadhana de Sanación",
+        "desc": "Práctica específica para liberación emocional"
+      },
+      "time2": "8:30 AM",
+      "activity2": {
+        "title": "Círculos de Compartir",
+        "desc": "Espacios seguros para expresar y liberar"
+      },
+      "time3": "10:30 AM",
+      "activity3": {
+        "title": "Kriyas de Purificación",
+        "desc": "Secuencias intensivas para limpiar el campo áurico"
+      },
+      "time4": "3:00 PM",
+      "activity4": {
+        "title": "Terapias Holísticas",
+        "desc": "Sesiones de sanación con diferentes modalidades"
+      },
+      "time5": "6:00 PM",
+      "activity5": {
+        "title": "Gong Bath Colectivo",
+        "desc": "Baño de sonido para armonización profunda"
+      }
+    },
+    "day3": {
+      "title": "Día 3: Integración",
+      "theme": "Manifestación y Compromiso",
+      "time1": "6:00 AM",
+      "activity1": {
+        "title": "Sadhana de Manifestación",
+        "desc": "Práctica para materializar la visión personal"
+      },
+      "time2": "9:00 AM",
+      "activity2": {
+        "title": "Talleres de Integración",
+        "desc": "Herramientas para llevar la experiencia a la vida diaria"
+      },
+      "time3": "12:00 PM",
+      "activity3": {
+        "title": "Ceremonia de Compromiso",
+        "desc": "Ritual de dedicación a la práctica personal"
+      },
+      "time4": "4:00 PM",
+      "activity4": {
+        "title": "Celebración Comunitaria",
+        "desc": "Fiesta de cierre con música, danza y alegría"
+      },
+      "time5": "7:00 PM",
+      "activity5": {
+        "title": "Círculo de Cierre",
+        "desc": "Bendiciones finales y despedida sagrada"
+      }
+    }
+  },
+  "features": {
+    "title": "¿Qué Hace Único a Nuestro Festival?",
+    "subtitle": "Una experiencia transformadora sin igual",
+    "card1": {
+      "title": "Maestros Internacionales",
+      "text": "Instructores reconocidos mundialmente que comparten enseñanzas profundas y técnicas avanzadas del Kundalini Yoga."
+    },
+    "card2": {
+      "title": "Música Sagrada en Vivo",
+      "text": "Músicos especializados en mantras y kirtan que crean una atmósfera de elevación espiritual única."
+    },
+    "card3": {
+      "title": "Entorno Natural",
+      "text": "Celebrado en espacios naturales que potencian la conexión con la Tierra y amplifican la energía de las prácticas."
+    },
+    "card4": {
+      "title": "Comunidad Global",
+      "text": "Participantes de diferentes países se unen creando una sangat (comunidad espiritual) verdaderamente internacional."
+    },
+    "card5": {
+      "title": "Transformación Profunda",
+      "text": "Experiencias que marcan un antes y un después en el camino espiritual de cada participante."
+    },
+    "card6": {
+      "title": "Materiales Exclusivos",
+      "text": "Recursos, manuales y regalos especiales que solo están disponibles durante el festival."
+    }
+  },
+  "registration": {
+    "title": "Información de Registro",
+    "subtitle": "Todo lo que necesitas saber para participar",
+    "details": {
+      "title": "Próximo Festival Faro de Luz 2025",
+      "dates": {
+        "label": "Fechas",
+        "value": "Por confirmar (tradicionalmente en octubre)"
+      },
+      "duration": {
+        "label": "Duración",
+        "value": "3 días completos de inmersión"
+      },
+      "location": {
+        "label": "Ubicación",
+        "value": "Centro de retiros naturales (ubicación por confirmar)"
+      }
+    },
+    "earlyBird": {
+      "title": "Registro Temprano",
+      "text": "Los primeros 50 registros reciben descuentos especiales y materiales adicionales. ¡No te quedes fuera!"
+    },
+    "benefits": {
+      "title": "Incluido en tu Participación",
+      "item1": "Todas las sesiones de Kundalini Yoga",
+      "item2": "Talleres especializados",
+      "item3": "Sesiones de música sagrada",
+      "item4": "Meditaciones grupales",
+      "item5": "Comidas vegetarianas orgánicas",
+      "item6": "Alojamiento en habitaciones compartidas",
+      "item7": "Manual del festival",
+      "item8": "Kit de práctica personalizado",
+      "item9": "Certificado de participación",
+      "item10": "Acceso a la comunidad privada post-festival"
+    }
+  },
+  "cta": {
+    "title": "¿Listo para Iluminar tu Camino?",
+    "description": "Para más información sobre el próximo Festival Faro de Luz, fechas, precios y registro temprano, contáctanos.",
+    "button": "Escribir por WhatsApp",
+    "whatsappMessage": "Hola, quiero información sobre el Festival Faro de Luz (este mensaje es desde el sitio web de ACIKY)"
+  }
+}

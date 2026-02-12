@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Festival Faro de Luz - Evento Anual de Kundalini Yoga - ACIKY" />
+    <title>Festival Faro de Luz - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <!-- Quote -->
+      <section class="px-6 py-6">
+        <div class="relative p-8 bg-white rounded-2xl shadow-sm border-l-4 border-primary">
+          <span class="absolute top-4 left-4 text-primary/10 text-6xl font-serif">"</span>
+          <p class="italic text-lg leading-relaxed text-slate-600 relative z-10" data-i18n="quote.text">La luz que brilla en el corazón de todos es la misma luz.</p>
+          <p class="mt-4 text-right text-sm font-bold text-primary-dark">— <span data-i18n="quote.author">Yogi Bhajan</span></p>
+        </div>
+      </section>
+
+      <!-- Hero -->
+      <section class="px-6 mb-10">
+        <div class="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
+          <img alt="Festival Faro de Luz" class="absolute inset-0 w-full h-full object-cover" src="{{basePath}}/images/activities/activity-festival.jpeg" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <h1 class="text-3xl font-bold mb-2" data-i18n="hero.title">Festival Faro de Luz</h1>
+            <p class="text-sm opacity-90 mb-6" data-i18n="hero.subtitle">Nuestro evento anual más importante</p>
+            <div class="flex gap-2">
+              <span class="px-3 py-1 bg-primary/80 text-white text-xs font-bold rounded-full" data-i18n="hero.badge1">3 Días de Yoga</span>
+              <span class="px-3 py-1 bg-accent-teal/80 text-white text-xs font-bold rounded-full" data-i18n="hero.badge2">Comunidad Global</span>
+              <span class="px-3 py-1 bg-accent-rose/80 text-white text-xs font-bold rounded-full" data-i18n="hero.badge3">Transformación</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Overview -->
+      <section class="px-4 md:px-8 lg:px-16 py-8">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="overview.title">El Evento Más Esperado del Año</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="overview.subtitle">Una experiencia transformadora que ilumina el camino del yoga</p>
+        </div>
+        <p class="text-slate-600 leading-relaxed mb-8 max-w-3xl mx-auto" data-i18n="overview.description">
+          El Festival Faro de Luz es la celebración anual más importante de ACIKY, donde la comunidad del Kundalini Yoga se reúne para experimentar una transformación profunda y colectiva. Durante este evento especial, participantes de toda Cuba y más allá se conectan en una experiencia única que combina enseñanzas ancestrales, prácticas intensivas, música sagrada y la energía colectiva que solo un festival de esta magnitud puede ofrecer.
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <!-- Stat 1 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <div class="text-4xl font-bold text-primary-dark mb-2" data-i18n="stats.card1.number">1</div>
+            <p class="text-slate-600 text-sm font-semibold" data-i18n="stats.card1.label">Evento Único</p>
+          </div>
+          <!-- Stat 2 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <div class="text-4xl font-bold text-primary-dark mb-2" data-i18n="stats.card2.number">3</div>
+            <p class="text-slate-600 text-sm font-semibold" data-i18n="stats.card2.label">Días de Yoga</p>
+          </div>
+          <!-- Stat 3 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <div class="text-4xl font-bold text-primary-dark mb-2" data-i18n="stats.card3.number">50+</div>
+            <p class="text-slate-600 text-sm font-semibold" data-i18n="stats.card3.label">Participantes</p>
+          </div>
+          <!-- Stat 4 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <div class="text-4xl font-bold text-primary-dark mb-2" data-i18n="stats.card4.number">24</div>
+            <p class="text-slate-600 text-sm font-semibold" data-i18n="stats.card4.label">Horas de Práctica</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Festival Program -->
+      <section class="px-4 md:px-8 lg:px-16 py-8 bg-slate-50">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="program.title">Programa del Festival</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="program.subtitle">Tres días de inmersión completa en la práctica del Kundalini Yoga</p>
+        </div>
+        <div class="max-w-5xl mx-auto space-y-6">
+          <!-- Day 1 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="mb-4 pb-4 border-b border-slate-200">
+              <h3 class="text-xl font-bold text-primary-dark" data-i18n="program.day1.title">Día 1: Despertar</h3>
+              <p class="text-sm text-slate-500 mt-1" data-i18n="program.day1.theme">Conexión con la Energía Interna</p>
+            </div>
+            <div class="space-y-3">
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day1.time1">6:00 AM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day1.activity1.title">Sadhana Colectiva de Apertura</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day1.activity1.desc">Práctica matutina que unifica a todos los participantes</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day1.time2">9:00 AM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day1.activity2.title">Ceremonias de Bienvenida</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day1.activity2.desc">Rituales sagrados para recibir a la comunidad</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day1.time3">11:00 AM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day1.activity3.title">Talleres Especializados</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day1.activity3.desc">Enseñanzas profundas sobre técnicas avanzadas</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day1.time4">4:00 PM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day1.activity4.title">Kirtan y Música Sagrada</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day1.activity4.desc">Cantos devocionales que elevan la vibración</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day1.time5">7:00 PM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day1.activity5.title">Meditación Grupal de Cierre</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day1.activity5.desc">Integración de las experiencias del día</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 2 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="mb-4 pb-4 border-b border-slate-200">
+              <h3 class="text-xl font-bold text-primary-dark" data-i18n="program.day2.title">Día 2: Transformación</h3>
+              <p class="text-sm text-slate-500 mt-1" data-i18n="program.day2.theme">Purificación y Sanación</p>
+            </div>
+            <div class="space-y-3">
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day2.time1">5:30 AM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day2.activity1.title">Sadhana de Sanación</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day2.activity1.desc">Práctica específica para liberación emocional</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day2.time2">8:30 AM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day2.activity2.title">Círculos de Compartir</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day2.activity2.desc">Espacios seguros para expresar y liberar</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day2.time3">10:30 AM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day2.activity3.title">Kriyas de Purificación</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day2.activity3.desc">Secuencias intensivas para limpiar el campo áurico</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day2.time4">3:00 PM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day2.activity4.title">Terapias Holísticas</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day2.activity4.desc">Sesiones de sanación con diferentes modalidades</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day2.time5">6:00 PM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day2.activity5.title">Gong Bath Colectivo</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day2.activity5.desc">Baño de sonido para armonización profunda</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 3 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="mb-4 pb-4 border-b border-slate-200">
+              <h3 class="text-xl font-bold text-primary-dark" data-i18n="program.day3.title">Día 3: Integración</h3>
+              <p class="text-sm text-slate-500 mt-1" data-i18n="program.day3.theme">Manifestación y Compromiso</p>
+            </div>
+            <div class="space-y-3">
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day3.time1">6:00 AM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day3.activity1.title">Sadhana de Manifestación</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day3.activity1.desc">Práctica para materializar la visión personal</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day3.time2">9:00 AM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day3.activity2.title">Talleres de Integración</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day3.activity2.desc">Herramientas para llevar la experiencia a la vida diaria</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day3.time3">12:00 PM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day3.activity3.title">Ceremonia de Compromiso</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day3.activity3.desc">Ritual de dedicación a la práctica personal</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day3.time4">4:00 PM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day3.activity4.title">Celebración Comunitaria</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day3.activity4.desc">Fiesta de cierre con música, danza y alegría</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="text-primary font-bold text-sm min-w-[70px]" data-i18n="program.day3.time5">7:00 PM</span>
+                <div>
+                  <h4 class="font-semibold text-primary-dark text-sm" data-i18n="program.day3.activity5.title">Círculo de Cierre</h4>
+                  <p class="text-xs text-slate-600" data-i18n="program.day3.activity5.desc">Bendiciones finales y despedida sagrada</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What Makes it Unique -->
+      <section class="px-4 md:px-8 lg:px-16 py-8">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="features.title">¿Qué Hace Único a Nuestro Festival?</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="features.subtitle">Una experiencia transformadora sin igual</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+          <!-- Feature 1 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="material-symbols-outlined text-primary text-2xl">school</span>
+            </div>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="features.card1.title">Maestros Internacionales</h3>
+            <p class="text-slate-600 text-sm" data-i18n="features.card1.text">Instructores reconocidos mundialmente que comparten enseñanzas profundas y técnicas avanzadas del Kundalini Yoga.</p>
+          </div>
+          <!-- Feature 2 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="material-symbols-outlined text-primary text-2xl">music_note</span>
+            </div>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="features.card2.title">Música Sagrada en Vivo</h3>
+            <p class="text-slate-600 text-sm" data-i18n="features.card2.text">Músicos especializados en mantras y kirtan que crean una atmósfera de elevación espiritual única.</p>
+          </div>
+          <!-- Feature 3 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="material-symbols-outlined text-primary text-2xl">nature</span>
+            </div>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="features.card3.title">Entorno Natural</h3>
+            <p class="text-slate-600 text-sm" data-i18n="features.card3.text">Celebrado en espacios naturales que potencian la conexión con la Tierra y amplifican la energía de las prácticas.</p>
+          </div>
+          <!-- Feature 4 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="material-symbols-outlined text-primary text-2xl">diversity_3</span>
+            </div>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="features.card4.title">Comunidad Global</h3>
+            <p class="text-slate-600 text-sm" data-i18n="features.card4.text">Participantes de diferentes países se unen creando una sangat (comunidad espiritual) verdaderamente internacional.</p>
+          </div>
+          <!-- Feature 5 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="material-symbols-outlined text-primary text-2xl">auto_awesome</span>
+            </div>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="features.card5.title">Transformación Profunda</h3>
+            <p class="text-slate-600 text-sm" data-i18n="features.card5.text">Experiencias que marcan un antes y un después en el camino espiritual de cada participante.</p>
+          </div>
+          <!-- Feature 6 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <div class="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="material-symbols-outlined text-primary text-2xl">redeem</span>
+            </div>
+            <h3 class="font-bold text-primary-dark mb-2" data-i18n="features.card6.title">Materiales Exclusivos</h3>
+            <p class="text-slate-600 text-sm" data-i18n="features.card6.text">Recursos, manuales y regalos especiales que solo están disponibles durante el festival.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Registration Info -->
+      <section class="px-4 md:px-8 lg:px-16 py-8 bg-slate-50">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="registration.title">Información de Registro</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="registration.subtitle">Todo lo que necesitas saber para participar</p>
+        </div>
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Event Details -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <h3 class="text-lg font-bold text-primary-dark mb-4" data-i18n="registration.details.title">Próximo Festival Faro de Luz 2025</h3>
+            <div class="space-y-3">
+              <div class="flex gap-3">
+                <span class="material-symbols-outlined text-primary text-xl">calendar_month</span>
+                <div>
+                  <p class="text-xs text-slate-500 uppercase font-semibold" data-i18n="registration.details.dates.label">Fechas</p>
+                  <p class="text-sm text-slate-700" data-i18n="registration.details.dates.value">Por confirmar (tradicionalmente en octubre)</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="material-symbols-outlined text-primary text-xl">schedule</span>
+                <div>
+                  <p class="text-xs text-slate-500 uppercase font-semibold" data-i18n="registration.details.duration.label">Duración</p>
+                  <p class="text-sm text-slate-700" data-i18n="registration.details.duration.value">3 días completos de inmersión</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="material-symbols-outlined text-primary text-xl">location_on</span>
+                <div>
+                  <p class="text-xs text-slate-500 uppercase font-semibold" data-i18n="registration.details.location.label">Ubicación</p>
+                  <p class="text-sm text-slate-700" data-i18n="registration.details.location.value">Centro de retiros naturales (ubicación por confirmar)</p>
+                </div>
+              </div>
+              <div class="mt-4 p-4 bg-primary/5 rounded-xl">
+                <p class="text-xs font-semibold text-primary-dark mb-2" data-i18n="registration.earlyBird.title">Registro Temprano</p>
+                <p class="text-xs text-slate-600" data-i18n="registration.earlyBird.text">Los primeros 50 registros reciben descuentos especiales y materiales adicionales. ¡No te quedes fuera!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Included Benefits -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <h3 class="text-lg font-bold text-primary-dark mb-4" data-i18n="registration.benefits.title">Incluido en tu Participación</h3>
+            <div class="space-y-2">
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item1">Todas las sesiones de Kundalini Yoga</p>
+              </div>
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item2">Talleres especializados</p>
+              </div>
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item3">Sesiones de música sagrada</p>
+              </div>
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item4">Meditaciones grupales</p>
+              </div>
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item5">Comidas vegetarianas orgánicas</p>
+              </div>
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item6">Alojamiento en habitaciones compartidas</p>
+              </div>
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item7">Manual del festival</p>
+              </div>
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item8">Kit de práctica personalizado</p>
+              </div>
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item9">Certificado de participación</p>
+              </div>
+              <div class="flex gap-2 items-start">
+                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                <p class="text-sm text-slate-700" data-i18n="registration.benefits.item10">Acceso a la comunidad privada post-festival</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WhatsApp CTA -->
+      <section class="px-6 mb-10">
+        <div class="relative bg-white rounded-3xl overflow-hidden p-8 text-center border border-slate-100 shadow-sm">
+          <div class="relative z-10">
+            <h3 class="text-2xl font-bold text-primary-dark mb-4" data-i18n="cta.title">¿Listo para Iluminar tu Camino?</h3>
+            <p class="text-sm text-slate-600 mb-8 leading-relaxed max-w-xs mx-auto" data-i18n="cta.description">
+              Para más información sobre el próximo Festival Faro de Luz, fechas, precios y registro temprano, contáctanos.
+            </p>
+            <a id="whatsappCtaBtn" href="https://wa.me/5350759360" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-primary-dark text-white font-bold px-8 py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span data-i18n="cta.button">Escribir por WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

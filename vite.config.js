@@ -45,6 +45,7 @@ export default defineConfig(({ command }) => {
           contact: resolve(__dirname, 'pages/contact.html'),
           rebirthing: resolve(__dirname, 'pages/rebirthing.html'),
           onlinesadhana: resolve(__dirname, 'pages/onlinesadhana.html'),
+          festival: resolve(__dirname, 'pages/festival.html'),
           instructorClasses: resolve(__dirname, 'pages/instructor/my-classes.html'),
           verifyEmail: resolve(__dirname, 'pages/verify-email.html')
         }

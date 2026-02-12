@@ -350,6 +350,9 @@ async function initPage() {
   } else if (path.includes('/pages/onlinesadhana.html')) {
     const { initOnlineSadhana } = await import('./js/onlinesadhana.js')
     initOnlineSadhana()
+  } else if (path.includes('/pages/festival.html')) {
+    const { initFestival } = await import('./js/festival.js')
+    initFestival()
   } else if (path.includes('/pages/instructor/my-classes.html')) {
     const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
     initInstructorClasses()
