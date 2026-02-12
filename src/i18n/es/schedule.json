@@ -20,13 +20,14 @@
   "cta": {
     "title": "Primera clase gratis",
     "description": "Prueba una clase sin compromiso y descubre los beneficios del Kundalini Yoga.",
-    "button": "Reservar Clase Gratis"
+    "button": "Reservar Clase Gratis",
+    "whatsappMessage": "Hola, quiero probar mi primera clase gratis de Kundalini Yoga (este mensaje es desde el sitio web ACIKY)"
   },
   "card": {
     "minutes": "minutos",
     "free": "Gratis",
     "book": "Reservar",
-    "bookMessage": "Hola, quiero reservar la clase de {{name}} con el instructor {{instructor}}"
+    "bookMessage": "Hola, quiero reservar la clase de {{name}} con el instructor {{instructor}} (este mensaje es desde el sitio web ACIKY)"
   },
   "days": {
     "mon": "Lun",
