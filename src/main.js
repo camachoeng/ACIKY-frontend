@@ -166,6 +166,38 @@ function initHomeContactCta() {
   // For logged-in regular users: allow normal navigation (no preventDefault)
 }
 
+// Home page: activities carousel navigation
+function initActivitiesCarousel() {
+  const carousel = document.getElementById('activitiesCarousel')
+  const prevBtn = document.getElementById('activitiesPrevBtn')
+  const nextBtn = document.getElementById('activitiesNextBtn')
+
+  if (!carousel || !prevBtn || !nextBtn) return
+
+  const scrollAmount = 240 // Card width (220px) + gap (20px)
+
+  const updateButtonStates = () => {
+    const isAtStart = carousel.scrollLeft <= 10
+    const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10
+
+    prevBtn.disabled = isAtStart
+    nextBtn.disabled = isAtEnd
+  }
+
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+    setTimeout(updateButtonStates, 300)
+  })
+
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    setTimeout(updateButtonStates, 300)
+  })
+
+  carousel.addEventListener('scroll', updateButtonStates)
+  updateButtonStates()
+}
+
 // Listen for language changes to re-render home dynamic sections
 window.addEventListener('languageChanged', () => {
   initHeroSchedule()
@@ -251,6 +283,7 @@ async function initPage() {
     initHomeTestimonials()
     initHomeGoldenRoutes()
     initHomeContactCta()
+    initActivitiesCarousel()
   } else if (path.includes('/pages/login.html')) {
     const { initLogin } = await import('./js/login.js')
     initLogin()
