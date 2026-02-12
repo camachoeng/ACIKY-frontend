@@ -54,7 +54,16 @@
           <h3 class="text-2xl font-bold text-primary-dark" data-i18n="activities.title">Nuestras Actividades</h3>
           <p class="text-slate-500 text-sm mt-1" data-i18n="activities.subtitle">Explora todas las experiencias que ACIKY tiene para ofrecerte.</p>
         </div>
-        <div class="flex overflow-x-auto gap-5 px-6 pb-4 hide-scrollbar">
+        <div class="relative">
+          <!-- Carousel Navigation Buttons (Desktop) -->
+          <button id="activitiesPrevBtn" class="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200 text-primary-dark hover:bg-primary-dark hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Previous activities">
+            <span class="material-symbols-outlined text-xl">chevron_left</span>
+          </button>
+          <button id="activitiesNextBtn" class="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200 text-primary-dark hover:bg-primary-dark hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Next activities">
+            <span class="material-symbols-outlined text-xl">chevron_right</span>
+          </button>
+
+          <div id="activitiesCarousel" class="flex overflow-x-auto gap-5 px-6 pb-4 hide-scrollbar scroll-smooth">
           <!-- Activity Card: Clases -->
           <a href="{{basePath}}/pages/schedule.html" class="min-w-[220px] bg-white p-3 rounded-2xl shadow-sm border border-slate-100 block">
             <div class="h-32 w-full rounded-xl overflow-hidden mb-4 border border-slate-50">
@@ -106,7 +115,7 @@
           </a>
 
           <!-- Activity Card: Sadhanas Online -->
-          <a href="{{basePath}}/pages/sadhanasonline.html" class="min-w-[220px] bg-white p-3 rounded-2xl shadow-sm border border-slate-100 block">
+          <a href="{{basePath}}/pages/onlinesadhana.html" class="min-w-[220px] bg-white p-3 rounded-2xl shadow-sm border border-slate-100 block">
             <div class="h-32 w-full rounded-xl overflow-hidden mb-4 border border-slate-50">
               <img src="/images/activity cards/activity-sadhanas.png" alt="Sadhanas Online" class="w-full h-full object-cover"/>
             </div>
@@ -115,6 +124,7 @@
             <div class="w-full h-1 bg-primary rounded-full"></div>
           </a>
 
+          </div>
         </div>
       </section>
 

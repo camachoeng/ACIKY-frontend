@@ -69,6 +69,7 @@ function getPageName() {
     'pages/contact.html': 'contact',
     'pages/rebirthing.html': 'rebirthing',
     'pages/onlinesadhana.html': 'onlinesadhana',
+    'pages/festival.html': 'festival',
     'pages/instructor/my-classes.html': 'instructor-classes'
   }
 
