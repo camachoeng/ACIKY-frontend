@@ -66,6 +66,7 @@ function getPageName() {
     'pages/blog.html': 'blog',
     'pages/testimonials.html': 'testimonials',
     'pages/golden-routes.html': 'golden-routes',
+    'pages/contact.html': 'contact',
     'pages/instructor/my-classes.html': 'instructor-classes'
   }
 

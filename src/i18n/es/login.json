@@ -16,7 +16,8 @@
     "needsVerification": "Cuenta creada exitosamente. Revisa tu correo electrónico para verificar tu cuenta."
   },
   "info": {
-    "bookingRedirect": "Debes iniciar sesión para reservar una clase."
+    "bookingRedirect": "Debes iniciar sesión para reservar una clase.",
+    "contactRedirect": "Debes iniciar sesión para enviarnos un mensaje."
   },
   "errors": {
     "default": "Error al iniciar sesión"

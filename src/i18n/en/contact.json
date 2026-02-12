@@ -1,0 +1,51 @@
+{
+  "quote": {
+    "text": "Human connection is the most powerful bridge to spiritual transformation.",
+    "author": "ACIKY Philosophy"
+  },
+  "hero": {
+    "title": "Contact Us",
+    "subtitle": "We are here to accompany you on your journey"
+  },
+  "info": {
+    "title": "Contact Information",
+    "subtitle": "Choose the channel you prefer to reach us",
+    "email": {
+      "label": "Email",
+      "text": "Write to us for any inquiry"
+    },
+    "whatsapp": {
+      "label": "WhatsApp",
+      "number": "+53 5 0759360",
+      "text": "Message us on WhatsApp"
+    },
+    "social": {
+      "label": "Social Media",
+      "text": "Follow us and stay connected"
+    }
+  },
+  "form": {
+    "title": "Send Us a Message",
+    "subtitle": "Fill out the form and we'll get back to you as soon as possible",
+    "name": "Full name",
+    "namePlaceholder": "Your name",
+    "email": "Email address",
+    "emailPlaceholder": "you@email.com",
+    "phone": "Phone (optional)",
+    "phonePlaceholder": "+53 5 1234567",
+    "subject": "Subject",
+    "subjects": {
+      "clases": "Class information",
+      "espacios": "Space inquiry",
+      "instructores": "I want to be an instructor",
+      "eventos": "Events and retreats",
+      "otros": "General inquiry"
+    },
+    "message": "Message",
+    "messagePlaceholder": "Write your message here...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent! We'll get back to you soon.",
+    "error": "Error sending message. Please try again."
+  }
+}

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contáctanos - ACIKY Yoga para Todos" />
+    <title>Contacto - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <!-- Quote -->
+      <section class="px-6 py-6">
+        <div class="relative p-8 bg-white rounded-2xl shadow-sm border-l-4 border-primary">
+          <span class="absolute top-4 left-4 text-primary/10 text-6xl font-serif">"</span>
+          <p class="italic text-lg leading-relaxed text-slate-600 relative z-10" data-i18n="quote.text">La conexión humana es el puente más poderoso hacia la transformación espiritual.</p>
+          <p class="mt-4 text-right text-sm font-bold text-primary-dark">— <span data-i18n="quote.author">Filosofía ACIKY</span></p>
+        </div>
+      </section>
+
+      <!-- Hero -->
+      <section class="px-6 mb-10">
+        <div class="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
+          <img alt="Contacto ACIKY" class="absolute inset-0 w-full h-full object-cover" src="{{basePath}}/images/contact.jpeg" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <h1 class="text-3xl font-bold mb-2" data-i18n="hero.title">Contáctanos</h1>
+            <p class="text-sm opacity-90 mb-6" data-i18n="hero.subtitle">Estamos aquí para acompañarte en tu camino</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Info Cards -->
+      <section class="px-4 md:px-8 lg:px-16 py-8">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="info.title">Información de Contacto</h2>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="info.subtitle">Elige el canal que prefieras para comunicarte con nosotros</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+          <!-- Email Card -->
+          <a id="emailLink" href="mailto:randyrandom.content@gmail.com" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center hover:shadow-md transition-shadow">
+            <span class="material-symbols-outlined text-3xl text-primary mb-3">email</span>
+            <h3 class="font-bold text-primary-dark mb-1" data-i18n="info.email.label">Correo Electrónico</h3>
+            <p id="emailDisplay" class="text-slate-500 text-xs break-all">randyrandom.content@gmail.com</p>
+            <p class="text-slate-400 text-xs mt-2" data-i18n="info.email.text">Escríbenos para cualquier consulta</p>
+          </a>
+          <!-- WhatsApp Card -->
+          <a href="https://wa.me/5350759360" target="_blank" rel="noopener noreferrer" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center hover:shadow-md transition-shadow">
+            <span class="material-symbols-outlined text-3xl text-accent-teal mb-3">chat</span>
+            <h3 class="font-bold text-primary-dark mb-1" data-i18n="info.whatsapp.label">WhatsApp</h3>
+            <p class="text-slate-500 text-xs" data-i18n="info.whatsapp.number">+53 5 0759360</p>
+            <p class="text-slate-400 text-xs mt-2" data-i18n="info.whatsapp.text">Escríbenos por WhatsApp</p>
+          </a>
+          <!-- Social Card -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 text-center">
+            <span class="material-symbols-outlined text-3xl text-accent-rose mb-3">share</span>
+            <h3 class="font-bold text-primary-dark mb-1" data-i18n="info.social.label">Redes Sociales</h3>
+            <div class="flex justify-center gap-3 mt-3">
+              <a href="https://www.facebook.com/profile.php?id=61570600657505" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center text-accent-teal border border-slate-100 hover:bg-accent-teal hover:text-white transition-colors" aria-label="Facebook">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/aciky2762025" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center text-accent-rose border border-slate-100 hover:bg-accent-rose hover:text-white transition-colors" aria-label="Instagram">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://wa.me/5350759360" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center text-accent-terracotta border border-slate-100 hover:bg-accent-terracotta hover:text-white transition-colors" aria-label="WhatsApp">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </a>
+            </div>
+            <p class="text-slate-400 text-xs mt-3" data-i18n="info.social.text">Síguenos y mantente conectado</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Form (hidden by default, shown for logged-in users) -->
+      <section id="contactFormSection" class="hidden px-4 md:px-8 lg:px-16 py-8">
+        <div class="max-w-xl mx-auto">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary-dark" data-i18n="form.title">Envíanos un Mensaje</h2>
+            <p class="text-slate-500 text-sm mt-2" data-i18n="form.subtitle">Completa el formulario y te responderemos lo antes posible</p>
+          </div>
+
+          <form id="contactForm" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-4">
+            <!-- Name -->
+            <div>
+              <label for="contactName" class="block text-sm font-semibold text-primary-dark mb-1" data-i18n="form.name">Nombre completo</label>
+              <input type="text" id="contactName" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" data-i18n-placeholder="form.namePlaceholder" placeholder="Tu nombre" />
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="contactEmail" class="block text-sm font-semibold text-primary-dark mb-1" data-i18n="form.email">Correo electrónico</label>
+              <input type="email" id="contactEmail" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" data-i18n-placeholder="form.emailPlaceholder" placeholder="tu@email.com" />
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label for="contactPhone" class="block text-sm font-semibold text-primary-dark mb-1" data-i18n="form.phone">Teléfono (opcional)</label>
+              <input type="tel" id="contactPhone" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" data-i18n-placeholder="form.phonePlaceholder" placeholder="+53 5 1234567" />
+            </div>
+
+            <!-- Subject -->
+            <div>
+              <label for="contactSubject" class="block text-sm font-semibold text-primary-dark mb-1" data-i18n="form.subject">Asunto</label>
+              <select id="contactSubject" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                <option value="clases" data-i18n="form.subjects.clases">Información sobre clases</option>
+                <option value="espacios" data-i18n="form.subjects.espacios">Consulta sobre espacios</option>
+                <option value="instructores" data-i18n="form.subjects.instructores">Quiero ser instructor</option>
+                <option value="eventos" data-i18n="form.subjects.eventos">Eventos y retiros</option>
+                <option value="otros" data-i18n="form.subjects.otros">Consulta general</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="contactMessage" class="block text-sm font-semibold text-primary-dark mb-1" data-i18n="form.message">Mensaje</label>
+              <textarea id="contactMessage" required rows="5" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none" data-i18n-placeholder="form.messagePlaceholder" placeholder="Escribe tu mensaje aquí..."></textarea>
+            </div>
+
+            <!-- Error/Success -->
+            <div id="contactFormFeedback" class="hidden rounded-xl px-4 py-3 text-sm"></div>
+
+            <!-- Submit -->
+            <button type="submit" id="contactSubmitBtn" class="w-full bg-primary-dark text-white font-bold py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary">
+              <span data-i18n="form.send">Enviar Mensaje</span>
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

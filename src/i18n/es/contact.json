@@ -1,0 +1,51 @@
+{
+  "quote": {
+    "text": "La conexión humana es el puente más poderoso hacia la transformación espiritual.",
+    "author": "Filosofía ACIKY"
+  },
+  "hero": {
+    "title": "Contáctanos",
+    "subtitle": "Estamos aquí para acompañarte en tu camino"
+  },
+  "info": {
+    "title": "Información de Contacto",
+    "subtitle": "Elige el canal que prefieras para comunicarte con nosotros",
+    "email": {
+      "label": "Correo Electrónico",
+      "text": "Escríbenos para cualquier consulta"
+    },
+    "whatsapp": {
+      "label": "WhatsApp",
+      "number": "+53 5 0759360",
+      "text": "Escríbenos por WhatsApp"
+    },
+    "social": {
+      "label": "Redes Sociales",
+      "text": "Síguenos y mantente conectado"
+    }
+  },
+  "form": {
+    "title": "Envíanos un Mensaje",
+    "subtitle": "Completa el formulario y te responderemos lo antes posible",
+    "name": "Nombre completo",
+    "namePlaceholder": "Tu nombre",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "tu@email.com",
+    "phone": "Teléfono (opcional)",
+    "phonePlaceholder": "+53 5 1234567",
+    "subject": "Asunto",
+    "subjects": {
+      "clases": "Información sobre clases",
+      "espacios": "Consulta sobre espacios",
+      "instructores": "Quiero ser instructor",
+      "eventos": "Eventos y retiros",
+      "otros": "Consulta general"
+    },
+    "message": "Mensaje",
+    "messagePlaceholder": "Escribe tu mensaje aquí...",
+    "send": "Enviar Mensaje",
+    "sending": "Enviando...",
+    "success": "¡Mensaje enviado! Te responderemos pronto.",
+    "error": "Error al enviar el mensaje. Inténtalo de nuevo."
+  }
+}

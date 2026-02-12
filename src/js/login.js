@@ -22,9 +22,19 @@ export function initLogin() {
     successDiv.classList.remove('hidden')
   }
 
-  // Show info message if redirected for booking
-  if (params.get('reason') === 'booking' && infoDiv) {
-    infoDiv.classList.remove('hidden')
+  // Show info message if redirected for booking or contact
+  const reason = params.get('reason')
+  if (reason && infoDiv) {
+    const infoMessages = {
+      booking: 'info.bookingRedirect',
+      contact: 'info.contactRedirect'
+    }
+    const key = infoMessages[reason]
+    if (key) {
+      const span = infoDiv.querySelector('span:last-child')
+      if (span) span.textContent = t(key)
+      infoDiv.classList.remove('hidden')
+    }
   }
 
   form.addEventListener('submit', async (e) => {

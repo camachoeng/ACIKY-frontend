@@ -1,10 +1,12 @@
 import { apiFetch } from './api.js'
+import { getUser } from './auth.js'
 import { localized, t } from './i18n.js'
 
 let allRoutes = []
 
 export async function initGoldenRoutes() {
   await loadRoutes()
+  initRoutesContactCta()
 
   document.getElementById('routesRetry')
     ?.addEventListener('click', loadRoutes)
@@ -12,6 +14,23 @@ export async function initGoldenRoutes() {
   window.addEventListener('languageChanged', () => {
     if (allRoutes.length > 0) renderAll()
   })
+}
+
+function initRoutesContactCta() {
+  const section = document.getElementById('routesCtaSection')
+  const btn = document.getElementById('routesCtaBtn')
+  if (!section || !btn) return
+
+  const user = getUser()
+  if (!user) {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault()
+      const returnUrl = encodeURIComponent(window.location.pathname + window.location.search)
+      window.location.href = import.meta.env.BASE_URL + 'pages/login.html?reason=contact&return=' + returnUrl
+    })
+  } else if (user.role === 'instructor' || user.role === 'admin') {
+    section.classList.add('hidden')
+  }
 }
 
 async function loadRoutes() {
