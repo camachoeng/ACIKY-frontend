@@ -1,0 +1,39 @@
+{
+  "title": "Limpieza de Archivos",
+  "subtitle": "Gestiona las imágenes temporales subidas",
+  "backToProfile": "Volver al perfil",
+  "loading": "Cargando estadísticas...",
+  "retry": "Reintentar",
+  "stats": {
+    "temporaryLabel": "Archivos Temporales",
+    "permanentLabel": "Archivos Permanentes",
+    "totalLabel": "Total de Archivos"
+  },
+  "actions": {
+    "title": "Acciones de Limpieza",
+    "cleanupTitle": "Limpiar Archivos Temporales",
+    "cleanupDescription": "Elimina archivos temporales subidos hace más de 24 horas que nunca fueron guardados.",
+    "cleanupButton": "Ejecutar Limpieza",
+    "confirmCleanup": "¿Estás seguro de eliminar archivos temporales?",
+    "cleaning": "Limpiando...",
+    "refreshTitle": "Actualizar Estadísticas",
+    "refreshDescription": "Recarga las estadísticas de archivos subidos.",
+    "refreshButton": "Actualizar"
+  },
+  "result": {
+    "title": "Resultado de Limpieza",
+    "success": "✅ Limpieza completada exitosamente",
+    "error": "❌ Error en la limpieza",
+    "deletedCount": "Archivos eliminados",
+    "threshold": "Umbral aplicado",
+    "deletedFiles": "Archivos eliminados"
+  },
+  "info": {
+    "title": "¿Qué son los archivos temporales?",
+    "description": "Son imágenes que fueron subidas pero nunca guardadas (el usuario subió una imagen pero no guardó el espacio, galería o publicación). Estos archivos ocupan espacio en Cloudinary sin estar en uso.",
+    "recommendation": "Recomendación: Ejecuta la limpieza semanalmente para mantener el almacenamiento optimizado."
+  },
+  "errors": {
+    "loadError": "Error al cargar estadísticas"
+  }
+}

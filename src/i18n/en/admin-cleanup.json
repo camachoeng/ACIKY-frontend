@@ -1,0 +1,39 @@
+{
+  "title": "File Cleanup",
+  "subtitle": "Manage temporary uploaded images",
+  "backToProfile": "Back to Profile",
+  "loading": "Loading statistics...",
+  "retry": "Retry",
+  "stats": {
+    "temporaryLabel": "Temporary Files",
+    "permanentLabel": "Permanent Files",
+    "totalLabel": "Total Files"
+  },
+  "actions": {
+    "title": "Cleanup Actions",
+    "cleanupTitle": "Clean Temporary Files",
+    "cleanupDescription": "Deletes temporary files uploaded more than 24 hours ago that were never saved.",
+    "cleanupButton": "Run Cleanup",
+    "confirmCleanup": "Are you sure you want to delete temporary files?",
+    "cleaning": "Cleaning...",
+    "refreshTitle": "Refresh Statistics",
+    "refreshDescription": "Reload uploaded file statistics.",
+    "refreshButton": "Refresh"
+  },
+  "result": {
+    "title": "Cleanup Result",
+    "success": "✅ Cleanup completed successfully",
+    "error": "❌ Cleanup error",
+    "deletedCount": "Files deleted",
+    "threshold": "Applied threshold",
+    "deletedFiles": "Deleted files"
+  },
+  "info": {
+    "title": "What are temporary files?",
+    "description": "These are images that were uploaded but never saved (user uploaded an image but didn't save the space, gallery, or post). These files take up space in Cloudinary without being used.",
+    "recommendation": "Recommendation: Run cleanup weekly to keep storage optimized."
+  },
+  "errors": {
+    "loadError": "Error loading statistics"
+  }
+}

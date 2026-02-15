@@ -1,0 +1,59 @@
+{
+  "title": "My Space",
+  "subtitle": "Manage your practice space information",
+  "backToProfile": "Back to Profile",
+  "modal": {
+    "title": "Edit Space"
+  },
+  "card": {
+    "address": "Address",
+    "municipality": "Municipality",
+    "disciplines": "Disciplines",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "form": {
+    "cancelButton": "Cancel",
+    "name": "Space Name",
+    "namePlaceholder": "ACIKY Yoga Center - Old Havana",
+    "nameEn": "Name (English)",
+    "nameEnPlaceholder": "ACIKY Yoga Center - Old Havana",
+    "image": "Space Image",
+    "imageHelp": "Drag an image or click to select",
+    "address": "Address",
+    "addressPlaceholder": "Street, number, references...",
+    "addressEn": "Address (English)",
+    "addressEnPlaceholder": "Street, number, references...",
+    "municipality": "Municipality",
+    "municipalityPlaceholder": "Old Havana",
+    "municipalityReadonly": "Only administrators can edit the municipality",
+    "gpsLocation": "GPS Location",
+    "gpsReadonly": "Only administrators can edit GPS location",
+    "disciplines": "Disciplines",
+    "disciplinesPlaceholder": "Kundalini Yoga, Hatha, Rebirthing...",
+    "disciplinesHelp": "Separate with commas",
+    "disciplinesReadonly": "Only administrators can edit disciplines",
+    "phone": "Phone/WhatsApp",
+    "phonePlaceholder": "+53 5 0759360",
+    "email": "Contact Email",
+    "emailPlaceholder": "instructor@example.com",
+    "active": "Active Space",
+    "saveButton": "Save Changes",
+    "saving": "Saving..."
+  },
+  "empty": {
+    "title": "You don't have an assigned space",
+    "message": "You haven't been assigned a practice space yet. Contact the administrator to request a space assignment.",
+    "contactButton": "Contact Administrator"
+  },
+  "errors": {
+    "loadError": "Error loading your space",
+    "saveError": "Error saving changes",
+    "uploadError": "Error uploading image",
+    "requiredFields": "Please fill in all required fields"
+  },
+  "success": {
+    "saved": "Changes saved successfully"
+  },
+  "loading": "Loading your space..."
+}

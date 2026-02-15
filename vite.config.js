@@ -39,6 +39,8 @@ export default defineConfig(({ command }) => {
           adminBlog: resolve(__dirname, 'pages/admin/blog.html'),
           adminTestimonials: resolve(__dirname, 'pages/admin/testimonials.html'),
           adminGoldenRoutes: resolve(__dirname, 'pages/admin/golden-routes.html'),
+          adminSpaces: resolve(__dirname, 'pages/admin/spaces.html'),
+          adminCleanup: resolve(__dirname, 'pages/admin/cleanup.html'),
           blog: resolve(__dirname, 'pages/blog.html'),
           testimonials: resolve(__dirname, 'pages/testimonials.html'),
           goldenRoutes: resolve(__dirname, 'pages/golden-routes.html'),
@@ -46,7 +48,9 @@ export default defineConfig(({ command }) => {
           rebirthing: resolve(__dirname, 'pages/rebirthing.html'),
           onlinesadhana: resolve(__dirname, 'pages/onlinesadhana.html'),
           festival: resolve(__dirname, 'pages/festival.html'),
+          spaces: resolve(__dirname, 'pages/spaces.html'),
           instructorClasses: resolve(__dirname, 'pages/instructor/my-classes.html'),
+          instructorMySpace: resolve(__dirname, 'pages/instructor/my-space.html'),
           verifyEmail: resolve(__dirname, 'pages/verify-email.html')
         }
       }

@@ -1,0 +1,28 @@
+{
+  "quote": {
+    "text": "El espacio donde practicas yoga se convierte en un templo de transformación personal.",
+    "author": "Filosofía ACIKY"
+  },
+  "hero": {
+    "title": "Espacios de Práctica",
+    "subtitle": "Descubre dónde puedes practicar Kundalini Yoga en Cuba"
+  },
+  "filter": {
+    "label": "Filtrar por municipio",
+    "allOption": "Todos los municipios",
+    "noResults": "No hay espacios en este municipio"
+  },
+  "card": {
+    "instructor": "Instructor",
+    "instructors": "Instructores",
+    "address": "Dirección",
+    "municipality": "Municipio",
+    "disciplines": "Disciplinas",
+    "emailButton": "Escribir email",
+    "whatsappButton": "WhatsApp",
+    "locationButton": "Ver ubicación"
+  },
+  "loading": "Cargando espacios...",
+  "empty": "No hay espacios disponibles en este momento",
+  "error": "Error al cargar espacios. Por favor, intenta nuevamente."
+}

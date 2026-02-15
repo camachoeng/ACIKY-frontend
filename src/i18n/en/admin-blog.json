@@ -1,6 +1,7 @@
 {
   "title": "Blog",
   "subtitle": "Manage blog articles",
+  "backToProfile": "Back to Profile",
   "newButton": "New Article",
   "loading": "Loading articles...",
   "empty": "No articles registered",

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Espacios de Práctica - Kundalini Yoga en Cuba" />
+    <title>Espacios de Práctica - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <!-- Quote -->
+      <section class="px-6 py-6">
+        <div class="relative p-8 bg-white rounded-2xl shadow-sm border-l-4 border-primary">
+          <span class="absolute top-4 left-4 text-primary/10 text-6xl font-serif">"</span>
+          <p class="italic text-lg leading-relaxed text-slate-600 relative z-10" data-i18n="quote.text">El espacio donde practicas yoga se convierte en un templo de transformación personal.</p>
+          <p class="mt-4 text-right text-sm font-bold text-primary-dark">— <span data-i18n="quote.author">Filosofía ACIKY</span></p>
+        </div>
+      </section>
+
+      <!-- Hero -->
+      <section class="px-6 mb-10">
+        <div class="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
+          <img alt="Espacios de Práctica" class="absolute inset-0 w-full h-full object-cover" src="{{basePath}}/images/activities/activity-spaces.jpeg" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <h1 class="text-3xl font-bold mb-2" data-i18n="hero.title">Espacios de Práctica</h1>
+            <p class="text-sm opacity-90 mb-6" data-i18n="hero.subtitle">Descubre dónde puedes practicar Kundalini Yoga en Cuba</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Municipality Filter -->
+      <section class="px-4 md:px-8 lg:px-16 mb-6">
+        <div class="max-w-sm">
+          <label for="municipalityFilter" class="block text-sm font-semibold text-primary-dark mb-2" data-i18n="filter.label">
+            Filtrar por municipio
+          </label>
+          <select id="municipalityFilter" class="w-full px-4 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+            <option value="" data-i18n="filter.allOption">Todos los municipios</option>
+            <!-- Dynamically populated -->
+          </select>
+        </div>
+      </section>
+
+      <!-- Spaces List -->
+      <section class="px-4 md:px-8 lg:px-16 py-8">
+        <div id="spacesLoading" class="text-center py-12">
+          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando espacios...</p>
+        </div>
+
+        <div id="spacesError" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-accent-terracotta text-4xl">error</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="error">Error al cargar espacios. Por favor, intenta nuevamente.</p>
+          <button id="spacesRetry" class="mt-4 text-primary font-semibold text-sm hover:underline">Reintentar</button>
+        </div>
+
+        <div id="spacesEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">home</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="empty">No hay espacios disponibles en este momento</p>
+        </div>
+
+        <div id="filterNoResults" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">filter_alt_off</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="filter.noResults">No hay espacios en este municipio</p>
+        </div>
+
+        <div id="spacesContainer" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </section>
+    </main>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

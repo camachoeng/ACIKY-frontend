@@ -18,6 +18,7 @@
     "title": "Instructor Zone",
     "description": "Manage your assigned classes",
     "button": "My Classes",
-    "blogButton": "My Blog"
+    "blogButton": "My Blog",
+    "mySpaceButton": "My Space"
   }
 }

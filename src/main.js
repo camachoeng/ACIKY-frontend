@@ -353,6 +353,18 @@ async function initPage() {
   } else if (path.includes('/pages/festival.html')) {
     const { initFestival } = await import('./js/festival.js')
     initFestival()
+  } else if (path.includes('/pages/admin/spaces.html')) {
+    const { initAdminSpaces } = await import('./js/admin/spaces.js')
+    initAdminSpaces()
+  } else if (path.includes('/pages/admin/cleanup.html')) {
+    const { initCleanup } = await import('./js/admin/cleanup.js')
+    initCleanup()
+  } else if (path.includes('/pages/spaces.html')) {
+    const { initSpaces } = await import('./js/spaces.js')
+    initSpaces()
+  } else if (path.includes('/pages/instructor/my-space.html')) {
+    const { initMySpace } = await import('./js/instructor/mySpace.js')
+    initMySpace()
   } else if (path.includes('/pages/instructor/my-classes.html')) {
     const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
     initInstructorClasses()

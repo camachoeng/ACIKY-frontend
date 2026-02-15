@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestión de Espacios - Admin ACIKY" />
+    <title>Espacios - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Gestión de Espacios</h1>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Administra los espacios de práctica de ACIKY</p>
+          </div>
+          <button id="createSpaceBtn"
+                  class="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors shadow-sm">
+            <span class="material-symbols-outlined text-sm">add</span>
+            <span data-i18n="newButton">Nuevo Espacio</span>
+          </button>
+        </div>
+
+        <!-- Loading State -->
+        <div id="spacesLoading" class="text-center py-12">
+          <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando...</p>
+        </div>
+
+        <!-- Spaces List -->
+        <div id="spacesContainer" class="hidden space-y-4"></div>
+
+        <!-- Empty State -->
+        <div id="spacesEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-5xl text-slate-300">home</span>
+          <p class="text-slate-400 text-sm mt-2" data-i18n="empty">No hay espacios registrados. Crea el primero.</p>
+        </div>
+      </section>
+
+      <!-- Space Modal -->
+      <div id="spaceModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" id="spaceModalOverlay"></div>
+        <div class="absolute inset-x-4 top-4 bottom-4 max-w-2xl mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
+          <div class="p-8">
+            <h2 id="spaceModalTitle" class="text-xl font-bold text-primary-dark mb-6" data-i18n="modal.newTitle">Nuevo Espacio</h2>
+
+            <form id="spaceForm" class="space-y-4">
+              <input type="hidden" id="spaceId" />
+
+              <!-- Name (ES) -->
+              <div>
+                <label for="spaceName" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.name">Nombre del Espacio</label>
+                <input type="text" id="spaceName" required
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.namePlaceholder" placeholder="Centro de Yoga ACIKY - Habana Vieja" />
+              </div>
+
+              <!-- Name (EN) -->
+              <div>
+                <label for="spaceNameEn" class="block text-xs font-medium text-accent-teal mb-1" data-i18n="modal.nameEn">Nombre (Inglés)</label>
+                <input type="text" id="spaceNameEn"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.nameEnPlaceholder" placeholder="ACIKY Yoga Center - Old Havana" />
+              </div>
+
+              <!-- Image Upload -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.image">Imagen del Espacio</label>
+                <div id="imageUploadZone"
+                     class="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-primary hover:bg-primary/5 transition-colors">
+                  <span class="material-symbols-outlined text-4xl text-slate-400">cloud_upload</span>
+                  <p class="text-sm text-slate-500 mt-2" data-i18n="modal.imageHelp">Arrastra una imagen o haz clic para seleccionar</p>
+                  <input type="file" id="imageInput" accept="image/*" class="hidden" />
+                </div>
+                <div id="imagePreview" class="hidden mt-3">
+                  <img id="imagePreviewImg" src="" alt="Preview" class="w-full h-48 object-cover rounded-2xl" />
+                  <button type="button" id="removeImageBtn" class="mt-2 text-sm text-accent-terracotta hover:underline">Eliminar imagen</button>
+                </div>
+                <input type="hidden" id="imageUrl" />
+              </div>
+
+              <!-- Address (ES) -->
+              <div>
+                <label for="spaceAddress" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.address">Dirección</label>
+                <textarea id="spaceAddress" rows="2"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="modal.addressPlaceholder" placeholder="Calle, número, referencias..."></textarea>
+              </div>
+
+              <!-- Address (EN) -->
+              <div>
+                <label for="spaceAddressEn" class="block text-xs font-medium text-accent-teal mb-1" data-i18n="modal.addressEn">Dirección (Inglés)</label>
+                <textarea id="spaceAddressEn" rows="2"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="modal.addressEnPlaceholder" placeholder="Street, number, references..."></textarea>
+              </div>
+
+              <!-- Municipality -->
+              <div>
+                <label for="spaceMunicipality" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.municipality">Municipio</label>
+                <input type="text" id="spaceMunicipality"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.municipalityPlaceholder" placeholder="La Habana Vieja" />
+              </div>
+
+              <!-- GPS Location -->
+              <div>
+                <label for="spaceGpsLocation" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.gpsLocation">Ubicación GPS</label>
+                <input type="url" id="spaceGpsLocation"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.gpsPlaceholder" placeholder="https://maps.google.com/?q=23.1357,-82.3599" />
+                <p class="text-xs text-slate-500 mt-1" data-i18n="modal.gpsHelp">Enlace de Google Maps</p>
+              </div>
+
+              <!-- Disciplines (ES) -->
+              <div>
+                <label for="spaceDisciplines" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.disciplines">Disciplinas</label>
+                <input type="text" id="spaceDisciplines"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.disciplinesPlaceholder" placeholder="Kundalini Yoga, Hatha, Rebirthing..." />
+                <p class="text-xs text-slate-500 mt-1" data-i18n="modal.disciplinesHelp">Separa con comas</p>
+              </div>
+
+              <!-- Disciplines (EN) -->
+              <div>
+                <label for="spaceDisciplinesEn" class="block text-xs font-medium text-accent-teal mb-1" data-i18n="modal.disciplinesEn">Disciplinas (Inglés)</label>
+                <input type="text" id="spaceDisciplinesEn"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.disciplinesEnPlaceholder" placeholder="Kundalini Yoga, Meditation, Rebirthing..." />
+              </div>
+
+              <!-- Instructors -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-2" data-i18n="modal.instructors">Instructores Asignados</label>
+                <div id="instructorsCheckboxes" class="space-y-2 max-h-40 overflow-y-auto p-3 bg-slate-50 rounded-2xl border border-slate-200">
+                  <!-- Dynamically populated with instructor checkboxes -->
+                  <p class="text-xs text-slate-400" data-i18n="modal.loadingInstructors">Cargando instructores...</p>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label for="spacePhone" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.phone">Teléfono/WhatsApp</label>
+                <input type="tel" id="spacePhone"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.phonePlaceholder" placeholder="+53 5 0759360" />
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label for="spaceEmail" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.email">Email del Instructor</label>
+                <input type="email" id="spaceEmail"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.emailPlaceholder" placeholder="instructor@example.com" />
+              </div>
+
+              <!-- Active toggle -->
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="spaceActive"
+                       class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" />
+                <label for="spaceActive" class="text-sm font-medium text-primary-dark" data-i18n="modal.active">Espacio Activo</label>
+              </div>
+
+              <!-- Form error -->
+              <div id="spaceFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+              <!-- Action buttons -->
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelSpaceBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancelButton">Cancelar</button>
+                <button type="submit" id="saveSpaceBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.saveButton">Guardar Espacio</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

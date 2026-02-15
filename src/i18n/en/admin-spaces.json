@@ -1,0 +1,72 @@
+{
+  "title": "Spaces Management",
+  "subtitle": "Manage ACIKY practice spaces",
+  "newButton": "New Space",
+  "modal": {
+    "newTitle": "New Space",
+    "editTitle": "Edit Space",
+    "name": "Space Name",
+    "namePlaceholder": "ACIKY Yoga Center - Old Havana",
+    "nameEn": "Name (English)",
+    "nameEnPlaceholder": "ACIKY Yoga Center - Old Havana",
+    "image": "Space Image",
+    "imageHelp": "Drag an image or click to select",
+    "address": "Address",
+    "addressPlaceholder": "Street, number, references...",
+    "addressEn": "Address (English)",
+    "addressEnPlaceholder": "Street, number, references...",
+    "municipality": "Municipality",
+    "municipalityPlaceholder": "Old Havana",
+    "gpsLocation": "GPS Location",
+    "gpsPlaceholder": "https://maps.google.com/?q=23.1357,-82.3599",
+    "gpsHelp": "Google Maps link",
+    "disciplines": "Disciplines",
+    "disciplinesPlaceholder": "Kundalini Yoga, Hatha, Rebirthing...",
+    "disciplinesHelp": "Separate with commas",
+    "disciplinesEn": "Disciplines (English)",
+    "disciplinesEnPlaceholder": "Kundalini Yoga, Meditation, Rebirthing...",
+    "phone": "Phone/WhatsApp",
+    "phonePlaceholder": "+53 5 0759360",
+    "email": "Instructor Email",
+    "emailPlaceholder": "instructor@example.com",
+    "instructors": "Assigned Instructors",
+    "instructorsHelp": "Select one or more instructors",
+    "loadingInstructors": "Loading instructors...",
+    "noInstructors": "No instructors available",
+    "active": "Active Space",
+    "saveButton": "Save Space",
+    "cancelButton": "Cancel",
+    "saving": "Saving..."
+  },
+  "list": {
+    "name": "Name",
+    "instructorCount": "instructor",
+    "instructorCountPlural": "instructors",
+    "noInstructors": "No instructor assigned",
+    "address": "Address",
+    "image": "Image"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "toggleActive": "Toggle Status"
+  },
+  "confirmDelete": "Are you sure you want to delete this space? This action cannot be undone.",
+  "errors": {
+    "loadError": "Error loading spaces",
+    "saveError": "Error saving space",
+    "deleteError": "Error deleting space",
+    "uploadError": "Error uploading image",
+    "requiredFields": "Please fill in all required fields"
+  },
+  "success": {
+    "saved": "Space saved successfully",
+    "deleted": "Space deleted successfully"
+  },
+  "loading": "Loading...",
+  "empty": "No spaces registered. Create the first one."
+}
