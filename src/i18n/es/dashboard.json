@@ -18,6 +18,7 @@
     "title": "Zona Instructor",
     "description": "Gestiona las clases que tienes asignadas",
     "button": "Mis Clases",
-    "blogButton": "Mi Blog"
+    "blogButton": "Mi Blog",
+    "mySpaceButton": "Mi Espacio"
   }
 }

@@ -1,0 +1,72 @@
+{
+  "title": "Gestión de Espacios",
+  "subtitle": "Administra los espacios de práctica de ACIKY",
+  "newButton": "Nuevo Espacio",
+  "modal": {
+    "newTitle": "Nuevo Espacio",
+    "editTitle": "Editar Espacio",
+    "name": "Nombre del Espacio",
+    "namePlaceholder": "Centro de Yoga ACIKY - Habana Vieja",
+    "nameEn": "Nombre (Inglés)",
+    "nameEnPlaceholder": "ACIKY Yoga Center - Old Havana",
+    "image": "Imagen del Espacio",
+    "imageHelp": "Arrastra una imagen o haz clic para seleccionar",
+    "address": "Dirección",
+    "addressPlaceholder": "Calle, número, referencias...",
+    "addressEn": "Dirección (Inglés)",
+    "addressEnPlaceholder": "Street, number, references...",
+    "municipality": "Municipio",
+    "municipalityPlaceholder": "La Habana Vieja",
+    "gpsLocation": "Ubicación GPS",
+    "gpsPlaceholder": "https://maps.google.com/?q=23.1357,-82.3599",
+    "gpsHelp": "Enlace de Google Maps",
+    "disciplines": "Disciplinas",
+    "disciplinesPlaceholder": "Kundalini Yoga, Hatha, Rebirthing...",
+    "disciplinesHelp": "Separa con comas",
+    "disciplinesEn": "Disciplinas (Inglés)",
+    "disciplinesEnPlaceholder": "Kundalini Yoga, Meditation, Rebirthing...",
+    "phone": "Teléfono/WhatsApp",
+    "phonePlaceholder": "+53 5 0759360",
+    "email": "Email del Instructor",
+    "emailPlaceholder": "instructor@example.com",
+    "instructors": "Instructores Asignados",
+    "instructorsHelp": "Selecciona uno o más instructores",
+    "loadingInstructors": "Cargando instructores...",
+    "noInstructors": "No hay instructores disponibles",
+    "active": "Espacio Activo",
+    "saveButton": "Guardar Espacio",
+    "cancelButton": "Cancelar",
+    "saving": "Guardando..."
+  },
+  "list": {
+    "name": "Nombre",
+    "instructorCount": "instructor",
+    "instructorCountPlural": "instructores",
+    "noInstructors": "Sin instructor asignado",
+    "address": "Dirección",
+    "image": "Imagen"
+  },
+  "status": {
+    "active": "Activo",
+    "inactive": "Inactivo"
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "toggleActive": "Cambiar Estado"
+  },
+  "confirmDelete": "¿Estás seguro de eliminar este espacio? Esta acción no se puede deshacer.",
+  "errors": {
+    "loadError": "Error al cargar espacios",
+    "saveError": "Error al guardar espacio",
+    "deleteError": "Error al eliminar espacio",
+    "uploadError": "Error al subir imagen",
+    "requiredFields": "Por favor completa todos los campos requeridos"
+  },
+  "success": {
+    "saved": "Espacio guardado exitosamente",
+    "deleted": "Espacio eliminado exitosamente"
+  },
+  "loading": "Cargando...",
+  "empty": "No hay espacios registrados. Crea el primero."
+}

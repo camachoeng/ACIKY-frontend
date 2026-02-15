@@ -1,6 +1,7 @@
 {
   "title": "Blog",
   "subtitle": "Gestiona los artículos del blog",
+  "backToProfile": "Volver al perfil",
   "newButton": "Nuevo Artículo",
   "loading": "Cargando artículos...",
   "empty": "No hay artículos registrados",

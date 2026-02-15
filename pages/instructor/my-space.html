@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mi Espacio - Instructor ACIKY" />
+    <title>Mi Espacio - ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> header}}
+
+    <main class="pb-32 lg:pb-12">
+      <section class="px-6 py-8 max-w-4xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Mi Espacio</h1>
+            <p class="text-sm text-slate-500 mt-1" data-i18n="subtitle">Gestiona la información de tu espacio de práctica</p>
+          </div>
+          <a href="{{basePath}}/pages/dashboard.html" class="text-primary hover:text-primary-dark transition-colors text-sm font-medium flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span data-i18n="backToProfile">Volver al perfil</span>
+          </a>
+        </div>
+
+        <!-- Loading -->
+        <div id="spaceLoading" class="text-center py-12">
+          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando tu espacio...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="spaceEmpty" class="hidden">
+          <div class="text-center py-12 text-slate-400">
+            <span class="material-symbols-outlined text-6xl">home_work</span>
+            <p class="text-sm mt-2" data-i18n="empty.title">No tienes un espacio asignado</p>
+            <p class="text-xs mt-1" data-i18n="empty.message">Aún no se te ha asignado un espacio de práctica. Contacta con el administrador para solicitar la asignación de un espacio.</p>
+          </div>
+        </div>
+
+        <!-- Space Card Container -->
+        <div id="spaceCardContainer" class="hidden"></div>
+      </section>
+
+      <!-- Edit Space Modal -->
+      <div id="spaceModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" id="spaceModalOverlay"></div>
+        <div class="absolute inset-x-4 top-4 bottom-4 max-w-lg mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
+          <div class="p-8">
+            <h2 class="text-xl font-bold text-primary-dark mb-6" data-i18n="modal.title">Editar Espacio</h2>
+
+            <form id="spaceForm" class="space-y-4">
+              <input type="hidden" id="spaceId" />
+
+              <!-- Image Upload -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="form.image">Imagen del Espacio</label>
+                <div id="imageUploadZone" class="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-primary hover:bg-primary/5 transition-colors">
+                  <span class="material-symbols-outlined text-4xl text-slate-400">cloud_upload</span>
+                  <p class="text-sm text-slate-500 mt-2" data-i18n="form.imageHelp">Arrastra una imagen o haz clic para seleccionar</p>
+                  <input type="file" id="imageInput" accept="image/*" class="hidden" />
+                </div>
+                <div id="imagePreview" class="hidden mt-3">
+                  <img id="imagePreviewImg" src="" alt="Preview" class="w-full h-48 object-cover rounded-2xl" />
+                  <button type="button" id="removeImageBtn" class="mt-2 text-sm text-accent-terracotta hover:underline">Eliminar imagen</button>
+                </div>
+                <input type="hidden" id="imageUrl" />
+              </div>
+
+              <!-- Name (ES) -->
+              <div>
+                <label for="spaceName" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="form.name">Nombre del Espacio</label>
+                <input type="text" id="spaceName" required
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="form.namePlaceholder" placeholder="Centro de Yoga ACIKY - Habana Vieja" />
+
+                <!-- Name (EN) -->
+                <label for="spaceNameEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="form.nameEn">Nombre (Inglés)</label>
+                <input type="text" id="spaceNameEn"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="form.nameEnPlaceholder" placeholder="ACIKY Yoga Center - Old Havana" />
+              </div>
+
+              <!-- Address (ES) -->
+              <div>
+                <label for="spaceAddress" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="form.address">Dirección</label>
+                <textarea id="spaceAddress" rows="2"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="form.addressPlaceholder" placeholder="Calle, número, referencias..."></textarea>
+
+                <!-- Address (EN) -->
+                <label for="spaceAddressEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="form.addressEn">Dirección (Inglés)</label>
+                <textarea id="spaceAddressEn" rows="2"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="form.addressEnPlaceholder" placeholder="Street, number, references..."></textarea>
+              </div>
+
+              <!-- Municipality (READ-ONLY for instructors) -->
+              <div>
+                <label for="spaceMunicipality" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="form.municipality">Municipio</label>
+                <input type="text" id="spaceMunicipality" readonly
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 text-slate-600 outline-none text-sm cursor-not-allowed" />
+                <p class="text-xs text-slate-500 mt-1" data-i18n="form.municipalityReadonly">Solo los administradores pueden editar el municipio</p>
+              </div>
+
+              <!-- GPS Location (READ-ONLY for instructors) -->
+              <div>
+                <label for="spaceGpsLocation" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="form.gpsLocation">Ubicación GPS</label>
+                <input type="url" id="spaceGpsLocation" readonly
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 text-slate-600 outline-none text-sm cursor-not-allowed" />
+                <p class="text-xs text-slate-500 mt-1" data-i18n="form.gpsReadonly">Solo los administradores pueden editar la ubicación GPS</p>
+              </div>
+
+              <!-- Disciplines (READ-ONLY for instructors) -->
+              <div>
+                <label for="spaceDisciplines" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="form.disciplines">Disciplinas</label>
+                <input type="text" id="spaceDisciplines" readonly
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 text-slate-600 outline-none text-sm cursor-not-allowed" />
+                <p class="text-xs text-slate-500 mt-1" data-i18n="form.disciplinesReadonly">Solo los administradores pueden editar las disciplinas</p>
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label for="spacePhone" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="form.phone">Teléfono/WhatsApp</label>
+                <input type="tel" id="spacePhone"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="form.phonePlaceholder" placeholder="+53 5 0759360" />
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label for="spaceEmail" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="form.email">Email de contacto</label>
+                <input type="email" id="spaceEmail"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="form.emailPlaceholder" placeholder="instructor@example.com" />
+              </div>
+
+              <!-- Active Toggle -->
+              <div class="flex items-center gap-2 pt-2">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" id="spaceActive" checked
+                         class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
+                  <span class="text-sm font-medium text-primary-dark" data-i18n="form.active">Espacio Activo</span>
+                </label>
+              </div>
+
+              <!-- Form Error -->
+              <div id="spaceFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+              <!-- Action Buttons -->
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelSpaceBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="form.cancelButton">Cancelar</button>
+                <button type="submit" id="saveSpaceBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors">
+                  <span data-i18n="form.saveButton">Guardar Cambios</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+    {{> bottom-nav}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -26,8 +26,13 @@ export async function apiFetch(path, options = {}) {
     }
   }
 
-  // Don't set Content-Type for GET/HEAD (no body)
+  // Don't set Content-Type for GET/HEAD (no body) or FormData (browser sets it)
   if (!options.method || options.method === 'GET' || options.method === 'HEAD') {
+    delete config.headers['Content-Type']
+  }
+
+  // Don't set Content-Type for FormData - let browser set it with boundary
+  if (options.body instanceof FormData) {
     delete config.headers['Content-Type']
   }
 

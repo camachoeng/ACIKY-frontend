@@ -63,6 +63,8 @@ function getPageName() {
     'pages/admin/blog.html': 'admin-blog',
     'pages/admin/testimonials.html': 'admin-testimonials',
     'pages/admin/golden-routes.html': 'admin-golden-routes',
+    'pages/admin/spaces.html': 'admin-spaces',
+    'pages/admin/cleanup.html': 'admin-cleanup',
     'pages/blog.html': 'blog',
     'pages/testimonials.html': 'testimonials',
     'pages/golden-routes.html': 'golden-routes',
@@ -70,7 +72,9 @@ function getPageName() {
     'pages/rebirthing.html': 'rebirthing',
     'pages/onlinesadhana.html': 'onlinesadhana',
     'pages/festival.html': 'festival',
-    'pages/instructor/my-classes.html': 'instructor-classes'
+    'pages/spaces.html': 'spaces',
+    'pages/instructor/my-classes.html': 'instructor-classes',
+    'pages/instructor/my-space.html': 'my-space'
   }
 
   return pageMap[normalizedPath] || 'home'

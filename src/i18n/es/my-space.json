@@ -1,0 +1,59 @@
+{
+  "title": "Mi Espacio",
+  "subtitle": "Gestiona la información de tu espacio de práctica",
+  "backToProfile": "Volver al perfil",
+  "modal": {
+    "title": "Editar Espacio"
+  },
+  "card": {
+    "address": "Dirección",
+    "municipality": "Municipio",
+    "disciplines": "Disciplinas",
+    "phone": "Teléfono",
+    "email": "Email"
+  },
+  "form": {
+    "cancelButton": "Cancelar",
+    "name": "Nombre del Espacio",
+    "namePlaceholder": "Centro de Yoga ACIKY - Habana Vieja",
+    "nameEn": "Nombre (Inglés)",
+    "nameEnPlaceholder": "ACIKY Yoga Center - Old Havana",
+    "image": "Imagen del Espacio",
+    "imageHelp": "Arrastra una imagen o haz clic para seleccionar",
+    "address": "Dirección",
+    "addressPlaceholder": "Calle, número, referencias...",
+    "addressEn": "Dirección (Inglés)",
+    "addressEnPlaceholder": "Street, number, references...",
+    "municipality": "Municipio",
+    "municipalityPlaceholder": "La Habana Vieja",
+    "municipalityReadonly": "Solo los administradores pueden editar el municipio",
+    "gpsLocation": "Ubicación GPS",
+    "gpsReadonly": "Solo los administradores pueden editar la ubicación GPS",
+    "disciplines": "Disciplinas",
+    "disciplinesPlaceholder": "Kundalini Yoga, Hatha, Rebirthing...",
+    "disciplinesHelp": "Separa con comas",
+    "disciplinesReadonly": "Solo los administradores pueden editar las disciplinas",
+    "phone": "Teléfono/WhatsApp",
+    "phonePlaceholder": "+53 5 0759360",
+    "email": "Email de contacto",
+    "emailPlaceholder": "instructor@example.com",
+    "active": "Espacio Activo",
+    "saveButton": "Guardar Cambios",
+    "saving": "Guardando..."
+  },
+  "empty": {
+    "title": "No tienes un espacio asignado",
+    "message": "Aún no se te ha asignado un espacio de práctica. Contacta con el administrador para solicitar la asignación de un espacio.",
+    "contactButton": "Contactar Administrador"
+  },
+  "errors": {
+    "loadError": "Error al cargar tu espacio",
+    "saveError": "Error al guardar cambios",
+    "uploadError": "Error al subir imagen",
+    "requiredFields": "Por favor completa todos los campos requeridos"
+  },
+  "success": {
+    "saved": "Cambios guardados exitosamente"
+  },
+  "loading": "Cargando tu espacio..."
+}

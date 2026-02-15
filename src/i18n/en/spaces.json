@@ -1,0 +1,28 @@
+{
+  "quote": {
+    "text": "The space where you practice yoga becomes a temple of personal transformation.",
+    "author": "ACIKY Philosophy"
+  },
+  "hero": {
+    "title": "Practice Spaces",
+    "subtitle": "Discover where you can practice Kundalini Yoga in Cuba"
+  },
+  "filter": {
+    "label": "Filter by municipality",
+    "allOption": "All municipalities",
+    "noResults": "No spaces found in this municipality"
+  },
+  "card": {
+    "instructor": "Instructor",
+    "instructors": "Instructors",
+    "address": "Address",
+    "municipality": "Municipality",
+    "disciplines": "Disciplines",
+    "emailButton": "Send email",
+    "whatsappButton": "WhatsApp",
+    "locationButton": "View location"
+  },
+  "loading": "Loading spaces...",
+  "empty": "No spaces available at this time",
+  "error": "Error loading spaces. Please try again."
+}

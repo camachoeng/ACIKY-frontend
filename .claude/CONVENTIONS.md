@@ -142,6 +142,55 @@ container.addEventListener('click', (e) => {
 | `accent-terracotta` | `#E8A090` | Warnings, delete |
 | `accent-rose` | `#E87A9A` | Admin badge |
 
+## Backend Changes
+
+**CRITICAL:** When a task requires backend modifications (in `d:/coding/yoga-backend`):
+
+1. **DO NOT** directly modify backend files
+2. **ALWAYS** provide instructions as a simple todo list for another Claude Code AI
+3. **NEVER** include code snippets, line numbers, or detailed file paths
+4. Format as clear, concise action items that Claude Code can interpret
+5. The user will run these changes in a separate Claude Code session in the backend repo
+
+**Good format (simple todo list):**
+```
+Backend Todo:
+- Add name_en column (VARCHAR 255) to spaces table
+- Update spaceRepository.create() to accept bilingual fields
+- Update spaceService.createSpace() to extract and pass new fields
+```
+
+**Bad format (DO NOT USE):**
+```
+Update d:/coding/yoga-backend/repositories/spaceRepository.js lines 104-112:
+async create({ name, name_en... }) { ... }
+```
+
+## Database Changes
+
+**CRITICAL:** When database schema changes are needed:
+
+1. **DO NOT** include SQL code snippets
+2. **ALWAYS** provide simple action items for another Claude Code AI
+3. Format as clear column/table descriptions
+4. The AI will write the SQL based on these instructions
+
+**Good format (simple todo list):**
+```
+Database Todo:
+- Add name_en column (VARCHAR 255) to spaces table after name column
+- Add address_en column (TEXT) to spaces table after address column
+- Add municipality column (VARCHAR 100) to spaces table
+- Rename location column to gps_location in spaces table
+- Add discipline_name_en column (VARCHAR 100) to spaces_disciplines table
+```
+
+**Bad format (DO NOT USE):**
+```
+ALTER TABLE spaces ADD COLUMN name_en VARCHAR(255) AFTER name;
+ALTER TABLE spaces ADD COLUMN address_en TEXT AFTER address;
+```
+
 ## Git Commits
 
 Format: `<type>: <short description>`
