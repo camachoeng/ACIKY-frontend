@@ -50,6 +50,14 @@
     "subtitle": "Bringing Kundalini Yoga to all of Cuba",
     "viewAll": "View all routes"
   },
+  "homeSpaces": {
+    "title": "Practice Spaces",
+    "subtitle": "Find where to practice Kundalini Yoga in Cuba",
+    "viewAll": "View all spaces",
+    "instructor": "instructor",
+    "instructors": "instructors",
+    "noInstructors": "No instructor assigned"
+  },
   "contact": {
     "title": "Have Questions?",
     "description": "Our team is here to help you on your path to wellness. Contact us for more information.",
