@@ -67,13 +67,28 @@
 
               <div class="grid grid-cols-2 gap-4">
                 <div>
-                  <label for="activitySchedule" class="block text-sm font-medium text-primary-dark mb-1">Horario</label>
+                  <label for="activityClassDate" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.classDate">Fecha de Clase</label>
+                  <input type="date" id="activityClassDate"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
+                  <p class="text-xs text-slate-400 mt-1" data-i18n="modal.classDateHelp">Para ordenar y filtrar</p>
+                </div>
+                <div>
+                  <label for="activityClassTime" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.classTime">Hora</label>
+                  <input type="time" id="activityClassTime"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="activitySchedule" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.schedule">Horario (texto)</label>
                   <input type="text" id="activitySchedule"
                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
                          placeholder="Martes 11:30 AM" />
+                  <p class="text-xs text-slate-400 mt-1" data-i18n="modal.scheduleHelp">Opcional, para mostrar</p>
                 </div>
                 <div>
-                  <label for="activityDuration" class="block text-sm font-medium text-primary-dark mb-1">Duracion (min)</label>
+                  <label for="activityDuration" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.duration">Duración (min)</label>
                   <input type="number" id="activityDuration" min="15" max="240"
                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
                          placeholder="90" />
