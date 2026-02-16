@@ -1,0 +1,28 @@
+{
+  "title": "My Routes",
+  "subtitle": "Routes assigned to you as instructor",
+  "backToProfile": "Back to profile",
+  "loading": "Loading your routes...",
+  "empty": {
+    "title": "You have no assigned routes",
+    "description": "Contact the administrator to assign routes to you"
+  },
+  "modal": {
+    "title": "Edit Route",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "status": "Status",
+    "statusActive": "Active",
+    "statusPlanning": "Planning",
+    "participants": "Participants",
+    "spaces": "Established spaces",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "loadError": "Error loading routes",
+    "notFound": "Route not found",
+    "saveError": "Error saving route"
+  }
+}

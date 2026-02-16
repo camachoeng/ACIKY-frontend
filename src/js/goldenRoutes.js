@@ -95,6 +95,16 @@ function renderActiveRoutes(routes) {
         <span>${escapeHtml(item.destination || '')}</span>
       </div>
       <p class="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">${escapeHtml(desc)}</p>
+      ${item.start_date || item.end_date ? `
+      <div class="flex items-center gap-1 text-xs text-primary mb-2">
+        <span class="material-symbols-outlined text-xs">schedule</span>
+        <span>${item.start_date ? formatDate(item.start_date) : '---'} → ${item.end_date ? formatDate(item.end_date) : '---'}</span>
+      </div>` : ''}
+      ${item.instructors && item.instructors.length > 0 ? `
+      <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
+        <span class="material-symbols-outlined text-xs">person</span>
+        <span>${escapeHtml(item.instructors.map(i => i.username).join(', '))}</span>
+      </div>` : ''}
       <div class="flex flex-wrap gap-3 text-xs text-slate-500">
         ${item.participants_count ? `
         <span class="flex items-center gap-1">
@@ -105,11 +115,6 @@ function renderActiveRoutes(routes) {
         <span class="flex items-center gap-1">
           <span class="material-symbols-outlined text-xs text-accent-terracotta">home</span>
           ${item.spaces_established} ${escapeHtml(t('routes.spaces'))}
-        </span>` : ''}
-        ${item.frequency ? `
-        <span class="flex items-center gap-1">
-          <span class="material-symbols-outlined text-xs text-primary">schedule</span>
-          ${escapeHtml(item.frequency)}
         </span>` : ''}
       </div>
     </div>`
@@ -144,9 +149,28 @@ function renderPlannedRoutes(routes) {
         <span class="material-symbols-outlined text-xs">arrow_forward</span>
         <span>${escapeHtml(item.destination || '')}</span>
       </div>
-      ${item.frequency ? `<p class="text-xs text-amber-600 mt-2 font-medium">${escapeHtml(item.frequency)}</p>` : ''}
+      ${item.start_date || item.end_date ? `
+      <p class="text-xs text-amber-600 mt-2 font-medium flex items-center gap-1">
+        <span class="material-symbols-outlined text-xs">schedule</span>
+        ${item.start_date ? formatDate(item.start_date) : '---'} → ${item.end_date ? formatDate(item.end_date) : '---'}
+      </p>` : ''}
+      ${item.instructors && item.instructors.length > 0 ? `
+      <p class="text-xs text-slate-500 mt-1 flex items-center gap-1">
+        <span class="material-symbols-outlined text-xs">person</span>
+        ${escapeHtml(item.instructors.map(i => i.username).join(', '))}
+      </p>` : ''}
     </div>`
   }).join('')
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return ''
+  // Split the date string to avoid timezone issues
+  const datePart = dateStr.split('T')[0]
+  const [year, month, day] = datePart.split('-')
+  // Create date in local timezone
+  const date = new Date(year, month - 1, day)
+  return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
 function renderImpactStats(routes) {

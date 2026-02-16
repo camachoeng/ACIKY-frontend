@@ -1,0 +1,28 @@
+{
+  "title": "Mis Rutas",
+  "subtitle": "Rutas asignadas a ti como instructor",
+  "backToProfile": "Volver al perfil",
+  "loading": "Cargando tus rutas...",
+  "empty": {
+    "title": "No tienes rutas asignadas",
+    "description": "Contacta al administrador para que te asigne rutas"
+  },
+  "modal": {
+    "title": "Editar Ruta",
+    "startDate": "Fecha de Inicio",
+    "endDate": "Fecha de Fin",
+    "status": "Estado",
+    "statusActive": "Activa",
+    "statusPlanning": "En planificación",
+    "participants": "Participantes",
+    "spaces": "Espacios establecidos",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "errors": {
+    "loadError": "Error al cargar rutas",
+    "notFound": "Ruta no encontrada",
+    "saveError": "Error al guardar ruta"
+  }
+}

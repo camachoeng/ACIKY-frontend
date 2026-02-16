@@ -3,6 +3,7 @@ import { apiFetch } from '../api.js'
 import { t } from '../i18n.js'
 
 let allRoutes = []
+let allInstructors = []
 
 const STATUS_STYLES = {
   active: { bg: 'bg-green-100', text: 'text-green-700', icon: 'check_circle' },
@@ -13,7 +14,7 @@ export async function initAdminGoldenRoutes() {
   const user = await requireAdmin()
   if (!user) return
 
-  await loadRoutes()
+  await Promise.all([loadRoutes(), loadInstructors()])
 
   document.getElementById('createRouteBtn')
     ?.addEventListener('click', openCreateModal)
@@ -78,10 +79,37 @@ async function loadRoutes() {
   }
 }
 
+async function loadInstructors() {
+  try {
+    const data = await apiFetch('/api/users')
+    allInstructors = (data.data || []).filter(u => u.role === 'instructor')
+  } catch (err) {
+    console.error('Error loading instructors:', err)
+  }
+}
+
+function populateInstructorSelect() {
+  const select = document.getElementById('routeInstructors')
+
+  if (!select) {
+    console.warn('routeInstructors select not found in DOM')
+    return
+  }
+
+  const options = allInstructors
+    .map(i => `<option value="${i.id}">${escapeHtml(i.username)}</option>`)
+    .join('')
+
+  select.innerHTML = options
+}
+
 function renderRoutes(container) {
   container.innerHTML = allRoutes.map(item => {
     const status = STATUS_STYLES[item.status] || STATUS_STYLES.planning
     const statusLabel = item.status === 'active' ? t('status.active') : t('status.planning')
+    const instructorNames = item.instructors && item.instructors.length > 0
+      ? item.instructors.map(i => i.username).join(', ')
+      : 'Sin instructor'
 
     return `
       <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
@@ -94,10 +122,15 @@ function renderRoutes(container) {
               <span class="material-symbols-outlined text-xs">arrow_forward</span>
               <span>${escapeHtml(item.destination || '')}</span>
             </div>
+            ${item.start_date || item.end_date ? `
+            <div class="flex items-center gap-1 text-xs text-slate-400 mt-1">
+              <span class="material-symbols-outlined text-xs">schedule</span>
+              <span>${item.start_date ? formatDate(item.start_date) : '---'} → ${item.end_date ? formatDate(item.end_date) : '---'}</span>
+            </div>` : ''}
             <div class="flex flex-wrap gap-3 text-xs text-slate-400 mt-2">
-              ${item.participants_count ? `<span>${item.participants_count} ${escapeHtml(t('card.participants'))}</span>` : ''}
+              ${item.participants_count ? `<span>${item.participants_count}+ ${escapeHtml(t('card.participants'))}</span>` : ''}
               ${item.spaces_established ? `<span>${item.spaces_established} ${escapeHtml(t('card.spaces'))}</span>` : ''}
-              ${item.frequency ? `<span>${escapeHtml(t('card.frequency'))}: ${escapeHtml(item.frequency)}</span>` : ''}
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">person</span>${escapeHtml(instructorNames)}</span>
             </div>
           </div>
           <div class="flex items-center gap-2 shrink-0">
@@ -117,7 +150,19 @@ function renderRoutes(container) {
   }).join('')
 }
 
+function formatDate(dateStr) {
+  if (!dateStr) return ''
+  // Split the date string to avoid timezone issues
+  const datePart = dateStr.split('T')[0]
+  const [year, month, day] = datePart.split('-')
+  // Create date in local timezone
+  const date = new Date(year, month - 1, day)
+  return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
 function openCreateModal() {
+  populateInstructorSelect()
+
   document.getElementById('routeModalTitle').setAttribute('data-i18n', 'modal.newTitle')
   document.getElementById('routeModalTitle').textContent = t('modal.newTitle')
   document.getElementById('routeId').value = ''
@@ -127,10 +172,17 @@ function openCreateModal() {
   document.getElementById('routeDestination').value = ''
   document.getElementById('routeDescription').value = ''
   document.getElementById('routeDescriptionEn').value = ''
-  document.getElementById('routeFrequency').value = ''
+  document.getElementById('routeStartDate').value = ''
+  document.getElementById('routeEndDate').value = ''
   document.getElementById('routeStatus').value = 'active'
   document.getElementById('routeParticipants').value = '0'
   document.getElementById('routeSpaces').value = '0'
+
+  const instructorSelect = document.getElementById('routeInstructors')
+  if (instructorSelect) {
+    Array.from(instructorSelect.options).forEach(opt => opt.selected = false)
+  }
+
   hideFormError()
   document.getElementById('routeModal')?.classList.remove('hidden')
 }
@@ -138,6 +190,8 @@ function openCreateModal() {
 function openEditModal(id) {
   const item = allRoutes.find(r => r.id === id)
   if (!item) return
+
+  populateInstructorSelect()
 
   document.getElementById('routeModalTitle').setAttribute('data-i18n', 'modal.editTitle')
   document.getElementById('routeModalTitle').textContent = t('modal.editTitle')
@@ -148,10 +202,20 @@ function openEditModal(id) {
   document.getElementById('routeDestination').value = item.destination || ''
   document.getElementById('routeDescription').value = item.description || ''
   document.getElementById('routeDescriptionEn').value = item.description_en || ''
-  document.getElementById('routeFrequency').value = item.frequency || ''
+  document.getElementById('routeStartDate').value = item.start_date ? item.start_date.split('T')[0] : ''
+  document.getElementById('routeEndDate').value = item.end_date ? item.end_date.split('T')[0] : ''
   document.getElementById('routeStatus').value = item.status || 'active'
   document.getElementById('routeParticipants').value = item.participants_count || 0
   document.getElementById('routeSpaces').value = item.spaces_established || 0
+
+  const instructorSelect = document.getElementById('routeInstructors')
+  if (instructorSelect && item.instructors) {
+    const instructorIds = item.instructors.map(i => i.id.toString())
+    Array.from(instructorSelect.options).forEach(opt => {
+      opt.selected = instructorIds.includes(opt.value)
+    })
+  }
+
   hideFormError()
   document.getElementById('routeModal')?.classList.remove('hidden')
 }
@@ -165,6 +229,12 @@ async function saveRoute(e) {
   hideFormError()
 
   const id = document.getElementById('routeId').value
+  const startDate = document.getElementById('routeStartDate').value
+  const endDate = document.getElementById('routeEndDate').value
+
+  const instructorSelect = document.getElementById('routeInstructors')
+  const selectedInstructors = Array.from(instructorSelect.selectedOptions).map(opt => parseInt(opt.value))
+
   const body = {
     name: document.getElementById('routeName').value.trim(),
     name_en: document.getElementById('routeNameEn').value.trim() || null,
@@ -172,10 +242,12 @@ async function saveRoute(e) {
     destination: document.getElementById('routeDestination').value.trim(),
     description: document.getElementById('routeDescription').value.trim() || null,
     description_en: document.getElementById('routeDescriptionEn').value.trim() || null,
-    frequency: document.getElementById('routeFrequency').value.trim() || null,
+    start_date: startDate || null,
+    end_date: endDate || null,
     status: document.getElementById('routeStatus').value,
     participants_count: parseInt(document.getElementById('routeParticipants').value) || 0,
-    spaces_established: parseInt(document.getElementById('routeSpaces').value) || 0
+    spaces_established: parseInt(document.getElementById('routeSpaces').value) || 0,
+    instructor_ids: selectedInstructors
   }
 
   try {

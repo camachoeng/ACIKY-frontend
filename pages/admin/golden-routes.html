@@ -94,14 +94,22 @@
                           data-i18n-placeholder="modal.descriptionEnPlaceholder" placeholder="English description (optional)"></textarea>
               </div>
 
-              <!-- Frequency / Status -->
+              <!-- Date Range -->
               <div class="grid grid-cols-2 gap-3">
                 <div>
-                  <label for="routeFrequency" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.frequency">Frecuencia</label>
-                  <input type="text" id="routeFrequency"
-                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                         data-i18n-placeholder="modal.frequencyPlaceholder" placeholder="Ej: Anual" />
+                  <label for="routeStartDate" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.startDate">Fecha de Inicio</label>
+                  <input type="date" id="routeStartDate"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
                 </div>
+                <div>
+                  <label for="routeEndDate" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.endDate">Fecha de Fin</label>
+                  <input type="date" id="routeEndDate"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
+                </div>
+              </div>
+
+              <!-- Status / Instructors -->
+              <div class="grid grid-cols-2 gap-3">
                 <div>
                   <label for="routeStatus" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.status">Estado</label>
                   <select id="routeStatus"
@@ -109,6 +117,13 @@
                     <option value="active">Activa</option>
                     <option value="planning">En planificacion</option>
                   </select>
+                </div>
+                <div>
+                  <label for="routeInstructors" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.instructors">Instructores</label>
+                  <select id="routeInstructors" multiple
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white h-[48px]">
+                  </select>
+                  <p class="text-xs text-slate-400 mt-1" data-i18n="modal.instructorsHelp">Hold Ctrl/Cmd para seleccionar varios</p>
                 </div>
               </div>
 
