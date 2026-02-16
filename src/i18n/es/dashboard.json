@@ -19,6 +19,7 @@
     "description": "Gestiona las clases que tienes asignadas",
     "button": "Mis Clases",
     "blogButton": "Mi Blog",
-    "mySpaceButton": "Mi Espacio"
+    "mySpaceButton": "Mi Espacio",
+    "myRoutesButton": "Mis Rutas"
   }
 }

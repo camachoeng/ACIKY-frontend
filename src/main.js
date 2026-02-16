@@ -425,6 +425,9 @@ async function initPage() {
   } else if (path.includes('/pages/instructor/my-classes.html')) {
     const { initInstructorClasses } = await import('./js/instructor/my-classes.js')
     initInstructorClasses()
+  } else if (path.includes('/pages/instructor/my-routes.html')) {
+    const { initInstructorRoutes } = await import('./js/instructor/my-routes.js')
+    initInstructorRoutes()
   }
 }
 

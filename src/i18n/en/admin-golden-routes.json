@@ -10,8 +10,7 @@
   },
   "card": {
     "participants": "participants",
-    "spaces": "spaces",
-    "frequency": "Frequency"
+    "spaces": "spaces"
   },
   "modal": {
     "newTitle": "New Route",
@@ -28,9 +27,11 @@
     "descriptionEn": "Description (EN)",
     "descriptionPlaceholder": "Route description...",
     "descriptionEnPlaceholder": "English description (optional)",
-    "frequency": "Frequency",
-    "frequencyPlaceholder": "E.g.: Annual, March 2026",
+    "startDate": "Start Date",
+    "endDate": "End Date",
     "status": "Status",
+    "instructors": "Instructors",
+    "instructorsHelp": "Hold Ctrl/Cmd to select multiple",
     "participants": "Participants",
     "spaces": "Spaces established",
     "cancel": "Cancel",

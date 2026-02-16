@@ -10,8 +10,7 @@
   },
   "card": {
     "participants": "participantes",
-    "spaces": "espacios",
-    "frequency": "Frecuencia"
+    "spaces": "espacios"
   },
   "modal": {
     "newTitle": "Nueva Ruta",
@@ -28,9 +27,11 @@
     "descriptionEn": "Description (EN)",
     "descriptionPlaceholder": "Descripción de la ruta...",
     "descriptionEnPlaceholder": "English description (optional)",
-    "frequency": "Frecuencia",
-    "frequencyPlaceholder": "Ej: Anual, Marzo 2026",
+    "startDate": "Fecha de Inicio",
+    "endDate": "Fecha de Fin",
     "status": "Estado",
+    "instructors": "Instructores",
+    "instructorsHelp": "Hold Ctrl/Cmd para seleccionar varios",
     "participants": "Participantes",
     "spaces": "Espacios establecidos",
     "cancel": "Cancelar",
