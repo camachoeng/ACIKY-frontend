@@ -54,7 +54,7 @@ async function initHeroSchedule() {
   if (!container) return
 
   try {
-    const data = await apiFetch('/api/activities?active=true&limit=2')
+    const data = await apiFetch('/api/activities?active=true&hide_past=true&limit=2')
     const activities = data.data || []
 
     if (activities.length === 0) {

@@ -143,6 +143,8 @@ async function openEditModal(id) {
     document.getElementById('activityName').value = a.name || ''
     document.getElementById('activityDescription').value = a.description || ''
     document.getElementById('activitySchedule').value = a.schedule || ''
+    document.getElementById('activityClassDate').value = a.class_date ? a.class_date.split('T')[0] : ''
+    document.getElementById('activityClassTime').value = a.class_time ? a.class_time.substring(0, 5) : ''
     document.getElementById('activityDuration').value = a.duration || ''
     document.getElementById('activityLocation').value = a.location || ''
     document.getElementById('activityInstructor').value = a.instructor_id || ''
@@ -170,10 +172,15 @@ async function saveActivity(e) {
   hideFormError()
 
   const id = document.getElementById('activityId').value
+  const classDate = document.getElementById('activityClassDate').value
+  const classTime = document.getElementById('activityClassTime').value
+
   const body = {
     name: document.getElementById('activityName').value.trim(),
     description: document.getElementById('activityDescription').value.trim(),
     schedule: document.getElementById('activitySchedule').value.trim(),
+    class_date: classDate || null,
+    class_time: classTime || null,
     duration: document.getElementById('activityDuration').value || null,
     location: document.getElementById('activityLocation').value.trim(),
     instructor_id: document.getElementById('activityInstructor').value || null,

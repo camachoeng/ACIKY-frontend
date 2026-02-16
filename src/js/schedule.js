@@ -35,7 +35,7 @@ export async function initSchedule() {
     emptyEl.classList.add('hidden')
 
     try {
-      const data = await apiFetch('/api/activities?active=true')
+      const data = await apiFetch('/api/activities?active=true&hide_past=true')
       loading.classList.add('hidden')
 
       if (!data.data || data.data.length === 0) {
@@ -84,7 +84,27 @@ export async function initSchedule() {
 
 function renderClassCard(activity, index) {
   const colors = COLOR_CLASSES[index % COLOR_CLASSES.length]
-  const { dayAbbr, timeStr } = parseSchedule(activity.schedule)
+
+  // Use class_date and class_time if available, otherwise parse schedule text
+  let dayAbbr, timeStr, formattedDate
+  if (activity.class_date && activity.class_time) {
+    const date = new Date(activity.class_date + 'T00:00:00')
+    const days = ['days.sun', 'days.mon', 'days.tue', 'days.wed', 'days.thu', 'days.fri', 'days.sat']
+    dayAbbr = t(days[date.getDay()])
+    timeStr = activity.class_time.substring(0, 5)
+
+    // Format date as "DD Mon" (e.g., "15 Feb")
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const day = date.getDate()
+    const month = months[date.getMonth()]
+    formattedDate = `${day} ${month}`
+  } else {
+    const parsed = parseSchedule(activity.schedule)
+    dayAbbr = parsed.dayAbbr
+    timeStr = parsed.timeStr
+    formattedDate = null
+  }
+
   const activityName = localized(activity, 'name')
   const activityDescription = localized(activity, 'description')
   const activityLocation = localized(activity, 'location')
@@ -98,7 +118,10 @@ function renderClassCard(activity, index) {
           <span class="text-xl font-bold text-primary-dark">${timeStr}</span>
         </div>
         <div class="flex-1">
-          <h3 class="font-bold text-primary-dark text-lg">${escapeHtml(activityName)}</h3>
+          <div class="flex items-center gap-2 mb-1">
+            <h3 class="font-bold text-primary-dark text-lg">${escapeHtml(activityName)}</h3>
+            ${formattedDate ? `<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">${formattedDate}</span>` : ''}
+          </div>
           <p class="text-sm text-slate-500 mb-2">${escapeHtml(activityLocation)}</p>
           ${activityDescription ? `<p class="text-xs text-slate-500 mb-2 line-clamp-2">${escapeHtml(activityDescription)}</p>` : ''}
           ${activity.instructor_name ? `
