@@ -115,6 +115,8 @@ async function openEditModal(id) {
   document.getElementById('classNameEn').value = activity.name_en || ''
   document.getElementById('classDescription').value = activity.description || ''
   document.getElementById('classDescriptionEn').value = activity.description_en || ''
+  document.getElementById('classDate').value = activity.class_date ? activity.class_date.split('T')[0] : ''
+  document.getElementById('classTime').value = activity.class_time ? activity.class_time.substring(0, 5) : ''
   document.getElementById('classSchedule').value = activity.schedule || ''
   document.getElementById('classDuration').value = activity.duration || ''
   document.getElementById('classDifficulty').value = activity.difficulty_level || 'all'
@@ -132,9 +134,14 @@ async function saveClass(e) {
   hideFormError()
 
   const id = document.getElementById('classId').value
+  const classDate = document.getElementById('classDate').value
+  const classTime = document.getElementById('classTime').value
+
   const body = {
     name: document.getElementById('className').value.trim(),
     description: document.getElementById('classDescription').value.trim(),
+    class_date: classDate || null,
+    class_time: classTime || null,
     schedule: document.getElementById('classSchedule').value.trim(),
     duration: document.getElementById('classDuration').value || null,
     difficulty_level: document.getElementById('classDifficulty').value,
