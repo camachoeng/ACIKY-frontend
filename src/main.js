@@ -141,6 +141,62 @@ async function initHomeGoldenRoutes() {
   }
 }
 
+// Home page: load active spaces
+async function initHomeSpaces() {
+  const container = document.getElementById('homeSpacesContainer')
+  if (!container) return
+
+  try {
+    const data = await apiFetch('/api/spaces')
+    const spaces = (data.data || []).filter(s => s.active)
+
+    if (spaces.length === 0) {
+      const section = document.getElementById('homeSpacesSection')
+      if (section) section.classList.add('hidden')
+      return
+    }
+
+    container.innerHTML = spaces.slice(0, 4).map(item => {
+      const spaceName = localized(item, 'name')
+      const instructorCount = item.instructors ? item.instructors.length : 0
+      const instructorText = instructorCount === 0
+        ? t('homeSpaces.noInstructors')
+        : instructorCount === 1
+        ? `1 ${t('homeSpaces.instructor')}`
+        : `${instructorCount} ${t('homeSpaces.instructors')}`
+
+      return `
+        <div class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          ${item.image ? `
+            <div class="relative h-32 overflow-hidden">
+              <img src="${escapeHtml(item.image)}" alt="${escapeHtml(spaceName)}" class="absolute inset-0 w-full h-full object-cover" />
+            </div>
+          ` : `
+            <div class="relative h-32 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary text-4xl">home</span>
+            </div>
+          `}
+          <div class="p-4">
+            <h4 class="font-bold text-primary-dark text-sm mb-2">${escapeHtml(spaceName)}</h4>
+            <div class="flex items-center gap-1 text-xs text-slate-500 mb-1">
+              <span class="material-symbols-outlined text-xs">person</span>
+              <span>${escapeHtml(instructorText)}</span>
+            </div>
+            ${item.municipality ? `
+              <div class="flex items-center gap-1 text-xs text-slate-500">
+                <span class="material-symbols-outlined text-xs">location_on</span>
+                <span>${escapeHtml(item.municipality)}</span>
+              </div>
+            ` : ''}
+          </div>
+        </div>`
+    }).join('')
+  } catch {
+    const section = document.getElementById('homeSpacesSection')
+    if (section) section.classList.add('hidden')
+  }
+}
+
 // Home page: handle contact CTA for auth state
 function initHomeContactCta() {
   const section = document.getElementById('contactCtaSection')
@@ -282,6 +338,7 @@ async function initPage() {
     initHeroSchedule()
     initHomeTestimonials()
     initHomeGoldenRoutes()
+    initHomeSpaces()
     initHomeContactCta()
     initActivitiesCarousel()
   } else if (path.includes('/pages/login.html')) {
