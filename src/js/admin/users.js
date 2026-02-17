@@ -1,5 +1,6 @@
 import { requireAdmin, getUser } from '../auth.js'
 import { apiFetch } from '../api.js'
+import { formatUserName } from '../utils/formatUserName.js'
 
 let users = []
 
@@ -89,7 +90,7 @@ function renderUsers(tbody) {
     const roleClass = roleColors[user.role] || roleColors.user
     return `
       <tr class="border-b border-slate-50 hover:bg-slate-50/50">
-        <td class="px-6 py-4 text-sm font-medium text-primary-dark">${escapeHtml(user.username)}</td>
+        <td class="px-6 py-4 text-sm font-medium text-primary-dark">${escapeHtml(formatUserName(user))}</td>
         <td class="px-6 py-4 text-sm text-slate-500">${escapeHtml(user.email)}</td>
         <td class="px-6 py-4">
           <span class="px-3 py-1 rounded-full text-xs font-bold ${roleClass}">${user.role}</span>
@@ -139,7 +140,9 @@ async function openEditModal(id) {
 
     if (title) title.textContent = 'Editar Usuario'
     document.getElementById('userId').value = user.id
-    document.getElementById('userUsername').value = user.username
+    document.getElementById('userName').value = user.name || ''
+    document.getElementById('userLastName').value = user.last_name || ''
+    document.getElementById('userSpiritualName').value = user.spiritual_name || ''
     document.getElementById('userEmail').value = user.email
     document.getElementById('userRole').value = user.role
     document.getElementById('userPassword').value = ''
@@ -168,7 +171,9 @@ async function saveUser(e) {
   hideFormError()
 
   const id = document.getElementById('userId').value
-  const username = document.getElementById('userUsername').value.trim()
+  const name = document.getElementById('userName').value.trim()
+  const last_name = document.getElementById('userLastName').value.trim()
+  const spiritual_name = document.getElementById('userSpiritualName').value.trim() || null
   const email = document.getElementById('userEmail').value.trim()
   const password = document.getElementById('userPassword').value
   const passwordConfirm = document.getElementById('userPasswordConfirm').value
@@ -178,7 +183,7 @@ async function saveUser(e) {
 
   // Validate password confirmation
   if (password && password !== passwordConfirm) {
-    showFormError('Las contrasenas no coinciden')
+    showFormError('Las contraseñas no coinciden')
     saveBtn.disabled = false
     saveBtn.textContent = 'Guardar'
     return
@@ -186,7 +191,7 @@ async function saveUser(e) {
 
   const positionEn = document.getElementById('userPositionEn').value.trim()
 
-  const body = { username, email, role }
+  const body = { name, last_name, spiritual_name, email, role }
   if (password) body.password = password
   if (role !== 'user') {
     body.position = position || null
@@ -201,7 +206,7 @@ async function saveUser(e) {
       })
     } else {
       if (!password) {
-        showFormError('La contrasena es requerida para nuevos usuarios')
+        showFormError('La contraseña es requerida para nuevos usuarios')
         saveBtn.disabled = false
         saveBtn.textContent = 'Guardar'
         return
@@ -232,7 +237,7 @@ async function confirmDelete(id) {
     return
   }
 
-  if (!confirm(`Eliminar usuario "${user.username}"?`)) return
+  if (!confirm(`Eliminar usuario "${formatUserName(user)}"?`)) return
 
   try {
     await apiFetch(`/api/users/${id}`, { method: 'DELETE' })

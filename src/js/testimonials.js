@@ -1,6 +1,7 @@
 import { apiFetch } from './api.js'
 import { localized, t } from './i18n.js'
 import { getUser } from './auth.js'
+import { formatUserName } from './utils/formatUserName.js'
 
 let allTestimonials = []
 
@@ -57,7 +58,7 @@ function renderTestimonials() {
       <span class="material-symbols-outlined text-primary/20 text-3xl">format_quote</span>
       <p class="text-slate-600 text-sm mt-3 leading-relaxed">${escapeHtml(content)}</p>
       <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-        <p class="font-semibold text-primary-dark text-sm">${escapeHtml(item.author_name || '')}</p>
+        <p class="font-semibold text-primary-dark text-sm">${escapeHtml(formatUserName(item) || item.author_name || '')}</p>
         <time class="text-xs text-slate-400">${escapeHtml(date)}</time>
       </div>
     </div>`

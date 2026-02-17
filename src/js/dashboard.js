@@ -19,7 +19,9 @@ export async function initDashboard() {
     const data = await apiFetch('/api/users/me')
     const profile = data.data
 
-    document.getElementById('profileUsername').value = profile.username || ''
+    document.getElementById('profileName').value = profile.name || ''
+    document.getElementById('profileLastName').value = profile.last_name || ''
+    document.getElementById('profileSpiritualName').value = profile.spiritual_name || ''
     document.getElementById('profileEmail').value = profile.email || ''
 
     if (profile.profile_image_url) {
@@ -32,7 +34,9 @@ export async function initDashboard() {
     }
   } catch (err) {
     // Fallback: populate from the auth user object
-    document.getElementById('profileUsername').value = user.username || ''
+    document.getElementById('profileName').value = user.name || ''
+    document.getElementById('profileLastName').value = user.last_name || ''
+    document.getElementById('profileSpiritualName').value = user.spiritual_name || ''
     document.getElementById('profileEmail').value = user.email || ''
 
     // Show instructor section for instructors and admins (fallback)
@@ -88,6 +92,54 @@ export async function initDashboard() {
       }
 
       imageUpload.value = ''
+    })
+  }
+
+  // Profile form submit handler
+  const profileForm = document.getElementById('profileForm')
+  if (profileForm) {
+    profileForm.addEventListener('submit', async (e) => {
+      e.preventDefault()
+
+      const saveBtn = document.getElementById('saveProfileBtn')
+      const successMsg = document.getElementById('profileSuccess')
+      const errorMsg = document.getElementById('profileError')
+
+      saveBtn.disabled = true
+      saveBtn.textContent = t('form.saving')
+      successMsg?.classList.add('hidden')
+      errorMsg?.classList.add('hidden')
+
+      try {
+        const body = {
+          name: document.getElementById('profileName').value.trim(),
+          last_name: document.getElementById('profileLastName').value.trim(),
+          spiritual_name: document.getElementById('profileSpiritualName').value.trim() || null
+        }
+
+        await apiFetch('/api/users/profile', {
+          method: 'PUT',
+          body: JSON.stringify(body)
+        })
+
+        successMsg?.classList.remove('hidden')
+
+        // Update cached user in auth
+        const updatedUser = await apiFetch('/api/auth/check')
+        if (updatedUser.user) {
+          localStorage.setItem('user', JSON.stringify(updatedUser.user))
+          // Trigger header greeting update
+          window.dispatchEvent(new CustomEvent('userUpdated', { detail: updatedUser.user }))
+        }
+      } catch (err) {
+        if (errorMsg) {
+          errorMsg.textContent = err.message || t('form.error')
+          errorMsg.classList.remove('hidden')
+        }
+      }
+
+      saveBtn.disabled = false
+      saveBtn.textContent = t('form.saveButton')
     })
   }
 }

@@ -1,5 +1,6 @@
 import { requireAdmin } from '../auth.js'
 import { apiFetch } from '../api.js'
+import { formatUserName } from '../utils/formatUserName.js'
 
 let activities = []
 let instructors = []
@@ -53,7 +54,7 @@ function populateInstructorSelect() {
   const select = document.getElementById('activityInstructor')
   if (!select) return
   select.innerHTML = '<option value="">Sin instructor</option>' +
-    instructors.map(i => `<option value="${i.id}">${escapeHtml(i.username)}</option>`).join('')
+    instructors.map(i => `<option value="${i.id}">${escapeHtml(formatUserName(i))}</option>`).join('')
 }
 
 async function loadActivities() {

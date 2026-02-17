@@ -11,8 +11,14 @@
   },
   "form": {
     "title": "Datos del Perfil",
-    "username": "Nombre de Usuario",
-    "email": "Email"
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "spiritualName": "Nombre Espiritual",
+    "email": "Email",
+    "saveButton": "Guardar Cambios",
+    "saving": "Guardando...",
+    "success": "Perfil actualizado con éxito",
+    "error": "Error al actualizar perfil"
   },
   "instructor": {
     "title": "Zona Instructor",

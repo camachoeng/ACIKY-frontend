@@ -1,6 +1,7 @@
 import { apiFetch } from './api.js'
 import { getUser } from './auth.js'
 import { localized, t } from './i18n.js'
+import { formatUserName } from './utils/formatUserName.js'
 
 let allRoutes = []
 
@@ -103,7 +104,7 @@ function renderActiveRoutes(routes) {
       ${item.instructors && item.instructors.length > 0 ? `
       <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
         <span class="material-symbols-outlined text-xs">person</span>
-        <span>${escapeHtml(item.instructors.map(i => i.username).join(', '))}</span>
+        <span>${escapeHtml(item.instructors.map(i => formatUserName(i)).join(', '))}</span>
       </div>` : ''}
       <div class="flex flex-wrap gap-3 text-xs text-slate-500">
         ${item.participants_count ? `
@@ -157,7 +158,7 @@ function renderPlannedRoutes(routes) {
       ${item.instructors && item.instructors.length > 0 ? `
       <p class="text-xs text-slate-500 mt-1 flex items-center gap-1">
         <span class="material-symbols-outlined text-xs">person</span>
-        ${escapeHtml(item.instructors.map(i => i.username).join(', '))}
+        ${escapeHtml(item.instructors.map(i => formatUserName(i)).join(', '))}
       </p>` : ''}
     </div>`
   }).join('')

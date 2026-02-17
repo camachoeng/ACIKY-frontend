@@ -44,17 +44,29 @@
       </section>
 
       <!-- User Modal -->
-      <div id="userModal" class="fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 bg-black/50" id="userModalOverlay"></div>
-        <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 max-w-lg mx-auto bg-white rounded-3xl p-8 shadow-xl">
+      <div id="userModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="fixed inset-0 bg-black/50" id="userModalOverlay"></div>
+        <div class="relative inset-x-4 my-8 max-w-lg mx-auto bg-white rounded-3xl p-8 shadow-xl">
           <h2 id="userModalTitle" class="text-xl font-bold text-primary-dark mb-6">Nuevo Usuario</h2>
           <form id="userForm" class="space-y-4">
             <input type="hidden" id="userId" />
             <div>
-              <label for="userUsername" class="block text-sm font-medium text-primary-dark mb-1">Nombre de Usuario</label>
-              <input type="text" id="userUsername" required minlength="3"
+              <label for="userName" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.name">Nombre</label>
+              <input type="text" id="userName" required minlength="2" maxlength="100"
                      class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                     placeholder="nombre_usuario" />
+                     data-i18n-placeholder="modal.namePlaceholder" placeholder="Nombre del usuario" />
+            </div>
+            <div>
+              <label for="userLastName" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.lastName">Apellido</label>
+              <input type="text" id="userLastName" required minlength="2" maxlength="100"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     data-i18n-placeholder="modal.lastNamePlaceholder" placeholder="Apellido del usuario" />
+            </div>
+            <div>
+              <label for="userSpiritualName" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.spiritualName">Nombre Espiritual <span class="text-slate-400 font-normal">(opcional)</span></label>
+              <input type="text" id="userSpiritualName" minlength="2" maxlength="100"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                     data-i18n-placeholder="modal.spiritualNamePlaceholder" placeholder="Nombre espiritual (opcional)" />
             </div>
             <div>
               <label for="userEmail" class="block text-sm font-medium text-primary-dark mb-1">Email</label>

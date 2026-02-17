@@ -14,8 +14,12 @@
   "modal": {
     "newTitle": "New User",
     "editTitle": "Edit User",
-    "username": "Username",
-    "usernamePlaceholder": "username",
+    "name": "First Name",
+    "namePlaceholder": "First name",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Last name",
+    "spiritualName": "Spiritual Name (optional)",
+    "spiritualNamePlaceholder": "Spiritual name (if any)",
     "email": "Email",
     "emailPlaceholder": "email@example.com",
     "password": "Password",
@@ -42,6 +46,6 @@
     "cannotDeleteSelf": "You cannot delete your own account"
   },
   "confirm": {
-    "delete": "Delete user \"{{username}}\"?"
+    "delete": "Delete user \"{{name}}\"?"
   }
 }
