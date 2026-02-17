@@ -36,6 +36,15 @@ export async function initAdminUsers() {
     passwordInput.addEventListener('input', togglePasswordConfirmField)
   }
 
+  // Search filter
+  const searchInput = document.getElementById('usersSearch')
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const tbody = document.getElementById('usersTableBody')
+      if (tbody) renderFilteredUsers(tbody, searchInput.value)
+    })
+  }
+
   // Table event delegation
   const tbody = document.getElementById('usersTableBody')
   if (tbody) {
@@ -71,8 +80,20 @@ async function loadUsers() {
   }
 }
 
-function renderUsers(tbody) {
-  if (users.length === 0) {
+function renderFilteredUsers(tbody, query) {
+  const q = query.trim().toLowerCase()
+  const filtered = q
+    ? users.filter(u => {
+        const full = [u.name, u.last_name, u.spiritual_name, u.email, u.username]
+          .filter(Boolean).join(' ').toLowerCase()
+        return full.includes(q)
+      })
+    : users
+  renderUsers(tbody, filtered)
+}
+
+function renderUsers(tbody, list = users) {
+  if (list.length === 0) {
     tbody.innerHTML = `
       <tr><td colspan="4" class="px-6 py-8 text-center text-slate-400 text-sm">
         No hay usuarios registrados
@@ -86,7 +107,7 @@ function renderUsers(tbody) {
     user: 'bg-slate-100 text-slate-600'
   }
 
-  tbody.innerHTML = users.map(user => {
+  tbody.innerHTML = list.map(user => {
     const roleClass = roleColors[user.role] || roleColors.user
     return `
       <tr class="border-b border-slate-50 hover:bg-slate-50/50">
