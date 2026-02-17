@@ -1,0 +1,34 @@
+{
+  "title": "Rebirthing",
+  "subtitle": "Manage rebirthing ceremonies",
+  "newButton": "New Ceremony",
+  "loading": "Loading ceremonies...",
+  "empty": "No ceremonies registered",
+  "modal": {
+    "newTitle": "New Ceremony",
+    "editTitle": "Edit Ceremony",
+    "name": "Name",
+    "namePlaceholder": "Ceremony name",
+    "nameEn": "Name (EN)",
+    "nameEnPlaceholder": "English name (optional)",
+    "description": "Description",
+    "descriptionPlaceholder": "Optional description...",
+    "descriptionEn": "Description (EN)",
+    "descriptionEnPlaceholder": "English description (optional)",
+    "address": "Address / Venue",
+    "addressPlaceholder": "E.g.: Casa Museo de Asia, Havana",
+    "date": "Date",
+    "time": "Time",
+    "instructor": "Instructor",
+    "noInstructor": "— No instructor —",
+    "active": "Active",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "noInstructor": "No instructor"
+  }
+}

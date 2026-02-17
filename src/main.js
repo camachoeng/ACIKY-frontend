@@ -106,6 +106,45 @@ async function initHomeTestimonials() {
   }
 }
 
+// Home page: load active rebirthing sessions
+async function initHomeRebirthing() {
+  const container = document.getElementById('homeRebirthingContainer')
+  if (!container) return
+
+  try {
+    const data = await apiFetch('/api/rebirthing?active=true')
+    const sessions = data.data || []
+
+    if (sessions.length === 0) {
+      const section = document.getElementById('homeRebirthingSection')
+      if (section) section.classList.add('hidden')
+      return
+    }
+
+    container.innerHTML = sessions.slice(0, 4).map(s => `
+      <div class="min-w-[280px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="material-symbols-outlined text-primary text-lg">spa</span>
+          <h4 class="font-bold text-primary-dark text-sm">${escapeHtml(s.name)}</h4>
+        </div>
+        ${s.date ? `
+        <div class="flex items-center gap-1 text-xs text-primary mb-2">
+          <span class="material-symbols-outlined text-xs">calendar_month</span>
+          <span>${escapeHtml(new Date(s.date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }))}</span>
+        </div>` : ''}
+        ${s.address ? `
+        <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
+          <span class="material-symbols-outlined text-xs">location_on</span>
+          <span>${escapeHtml(s.address)}</span>
+        </div>` : ''}
+        ${s.description ? `<p class="text-slate-600 text-xs leading-relaxed line-clamp-2">${escapeHtml(s.description)}</p>` : ''}
+      </div>`).join('')
+  } catch {
+    const section = document.getElementById('homeRebirthingSection')
+    if (section) section.classList.add('hidden')
+  }
+}
+
 // Home page: load active golden routes
 async function initHomeGoldenRoutes() {
   const container = document.getElementById('homeGoldenRoutesContainer')
@@ -259,6 +298,7 @@ window.addEventListener('languageChanged', () => {
   initHeroSchedule()
   initHomeTestimonials()
   initHomeGoldenRoutes()
+  initHomeRebirthing()
 })
 
 function translateSchedule(schedule) {
@@ -338,6 +378,7 @@ async function initPage() {
     initHeroSchedule()
     initHomeTestimonials()
     initHomeGoldenRoutes()
+    initHomeRebirthing()
     initHomeSpaces()
     initHomeContactCta()
     initActivitiesCarousel()
@@ -428,6 +469,12 @@ async function initPage() {
   } else if (path.includes('/pages/instructor/my-routes.html')) {
     const { initInstructorRoutes } = await import('./js/instructor/my-routes.js')
     initInstructorRoutes()
+  } else if (path.includes('/pages/instructor/my-rebirthing.html')) {
+    const { initInstructorRebirthing } = await import('./js/instructor/my-rebirthing.js')
+    initInstructorRebirthing()
+  } else if (path.includes('/pages/admin/rebirthing.html')) {
+    const { initAdminRebirthing } = await import('./js/admin/rebirthing.js')
+    initAdminRebirthing()
   }
 }
 

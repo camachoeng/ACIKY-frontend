@@ -1,0 +1,31 @@
+{
+  "title": "Mis Renacimientos",
+  "subtitle": "Ceremonias de renacimiento asignadas a ti",
+  "backToProfile": "Volver al perfil",
+  "loading": "Cargando tus ceremonias...",
+  "empty": "No tienes ceremonias asignadas",
+  "emptyHint": "Contacta al administrador para que te asigne ceremonias",
+  "modal": {
+    "title": "Editar Ceremonia",
+    "name": "Nombre",
+    "namePlaceholder": "Nombre de la ceremonia",
+    "nameEn": "Nombre (EN)",
+    "nameEnPlaceholder": "Nombre en inglés (opcional)",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Descripción de la ceremonia...",
+    "descriptionEn": "Descripción (EN)",
+    "descriptionEnPlaceholder": "Descripción en inglés (opcional)",
+    "address": "Dirección / Lugar",
+    "addressPlaceholder": "Ej: Casa Museo de Asia, La Habana",
+    "date": "Fecha",
+    "time": "Hora",
+    "active": "Activa",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "status": {
+    "active": "Activa",
+    "inactive": "Inactiva"
+  }
+}

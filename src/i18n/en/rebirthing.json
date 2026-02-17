@@ -75,6 +75,12 @@
       "text": "People committed to their spiritual growth seeking profound experiences of transformation and expansion of consciousness."
     }
   },
+  "sessions": {
+    "title": "Upcoming Ceremonies",
+    "subtitle": "Find the ceremony that resonates with your soul",
+    "empty": "No ceremonies scheduled at this time",
+    "emptyHint": "Write to us on WhatsApp to learn about upcoming dates"
+  },
   "cta": {
     "title": "Join a Rebirthing Ceremony",
     "description": "Ready for your deep transformation? Contact us to learn about available dates and more information.",
