@@ -1,6 +1,7 @@
 import { requireAdmin } from '../auth.js'
 import { apiFetch } from '../api.js'
 import { t } from '../i18n.js'
+import { formatUserName } from '../utils/formatUserName.js'
 
 let allRoutes = []
 let allInstructors = []
@@ -97,7 +98,7 @@ function populateInstructorSelect() {
   }
 
   const options = allInstructors
-    .map(i => `<option value="${i.id}">${escapeHtml(i.username)}</option>`)
+    .map(i => `<option value="${i.id}">${escapeHtml(formatUserName(i))}</option>`)
     .join('')
 
   select.innerHTML = options
@@ -108,7 +109,7 @@ function renderRoutes(container) {
     const status = STATUS_STYLES[item.status] || STATUS_STYLES.planning
     const statusLabel = item.status === 'active' ? t('status.active') : t('status.planning')
     const instructorNames = item.instructors && item.instructors.length > 0
-      ? item.instructors.map(i => i.username).join(', ')
+      ? item.instructors.map(i => formatUserName(i)).join(', ')
       : 'Sin instructor'
 
     return `

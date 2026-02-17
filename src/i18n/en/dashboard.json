@@ -11,8 +11,14 @@
   },
   "form": {
     "title": "Profile Data",
-    "username": "Username",
-    "email": "Email"
+    "name": "First Name",
+    "lastName": "Last Name",
+    "spiritualName": "Spiritual Name",
+    "email": "Email",
+    "saveButton": "Save Changes",
+    "saving": "Saving...",
+    "success": "Profile updated successfully",
+    "error": "Error updating profile"
   },
   "instructor": {
     "title": "Instructor Zone",

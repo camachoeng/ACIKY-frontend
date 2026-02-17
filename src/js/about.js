@@ -1,5 +1,6 @@
 import { apiFetch } from './api.js'
 import { t, localized } from './i18n.js'
+import { formatUserName } from './utils/formatUserName.js'
 
 const DEFAULT_AVATAR = '/public/images/default-avatar.svg'
 
@@ -46,7 +47,7 @@ export async function initAbout() {
 
 function renderTeamCard(instructor) {
   const imageUrl = instructor.profile_image_url || DEFAULT_AVATAR
-  const name = escapeHtml(instructor.username)
+  const name = escapeHtml(formatUserName(instructor))
   const position = escapeHtml(localized(instructor, 'position'))
   const altText = t('team.photoAlt', { name })
 

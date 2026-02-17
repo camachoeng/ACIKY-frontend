@@ -12,7 +12,9 @@ export function initRegister() {
     e.preventDefault()
     errorDiv.classList.add('hidden')
 
-    const username = form.username.value.trim()
+    const name = form.name.value.trim()
+    const lastName = form.lastName.value.trim()
+    const spiritualName = form.spiritualName.value.trim() || undefined
     const email = form.email.value.trim()
     const password = form.password.value
     const confirmPassword = form.confirmPassword.value
@@ -32,7 +34,13 @@ export function initRegister() {
     try {
       const data = await apiFetch('/api/auth/register', {
         method: 'POST',
-        body: JSON.stringify({ username, email, password })
+        body: JSON.stringify({
+          name,
+          last_name: lastName,
+          spiritual_name: spiritualName,
+          email,
+          password
+        })
       })
 
       const redirectParams = data.emailVerified

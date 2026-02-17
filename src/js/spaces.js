@@ -1,5 +1,6 @@
 import { apiFetch } from './api.js'
 import { t, getLanguage } from './i18n.js'
+import { formatUserName } from './utils/formatUserName.js'
 
 let allSpaces = []
 let filteredSpaces = []
@@ -123,7 +124,7 @@ function renderSpaces() {
     const spaceAddress = isEnglish && space.address_en ? space.address_en : space.address
 
     const instructorNames = space.instructors && space.instructors.length > 0
-      ? space.instructors.filter(i => i).map(i => i.name || i.username).join(', ')
+      ? space.instructors.filter(i => i).map(i => formatUserName(i)).join(', ')
       : '-'
 
     const disciplines = space.disciplines && space.disciplines.length > 0

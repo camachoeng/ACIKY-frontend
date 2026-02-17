@@ -1,5 +1,6 @@
 import { apiFetch } from './api.js'
 import { t } from './i18n.js'
+import { formatUserShortName } from './utils/formatUserName.js'
 
 let currentUser = null
 
@@ -63,14 +64,14 @@ export function updateAuthUI(isAuthenticated, user) {
       userMenu.classList.remove('hidden')
       userMenu.classList.add('flex')
       if (userDisplayName) {
-        userDisplayName.textContent = t('header.greeting', { name: user.username || user.name || '' })
+        userDisplayName.textContent = t('header.greeting', { name: formatUserShortName(user) })
       }
     }
     // Mobile: hide auth, show user menu with greeting
     if (mobileAuthButtons) mobileAuthButtons.classList.add('hidden')
     if (mobileUserMenu) mobileUserMenu.classList.remove('hidden')
     if (mobileUserGreeting) {
-      mobileUserGreeting.textContent = t('header.greeting', { name: user.username || user.name || '' })
+      mobileUserGreeting.textContent = t('header.greeting', { name: formatUserShortName(user) })
     }
     // Show admin links only for admins (desktop and mobile)
     const isAdmin = user.role === 'admin'

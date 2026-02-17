@@ -1,6 +1,7 @@
 import { apiFetch } from './api.js'
 import { t } from './i18n.js'
 import { getUser } from './auth.js'
+import { formatUserName } from './utils/formatUserName.js'
 
 const PROD_EMAIL = 'acikyrespiray@gmail.com'
 const DEV_EMAIL = 'randyrandom.content@gmail.com'
@@ -46,7 +47,7 @@ function setupAuthSection() {
     const nameField = document.getElementById('contactName')
     const emailField = document.getElementById('contactEmail')
     if (nameField) {
-      nameField.value = user.name || user.username || ''
+      nameField.value = formatUserName(user)
       nameField.readOnly = true
       nameField.classList.add('bg-slate-50', 'text-slate-500')
     }

@@ -55,20 +55,36 @@
             <h2 class="text-xl font-bold text-primary-dark mb-6" data-i18n="form.title">Datos del Perfil</h2>
 
             <div id="profileError" class="hidden mb-4 p-3 bg-accent-terracotta/10 text-accent-terracotta text-sm rounded-xl"></div>
-            <div id="profileSuccess" class="hidden mb-4 p-3 bg-primary/10 text-primary text-sm rounded-xl"></div>
+            <div id="profileSuccess" class="hidden mb-4 p-3 bg-primary/10 text-primary text-sm rounded-xl" data-i18n="form.success">Perfil actualizado con éxito</div>
 
-            <div class="space-y-4">
+            <form id="profileForm" class="space-y-4">
               <div>
-                <label for="profileUsername" class="block text-sm font-medium text-slate-600 mb-1" data-i18n="form.username">Nombre de Usuario</label>
-                <input type="text" id="profileUsername" name="username" readonly
-                       class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 outline-none text-sm cursor-not-allowed" />
+                <label for="profileName" class="block text-sm font-medium text-slate-600 mb-1" data-i18n="form.name">Nombre</label>
+                <input type="text" id="profileName" name="name" required minlength="2" maxlength="100"
+                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
+              </div>
+              <div>
+                <label for="profileLastName" class="block text-sm font-medium text-slate-600 mb-1" data-i18n="form.lastName">Apellido</label>
+                <input type="text" id="profileLastName" name="lastName" required minlength="2" maxlength="100"
+                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
+              </div>
+              <div>
+                <label for="profileSpiritualName" class="block text-sm font-medium text-slate-600 mb-1" data-i18n="form.spiritualName">Nombre Espiritual <span class="text-slate-400 font-normal">(opcional)</span></label>
+                <input type="text" id="profileSpiritualName" name="spiritualName" minlength="2" maxlength="100"
+                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
               </div>
               <div>
                 <label for="profileEmail" class="block text-sm font-medium text-slate-600 mb-1" data-i18n="form.email">Email</label>
                 <input type="email" id="profileEmail" name="email" readonly
                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 outline-none text-sm cursor-not-allowed" />
               </div>
-            </div>
+
+              <button type="submit" id="saveProfileBtn"
+                      class="w-full bg-primary-dark text-white font-bold py-3 rounded-xl shadow-md transition-transform active:scale-95 hover:bg-primary"
+                      data-i18n="form.saveButton">
+                Guardar Cambios
+              </button>
+            </form>
           </div>
 
           <!-- Instructor Section (hidden by default, shown for instructors/admins) -->

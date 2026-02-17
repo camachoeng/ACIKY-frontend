@@ -1,6 +1,7 @@
 import { requireAdmin } from '../auth.js'
 import { apiFetch } from '../api.js'
 import { t } from '../i18n.js'
+import { formatUserName } from '../utils/formatUserName.js'
 
 let allSpaces = []
 let allInstructors = []
@@ -253,7 +254,7 @@ function populateInstructorCheckboxes(selectedInstructorIds = []) {
                value="${instructor.id}"
                ${isChecked ? 'checked' : ''}
                class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
-        <span class="text-sm text-slate-700">${escapeHtml(instructor.username)}</span>
+        <span class="text-sm text-slate-700">${escapeHtml(formatUserName(instructor))}</span>
         <span class="text-xs text-slate-400">(${escapeHtml(instructor.email)})</span>
       </label>
     `
