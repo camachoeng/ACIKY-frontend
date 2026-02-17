@@ -74,7 +74,9 @@ function getPageName() {
     'pages/festival.html': 'festival',
     'pages/spaces.html': 'spaces',
     'pages/instructor/my-classes.html': 'instructor-classes',
-    'pages/instructor/my-space.html': 'my-space'
+    'pages/instructor/my-space.html': 'my-space',
+    'pages/admin/rebirthing.html': 'admin-rebirthing',
+    'pages/instructor/my-rebirthing.html': 'instructor-rebirthing'
   }
 
   return pageMap[normalizedPath] || 'home'

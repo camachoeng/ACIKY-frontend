@@ -75,6 +75,12 @@
       "text": "Personas comprometidas con su crecimiento espiritual que buscan experiencias profundas de transformación y expansión de conciencia."
     }
   },
+  "sessions": {
+    "title": "Próximas Ceremonias",
+    "subtitle": "Encuentra la ceremonia que resuena con tu alma",
+    "empty": "No hay ceremonias programadas en este momento",
+    "emptyHint": "Escríbenos por WhatsApp para conocer las próximas fechas"
+  },
   "cta": {
     "title": "Únete a una Ceremonia de Renacimiento",
     "description": "¿Listo para tu transformación profunda? Contáctanos para conocer fechas disponibles y más información.",

@@ -51,6 +51,8 @@ export default defineConfig(({ command }) => {
           spaces: resolve(__dirname, 'pages/spaces.html'),
           instructorClasses: resolve(__dirname, 'pages/instructor/my-classes.html'),
           instructorMySpace: resolve(__dirname, 'pages/instructor/my-space.html'),
+          instructorMyRebirthing: resolve(__dirname, 'pages/instructor/my-rebirthing.html'),
+          adminRebirthing: resolve(__dirname, 'pages/admin/rebirthing.html'),
           verifyEmail: resolve(__dirname, 'pages/verify-email.html')
         }
       }

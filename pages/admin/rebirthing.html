@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestión de Renacimientos - Admin ACIKY" />
+    <title>Renacimientos - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Renacimientos</h1>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Gestiona las ceremonias de renacimiento</p>
+          </div>
+          <button id="createSessionBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">add</span>
+            <span data-i18n="newButton">Nueva Ceremonia</span>
+          </button>
+        </div>
+
+        <!-- Loading -->
+        <div id="sessionsLoading" class="text-center py-12">
+          <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando ceremonias...</p>
+        </div>
+
+        <!-- Sessions List -->
+        <div id="sessionsContainer" class="hidden space-y-4"></div>
+
+        <!-- Empty -->
+        <div id="sessionsEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-5xl text-slate-300">spa</span>
+          <p class="text-slate-400 text-sm mt-2" data-i18n="empty">No hay ceremonias registradas</p>
+        </div>
+      </section>
+
+      <!-- Session Modal -->
+      <div id="sessionModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="fixed inset-0 bg-black/50" id="sessionModalOverlay"></div>
+        <div class="relative inset-x-4 my-8 max-w-lg mx-auto bg-white rounded-3xl shadow-xl">
+          <div class="p-8">
+            <h2 id="sessionModalTitle" class="text-xl font-bold text-primary-dark mb-6" data-i18n="modal.newTitle">Nueva Ceremonia</h2>
+            <form id="sessionForm" class="space-y-4">
+              <input type="hidden" id="sessionId" />
+
+              <div>
+                <label for="sessionName" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.name">Nombre</label>
+                <input type="text" id="sessionName" required maxlength="255"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.namePlaceholder" placeholder="Nombre de la ceremonia" />
+                <label for="sessionNameEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="modal.nameEn">Name (EN)</label>
+                <input type="text" id="sessionNameEn" maxlength="255"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.nameEnPlaceholder" placeholder="English name (optional)" />
+              </div>
+
+              <div>
+                <label for="sessionDescription" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.description">Descripción</label>
+                <textarea id="sessionDescription" rows="3" maxlength="2000"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="modal.descriptionPlaceholder" placeholder="Descripción opcional..."></textarea>
+                <label for="sessionDescriptionEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="modal.descriptionEn">Description (EN)</label>
+                <textarea id="sessionDescriptionEn" rows="3" maxlength="2000"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="modal.descriptionEnPlaceholder" placeholder="English description (optional)"></textarea>
+              </div>
+
+              <div>
+                <label for="sessionAddress" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.address">Dirección / Lugar</label>
+                <input type="text" id="sessionAddress" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.addressPlaceholder" placeholder="Ej: Casa Museo de Asia, La Habana" />
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="sessionDate" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.date">Fecha</label>
+                  <input type="date" id="sessionDate"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
+                </div>
+                <div>
+                  <label for="sessionTime" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.time">Hora</label>
+                  <input type="time" id="sessionTime"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
+                </div>
+              </div>
+
+              <div>
+                <label for="sessionInstructor" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.instructor">Instructor</label>
+                <select id="sessionInstructor"
+                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white">
+                  <option value="">— Sin instructor —</option>
+                </select>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="sessionActive" class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
+                <label for="sessionActive" class="text-sm font-medium text-primary-dark" data-i18n="modal.active">Activa</label>
+              </div>
+
+              <div id="sessionFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelSessionBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+                <button type="submit" id="saveSessionBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.save">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

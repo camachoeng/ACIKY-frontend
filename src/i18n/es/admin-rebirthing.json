@@ -1,0 +1,34 @@
+{
+  "title": "Renacimientos",
+  "subtitle": "Gestiona las ceremonias de renacimiento",
+  "newButton": "Nueva Ceremonia",
+  "loading": "Cargando ceremonias...",
+  "empty": "No hay ceremonias registradas",
+  "modal": {
+    "newTitle": "Nueva Ceremonia",
+    "editTitle": "Editar Ceremonia",
+    "name": "Nombre",
+    "namePlaceholder": "Nombre de la ceremonia",
+    "nameEn": "Nombre (EN)",
+    "nameEnPlaceholder": "Nombre en inglés (opcional)",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Descripción opcional...",
+    "descriptionEn": "Descripción (EN)",
+    "descriptionEnPlaceholder": "Descripción en inglés (opcional)",
+    "address": "Dirección / Lugar",
+    "addressPlaceholder": "Ej: Casa Museo de Asia, La Habana",
+    "date": "Fecha",
+    "time": "Hora",
+    "instructor": "Instructor",
+    "noInstructor": "— Sin instructor —",
+    "active": "Activa",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "status": {
+    "active": "Activa",
+    "inactive": "Inactiva",
+    "noInstructor": "Sin instructor"
+  }
+}
