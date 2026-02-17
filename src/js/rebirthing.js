@@ -1,13 +1,21 @@
 // Rebirthing page
-import { t } from './i18n.js'
+import { t, localized } from './i18n.js'
 import { apiFetch } from './api.js'
 import { formatUserName } from './utils/formatUserName.js'
+
+let cachedSessions = []
 
 export async function initRebirthing() {
   updateWhatsAppLink()
   await loadSessions()
 
-  window.addEventListener('languageChanged', updateWhatsAppLink)
+  window.addEventListener('languageChanged', () => {
+    updateWhatsAppLink()
+    const container = document.getElementById('sessionsContainer')
+    if (container && !container.classList.contains('hidden')) {
+      renderSessions(container, cachedSessions)
+    }
+  })
 }
 
 function updateWhatsAppLink() {
@@ -26,14 +34,14 @@ async function loadSessions() {
 
   try {
     const data = await apiFetch('/api/rebirthing?active=true')
-    const sessions = data.data || []
+    cachedSessions = data.data || []
     loading?.classList.add('hidden')
 
-    if (sessions.length === 0) {
+    if (cachedSessions.length === 0) {
       empty?.classList.remove('hidden')
     } else {
       container?.classList.remove('hidden')
-      renderSessions(container, sessions)
+      renderSessions(container, cachedSessions)
     }
   } catch {
     loading?.classList.add('hidden')
@@ -54,7 +62,7 @@ function renderSessions(container, sessions) {
             <span class="material-symbols-outlined text-primary text-xl">spa</span>
           </div>
           <div class="flex-1 min-w-0">
-            <h3 class="font-bold text-primary-dark mb-2">${escapeHtml(s.name)}</h3>
+            <h3 class="font-bold text-primary-dark mb-2">${escapeHtml(localized(s, 'name'))}</h3>
             ${s.date ? `
             <div class="flex items-center gap-1 text-xs text-primary mb-1">
               <span class="material-symbols-outlined text-xs">calendar_month</span>
@@ -70,8 +78,8 @@ function renderSessions(container, sessions) {
               <span class="material-symbols-outlined text-xs">person</span>
               <span>${escapeHtml(instructorName)}</span>
             </div>` : ''}
-            ${s.description ? `
-            <p class="text-slate-600 text-sm mt-3 leading-relaxed">${escapeHtml(s.description)}</p>` : ''}
+            ${localized(s, 'description') ? `
+            <p class="text-slate-600 text-sm mt-3 leading-relaxed">${escapeHtml(localized(s, 'description'))}</p>` : ''}
           </div>
         </div>
       </div>`
