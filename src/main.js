@@ -125,7 +125,7 @@ async function initHomeRebirthing() {
       <div class="min-w-[280px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
         <div class="flex items-center gap-2 mb-3">
           <span class="material-symbols-outlined text-primary text-lg">spa</span>
-          <h4 class="font-bold text-primary-dark text-sm">${escapeHtml(s.name)}</h4>
+          <h4 class="font-bold text-primary-dark text-sm">${escapeHtml(localized(s, 'name'))}</h4>
         </div>
         ${s.date ? `
         <div class="flex items-center gap-1 text-xs text-primary mb-2">
@@ -137,7 +137,7 @@ async function initHomeRebirthing() {
           <span class="material-symbols-outlined text-xs">location_on</span>
           <span>${escapeHtml(s.address)}</span>
         </div>` : ''}
-        ${s.description ? `<p class="text-slate-600 text-xs leading-relaxed line-clamp-2">${escapeHtml(s.description)}</p>` : ''}
+        ${localized(s, 'description') ? `<p class="text-slate-600 text-xs leading-relaxed line-clamp-2">${escapeHtml(localized(s, 'description'))}</p>` : ''}
       </div>`).join('')
   } catch {
     const section = document.getElementById('homeRebirthingSection')
