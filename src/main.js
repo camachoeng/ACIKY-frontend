@@ -256,6 +256,124 @@ async function initHomeSpaces() {
   }
 }
 
+// Home page: events carousel state
+let _eventsCarouselTimer = null
+let _eventsCarouselIndex = 0
+let _eventsCarouselTotal = 0
+
+// Home page: load active events as hero-style carousel
+async function initHomeEvents() {
+  const container = document.getElementById('homeEventsContainer')
+  if (!container) return
+
+  // Clear any running carousel
+  if (_eventsCarouselTimer) {
+    clearInterval(_eventsCarouselTimer)
+    _eventsCarouselTimer = null
+  }
+  _eventsCarouselIndex = 0
+
+  try {
+    const data = await apiFetch('/api/events?active=true')
+    const events = data.data || []
+
+    if (events.length === 0) {
+      const section = document.getElementById('homeEventsSection')
+      if (section) section.classList.add('hidden')
+      return
+    }
+
+    const base = import.meta.env.BASE_URL
+    _eventsCarouselTotal = events.length
+
+    // Render all slides stacked, first one visible
+    container.innerHTML = events.map((ev, i) => {
+      const name = localized(ev, 'name')
+      const badge = ev.is_online ? t('homeEvents.online') : t('homeEvents.badge')
+      const dateStr = ev.date
+        ? new Date(ev.date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })
+        : ''
+      return `
+        <a href="${base}pages/event.html?id=${ev.id}"
+           class="absolute inset-0 transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0'} pointer-events-${i === 0 ? 'auto' : 'none'}">
+          ${ev.image_url
+            ? `<img src="${escapeHtml(ev.image_url)}" alt="${escapeHtml(name)}" class="absolute inset-0 w-full h-full object-cover" />`
+            : `<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                 <span class="material-symbols-outlined text-primary text-7xl">event</span>
+               </div>`}
+          <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/20 to-transparent"></div>
+          <div class="absolute top-4 left-4">
+            <span class="inline-block px-3 py-1 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg">${escapeHtml(badge)}</span>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+            <h2 class="text-2xl font-bold mb-2">${escapeHtml(name)}</h2>
+            ${dateStr ? `
+            <p class="text-sm opacity-90 flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">calendar_month</span>
+              <span>${escapeHtml(dateStr)}</span>
+            </p>` : ''}
+            ${ev.address && !ev.is_online ? `
+            <p class="text-xs opacity-70 flex items-center gap-1 mt-1">
+              <span class="material-symbols-outlined text-xs">location_on</span>
+              <span>${escapeHtml(ev.address)}</span>
+            </p>` : ''}
+          </div>
+        </a>`
+    }).join('')
+
+    // Render dots when multiple events
+    const dotsEl = document.getElementById('homeEventsDots')
+    if (dotsEl) {
+      if (events.length > 1) {
+        dotsEl.innerHTML = events.map((_, i) =>
+          `<button class="event-dot rounded-full transition-all duration-300 ${i === 0 ? 'w-4 h-2 bg-primary' : 'w-2 h-2 bg-slate-300'}" data-index="${i}" aria-label="Evento ${i + 1}"></button>`
+        ).join('')
+        dotsEl.classList.remove('hidden')
+        dotsEl.addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-index]')
+          if (!btn) return
+          _eventsGoToSlide(parseInt(btn.dataset.index))
+          // Reset auto-cycle timer
+          clearInterval(_eventsCarouselTimer)
+          _eventsCarouselTimer = setInterval(_eventsAdvanceSlide, 5000)
+        })
+      } else {
+        dotsEl.classList.add('hidden')
+      }
+    }
+
+    // Start auto-cycling for multiple events
+    if (events.length > 1) {
+      _eventsCarouselTimer = setInterval(_eventsAdvanceSlide, 5000)
+    }
+  } catch {
+    const section = document.getElementById('homeEventsSection')
+    if (section) section.classList.add('hidden')
+  }
+}
+
+function _eventsGoToSlide(index) {
+  const container = document.getElementById('homeEventsContainer')
+  if (!container) return
+  container.querySelectorAll('a').forEach((slide, i) => {
+    const active = i === index
+    slide.classList.toggle('opacity-100', active)
+    slide.classList.toggle('opacity-0', !active)
+    slide.style.pointerEvents = active ? 'auto' : 'none'
+  })
+  _eventsCarouselIndex = index
+  // Update dots
+  document.getElementById('homeEventsDots')?.querySelectorAll('[data-index]').forEach((dot, i) => {
+    dot.className = i === index
+      ? 'event-dot rounded-full transition-all duration-300 w-4 h-2 bg-primary'
+      : 'event-dot rounded-full transition-all duration-300 w-2 h-2 bg-slate-300'
+  })
+}
+
+function _eventsAdvanceSlide() {
+  _eventsGoToSlide((_eventsCarouselIndex + 1) % _eventsCarouselTotal)
+}
+
 // Home page: handle contact CTA for auth state
 function initHomeContactCta() {
   const section = document.getElementById('contactCtaSection')
@@ -315,6 +433,7 @@ function initActivitiesCarousel() {
 
 // Listen for language changes to re-render home dynamic sections
 window.addEventListener('languageChanged', () => {
+  initHomeEvents()
   initHeroSchedule()
   initHomeTestimonials()
   initHomeGoldenRoutes()
@@ -395,6 +514,7 @@ async function initPage() {
 
   const base = import.meta.env.BASE_URL
   if (path === base || path === base + 'index.html') {
+    initHomeEvents()
     initHeroSchedule()
     initHomeTestimonials()
     initHomeGoldenRoutes()
@@ -498,6 +618,12 @@ async function initPage() {
   } else if (path.includes('/pages/admin/festival.html')) {
     const { initAdminFestival } = await import('./js/admin/festival.js')
     initAdminFestival()
+  } else if (path.includes('/pages/event.html')) {
+    const { initEvent } = await import('./js/events.js')
+    initEvent()
+  } else if (path.includes('/pages/admin/events.html')) {
+    const { initAdminEvents } = await import('./js/admin/adminEvents.js')
+    initAdminEvents()
   }
 }
 
