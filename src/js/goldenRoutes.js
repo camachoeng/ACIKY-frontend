@@ -84,39 +84,45 @@ function renderActiveRoutes(routes) {
     const desc = localized(item, 'description') || ''
 
     return `
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="material-symbols-outlined text-primary text-xl">route</span>
-        <h3 class="font-bold text-primary-dark">${escapeHtml(name)}</h3>
-      </div>
-      <div class="flex items-center gap-1 text-xs text-slate-500 mb-3">
-        <span class="material-symbols-outlined text-xs">location_on</span>
-        <span>${escapeHtml(item.origin || '')}</span>
-        <span class="material-symbols-outlined text-xs">arrow_forward</span>
-        <span>${escapeHtml(item.destination || '')}</span>
-      </div>
-      <p class="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">${escapeHtml(desc)}</p>
-      ${item.start_date || item.end_date ? `
-      <div class="flex items-center gap-1 text-xs text-primary mb-2">
-        <span class="material-symbols-outlined text-xs">schedule</span>
-        <span>${item.start_date ? formatDate(item.start_date) : '---'} → ${item.end_date ? formatDate(item.end_date) : '---'}</span>
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      ${item.image_url ? `
+      <div class="relative h-40">
+        <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(name)}" class="w-full h-full object-cover" />
       </div>` : ''}
-      ${item.instructors && item.instructors.length > 0 ? `
-      <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
-        <span class="material-symbols-outlined text-xs">person</span>
-        <span>${escapeHtml(item.instructors.map(i => formatUserName(i)).join(', '))}</span>
-      </div>` : ''}
-      <div class="flex flex-wrap gap-3 text-xs text-slate-500">
-        ${item.participants_count ? `
-        <span class="flex items-center gap-1">
-          <span class="material-symbols-outlined text-xs text-accent-teal">group</span>
-          ${item.participants_count}+ ${escapeHtml(t('routes.participants'))}
-        </span>` : ''}
-        ${item.spaces_established ? `
-        <span class="flex items-center gap-1">
-          <span class="material-symbols-outlined text-xs text-accent-terracotta">home</span>
-          ${item.spaces_established} ${escapeHtml(t('routes.spaces'))}
-        </span>` : ''}
+      <div class="p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="material-symbols-outlined text-primary text-xl">route</span>
+          <h3 class="font-bold text-primary-dark">${escapeHtml(name)}</h3>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-slate-500 mb-3">
+          <span class="material-symbols-outlined text-xs">location_on</span>
+          <span>${escapeHtml(item.origin || '')}</span>
+          <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <span>${escapeHtml(item.destination || '')}</span>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">${escapeHtml(desc)}</p>
+        ${item.start_date || item.end_date ? `
+        <div class="flex items-center gap-1 text-xs text-primary mb-2">
+          <span class="material-symbols-outlined text-xs">schedule</span>
+          <span>${item.start_date ? formatDate(item.start_date) : '---'} → ${item.end_date ? formatDate(item.end_date) : '---'}</span>
+        </div>` : ''}
+        ${item.instructors && item.instructors.length > 0 ? `
+        <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
+          <span class="material-symbols-outlined text-xs">person</span>
+          <span>${escapeHtml(item.instructors.map(i => formatUserName(i)).join(', '))}</span>
+        </div>` : ''}
+        <div class="flex flex-wrap gap-3 text-xs text-slate-500">
+          ${item.participants_count ? `
+          <span class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs text-accent-teal">group</span>
+            ${item.participants_count}+ ${escapeHtml(t('routes.participants'))}
+          </span>` : ''}
+          ${item.spaces_established ? `
+          <span class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs text-accent-terracotta">home</span>
+            ${item.spaces_established} ${escapeHtml(t('routes.spaces'))}
+          </span>` : ''}
+        </div>
       </div>
     </div>`
   }).join('')

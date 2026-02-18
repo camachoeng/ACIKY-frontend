@@ -24,6 +24,8 @@ export async function initAdminRebirthing() {
   document.getElementById('sessionForm')
     ?.addEventListener('submit', saveSession)
 
+  setupImageUpload()
+
   document.getElementById('sessionsContainer')
     ?.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-action]')
@@ -141,6 +143,7 @@ function openCreateModal() {
   document.getElementById('sessionDate').value = ''
   document.getElementById('sessionTime').value = ''
   document.getElementById('sessionActive').checked = true
+  resetImageUpload()
   hideFormError()
   document.getElementById('sessionModal')?.classList.remove('hidden')
 }
@@ -168,6 +171,17 @@ function openEditModal(id) {
   }
 
   document.getElementById('sessionActive').checked = !!s.active
+
+  // Image
+  document.getElementById('imageUrl').value = s.image || ''
+  if (s.image) {
+    document.getElementById('imagePreviewImg').src = s.image
+    document.getElementById('imagePreview').classList.remove('hidden')
+    document.getElementById('imageUploadZone').classList.add('hidden')
+  } else {
+    resetImageUpload()
+  }
+
   hideFormError()
   document.getElementById('sessionModal')?.classList.remove('hidden')
 }
@@ -193,7 +207,8 @@ async function saveSession(e) {
     address: document.getElementById('sessionAddress').value.trim() || null,
     instructor_id: document.getElementById('sessionInstructor').value || null,
     date: datetime,
-    active: document.getElementById('sessionActive').checked
+    active: document.getElementById('sessionActive').checked,
+    image: document.getElementById('imageUrl').value || null
   }
 
   try {
@@ -254,6 +269,86 @@ function formatDateTime(dateStr) {
   const date = new Date(dateStr)
   return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }) +
     ' ' + date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
+}
+
+function setupImageUpload() {
+  const uploadZone = document.getElementById('imageUploadZone')
+  const fileInput = document.getElementById('imageInput')
+  const preview = document.getElementById('imagePreview')
+  const previewImg = document.getElementById('imagePreviewImg')
+  const removeBtn = document.getElementById('removeImageBtn')
+  const imageUrl = document.getElementById('imageUrl')
+
+  uploadZone?.addEventListener('click', () => fileInput?.click())
+
+  fileInput?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0]
+    if (file) await uploadImage(file)
+  })
+
+  uploadZone?.addEventListener('dragover', (e) => {
+    e.preventDefault()
+    uploadZone.classList.add('border-primary', 'bg-primary/5')
+  })
+
+  uploadZone?.addEventListener('dragleave', () => {
+    uploadZone.classList.remove('border-primary', 'bg-primary/5')
+  })
+
+  uploadZone?.addEventListener('drop', async (e) => {
+    e.preventDefault()
+    uploadZone.classList.remove('border-primary', 'bg-primary/5')
+    const file = e.dataTransfer?.files?.[0]
+    if (file) await uploadImage(file)
+  })
+
+  removeBtn?.addEventListener('click', () => {
+    if (imageUrl) imageUrl.value = ''
+    if (fileInput) fileInput.value = ''
+    if (previewImg) previewImg.src = ''
+    preview?.classList.add('hidden')
+    uploadZone?.classList.remove('hidden')
+  })
+}
+
+function resetImageUpload() {
+  document.getElementById('imageUrl').value = ''
+  const fileInput = document.getElementById('imageInput')
+  if (fileInput) fileInput.value = ''
+  const previewImg = document.getElementById('imagePreviewImg')
+  if (previewImg) previewImg.src = ''
+  document.getElementById('imagePreview')?.classList.add('hidden')
+  document.getElementById('imageUploadZone')?.classList.remove('hidden')
+}
+
+async function uploadImage(file) {
+  const preview = document.getElementById('imagePreview')
+  const previewImg = document.getElementById('imagePreviewImg')
+  const uploadZone = document.getElementById('imageUploadZone')
+  const imageUrl = document.getElementById('imageUrl')
+
+  if (!file.type.startsWith('image/')) {
+    showFormError('Debe ser un archivo de imagen')
+    return
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    showFormError('Tamaño máximo: 5MB')
+    return
+  }
+
+  try {
+    const formData = new FormData()
+    formData.append('image', file)
+    const response = await apiFetch('/api/upload/image', { method: 'POST', body: formData, headers: {} })
+    if (response.data?.url) {
+      if (imageUrl) imageUrl.value = response.data.url
+      if (previewImg) previewImg.src = response.data.url
+      uploadZone?.classList.add('hidden')
+      preview?.classList.remove('hidden')
+    }
+  } catch (err) {
+    showFormError('Error al subir imagen: ' + err.message)
+  }
 }
 
 function escapeHtml(str) {

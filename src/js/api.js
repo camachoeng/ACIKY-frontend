@@ -40,6 +40,12 @@ export async function apiFetch(path, options = {}) {
   const data = await res.json()
 
   if (!res.ok) {
+    if (res.status === 401) {
+      localStorage.clear()
+      sessionStorage.clear()
+      window.location.href = import.meta.env.BASE_URL + 'pages/login.html'
+      return
+    }
     const err = new Error(data.message || 'Request failed')
     err.status = res.status
     err.data = data

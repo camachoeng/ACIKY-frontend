@@ -94,12 +94,21 @@ async function initHomeTestimonials() {
       return
     }
 
-    container.innerHTML = testimonials.slice(0, 3).map(item => `
+    container.innerHTML = testimonials.slice(0, 3).map(item => {
+      const authorName = item.name ? `${item.name} ${item.last_name || ''}`.trim() : (item.author_name || '')
+      const photoHtml = item.profile_image_url
+        ? `<img src="${escapeHtml(item.profile_image_url)}" alt="${escapeHtml(authorName)}" class="w-8 h-8 rounded-full object-cover flex-shrink-0" />`
+        : `<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-primary text-base">person</span></div>`
+      return `
       <div class="min-w-[280px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
         <span class="material-symbols-outlined text-primary/20 text-2xl">format_quote</span>
         <p class="text-slate-600 text-sm mt-2 leading-relaxed line-clamp-4">${escapeHtml(localized(item, 'content'))}</p>
-        <p class="mt-4 text-primary-dark font-semibold text-sm">${escapeHtml(item.author_name || '')}</p>
-      </div>`).join('')
+        <div class="mt-4 flex items-center gap-2">
+          ${photoHtml}
+          <p class="text-primary-dark font-semibold text-sm">${escapeHtml(authorName)}</p>
+        </div>
+      </div>`
+    }).join('')
   } catch {
     const section = document.getElementById('homeTestimonialsSection')
     if (section) section.classList.add('hidden')
@@ -122,22 +131,27 @@ async function initHomeRebirthing() {
     }
 
     container.innerHTML = sessions.slice(0, 4).map(s => `
-      <div class="min-w-[280px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="material-symbols-outlined text-primary text-lg">spa</span>
-          <h4 class="font-bold text-primary-dark text-sm">${escapeHtml(localized(s, 'name'))}</h4>
+      <div class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        ${s.image ? `
+        <div class="relative h-32">
+          <img src="${escapeHtml(s.image)}" alt="${escapeHtml(localized(s, 'name'))}" class="w-full h-full object-cover" />
+        </div>` : `
+        <div class="h-32 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-4xl">spa</span>
+        </div>`}
+        <div class="p-4">
+          <h4 class="font-bold text-primary-dark text-sm mb-2">${escapeHtml(localized(s, 'name'))}</h4>
+          ${s.date ? `
+          <div class="flex items-center gap-1 text-xs text-primary mb-1">
+            <span class="material-symbols-outlined text-xs">calendar_month</span>
+            <span>${escapeHtml(new Date(s.date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }))}</span>
+          </div>` : ''}
+          ${s.address ? `
+          <div class="flex items-center gap-1 text-xs text-slate-500">
+            <span class="material-symbols-outlined text-xs">location_on</span>
+            <span>${escapeHtml(s.address)}</span>
+          </div>` : ''}
         </div>
-        ${s.date ? `
-        <div class="flex items-center gap-1 text-xs text-primary mb-2">
-          <span class="material-symbols-outlined text-xs">calendar_month</span>
-          <span>${escapeHtml(new Date(s.date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }))}</span>
-        </div>` : ''}
-        ${s.address ? `
-        <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
-          <span class="material-symbols-outlined text-xs">location_on</span>
-          <span>${escapeHtml(s.address)}</span>
-        </div>` : ''}
-        ${localized(s, 'description') ? `<p class="text-slate-600 text-xs leading-relaxed line-clamp-2">${escapeHtml(localized(s, 'description'))}</p>` : ''}
       </div>`).join('')
   } catch {
     const section = document.getElementById('homeRebirthingSection')
@@ -161,18 +175,24 @@ async function initHomeGoldenRoutes() {
     }
 
     container.innerHTML = routes.slice(0, 4).map(item => `
-      <div class="min-w-[280px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="material-symbols-outlined text-primary text-lg">route</span>
-          <h4 class="font-bold text-primary-dark text-sm">${escapeHtml(localized(item, 'name'))}</h4>
+      <div class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        ${item.image_url ? `
+        <div class="relative h-32">
+          <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(localized(item, 'name'))}" class="w-full h-full object-cover" />
+        </div>` : `
+        <div class="h-32 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-4xl">route</span>
+        </div>`}
+        <div class="p-4">
+          <h4 class="font-bold text-primary-dark text-sm mb-2">${escapeHtml(localized(item, 'name'))}</h4>
+          <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
+            <span class="material-symbols-outlined text-xs">location_on</span>
+            <span>${escapeHtml(item.origin || '')}</span>
+            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            <span>${escapeHtml(item.destination || '')}</span>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed line-clamp-2">${escapeHtml(localized(item, 'description'))}</p>
         </div>
-        <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
-          <span class="material-symbols-outlined text-xs">location_on</span>
-          <span>${escapeHtml(item.origin || '')}</span>
-          <span class="material-symbols-outlined text-xs">arrow_forward</span>
-          <span>${escapeHtml(item.destination || '')}</span>
-        </div>
-        <p class="text-slate-600 text-xs leading-relaxed line-clamp-2">${escapeHtml(localized(item, 'description'))}</p>
       </div>`).join('')
   } catch {
     const section = document.getElementById('homeGoldenRoutesSection')
