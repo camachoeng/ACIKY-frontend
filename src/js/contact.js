@@ -3,8 +3,8 @@ import { t } from './i18n.js'
 import { getUser } from './auth.js'
 import { formatUserName } from './utils/formatUserName.js'
 
-const PROD_EMAIL = 'acikyrespiray@gmail.com'
-const DEV_EMAIL = 'randyrandom.content@gmail.com'
+const PROD_EMAIL = 'info.aciky@gmail.com'
+const DEV_EMAIL = 'info.aciky@gmail.com'
 
 export function initContact() {
   const user = getUser()
