@@ -1,0 +1,39 @@
+{
+  "title": "Events",
+  "subtitle": "Manage upcoming ACIKY events",
+  "newButton": "New Event",
+  "loading": "Loading events...",
+  "empty": "No events registered",
+  "modal": {
+    "newTitle": "New Event",
+    "editTitle": "Edit Event",
+    "name": "Name",
+    "namePlaceholder": "Event name",
+    "nameEn": "Name (EN)",
+    "nameEnPlaceholder": "Event name in English (optional)",
+    "description": "Description",
+    "descriptionPlaceholder": "Event description...",
+    "descriptionEn": "Description (EN)",
+    "descriptionEnPlaceholder": "Event description in English (optional)",
+    "image": "Image",
+    "imageHelp": "Drag an image or click to select",
+    "imageRemove": "Remove image",
+    "date": "Date",
+    "time": "Time",
+    "isOnline": "Online event",
+    "address": "Address / Venue",
+    "addressPlaceholder": "E.g.: Casa Museo de Asia, Havana",
+    "eventUrl": "Event link (optional)",
+    "eventUrlPlaceholder": "https://...",
+    "active": "Active",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "online": "Online",
+    "inPerson": "In person"
+  }
+}

@@ -25,6 +25,8 @@ export async function initAdminSchedule() {
   const form = document.getElementById('activityForm')
   if (form) form.addEventListener('submit', saveActivity)
 
+  setupImageUpload()
+
   // Cards event delegation
   const container = document.getElementById('activitiesContainer')
   if (container) {
@@ -90,7 +92,9 @@ function renderActivities(container) {
 
   container.innerHTML = activities.map(activity => `
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-start gap-4">
-      <div class="text-3xl flex-shrink-0">${activity.icon || '🧘'}</div>
+      ${activity.image_url
+        ? `<div class="w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0"><img src="${escapeHtml(activity.image_url)}" alt="${escapeHtml(activity.name)}" class="w-full h-full object-cover" /></div>`
+        : `<div class="text-3xl flex-shrink-0">${activity.icon || '🧘'}</div>`}
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 mb-1 flex-wrap">
           <h3 class="font-bold text-primary-dark">${escapeHtml(activity.name)}</h3>
@@ -127,6 +131,7 @@ function openCreateModal() {
   if (title) title.textContent = 'Nueva Clase'
   if (form) form.reset()
   document.getElementById('activityId').value = ''
+  resetImageUpload()
   hideFormError()
   if (modal) modal.classList.remove('hidden')
 }
@@ -157,6 +162,15 @@ async function openEditModal(id) {
     document.getElementById('activityNameEn').value = a.name_en || ''
     document.getElementById('activityDescriptionEn').value = a.description_en || ''
     document.getElementById('activityLocationEn').value = a.location_en || ''
+
+    document.getElementById('activityImageUrl').value = a.image_url || ''
+    if (a.image_url) {
+      document.getElementById('activityImagePreviewImg').src = a.image_url
+      document.getElementById('activityImagePreview').classList.remove('hidden')
+      document.getElementById('activityImageUploadZone').classList.add('hidden')
+    } else {
+      resetImageUpload()
+    }
 
     hideFormError()
     if (modal) modal.classList.remove('hidden')
@@ -192,7 +206,8 @@ async function saveActivity(e) {
     featured: document.getElementById('activityFeatured').checked,
     name_en: document.getElementById('activityNameEn').value.trim() || null,
     description_en: document.getElementById('activityDescriptionEn').value.trim() || null,
-    location_en: document.getElementById('activityLocationEn').value.trim() || null
+    location_en: document.getElementById('activityLocationEn').value.trim() || null,
+    image_url: document.getElementById('activityImageUrl').value || null
   }
 
   try {
@@ -263,6 +278,81 @@ function showFormError(msg) {
 function hideFormError() {
   const el = document.getElementById('activityFormError')
   if (el) el.classList.add('hidden')
+}
+
+function setupImageUpload() {
+  const uploadZone = document.getElementById('activityImageUploadZone')
+  const fileInput = document.getElementById('activityImageInput')
+  const preview = document.getElementById('activityImagePreview')
+  const previewImg = document.getElementById('activityImagePreviewImg')
+  const removeBtn = document.getElementById('activityRemoveImageBtn')
+  const imageUrl = document.getElementById('activityImageUrl')
+
+  uploadZone?.addEventListener('click', () => fileInput?.click())
+
+  fileInput?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0]
+    if (file) await uploadActivityImage(file)
+  })
+
+  uploadZone?.addEventListener('dragover', (e) => {
+    e.preventDefault()
+    uploadZone.classList.add('border-primary', 'bg-primary/5')
+  })
+
+  uploadZone?.addEventListener('dragleave', () => {
+    uploadZone.classList.remove('border-primary', 'bg-primary/5')
+  })
+
+  uploadZone?.addEventListener('drop', async (e) => {
+    e.preventDefault()
+    uploadZone.classList.remove('border-primary', 'bg-primary/5')
+    const file = e.dataTransfer?.files?.[0]
+    if (file) await uploadActivityImage(file)
+  })
+
+  removeBtn?.addEventListener('click', () => {
+    if (imageUrl) imageUrl.value = ''
+    if (fileInput) fileInput.value = ''
+    if (previewImg) previewImg.src = ''
+    preview?.classList.add('hidden')
+    uploadZone?.classList.remove('hidden')
+  })
+}
+
+function resetImageUpload() {
+  const imageUrl = document.getElementById('activityImageUrl')
+  if (imageUrl) imageUrl.value = ''
+  const fileInput = document.getElementById('activityImageInput')
+  if (fileInput) fileInput.value = ''
+  const previewImg = document.getElementById('activityImagePreviewImg')
+  if (previewImg) previewImg.src = ''
+  document.getElementById('activityImagePreview')?.classList.add('hidden')
+  document.getElementById('activityImageUploadZone')?.classList.remove('hidden')
+}
+
+async function uploadActivityImage(file) {
+  if (!file.type.startsWith('image/')) {
+    showFormError('Debe ser un archivo de imagen')
+    return
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    showFormError('Tamaño máximo: 5MB')
+    return
+  }
+  try {
+    const formData = new FormData()
+    formData.append('image', file)
+    const response = await apiFetch('/api/upload/image', { method: 'POST', body: formData, headers: {} })
+    if (response.data?.url) {
+      document.getElementById('activityImageUrl').value = response.data.url
+      document.getElementById('activityImagePreviewImg').src = response.data.url
+      document.getElementById('activityImageUploadZone')?.classList.add('hidden')
+      document.getElementById('activityImagePreview')?.classList.remove('hidden')
+    }
+  } catch (err) {
+    showFormError('Error al subir imagen: ' + err.message)
+  }
 }
 
 function escapeHtml(str) {

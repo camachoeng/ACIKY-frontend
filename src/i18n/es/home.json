@@ -63,6 +63,12 @@
     "instructors": "instructores",
     "noInstructors": "Sin instructor asignado"
   },
+  "homeEvents": {
+    "title": "Próximos Eventos",
+    "subtitle": "No te pierdas nuestras actividades especiales",
+    "badge": "Próximo Evento",
+    "online": "En línea"
+  },
   "contact": {
     "title": "¿Tienes Preguntas?",
     "description": "Nuestro equipo está aquí para ayudarte en tu camino hacia el bienestar. Contáctanos para más información.",

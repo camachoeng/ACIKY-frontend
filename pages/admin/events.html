@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestión de Eventos - Admin ACIKY" />
+    <title>Eventos - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Eventos</h1>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Gestiona los próximos eventos de ACIKY</p>
+          </div>
+          <button id="createEventBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">add</span>
+            <span data-i18n="newButton">Nuevo Evento</span>
+          </button>
+        </div>
+
+        <!-- Loading -->
+        <div id="eventsLoading" class="text-center py-12">
+          <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando eventos...</p>
+        </div>
+
+        <!-- Events List -->
+        <div id="eventsContainer" class="hidden space-y-4"></div>
+
+        <!-- Empty -->
+        <div id="eventsEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-5xl text-slate-300">event</span>
+          <p class="text-slate-400 text-sm mt-2" data-i18n="empty">No hay eventos registrados</p>
+        </div>
+      </section>
+
+      <!-- Event Modal -->
+      <div id="eventModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="fixed inset-0 bg-black/50" id="eventModalOverlay"></div>
+        <div class="relative inset-x-4 my-8 max-w-lg mx-auto bg-white rounded-3xl shadow-xl">
+          <div class="p-8">
+            <h2 id="eventModalTitle" class="text-xl font-bold text-primary-dark mb-6" data-i18n="modal.newTitle">Nuevo Evento</h2>
+            <form id="eventForm" class="space-y-4">
+              <input type="hidden" id="eventId" />
+
+              <!-- Name -->
+              <div>
+                <label for="eventName" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.name">Nombre</label>
+                <input type="text" id="eventName" required maxlength="255"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.namePlaceholder" placeholder="Nombre del evento" />
+                <label for="eventNameEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="modal.nameEn">Name (EN)</label>
+                <input type="text" id="eventNameEn" maxlength="255"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.nameEnPlaceholder" placeholder="Event name in English (optional)" />
+              </div>
+
+              <!-- Description -->
+              <div>
+                <label for="eventDescription" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.description">Descripción</label>
+                <textarea id="eventDescription" rows="3" maxlength="3000"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="modal.descriptionPlaceholder" placeholder="Descripción del evento..."></textarea>
+                <label for="eventDescriptionEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="modal.descriptionEn">Description (EN)</label>
+                <textarea id="eventDescriptionEn" rows="3" maxlength="3000"
+                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                          data-i18n-placeholder="modal.descriptionEnPlaceholder" placeholder="Event description in English (optional)"></textarea>
+              </div>
+
+              <!-- Image Upload -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.image">Imagen</label>
+                <div id="imageUploadZone"
+                     class="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-primary hover:bg-primary/5 transition-colors">
+                  <span class="material-symbols-outlined text-4xl text-slate-400">cloud_upload</span>
+                  <p class="text-sm text-slate-500 mt-2" data-i18n="modal.imageHelp">Arrastra una imagen o haz clic para seleccionar</p>
+                  <input type="file" id="imageInput" accept="image/*" class="hidden" />
+                </div>
+                <div id="imagePreview" class="hidden mt-3">
+                  <img id="imagePreviewImg" src="" alt="Preview" class="w-full h-48 object-cover rounded-2xl" />
+                  <button type="button" id="removeImageBtn" class="mt-2 text-sm text-accent-terracotta hover:underline" data-i18n="modal.imageRemove">Eliminar imagen</button>
+                </div>
+                <input type="hidden" id="imageUrl" />
+              </div>
+
+              <!-- Date & Time -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="eventDate" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.date">Fecha</label>
+                  <input type="date" id="eventDate"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
+                </div>
+                <div>
+                  <label for="eventTime" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.time">Hora</label>
+                  <input type="time" id="eventTime"
+                         class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" />
+                </div>
+              </div>
+
+              <!-- Online toggle -->
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="eventIsOnline" class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
+                <label for="eventIsOnline" class="text-sm font-medium text-primary-dark" data-i18n="modal.isOnline">Evento en línea</label>
+              </div>
+
+              <!-- Address (hidden when online) -->
+              <div id="addressField">
+                <label for="eventAddress" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.address">Dirección / Lugar</label>
+                <input type="text" id="eventAddress" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.addressPlaceholder" placeholder="Ej: Casa Museo de Asia, La Habana" />
+              </div>
+
+              <!-- External URL -->
+              <div>
+                <label for="eventUrl" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.eventUrl">Enlace del evento (opcional)</label>
+                <input type="url" id="eventUrl" maxlength="1000"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="modal.eventUrlPlaceholder" placeholder="https://..." />
+              </div>
+
+              <!-- Active -->
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="eventActive" class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
+                <label for="eventActive" class="text-sm font-medium text-primary-dark" data-i18n="modal.active">Activo</label>
+              </div>
+
+              <div id="eventFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelEventBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+                <button type="submit" id="saveEventBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.save">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

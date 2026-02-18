@@ -1,0 +1,20 @@
+{
+  "title": "Upcoming Events",
+  "subtitle": "Don't miss our special activities",
+  "online": "Online",
+  "date": "Date",
+  "address": "Address",
+  "description": "Description",
+  "whatsapp": "Ask on WhatsApp",
+  "externalLink": "More information",
+  "notFound": "Event not found",
+  "notFoundHint": "This event does not exist or has been removed.",
+  "loading": "Loading event...",
+  "quote": {
+    "text": "When you elevate yourself, you elevate everyone around you.",
+    "author": "Yogi Bhajan"
+  },
+  "cta": {
+    "whatsappMessage": "Hello, I want information about the ACIKY event {{name}} (this message is from the ACIKY website)"
+  }
+}

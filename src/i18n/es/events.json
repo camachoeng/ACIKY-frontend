@@ -1,0 +1,20 @@
+{
+  "title": "Próximos Eventos",
+  "subtitle": "No te pierdas nuestras actividades especiales",
+  "online": "En línea",
+  "date": "Fecha",
+  "address": "Dirección",
+  "description": "Descripción",
+  "whatsapp": "Consultar por WhatsApp",
+  "externalLink": "Más información",
+  "notFound": "Evento no encontrado",
+  "notFoundHint": "Este evento no existe o ha sido eliminado.",
+  "loading": "Cargando evento...",
+  "quote": {
+    "text": "Cuando te elevas, elevas a todos a tu alrededor.",
+    "author": "Yogi Bhajan"
+  },
+  "cta": {
+    "whatsappMessage": "Hola, quiero información sobre el evento {{name}} de ACIKY (este mensaje es desde el sitio web de ACIKY)"
+  }
+}

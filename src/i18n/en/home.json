@@ -63,6 +63,12 @@
     "instructors": "instructors",
     "noInstructors": "No instructor assigned"
   },
+  "homeEvents": {
+    "title": "Upcoming Events",
+    "subtitle": "Don't miss our special activities",
+    "badge": "Upcoming Event",
+    "online": "Online"
+  },
   "contact": {
     "title": "Have Questions?",
     "description": "Our team is here to help you on your path to wellness. Contact us for more information.",

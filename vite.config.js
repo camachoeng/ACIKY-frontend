@@ -53,7 +53,9 @@ export default defineConfig(({ command }) => {
           instructorMySpace: resolve(__dirname, 'pages/instructor/my-space.html'),
           instructorMyRebirthing: resolve(__dirname, 'pages/instructor/my-rebirthing.html'),
           adminRebirthing: resolve(__dirname, 'pages/admin/rebirthing.html'),
-          verifyEmail: resolve(__dirname, 'pages/verify-email.html')
+          verifyEmail: resolve(__dirname, 'pages/verify-email.html'),
+          event: resolve(__dirname, 'pages/event.html'),
+          adminEvents: resolve(__dirname, 'pages/admin/events.html')
         }
       }
     }
