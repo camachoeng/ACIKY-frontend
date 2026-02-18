@@ -72,6 +72,9 @@ function renderPosts() {
       <div class="p-6">
         <h3 class="font-bold text-primary-dark text-lg">${escapeHtml(title)}</h3>
         <div class="flex items-center gap-2 mt-2 text-xs text-slate-400">
+          ${post.author_profile_image_url
+            ? `<img src="${escapeHtml(post.author_profile_image_url)}" alt="${escapeHtml(post.author_name || '')}" class="w-5 h-5 rounded-full object-cover flex-shrink-0" />`
+            : `<span class="material-symbols-outlined text-xs">person</span>`}
           <span>${escapeHtml(post.author_name || '')}</span>
           <span>&middot;</span>
           <time>${escapeHtml(date)}</time>
@@ -104,6 +107,20 @@ function showPostDetail(id) {
   document.getElementById('blogDetailTitle').textContent = title
   document.getElementById('blogDetailAuthor').textContent = post.author_name || ''
   document.getElementById('blogDetailDate').textContent = formatDate(post.created_at)
+
+  const authorImg = document.getElementById('blogDetailAuthorImg')
+  const authorIcon = document.getElementById('blogDetailAuthorIcon')
+  if (authorImg && authorIcon) {
+    if (post.author_profile_image_url) {
+      authorImg.src = post.author_profile_image_url
+      authorImg.alt = post.author_name || ''
+      authorImg.classList.remove('hidden')
+      authorIcon.classList.add('hidden')
+    } else {
+      authorImg.classList.add('hidden')
+      authorIcon.classList.remove('hidden')
+    }
+  }
 
   const contentEl = document.getElementById('blogDetailContent')
   contentEl.innerHTML = escapeHtml(content)

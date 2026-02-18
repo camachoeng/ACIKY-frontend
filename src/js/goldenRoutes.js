@@ -107,8 +107,13 @@ function renderActiveRoutes(routes) {
           <span>${item.start_date ? formatDate(item.start_date) : '---'} → ${item.end_date ? formatDate(item.end_date) : '---'}</span>
         </div>` : ''}
         ${item.instructors && item.instructors.length > 0 ? `
-        <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
-          <span class="material-symbols-outlined text-xs">person</span>
+        <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+          <div class="flex -space-x-1.5">
+            ${item.instructors.map(i => i.profile_image_url
+              ? `<img src="${escapeHtml(i.profile_image_url)}" alt="${escapeHtml(formatUserName(i))}" class="w-6 h-6 rounded-full object-cover border border-white flex-shrink-0" />`
+              : `<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border border-white flex-shrink-0"><span class="material-symbols-outlined text-primary" style="font-size:12px">person</span></div>`
+            ).join('')}
+          </div>
           <span>${escapeHtml(item.instructors.map(i => formatUserName(i)).join(', '))}</span>
         </div>` : ''}
         <div class="flex flex-wrap gap-3 text-xs text-slate-500">
@@ -162,10 +167,15 @@ function renderPlannedRoutes(routes) {
         ${item.start_date ? formatDate(item.start_date) : '---'} → ${item.end_date ? formatDate(item.end_date) : '---'}
       </p>` : ''}
       ${item.instructors && item.instructors.length > 0 ? `
-      <p class="text-xs text-slate-500 mt-1 flex items-center gap-1">
-        <span class="material-symbols-outlined text-xs">person</span>
-        ${escapeHtml(item.instructors.map(i => formatUserName(i)).join(', '))}
-      </p>` : ''}
+      <div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+        <div class="flex -space-x-1.5">
+          ${item.instructors.map(i => i.profile_image_url
+            ? `<img src="${escapeHtml(i.profile_image_url)}" alt="${escapeHtml(formatUserName(i))}" class="w-5 h-5 rounded-full object-cover border border-white flex-shrink-0" />`
+            : `<div class="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center border border-white flex-shrink-0"><span class="material-symbols-outlined text-primary" style="font-size:10px">person</span></div>`
+          ).join('')}
+        </div>
+        <span>${escapeHtml(item.instructors.map(i => formatUserName(i)).join(', '))}</span>
+      </div>` : ''}
     </div>`
   }).join('')
 }

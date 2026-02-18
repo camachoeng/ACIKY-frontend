@@ -56,7 +56,11 @@
         <article class="max-w-3xl mx-auto">
           <h2 id="blogDetailTitle" class="text-3xl font-bold text-primary-dark"></h2>
           <div class="flex items-center gap-3 mt-4 text-sm text-slate-500">
-            <span id="blogDetailAuthor"></span>
+            <div class="flex items-center gap-2">
+              <img id="blogDetailAuthorImg" src="" alt="" class="w-7 h-7 rounded-full object-cover flex-shrink-0 hidden" />
+              <span id="blogDetailAuthorIcon" class="material-symbols-outlined text-sm hidden">person</span>
+              <span id="blogDetailAuthor"></span>
+            </div>
             <span>&middot;</span>
             <time id="blogDetailDate"></time>
           </div>
