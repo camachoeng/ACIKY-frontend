@@ -495,6 +495,9 @@ async function initPage() {
   } else if (path.includes('/pages/admin/rebirthing.html')) {
     const { initAdminRebirthing } = await import('./js/admin/rebirthing.js')
     initAdminRebirthing()
+  } else if (path.includes('/pages/admin/festival.html')) {
+    const { initAdminFestival } = await import('./js/admin/festival.js')
+    initAdminFestival()
   }
 }
 

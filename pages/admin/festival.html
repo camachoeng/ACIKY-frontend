@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestión del Festival - Admin ACIKY" />
+    <title>Festival - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Festival</h1>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Gestiona el programa y detalles del festival</p>
+          </div>
+        </div>
+
+        <!-- Loading -->
+        <div id="festivalLoading" class="text-center py-12">
+          <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando...</p>
+        </div>
+
+        <!-- Festival Form -->
+        <div id="festivalForm" class="hidden space-y-8 max-w-4xl">
+
+          <!-- Save Bar -->
+          <div class="flex items-center justify-between bg-white rounded-2xl shadow-sm border border-slate-100 p-4">
+            <p id="saveStatus" class="text-sm text-slate-500"></p>
+            <button id="saveBtn" class="bg-primary-dark text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-primary transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">save</span>
+              <span data-i18n="saveButton">Guardar Cambios</span>
+            </button>
+          </div>
+
+          <!-- Section: Event Details -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <h2 class="text-lg font-bold text-primary-dark mb-5 flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">info</span>
+              <span data-i18n="details.title">Detalles del Evento</span>
+            </h2>
+            <div class="space-y-4">
+
+              <!-- Topic -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="details.topic">Tema del Festival</label>
+                <input type="text" id="topicEs" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="details.topicPlaceholder" placeholder="Ej: La Unión del Ser" />
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="details.topicEn">Festival Topic (EN)</label>
+                <input type="text" id="topicEn" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="details.topicEnPlaceholder" placeholder="E.g.: The Union of Being (optional)" />
+              </div>
+
+              <!-- Dates -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="details.dates">Fechas</label>
+                <input type="text" id="datesEs" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="details.datesPlaceholder" placeholder="Ej: 10-12 de octubre de 2026" />
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="details.datesEn">Dates (EN)</label>
+                <input type="text" id="datesEn" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="details.datesEnPlaceholder" placeholder="E.g.: October 10-12, 2026 (optional)" />
+              </div>
+
+              <!-- Duration -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="details.duration">Duración</label>
+                <input type="text" id="durationEs" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="details.durationPlaceholder" placeholder="Ej: 3 días completos de inmersión" />
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="details.durationEn">Duration (EN)</label>
+                <input type="text" id="durationEn" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="details.durationEnPlaceholder" placeholder="E.g.: 3 full days of immersion (optional)" />
+              </div>
+
+              <!-- Location -->
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="details.location">Ubicación</label>
+                <input type="text" id="locationEs" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="details.locationPlaceholder" placeholder="Ej: Centro de retiros, La Habana" />
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="details.locationEn">Location (EN)</label>
+                <input type="text" id="locationEn" maxlength="500"
+                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                       data-i18n-placeholder="details.locationEnPlaceholder" placeholder="E.g.: Retreat center, Havana (optional)" />
+              </div>
+
+              <!-- Early Bird -->
+              <div class="pt-2 border-t border-slate-100">
+                <p class="text-sm font-semibold text-primary-dark mb-3" data-i18n="details.earlyBird">Registro Temprano</p>
+                <div class="space-y-3">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1" data-i18n="details.earlyBirdTitle">Título</label>
+                    <input type="text" id="earlyBirdTitleEs" maxlength="255"
+                           class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                           data-i18n-placeholder="details.earlyBirdTitlePlaceholder" placeholder="Ej: Registro Temprano" />
+                    <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="details.earlyBirdTitleEn">Title (EN)</label>
+                    <input type="text" id="earlyBirdTitleEn" maxlength="255"
+                           class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                           data-i18n-placeholder="details.earlyBirdTitleEnPlaceholder" placeholder="E.g.: Early Registration (optional)" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-600 mb-1" data-i18n="details.earlyBirdText">Texto</label>
+                    <textarea id="earlyBirdTextEs" rows="3" maxlength="1000"
+                              class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                              data-i18n-placeholder="details.earlyBirdTextPlaceholder" placeholder="Descripción del descuento de registro temprano..."></textarea>
+                    <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="details.earlyBirdTextEn">Text (EN)</label>
+                    <textarea id="earlyBirdTextEn" rows="3" maxlength="1000"
+                              class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
+                              data-i18n-placeholder="details.earlyBirdTextEnPlaceholder" placeholder="Early registration discount description... (optional)"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Program -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+            <h2 class="text-lg font-bold text-primary-dark mb-5 flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">event_note</span>
+              <span data-i18n="program.title">Programa del Festival</span>
+            </h2>
+
+            <!-- Day Tabs -->
+            <div class="flex gap-2 mb-6 border-b border-slate-200">
+              <button data-day="0" class="day-tab px-4 py-2 text-sm font-medium rounded-t-xl border-b-2 border-primary text-primary-dark" data-i18n="program.day1tab">Día 1</button>
+              <button data-day="1" class="day-tab px-4 py-2 text-sm font-medium rounded-t-xl border-b-2 border-transparent text-slate-500 hover:text-primary-dark" data-i18n="program.day2tab">Día 2</button>
+              <button data-day="2" class="day-tab px-4 py-2 text-sm font-medium rounded-t-xl border-b-2 border-transparent text-slate-500 hover:text-primary-dark" data-i18n="program.day3tab">Día 3</button>
+            </div>
+
+            <!-- Day Panels -->
+            <div id="dayPanels" class="space-y-6">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Error -->
+          <div id="formError" class="hidden p-4 bg-red-50 border border-red-200 rounded-2xl text-red-600 text-sm"></div>
+
+        </div>
+      </section>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

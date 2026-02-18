@@ -36,6 +36,7 @@
   "program": {
     "title": "Programa del Festival",
     "subtitle": "Tres días de inmersión completa en la práctica del Kundalini Yoga",
+    "noData": "Programa próximamente disponible",
     "day1": {
       "title": "Día 1: Despertar",
       "theme": "Conexión con la Energía Interna",
@@ -168,6 +169,9 @@
       "location": {
         "label": "Ubicación",
         "value": "Centro de retiros naturales (ubicación por confirmar)"
+      },
+      "topic": {
+        "label": "Tema del Festival"
       }
     },
     "earlyBird": {
