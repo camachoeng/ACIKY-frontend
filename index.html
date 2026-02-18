@@ -32,8 +32,8 @@
           <p class="text-slate-500 text-sm mt-1" data-i18n="homeEvents.subtitle">No te pierdas nuestras actividades especiales</p>
         </div>
         <div class="px-6">
-          <div id="homeEventsContainer" class="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
-            <div class="w-full h-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+          <div id="homeEventsContainer" class="relative aspect-[40/21] rounded-3xl overflow-hidden shadow-xl">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
               <span class="material-symbols-outlined text-primary text-3xl animate-spin">progress_activity</span>
             </div>
           </div>
@@ -43,6 +43,7 @@
 
       <!-- Hero Card Section -->
       <section class="px-6 mb-10">
+        <a href="{{basePath}}/pages/schedule.html" class="block">
         <div class="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
           <img alt="Kundalini Yoga Class" class="absolute inset-0 w-full h-full object-cover" src="/images/hero-yoga.jpg" onerror="this.src='https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=600&fit=crop'"/>
           <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/20 to-transparent"></div>
@@ -62,6 +63,7 @@
             </div>
           </div>
         </div>
+        </a>
       </section>
 
       <!-- Activities Section -->

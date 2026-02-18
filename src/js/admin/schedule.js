@@ -343,7 +343,7 @@ async function uploadActivityImage(file) {
   try {
     const formData = new FormData()
     formData.append('image', file)
-    const response = await apiFetch('/api/upload/image', { method: 'POST', body: formData, headers: {} })
+    const response = await apiFetch('/api/upload/content', { method: 'POST', body: formData, headers: {} })
     if (response.data?.url) {
       document.getElementById('activityImageUrl').value = response.data.url
       document.getElementById('activityImagePreviewImg').src = response.data.url

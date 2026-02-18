@@ -144,14 +144,8 @@ function renderSpaces() {
     return `
       <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
         ${space.image ? `
-          <div class="relative h-48 overflow-hidden">
-            <img src="${escapeHtml(space.image)}" alt="${escapeHtml(spaceName)}" class="absolute inset-0 w-full h-full object-cover" />
-          </div>
-        ` : `
-          <div class="relative h-48 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-            <span class="material-symbols-outlined text-primary text-6xl">home</span>
-          </div>
-        `}
+          <img src="${escapeHtml(space.image)}" alt="${escapeHtml(spaceName)}" class="w-full" />
+        ` : ''}
 
         <div class="p-6">
           <h3 class="font-bold text-lg text-primary-dark mb-4">${escapeHtml(spaceName)}</h3>

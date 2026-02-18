@@ -113,9 +113,7 @@ function renderClassCard(activity, index) {
   return `
     <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
       ${activity.image_url ? `
-      <div class="h-48 w-full overflow-hidden">
-        <img src="${escapeHtml(activity.image_url)}" alt="${escapeHtml(activityName)}" class="w-full h-full object-cover" />
-      </div>` : ''}
+      <img src="${escapeHtml(activity.image_url)}" alt="${escapeHtml(activityName)}" class="w-full" />` : ''}
       <div class="p-6">
       <div class="flex items-start gap-4">
         <div class="w-16 h-16 ${colors.bg10} rounded-2xl flex flex-col items-center justify-center flex-shrink-0">
