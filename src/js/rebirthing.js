@@ -56,30 +56,36 @@ function renderSessions(container, sessions) {
       : null
 
     return `
-      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-primary text-xl">spa</span>
-          </div>
-          <div class="flex-1 min-w-0">
-            <h3 class="font-bold text-primary-dark mb-2">${escapeHtml(localized(s, 'name'))}</h3>
-            ${s.date ? `
-            <div class="flex items-center gap-1 text-xs text-primary mb-1">
-              <span class="material-symbols-outlined text-xs">calendar_month</span>
-              <span>${formatDateTime(s.date)}</span>
-            </div>` : ''}
-            ${s.address ? `
-            <div class="flex items-center gap-1 text-xs text-slate-500 mb-1">
-              <span class="material-symbols-outlined text-xs">location_on</span>
-              <span>${escapeHtml(s.address)}</span>
-            </div>` : ''}
-            ${instructorName ? `
-            <div class="flex items-center gap-1 text-xs text-slate-400">
-              <span class="material-symbols-outlined text-xs">person</span>
-              <span>${escapeHtml(instructorName)}</span>
-            </div>` : ''}
-            ${localized(s, 'description') ? `
-            <p class="text-slate-600 text-sm mt-3 leading-relaxed">${escapeHtml(localized(s, 'description'))}</p>` : ''}
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        ${s.image ? `
+        <div class="relative h-40">
+          <img src="${escapeHtml(s.image)}" alt="${escapeHtml(localized(s, 'name'))}" class="w-full h-full object-cover" />
+        </div>` : ''}
+        <div class="p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary text-xl">spa</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-primary-dark mb-2">${escapeHtml(localized(s, 'name'))}</h3>
+              ${s.date ? `
+              <div class="flex items-center gap-1 text-xs text-primary mb-1">
+                <span class="material-symbols-outlined text-xs">calendar_month</span>
+                <span>${formatDateTime(s.date)}</span>
+              </div>` : ''}
+              ${s.address ? `
+              <div class="flex items-center gap-1 text-xs text-slate-500 mb-1">
+                <span class="material-symbols-outlined text-xs">location_on</span>
+                <span>${escapeHtml(s.address)}</span>
+              </div>` : ''}
+              ${instructorName ? `
+              <div class="flex items-center gap-1 text-xs text-slate-400">
+                <span class="material-symbols-outlined text-xs">person</span>
+                <span>${escapeHtml(instructorName)}</span>
+              </div>` : ''}
+              ${localized(s, 'description') ? `
+              <p class="text-slate-600 text-sm mt-3 leading-relaxed">${escapeHtml(localized(s, 'description'))}</p>` : ''}
+            </div>
           </div>
         </div>
       </div>`

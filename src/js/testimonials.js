@@ -52,13 +52,22 @@ function renderTestimonials() {
   container.innerHTML = allTestimonials.map(item => {
     const content = localized(item, 'content') || ''
     const date = formatDate(item.created_at)
+    const authorName = formatUserName(item) || item.author_name || ''
+    const photoHtml = item.profile_image_url
+      ? `<img src="${escapeHtml(item.profile_image_url)}" alt="${escapeHtml(authorName)}" class="w-10 h-10 rounded-full object-cover flex-shrink-0" />`
+      : `<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+           <span class="material-symbols-outlined text-primary text-lg">person</span>
+         </div>`
 
     return `
     <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
       <span class="material-symbols-outlined text-primary/20 text-3xl">format_quote</span>
       <p class="text-slate-600 text-sm mt-3 leading-relaxed">${escapeHtml(content)}</p>
       <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-        <p class="font-semibold text-primary-dark text-sm">${escapeHtml(formatUserName(item) || item.author_name || '')}</p>
+        <div class="flex items-center gap-3">
+          ${photoHtml}
+          <p class="font-semibold text-primary-dark text-sm">${escapeHtml(authorName)}</p>
+        </div>
         <time class="text-xs text-slate-400">${escapeHtml(date)}</time>
       </div>
     </div>`
