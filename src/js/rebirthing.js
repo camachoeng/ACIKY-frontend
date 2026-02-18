@@ -79,8 +79,10 @@ function renderSessions(container, sessions) {
                 <span>${escapeHtml(s.address)}</span>
               </div>` : ''}
               ${instructorName ? `
-              <div class="flex items-center gap-1 text-xs text-slate-400">
-                <span class="material-symbols-outlined text-xs">person</span>
+              <div class="flex items-center gap-1.5 text-xs text-slate-400">
+                ${s.instructor_profile_image_url
+                  ? `<img src="${escapeHtml(s.instructor_profile_image_url)}" alt="${escapeHtml(instructorName)}" class="w-5 h-5 rounded-full object-cover flex-shrink-0" />`
+                  : `<span class="material-symbols-outlined text-xs">person</span>`}
                 <span>${escapeHtml(instructorName)}</span>
               </div>` : ''}
               ${localized(s, 'description') ? `

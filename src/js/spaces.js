@@ -158,7 +158,14 @@ function renderSpaces() {
 
           <div class="space-y-2 mb-4">
             <div class="flex items-start gap-2">
-              <span class="material-symbols-outlined text-primary text-sm mt-0.5">person</span>
+              <div class="flex-shrink-0 flex -space-x-1.5 mt-0.5">
+                ${space.instructors && space.instructors.filter(i => i).length > 0
+                  ? space.instructors.filter(i => i).map(i => i.profile_image_url
+                    ? `<img src="${escapeHtml(i.profile_image_url)}" alt="${escapeHtml(formatUserName(i))}" class="w-6 h-6 rounded-full object-cover border border-white" />`
+                    : `<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border border-white"><span class="material-symbols-outlined text-primary" style="font-size:12px">person</span></div>`
+                  ).join('')
+                  : `<span class="material-symbols-outlined text-primary text-sm">person</span>`}
+              </div>
               <div class="flex-1 min-w-0">
                 <p class="text-xs font-semibold text-slate-400">${instructorLabel}</p>
                 <p class="text-sm text-slate-600">${escapeHtml(instructorNames)}</p>

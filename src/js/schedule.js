@@ -126,9 +126,9 @@ function renderClassCard(activity, index) {
           ${activityDescription ? `<p class="text-xs text-slate-500 mb-2 line-clamp-2">${escapeHtml(activityDescription)}</p>` : ''}
           ${activity.instructor_name ? `
           <div class="flex items-center gap-2 mb-3">
-            <div class="w-8 h-8 rounded-full ${colors.bg20} flex items-center justify-center">
-              <span class="material-symbols-outlined ${colors.text} text-sm">person</span>
-            </div>
+            ${activity.instructor_profile_image_url
+              ? `<img src="${escapeHtml(activity.instructor_profile_image_url)}" alt="${escapeHtml(activity.instructor_name)}" class="w-8 h-8 rounded-full object-cover flex-shrink-0" />`
+              : `<div class="w-8 h-8 rounded-full ${colors.bg20} flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined ${colors.text} text-sm">person</span></div>`}
             <span class="text-sm font-medium text-slate-600">${escapeHtml(activity.instructor_name)}</span>
           </div>` : ''}
           <div class="flex items-center gap-2 text-xs text-slate-400">
