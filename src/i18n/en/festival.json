@@ -36,6 +36,7 @@
   "program": {
     "title": "Festival Program",
     "subtitle": "Three days of complete immersion in Kundalini Yoga practice",
+    "noData": "Program coming soon",
     "day1": {
       "title": "Day 1: Awakening",
       "theme": "Connection with Internal Energy",
@@ -168,6 +169,9 @@
       "location": {
         "label": "Location",
         "value": "Natural retreat center (location to be confirmed)"
+      },
+      "topic": {
+        "label": "Festival Topic"
       }
     },
     "earlyBird": {
