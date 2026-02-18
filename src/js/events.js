@@ -59,14 +59,14 @@ function renderEvent(ev) {
   if (hero) {
     if (ev.image_url) {
       hero.innerHTML = `
-        <img src="${escapeHtml(ev.image_url)}" alt="${escapeHtml(name)}" class="absolute inset-0 w-full h-full object-cover" />
+        <img src="${escapeHtml(ev.image_url)}" alt="${escapeHtml(name)}" class="w-full" />
         <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-primary-dark/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
           <h1 class="text-3xl font-bold">${escapeHtml(name)}</h1>
         </div>`
     } else {
       hero.innerHTML = `
-        <div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+        <div class="aspect-[40/21] w-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
           <span class="material-symbols-outlined text-primary text-7xl">event</span>
         </div>`
     }

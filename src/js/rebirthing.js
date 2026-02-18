@@ -58,9 +58,7 @@ function renderSessions(container, sessions) {
     return `
       <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
         ${s.image ? `
-        <div class="relative h-40">
-          <img src="${escapeHtml(s.image)}" alt="${escapeHtml(localized(s, 'name'))}" class="w-full h-full object-cover" />
-        </div>` : ''}
+        <img src="${escapeHtml(s.image)}" alt="${escapeHtml(localized(s, 'name'))}" class="w-full" />` : ''}
         <div class="p-6">
           <div class="flex items-start gap-4">
             <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">

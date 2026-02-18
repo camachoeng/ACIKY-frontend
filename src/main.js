@@ -130,15 +130,11 @@ async function initHomeRebirthing() {
       return
     }
 
+    const base = import.meta.env.BASE_URL
     container.innerHTML = sessions.slice(0, 4).map(s => `
-      <div class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <a href="${base}pages/rebirthing.html" class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden block">
         ${s.image ? `
-        <div class="relative h-32">
-          <img src="${escapeHtml(s.image)}" alt="${escapeHtml(localized(s, 'name'))}" class="w-full h-full object-cover" />
-        </div>` : `
-        <div class="h-32 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-          <span class="material-symbols-outlined text-primary text-4xl">spa</span>
-        </div>`}
+        <img src="${escapeHtml(s.image)}" alt="${escapeHtml(localized(s, 'name'))}" class="w-full" />` : ''}
         <div class="p-4">
           <h4 class="font-bold text-primary-dark text-sm mb-2">${escapeHtml(localized(s, 'name'))}</h4>
           ${s.date ? `
@@ -152,7 +148,7 @@ async function initHomeRebirthing() {
             <span>${escapeHtml(s.address)}</span>
           </div>` : ''}
         </div>
-      </div>`).join('')
+      </a>`).join('')
   } catch {
     const section = document.getElementById('homeRebirthingSection')
     if (section) section.classList.add('hidden')
@@ -174,15 +170,11 @@ async function initHomeGoldenRoutes() {
       return
     }
 
+    const base = import.meta.env.BASE_URL
     container.innerHTML = routes.slice(0, 4).map(item => `
-      <div class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <a href="${base}pages/golden-routes.html" class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden block">
         ${item.image_url ? `
-        <div class="relative h-32">
-          <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(localized(item, 'name'))}" class="w-full h-full object-cover" />
-        </div>` : `
-        <div class="h-32 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-          <span class="material-symbols-outlined text-primary text-4xl">route</span>
-        </div>`}
+        <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(localized(item, 'name'))}" class="w-full" />` : ''}
         <div class="p-4">
           <h4 class="font-bold text-primary-dark text-sm mb-2">${escapeHtml(localized(item, 'name'))}</h4>
           <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
@@ -193,7 +185,7 @@ async function initHomeGoldenRoutes() {
           </div>
           <p class="text-slate-600 text-xs leading-relaxed line-clamp-2">${escapeHtml(localized(item, 'description'))}</p>
         </div>
-      </div>`).join('')
+      </a>`).join('')
   } catch {
     const section = document.getElementById('homeGoldenRoutesSection')
     if (section) section.classList.add('hidden')
@@ -225,16 +217,10 @@ async function initHomeSpaces() {
         : `${instructorCount} ${t('homeSpaces.instructors')}`
 
       return `
-        <div class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <a href="${import.meta.env.BASE_URL}pages/spaces.html" class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden block">
           ${item.image ? `
-            <div class="relative h-32 overflow-hidden">
-              <img src="${escapeHtml(item.image)}" alt="${escapeHtml(spaceName)}" class="absolute inset-0 w-full h-full object-cover" />
-            </div>
-          ` : `
-            <div class="relative h-32 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-              <span class="material-symbols-outlined text-primary text-4xl">home</span>
-            </div>
-          `}
+            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(spaceName)}" class="w-full" />
+          ` : ''}
           <div class="p-4">
             <h4 class="font-bold text-primary-dark text-sm mb-2">${escapeHtml(spaceName)}</h4>
             <div class="flex items-center gap-1 text-xs text-slate-500 mb-1">
@@ -248,7 +234,7 @@ async function initHomeSpaces() {
               </div>
             ` : ''}
           </div>
-        </div>`
+        </a>`
     }).join('')
   } catch {
     const section = document.getElementById('homeSpacesSection')

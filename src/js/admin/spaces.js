@@ -207,7 +207,7 @@ async function uploadImage(file) {
     const formData = new FormData()
     formData.append('image', file)
 
-    const response = await apiFetch('/api/upload/image', {
+    const response = await apiFetch('/api/upload/content', {
       method: 'POST',
       body: formData,
       headers: {}

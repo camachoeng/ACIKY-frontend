@@ -86,9 +86,7 @@ function renderActiveRoutes(routes) {
     return `
     <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
       ${item.image_url ? `
-      <div class="relative h-40">
-        <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(name)}" class="w-full h-full object-cover" />
-      </div>` : ''}
+      <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(name)}" class="w-full" />` : ''}
       <div class="p-6">
         <div class="flex items-center gap-2 mb-3">
           <span class="material-symbols-outlined text-primary text-xl">route</span>
