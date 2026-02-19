@@ -4,7 +4,7 @@
     "author": "Kundalini Transformation Teachings"
   },
   "hero": {
-    "title": "Rebirthing Ceremonies",
+    "title": "Rebirthings",
     "subtitle": "Deep Transformation of the Self",
     "badge1": "Deep Healing",
     "badge2": "Renewal",
@@ -76,15 +76,15 @@
     }
   },
   "sessions": {
-    "title": "Upcoming Ceremonies",
-    "subtitle": "Find the ceremony that resonates with your soul",
-    "empty": "No ceremonies scheduled at this time",
+    "title": "Upcoming Rebirthings",
+    "subtitle": "Find the rebirthing that resonates with your soul",
+    "empty": "No rebirthings scheduled at this time",
     "emptyHint": "Write to us on WhatsApp to learn about upcoming dates"
   },
   "cta": {
-    "title": "Join a Rebirthing Ceremony",
+    "title": "Join a Rebirthing",
     "description": "Ready for your deep transformation? Contact us to learn about available dates and more information.",
     "button": "Write on WhatsApp",
-    "whatsappMessage": "Hello, I want information about the rebirthing ceremonies (this message is from the ACIKY website)"
+    "whatsappMessage": "Hello, I want information about the rebirthings (this message is from the ACIKY website)"
   }
 }
