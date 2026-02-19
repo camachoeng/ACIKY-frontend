@@ -13,6 +13,25 @@ export function getApiUrl(path) {
 }
 
 /**
+ * Build Authorization header from localStorage user data.
+ * Matches the token format expected by the backend's authToken.js.
+ * Used as fallback for mobile browsers that block cross-origin session cookies.
+ */
+function getAuthHeader() {
+  try {
+    const userStr = localStorage.getItem('user') || sessionStorage.getItem('user')
+    const loginTime = localStorage.getItem('loginTime') || sessionStorage.getItem('loginTime')
+    if (!userStr || !loginTime) return {}
+    const user = JSON.parse(userStr)
+    if (!user?.id) return {}
+    const token = btoa(JSON.stringify({ id: user.id, loginTime: parseInt(loginTime) }))
+    return { Authorization: `Bearer ${token}` }
+  } catch {
+    return {}
+  }
+}
+
+/**
  * Fetch wrapper with credentials and JSON handling.
  * Throws on non-ok responses with the server's error message.
  */
@@ -22,6 +41,7 @@ export async function apiFetch(path, options = {}) {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
+      ...getAuthHeader(),
       ...options.headers
     }
   }

@@ -55,7 +55,8 @@ export default defineConfig(({ command }) => {
           adminRebirthing: resolve(__dirname, 'pages/admin/rebirthing.html'),
           verifyEmail: resolve(__dirname, 'pages/verify-email.html'),
           event: resolve(__dirname, 'pages/event.html'),
-          adminEvents: resolve(__dirname, 'pages/admin/events.html')
+          adminEvents: resolve(__dirname, 'pages/admin/events.html'),
+          adminFestival: resolve(__dirname, 'pages/admin/festival.html')
         }
       }
     }

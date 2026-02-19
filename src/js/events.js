@@ -112,16 +112,27 @@ function renderEvent(ev) {
   // External link button
   const externalLink = document.getElementById('eventExternalLink')
   if (externalLink) {
-    if (ev.event_url) {
-      const isLocal = /^(localhost|127\.0\.0\.1)/i.test(ev.event_url)
-      const url = /^https?:\/\//i.test(ev.event_url)
-        ? ev.event_url
-        : (isLocal ? 'http://' : 'https://') + ev.event_url
-      externalLink.href = url
+    const safeUrl = toSafeUrl(ev.event_url)
+    if (safeUrl) {
+      externalLink.href = safeUrl
       externalLink.classList.remove('hidden')
     } else {
       externalLink.classList.add('hidden')
     }
+  }
+}
+
+function toSafeUrl(raw) {
+  if (!raw) return null
+  let url = raw.trim()
+  if (!/^https?:\/\//i.test(url)) {
+    url = (/^(localhost|127\.0\.0\.1)/i.test(url) ? 'http://' : 'https://') + url
+  }
+  try {
+    const parsed = new URL(url)
+    return (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? url : null
+  } catch {
+    return null
   }
 }
 
