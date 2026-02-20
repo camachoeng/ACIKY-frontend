@@ -6,10 +6,14 @@ let allItems = []
 export async function initPosturas() {
   await loadPosturas()
   setupLightbox()
+  setupSearch()
 
   // Re-render with localized text when language changes (no re-fetch needed)
   window.addEventListener('languageChanged', () => {
-    if (allItems.length > 0) renderPosturas()
+    if (allItems.length > 0) {
+      const query = document.getElementById('posturasSearch')?.value || ''
+      renderPosturas(query)
+    }
   })
 }
 
@@ -44,11 +48,24 @@ async function loadPosturas() {
   }
 }
 
-function renderPosturas() {
+function renderPosturas(query = '') {
   const container = document.getElementById('posturasContainer')
+  const noResults = document.getElementById('posturasNoResults')
   if (!container) return
 
-  container.innerHTML = allItems.map(item => {
+  const filtered = query.trim()
+    ? allItems.filter(item => localized(item, 'title').toLowerCase().includes(query.trim().toLowerCase()))
+    : allItems
+
+  if (filtered.length === 0) {
+    container.classList.add('hidden')
+    noResults?.classList.remove('hidden')
+  } else {
+    noResults?.classList.add('hidden')
+    container.classList.remove('hidden')
+  }
+
+  container.innerHTML = filtered.map(item => {
     const title = localized(item, 'title')
     const description = localized(item, 'description')
     const altText = localized(item, 'alt_text') || title
@@ -69,6 +86,12 @@ function renderPosturas() {
       </div>
     </div>`
   }).join('')
+}
+
+function setupSearch() {
+  const input = document.getElementById('posturasSearch')
+  if (!input) return
+  input.addEventListener('input', () => renderPosturas(input.value))
 }
 
 function setupLightbox() {

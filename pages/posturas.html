@@ -22,8 +22,18 @@
         </div>
       </section>
 
+      <!-- Search -->
+      <section class="px-6 py-4">
+        <div class="relative max-w-md">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+          <input id="posturasSearch" type="search"
+            class="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-primary"
+            data-i18n-placeholder="posturas.search" />
+        </div>
+      </section>
+
       <!-- Gallery Grid -->
-      <section class="px-6 py-8">
+      <section class="px-6 py-4">
         <!-- Loading State -->
         <div id="posturasLoading" class="text-center py-12">
           <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
@@ -43,6 +53,12 @@
           <p class="text-slate-500 text-sm mt-2" data-i18n="posturas.empty">No hay posturas disponibles</p>
         </div>
 
+        <!-- No Results State -->
+        <div id="posturasNoResults" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">search_off</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="posturas.noResults">No se encontraron posturas con ese nombre</p>
+        </div>
+
         <!-- Gallery Container -->
         <div id="posturasContainer" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
       </section>
@@ -55,11 +71,11 @@
       </button>
       <div class="max-w-4xl w-full max-h-[90vh] flex flex-col">
         <!-- Image Container -->
-        <div class="flex-1 flex items-center justify-center">
-          <img id="lightboxImage" class="max-w-full max-h-[70vh] object-contain rounded-lg" alt="" />
+        <div class="flex-shrink-0 flex items-center justify-center">
+          <img id="lightboxImage" class="max-w-full max-h-[60vh] object-contain rounded-lg" alt="" />
         </div>
         <!-- Info -->
-        <div class="mt-4 text-center text-white">
+        <div class="mt-4 text-center text-white overflow-y-auto pb-2">
           <h3 id="lightboxTitle" class="text-xl font-bold"></h3>
           <p id="lightboxDescription" class="mt-2 text-white/80 text-sm max-w-2xl mx-auto"></p>
         </div>

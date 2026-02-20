@@ -1,6 +1,7 @@
 import { apiFetch } from './api.js'
 import { getUser } from './auth.js'
 import { t, localized } from './i18n.js'
+import { formatUserName } from './utils/formatUserName.js'
 
 // Static color class mappings (full class names for Tailwind scanner)
 const COLOR_CLASSES = [
@@ -108,7 +109,8 @@ function renderClassCard(activity, index) {
   const activityName = localized(activity, 'name')
   const activityDescription = localized(activity, 'description')
   const activityLocation = localized(activity, 'location')
-  const bookMessage = t('card.bookMessage', { name: activityName, instructor: activity.instructor_name || '' })
+  const instructorFullName = formatUserName({ name: activity.instructor_name, last_name: activity.instructor_last_name, spiritual_name: activity.instructor_spiritual_name })
+  const bookMessage = t('card.bookMessage', { name: activityName, instructor: instructorFullName || '' })
 
   return `
     <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
@@ -127,12 +129,12 @@ function renderClassCard(activity, index) {
           </div>
           <p class="text-sm text-slate-500 mb-2">${escapeHtml(activityLocation)}</p>
           ${activityDescription ? `<p class="text-xs text-slate-500 mb-2 line-clamp-2">${escapeHtml(activityDescription)}</p>` : ''}
-          ${activity.instructor_name ? `
+          ${instructorFullName ? `
           <div class="flex items-center gap-2 mb-3">
             ${activity.instructor_profile_image_url
-              ? `<img src="${escapeHtml(activity.instructor_profile_image_url)}" alt="${escapeHtml(activity.instructor_name)}" class="w-8 h-8 rounded-full object-cover flex-shrink-0" />`
+              ? `<img src="${escapeHtml(activity.instructor_profile_image_url)}" alt="${escapeHtml(instructorFullName)}" class="w-8 h-8 rounded-full object-cover flex-shrink-0" />`
               : `<div class="w-8 h-8 rounded-full ${colors.bg20} flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined ${colors.text} text-sm">person</span></div>`}
-            <span class="text-sm font-medium text-slate-600">${escapeHtml(activity.instructor_name)}</span>
+            <span class="text-sm font-medium text-slate-600">${escapeHtml(instructorFullName)}</span>
           </div>` : ''}
           <div class="flex items-center gap-2 text-xs text-slate-400">
             <span class="material-symbols-outlined text-sm">schedule</span>
