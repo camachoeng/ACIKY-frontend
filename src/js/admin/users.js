@@ -57,6 +57,14 @@ export async function initAdminUsers() {
       if (action === 'delete') confirmDelete(id)
     })
   }
+
+  // Profile image upload
+  const uploadBtn = document.getElementById('userImageUploadBtn')
+  const uploadInput = document.getElementById('userImageUpload')
+  if (uploadBtn && uploadInput) {
+    uploadBtn.addEventListener('click', () => uploadInput.click())
+    uploadInput.addEventListener('change', handleImageUpload)
+  }
 }
 
 async function loadUsers() {
@@ -64,7 +72,7 @@ async function loadUsers() {
   if (!tbody) return
 
   tbody.innerHTML = `
-    <tr><td colspan="4" class="px-6 py-8 text-center text-slate-400">
+    <tr><td colspan="5" class="px-6 py-8 text-center text-slate-400">
       <span class="material-symbols-outlined animate-spin">progress_activity</span>
     </td></tr>`
 
@@ -74,7 +82,7 @@ async function loadUsers() {
     renderUsers(tbody)
   } catch (err) {
     tbody.innerHTML = `
-      <tr><td colspan="4" class="px-6 py-8 text-center text-red-500 text-sm">
+      <tr><td colspan="5" class="px-6 py-8 text-center text-red-500 text-sm">
         Error al cargar usuarios: ${escapeHtml(err.message)}
       </td></tr>`
   }
@@ -95,7 +103,7 @@ function renderFilteredUsers(tbody, query) {
 function renderUsers(tbody, list = users) {
   if (list.length === 0) {
     tbody.innerHTML = `
-      <tr><td colspan="4" class="px-6 py-8 text-center text-slate-400 text-sm">
+      <tr><td colspan="5" class="px-6 py-8 text-center text-slate-400 text-sm">
         No hay usuarios registrados
       </td></tr>`
     return
@@ -109,8 +117,13 @@ function renderUsers(tbody, list = users) {
 
   tbody.innerHTML = list.map(user => {
     const roleClass = roleColors[user.role] || roleColors.user
+    const profileImage = user.profile_image_url
+      ? `<img src="${escapeHtml(user.profile_image_url)}" alt="${escapeHtml(formatUserName(user))}" class="w-10 h-10 rounded-full object-cover" />`
+      : `<div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center"><span class="material-symbols-outlined text-slate-400">person</span></div>`
+
     return `
       <tr class="border-b border-slate-50 hover:bg-slate-50/50">
+        <td class="px-6 py-4">${profileImage}</td>
         <td class="px-6 py-4 text-sm font-medium text-primary-dark">${escapeHtml(formatUserName(user))}</td>
         <td class="px-6 py-4 text-sm text-slate-500">${escapeHtml(user.email)}</td>
         <td class="px-6 py-4">
@@ -139,6 +152,9 @@ function openCreateModal() {
   if (title) title.textContent = 'Nuevo Usuario'
   if (form) form.reset()
   document.getElementById('userId').value = ''
+  document.getElementById('userProfileImageUrl').value = ''
+  const preview = document.getElementById('userProfileImagePreview')
+  if (preview) preview.src = '/images/default-avatar.png'
   if (passwordFields) passwordFields.style.display = 'block'
   if (passwordInput) passwordInput.required = true
   if (passwordConfirmFields) passwordConfirmFields.classList.add('hidden')
@@ -170,6 +186,9 @@ async function openEditModal(id) {
     if (passwordConfirmInput) passwordConfirmInput.value = ''
     document.getElementById('userPosition').value = user.position || ''
     document.getElementById('userPositionEn').value = user.position_en || ''
+    document.getElementById('userProfileImageUrl').value = user.profile_image_url || ''
+    const preview = document.getElementById('userProfileImagePreview')
+    if (preview) preview.src = user.profile_image_url || '/images/default-avatar.png'
     togglePositionField()
 
     // Password optional when editing
@@ -212,7 +231,9 @@ async function saveUser(e) {
 
   const positionEn = document.getElementById('userPositionEn').value.trim()
 
-  const body = { name, last_name, spiritual_name, email, role }
+  const profile_image_url = document.getElementById('userProfileImageUrl').value.trim() || null
+
+  const body = { name, last_name, spiritual_name, email, role, profile_image_url }
   if (password) body.password = password
   if (role !== 'user') {
     body.position = position || null
@@ -282,6 +303,51 @@ function togglePasswordConfirmField() {
   if (passwordConfirmFields) {
     passwordConfirmFields.classList.toggle('hidden', !password)
   }
+}
+
+async function handleImageUpload(e) {
+  const file = e.target.files[0]
+  if (!file) return
+
+  const preview = document.getElementById('userProfileImagePreview')
+  const progress = document.getElementById('userUploadProgress')
+  const progressBar = document.getElementById('userUploadProgressBar')
+  const error = document.getElementById('userUploadError')
+  const urlInput = document.getElementById('userProfileImageUrl')
+
+  // Validate file size (5MB max)
+  if (file.size > 5 * 1024 * 1024) {
+    error.textContent = 'La imagen es muy grande. Tamaño máximo: 5MB'
+    error.classList.remove('hidden')
+    return
+  }
+
+  error.classList.add('hidden')
+  progress?.classList.remove('hidden')
+  if (progressBar) progressBar.style.width = '50%'
+
+  try {
+    const formData = new FormData()
+    formData.append('image', file)
+
+    const data = await apiFetch('/api/upload', {
+      method: 'POST',
+      body: formData,
+      headers: {} // Let browser set Content-Type for FormData
+    })
+
+    if (progressBar) progressBar.style.width = '100%'
+    if (preview) preview.src = data.data.url
+    if (urlInput) urlInput.value = data.data.url
+
+    setTimeout(() => progress?.classList.add('hidden'), 1000)
+  } catch (err) {
+    error.textContent = 'Error al subir imagen: ' + (err.message || 'Error desconocido')
+    error.classList.remove('hidden')
+    progress?.classList.add('hidden')
+  }
+
+  e.target.value = '' // Reset input
 }
 
 function closeModal() {
