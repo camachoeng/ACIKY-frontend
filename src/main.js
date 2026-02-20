@@ -2,6 +2,7 @@ import './style.css'
 import { checkAuth, getUser } from './js/auth.js'
 import { apiFetch } from './js/api.js'
 import { initI18n, switchLanguage, getLanguage, t, localized } from './js/i18n.js'
+import { formatUserName } from './js/utils/formatUserName.js'
 
 // Mobile Menu Toggle
 function initMobileMenu() {
@@ -63,16 +64,20 @@ async function initHeroSchedule() {
       return
     }
 
-    container.innerHTML = activities.map(a => `
+    container.innerHTML = activities.map(a => {
+      const instructorName = formatUserName({ name: a.instructor_name, last_name: a.instructor_last_name, spiritual_name: a.instructor_spiritual_name })
+      const avatar = a.instructor_profile_image_url
+        ? `<img src="${escapeHtml(a.instructor_profile_image_url)}" alt="${escapeHtml(instructorName)}" class="w-8 h-8 rounded-full object-cover border-2 border-primary/50" />`
+        : `<div class="w-8 h-8 rounded-full border-2 border-primary/50 bg-white/20 flex items-center justify-center"><span class="text-sm">${a.icon || '🧘'}</span></div>`
+      return `
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full border-2 border-primary/50 bg-white/20 flex items-center justify-center">
-          <span class="text-sm">${a.icon || '🧘'}</span>
-        </div>
+        ${avatar}
         <div class="text-xs">
           <p class="font-semibold text-primary-light">${escapeHtml(translateSchedule(a.schedule) || localized(a, 'name'))}</p>
-          <p class="opacity-70 text-white">${a.instructor_name ? t('hero.instructor') + ': ' + escapeHtml(a.instructor_name) : escapeHtml(localized(a, 'name'))}</p>
+          <p class="opacity-70 text-white">${instructorName ? t('hero.instructor') + ': ' + escapeHtml(instructorName) : escapeHtml(localized(a, 'name'))}</p>
         </div>
-      </div>`).join('')
+      </div>`
+    }).join('')
   } catch {
     container.innerHTML = `
       <div class="text-xs opacity-70 text-white">${t('hero.visitSchedule')}</div>`

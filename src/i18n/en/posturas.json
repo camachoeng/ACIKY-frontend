@@ -4,6 +4,8 @@
     "subtitle": "Explore yoga postures and their benefits",
     "loading": "Loading postures...",
     "error": "Could not load postures",
-    "empty": "No postures available"
+    "empty": "No postures available",
+    "search": "Search by name...",
+    "noResults": "No postures found with that name"
   }
 }
