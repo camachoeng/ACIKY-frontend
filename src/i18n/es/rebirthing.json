@@ -79,7 +79,9 @@
     "title": "Próximos Renacimientos",
     "subtitle": "Encuentra el renacimiento que resuena con tu alma",
     "empty": "No hay renacimientos programados en este momento",
-    "emptyHint": "Escríbenos por WhatsApp para conocer las próximas fechas"
+    "emptyHint": "Escríbenos por WhatsApp para conocer las próximas fechas",
+    "book": "Reservar",
+    "bookMessage": "Hola, quiero reservar para {{name}} (este mensaje es desde el sitio web de ACIKY)"
   },
   "cta": {
     "title": "Únete a un Renacimiento",

@@ -79,7 +79,9 @@
     "title": "Upcoming Rebirthings",
     "subtitle": "Find the rebirthing that resonates with your soul",
     "empty": "No rebirthings scheduled at this time",
-    "emptyHint": "Write to us on WhatsApp to learn about upcoming dates"
+    "emptyHint": "Write to us on WhatsApp to learn about upcoming dates",
+    "book": "Book",
+    "bookMessage": "Hello, I want to book for {{name}} (this message is from the ACIKY website)"
   },
   "cta": {
     "title": "Join a Rebirthing",
