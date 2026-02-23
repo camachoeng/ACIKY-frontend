@@ -3,8 +3,8 @@ import tailwindcss from '@tailwindcss/vite'
 import handlebars from 'vite-plugin-handlebars'
 import { resolve } from 'path'
 
-export default defineConfig(({ command }) => {
-  const basePath = command === 'build' ? '/ACIKY-frontend' : ''
+export default defineConfig(() => {
+  const basePath = '' // Empty for custom domain (aciky.org)
 
   return {
     base: basePath + '/',
@@ -14,7 +14,7 @@ export default defineConfig(({ command }) => {
         partialDirectory: resolve(__dirname, 'src/partials'),
         context: {
           siteName: 'ACIKY',
-          siteTitle: 'ACIKY - Yoga para Todos',
+          siteTitle: 'ACIKY - Alianza Cubana de Instructores en Kundalini Yoga',
           year: new Date().getFullYear(),
           basePath
         }
@@ -56,7 +56,8 @@ export default defineConfig(({ command }) => {
           verifyEmail: resolve(__dirname, 'pages/verify-email.html'),
           event: resolve(__dirname, 'pages/event.html'),
           adminEvents: resolve(__dirname, 'pages/admin/events.html'),
-          adminFestival: resolve(__dirname, 'pages/admin/festival.html')
+          adminFestival: resolve(__dirname, 'pages/admin/festival.html'),
+          notFound: resolve(__dirname, 'pages/404.html')
         }
       }
     }

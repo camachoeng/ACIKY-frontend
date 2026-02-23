@@ -205,6 +205,12 @@ export function applyTranslations() {
       el.setAttribute('title', translated)
     }
   })
+
+  // Page title
+  const pageTitle = t('pageTitle')
+  if (pageTitle !== 'pageTitle') {
+    document.title = pageTitle
+  }
 }
 
 /**

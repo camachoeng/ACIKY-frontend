@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Página no encontrada - ACIKY" />
+    <title>404 - Página No Encontrada | ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen flex items-center justify-center bg-background">
+    <main class="text-center px-6 py-12">
+      <div class="mb-8">
+        <div class="w-24 h-24 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-primary text-5xl">error_outline</span>
+        </div>
+        <h1 class="text-6xl font-bold text-primary-dark mb-4">404</h1>
+        <h2 class="text-2xl font-bold text-primary-dark mb-2" data-i18n="title">Página No Encontrada</h2>
+        <p class="text-slate-600 mb-8 max-w-md mx-auto" data-i18n="message">
+          Lo sentimos, la página que buscas no existe o ha sido movida.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/"
+           class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-dark text-white font-medium rounded-2xl hover:bg-primary transition-colors">
+          <span class="material-symbols-outlined text-sm">home</span>
+          <span data-i18n="homeButton">Ir al Inicio</span>
+        </a>
+        <a href="/pages/contact.html"
+           class="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-primary text-primary font-medium rounded-2xl hover:bg-primary/5 transition-colors">
+          <span class="material-symbols-outlined text-sm">contact_support</span>
+          <span data-i18n="contactButton">Contactar</span>
+        </a>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-slate-200">
+        <p class="text-sm text-slate-500" data-i18n="suggestion">
+          ¿Buscabas algo específico? Prueba con:
+        </p>
+        <div class="flex flex-wrap justify-center gap-2 mt-4">
+          <a href="/pages/schedule.html" class="px-4 py-2 bg-slate-100 text-slate-700 text-sm rounded-lg hover:bg-slate-200 transition-colors">
+            Horarios
+          </a>
+          <a href="/pages/spaces.html" class="px-4 py-2 bg-slate-100 text-slate-700 text-sm rounded-lg hover:bg-slate-200 transition-colors">
+            Espacios
+          </a>
+          <a href="/pages/blog.html" class="px-4 py-2 bg-slate-100 text-slate-700 text-sm rounded-lg hover:bg-slate-200 transition-colors">
+            Blog
+          </a>
+          <a href="/pages/about.html" class="px-4 py-2 bg-slate-100 text-slate-700 text-sm rounded-lg hover:bg-slate-200 transition-colors">
+            Nosotros
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      import { initI18n, t } from '/src/js/i18n.js'
+
+      await initI18n('404')
+
+      // Update text content
+      document.querySelector('[data-i18n="title"]').textContent = t('title')
+      document.querySelector('[data-i18n="message"]').textContent = t('message')
+      document.querySelector('[data-i18n="homeButton"]').textContent = t('homeButton')
+      document.querySelector('[data-i18n="contactButton"]').textContent = t('contactButton')
+      document.querySelector('[data-i18n="suggestion"]').textContent = t('suggestion')
+    </script>
+  </body>
+</html>
