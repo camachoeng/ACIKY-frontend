@@ -1,19 +1,14 @@
-# ACIKY Frontend
+# Code Conventions
 
-**Project**: ACIKY - Web platform for Kundalini Yoga center
-**Stack**: HTML5 + Tailwind CSS 4 + Vanilla JavaScript + Vite 7
-**Partials**: vite-plugin-handlebars (`{{> partial}}` syntax)
-**Backend**: Node.js + Express + MySQL (separate repo: `yoga-backend`)
-**Auth**: Sessions with httpOnly cookies + localStorage fallback
-**Deploy**: GitHub Pages (frontend) + Heroku (backend)
+## Tech Stack Quick Reference
 
-## Commands
-
-```bash
-npm run dev       # Dev server (localhost:5173)
-npm run build     # Production build to dist/
-npm run preview   # Preview production build
-```
+- **Frontend**: HTML5, Tailwind CSS 4, Vanilla JavaScript ES2022+, Vite 7
+- **Partials**: vite-plugin-handlebars (`{{> partial}}`)
+- **Backend**: Node.js + Express + MySQL (separate repo at `d:/coding/yoga-backend`)
+  - Architecture: Route → Controller → Service → Repository
+  - Modules: auth, blog, activities, routes, users, booking, testimonials, stats, gallery, contact, spaces, upload
+- **Auth**: Sessions with httpOnly cookies (`req.session.userId`) + localStorage fallback
+- **Deploy**: GitHub Pages (frontend) + Heroku (backend)
 
 ## Hard Constraints
 
@@ -30,6 +25,9 @@ npm run preview   # Preview production build
 - Static class name arrays for dynamic Tailwind classes (never interpolate: `` `bg-${color}` ``)
 - Mobile-first responsive design (`px-4 md:px-8 lg:px-16`)
 - `lang="es"` on `<html>`, `alt` on all images, labels on form inputs
+- Material Symbols icons (NEVER emojis): `<span class="material-symbols-outlined text-primary">icon_name</span>`
+- Proper Spanish accent marks in all translation files (á, é, í, ó, ú, ñ, ü, ¿, ¡)
+- Primary green colors for CTA buttons: `bg-primary-dark text-white hover:bg-primary` (NEVER use accent colors for main CTAs)
 
 **DO NOT:**
 - Add runtime dependencies to `package.json` (devDependencies only)
@@ -117,6 +115,90 @@ container.addEventListener('click', (e) => {
 })
 ```
 
+## Established Features & Patterns
+
+### Existing Features
+- **Blog**: Public + admin pages, bilingual, instructor access from dashboard button (NOT header/admin panel), admin nav hidden for instructors
+- **Testimonials**: Public + admin, user submissions, admin approval, featured for homepage
+- **Golden Routes**: Public + admin, bilingual routes, auto-calculated impact stats
+
+### Page Structure Patterns
+
+**Hero Section** (card-style, NOT full-width):
+```html
+<section class="px-6 mb-10">
+  <div class="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
+    <!-- content -->
+  </div>
+</section>
+```
+
+**Quote Section** (place BEFORE hero):
+```html
+<section class="px-6 py-6">
+  <div class="relative p-8 bg-white rounded-2xl shadow-sm border-l-4 border-primary">
+    <!-- quote content -->
+  </div>
+</section>
+```
+
+**Homepage Preview Sections** (follow testimonials pattern):
+- Title + subtitle in `px-6`
+- Horizontal scrollable: `flex overflow-x-auto gap-5 px-6 pb-4 hide-scrollbar`
+- "View all" link below
+
+### Icon Usage
+
+Use Material Symbols icons in cards:
+```html
+<div class="w-12 h-12 bg-background rounded-full flex items-center justify-center">
+  <span class="material-symbols-outlined text-primary">spa</span>
+</div>
+```
+
+Common icons: `spa`, `flutter_dash`, `auto_awesome`, `waves`, `candle`, `air`, `music_note`, `local_fire_department`, `wb_twilight`, `healing`, `explore`, `star`
+
+Reference: [pages/about.html](pages/about.html)
+
+### WhatsApp CTA Pattern
+
+**ALWAYS** make WhatsApp messages bilingual via i18n:
+
+1. **HTML**: No hardcoded text parameter
+```html
+<a id="whatsappCtaBtn" href="https://wa.me/5350759360">
+```
+
+2. **i18n files**: Add key in both `es.json` and `en.json`
+```json
+"cta": {
+  "whatsappMessage": "Message with feature name + (este mensaje es desde el sitio web de ACIKY)"
+}
+```
+
+3. **JS Module**: Create `updateWhatsAppLink()` function
+```javascript
+function updateWhatsAppLink() {
+  const btn = document.getElementById('whatsappCtaBtn')
+  if (btn) {
+    btn.href = `https://wa.me/5350759360?text=${encodeURIComponent(t('cta.whatsappMessage'))}`
+  }
+}
+// Update on language change
+document.addEventListener('languageChanged', updateWhatsAppLink)
+```
+
+Examples: [src/js/onlinesadhana.js](src/js/onlinesadhana.js), [src/js/rebirthing.js](src/js/rebirthing.js)
+
+## Internationalization (i18n)
+
+**Spanish accent marks are MANDATORY** in all `.json` translation files:
+- Vowels: á, é, í, ó, ú
+- Other: ñ, ü
+- Punctuation: ¿ (opening question), ¡ (opening exclamation)
+
+Common words: expansión, transformación, misión, práctica, enseñanza, energía, planificación, identificación, descripción, visión, formación, certificación, región, promoción, contáctanos, únete, kilómetro, corazón, país, líder, básicas, auténtico, geográficas, logístico
+
 ## Naming Conventions
 
 | What | Convention | Example |
@@ -136,35 +218,43 @@ container.addEventListener('click', (e) => {
 | Token | Hex | Usage |
 |---|---|---|
 | `primary` | `#708558` | Main brand green |
-| `primary-dark` | `#5c6c4a` | Buttons, headings |
+| `primary-dark` | `#5c6c4a` | **CTA buttons**, headings |
 | `primary-light` | `#a3be84` | Highlights, accents |
 | `accent-teal` | `#5AACCC` | Instructor badge |
 | `accent-terracotta` | `#E8A090` | Warnings, delete |
 | `accent-rose` | `#E87A9A` | Admin badge |
 
+**CTA Button Rule**: Always use primary green (`bg-primary-dark text-white hover:bg-primary`) for main CTA buttons. Accent colors (`accent-terracotta`, `accent-rose`, `accent-teal`) are ONLY for badges and secondary elements, NEVER for main CTAs.
+
 ## Backend Changes
 
 **CRITICAL:** When a task requires backend modifications (in `d:/coding/yoga-backend`):
 
-1. **DO NOT** directly modify backend files
-2. **ALWAYS** provide instructions as a simple todo list for another Claude Code AI
-3. **NEVER** include code snippets, line numbers, or detailed file paths
-4. Format as clear, concise action items that Claude Code can interpret
-5. The user will run these changes in a separate Claude Code session in the backend repo
+**ALWAYS** create a spec file at `backend-specs/<feature>.md` in this repo. The spec file must be a Claude Code-readable document describing all modifications needed in the `yoga-backend` repo. Include:
+- Current state of the backend API (existing endpoints, DB schema)
+- Required changes (new endpoints, DB alterations, service/repository modifications)
+- Remember: Route → Controller → Service → Repository pattern
+- Backend CLAUDE.md location: `d:/coding/yoga-backend/CLAUDE.md`
 
-**Good format (simple todo list):**
-```
-Backend Todo:
+**Example spec file structure:**
+```markdown
+# Feature Name Backend Spec
+
+## Current State
+- Endpoint: GET /api/spaces
+- DB table: spaces (columns: id, name, address, location)
+
+## Required Changes
 - Add name_en column (VARCHAR 255) to spaces table
 - Update spaceRepository.create() to accept bilingual fields
 - Update spaceService.createSpace() to extract and pass new fields
+- Add validation for required bilingual fields
 ```
 
-**Bad format (DO NOT USE):**
-```
-Update d:/coding/yoga-backend/repositories/spaceRepository.js lines 104-112:
-async create({ name, name_en... }) { ... }
-```
+**DO NOT:**
+- Directly modify backend files
+- Include code snippets with line numbers
+- Use detailed file paths in instructions
 
 ## Database Changes
 

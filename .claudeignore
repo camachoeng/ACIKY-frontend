@@ -27,3 +27,6 @@ public/images/
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# CFD meta-documentation (not part of project context)
+.claude/cfd/
