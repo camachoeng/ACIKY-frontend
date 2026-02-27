@@ -1,7 +1,9 @@
 {
+  "pageTitle": "Gestión de Usuarios",
   "title": "Usuarios",
   "newButton": "Nuevo",
   "table": {
+    "image": "Foto",
     "user": "Usuario",
     "email": "Email",
     "role": "Rol",
@@ -33,6 +35,9 @@
     "roleAdmin": "Admin",
     "position": "Cargo / Título",
     "positionPlaceholder": "Ej: Instructora de Kundalini Yoga",
+    "profileImage": "Foto de Perfil",
+    "uploadImage": "Subir Imagen",
+    "imageHint": "JPG, PNG o WEBP. Máx. 5MB",
     "cancel": "Cancelar",
     "save": "Guardar",
     "saving": "Guardando..."
