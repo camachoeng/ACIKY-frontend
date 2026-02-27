@@ -59,7 +59,7 @@ function renderEvent(ev) {
   if (hero) {
     if (ev.image_url) {
       hero.innerHTML = `
-        <img src="${escapeHtml(ev.image_url)}" alt="${escapeHtml(name)}" class="w-full" />
+        <img src="${escapeHtml(ev.image_url)}" alt="${escapeHtml(name)}" class="w-full" onerror="this.onerror=null;this.style.display='none'" />
         <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-primary-dark/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
           <h1 class="text-3xl font-bold">${escapeHtml(name)}</h1>

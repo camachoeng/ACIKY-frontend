@@ -62,7 +62,7 @@ function renderSessions(container, sessions) {
     return `
       <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
         ${s.image ? `
-        <img src="${escapeHtml(s.image)}" alt="${escapeHtml(sessionName)}" class="w-full" />` : ''}
+        <img src="${escapeHtml(s.image)}" alt="${escapeHtml(sessionName)}" class="w-full" onerror="this.onerror=null;this.style.display='none'" />` : ''}
         <div class="p-6">
           <div class="flex items-start gap-4">
             <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
@@ -83,7 +83,7 @@ function renderSessions(container, sessions) {
               ${instructorName ? `
               <div class="flex items-center gap-1.5 text-xs text-slate-400">
                 ${s.instructor_profile_image_url
-                  ? `<img src="${escapeHtml(s.instructor_profile_image_url)}" alt="${escapeHtml(instructorName)}" class="w-5 h-5 rounded-full object-cover flex-shrink-0" />`
+                  ? `<img src="${escapeHtml(s.instructor_profile_image_url)}" alt="${escapeHtml(instructorName)}" class="w-5 h-5 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='/images/default-avatar.svg'" />`
                   : `<span class="material-symbols-outlined text-xs">person</span>`}
                 <span>${escapeHtml(instructorName)}</span>
               </div>` : ''}
