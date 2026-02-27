@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-02-24
+Last updated: 2026-02-27
 
 ## In Progress
 _No active work at this time._
@@ -33,23 +33,17 @@ _No active work at this time._
 - [x] Testimonials system (user submissions, admin approval, featured display)
 - [x] Golden Routes feature (bilingual routes, auto-calculated impact stats)
 - [x] Open Graph meta tags and SEO improvements
+- [x] Removed DEPLOYMENT-GUIDE.md and SEO-SNIPPETS.md (no longer needed)
+- [x] Added 19 gallery images to `public/images/gallery/` and database (2026-02-27)
+- [x] Fixed broken images in production for events, rebirthing, user profiles (2026-02-27)
+  - Root cause: `POST /api/upload` route was missing in backend → 404 on user profile uploads
+  - All upload endpoints now confirmed on Cloudinary (`aciky/gallery`, `aciky/content`, `aciky/profiles`)
 
 ## Known Issues
 _No known issues at this time. Update this section when issues are discovered._
 
-## Identified Non-CFD Files
-The following operational documentation files were identified as not part of CFD structure:
-- `DEPLOYMENT-GUIDE.md` (388 lines) - Domain setup and deployment procedures
-- `SEO-SNIPPETS.md` (215 lines) - Open Graph tags and SEO implementation snippets
-
-These can optionally be:
-1. Moved to `.claude/deployment/` and added to `.claudeignore` (keep for reference, exclude from context)
-2. Archived/removed if deployment is complete (Open Graph tags already implemented)
-
 ## Next Priorities
-1. Decide on DEPLOYMENT-GUIDE.md and SEO-SNIPPETS.md handling
-2. _[User to define next feature priorities]_
-3. _[User to define next feature priorities]_
+_[User to define next feature priorities]_
 
 ---
 

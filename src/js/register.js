@@ -8,9 +8,32 @@ export function initRegister() {
 
   if (!form) return
 
+  let currentErrorKey = null
+
+  function showError(key) {
+    currentErrorKey = key
+    const errorSpan = errorDiv.querySelector('span:last-child')
+    const msg = t(key)
+    if (errorSpan) errorSpan.textContent = msg
+    else errorDiv.textContent = msg
+    errorDiv.classList.remove('hidden')
+  }
+
+  function hideError() {
+    errorDiv.classList.add('hidden')
+    currentErrorKey = null
+  }
+
+  function getErrorKey(errMessage) {
+    const msg = (errMessage || '').toLowerCase()
+    if (msg.includes('password')) return 'errors.passwordInvalid'
+    if (msg.includes('email') || msg.includes('already') || msg.includes('exist')) return 'errors.emailTaken'
+    return 'errors.default'
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
-    errorDiv.classList.add('hidden')
+    hideError()
 
     const name = form.name.value.trim()
     const lastName = form.lastName.value.trim()
@@ -21,10 +44,7 @@ export function initRegister() {
 
     // Client-side validation
     if (password !== confirmPassword) {
-      const errorSpan = errorDiv.querySelector('span:last-child')
-      if (errorSpan) errorSpan.textContent = t('errors.passwordMismatch')
-      else errorDiv.textContent = t('errors.passwordMismatch')
-      errorDiv.classList.remove('hidden')
+      showError('errors.passwordMismatch')
       return
     }
 
@@ -49,10 +69,7 @@ export function initRegister() {
 
       window.location.href = `${import.meta.env.BASE_URL}pages/login.html?${redirectParams}`
     } catch (err) {
-      const errorSpan = errorDiv.querySelector('span:last-child')
-      if (errorSpan) errorSpan.textContent = err.message || t('errors.default')
-      else errorDiv.textContent = err.message || t('errors.default')
-      errorDiv.classList.remove('hidden')
+      showError(getErrorKey(err.message))
       submitBtn.disabled = false
       submitBtn.textContent = t('submitBtn')
     }
@@ -62,6 +79,9 @@ export function initRegister() {
   window.addEventListener('languageChanged', () => {
     if (!submitBtn.disabled) {
       submitBtn.textContent = t('submitBtn')
+    }
+    if (currentErrorKey) {
+      showError(currentErrorKey)
     }
   })
 }

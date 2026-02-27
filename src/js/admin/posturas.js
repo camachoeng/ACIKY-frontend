@@ -51,6 +51,10 @@ export async function initAdminPosturas() {
     })
   }
 
+  // Search input
+  const searchInput = document.getElementById('posturasSearch')
+  if (searchInput) searchInput.addEventListener('input', filterPosturas)
+
   // Container event delegation
   const container = document.getElementById('posturasContainer')
   if (container) {
@@ -83,12 +87,21 @@ async function loadPosturas() {
 
     if (loading) loading.classList.add('hidden')
 
+    const countEl = document.getElementById('posturasCount')
+    if (countEl) {
+      countEl.textContent = posturas.length
+      countEl.classList.toggle('hidden', posturas.length === 0)
+    }
+
+    const searchInput = document.getElementById('posturasSearch')
+    if (searchInput) searchInput.value = ''
+
     if (posturas.length === 0) {
       if (empty) empty.classList.remove('hidden')
     } else {
       if (container) {
         container.classList.remove('hidden')
-        renderPosturas(container)
+        renderPosturas(container, posturas)
       }
     }
   } catch (err) {
@@ -103,8 +116,28 @@ async function loadPosturas() {
   }
 }
 
-function renderPosturas(container) {
-  container.innerHTML = posturas.map(item => {
+function filterPosturas() {
+  const query = document.getElementById('posturasSearch')?.value.trim().toLowerCase() || ''
+  const container = document.getElementById('posturasContainer')
+  if (!container) return
+
+  const filtered = query
+    ? posturas.filter(p => p.title.toLowerCase().includes(query))
+    : posturas
+
+  renderPosturas(container, filtered)
+}
+
+function renderPosturas(container, list) {
+  if (list.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-full text-center py-12">
+        <span class="material-symbols-outlined text-5xl text-slate-300">search_off</span>
+        <p class="text-slate-400 text-sm mt-2">No se encontraron posturas</p>
+      </div>`
+    return
+  }
+  container.innerHTML = list.map(item => {
     const visibilityClass = item.visible ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'
     const visibilityText = item.visible ? 'Visible' : 'Oculto'
     const visibilityIcon = item.visible ? 'visibility' : 'visibility_off'
