@@ -1,4 +1,4 @@
-import { apiFetch, API_BASE } from './api.js'
+import { apiFetch } from './api.js'
 import { requireAuth } from './auth.js'
 import { t } from './i18n.js'
 
@@ -67,15 +67,10 @@ export async function initDashboard() {
         const formData = new FormData()
         formData.append('image', file)
 
-        // Upload to Cloudinary via backend (raw fetch, not apiFetch, because multipart)
-        const res = await fetch(`${API_BASE}/api/upload/image`, {
+        const data = await apiFetch('/api/upload/image', {
           method: 'POST',
-          credentials: 'include',
           body: formData
         })
-
-        const data = await res.json()
-        if (!res.ok) throw new Error(data.message || 'Upload failed')
 
         // Update profile with new image URL
         await apiFetch('/api/users/profile', {

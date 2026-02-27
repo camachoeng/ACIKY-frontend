@@ -115,7 +115,7 @@ function renderClassCard(activity, index) {
   return `
     <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
       ${activity.image_url ? `
-      <img src="${escapeHtml(activity.image_url)}" alt="${escapeHtml(activityName)}" class="w-full" />` : ''}
+      <img src="${escapeHtml(activity.image_url)}" alt="${escapeHtml(activityName)}" class="w-full" onerror="this.onerror=null;this.style.display='none'" />` : ''}
       <div class="p-6">
       <div class="flex items-start gap-4">
         <div class="w-16 h-16 ${colors.bg10} rounded-2xl flex flex-col items-center justify-center flex-shrink-0">
@@ -132,7 +132,7 @@ function renderClassCard(activity, index) {
           ${instructorFullName ? `
           <div class="flex items-center gap-2 mb-3">
             ${activity.instructor_profile_image_url
-              ? `<img src="${escapeHtml(activity.instructor_profile_image_url)}" alt="${escapeHtml(instructorFullName)}" class="w-8 h-8 rounded-full object-cover flex-shrink-0" />`
+              ? `<img src="${escapeHtml(activity.instructor_profile_image_url)}" alt="${escapeHtml(instructorFullName)}" class="w-8 h-8 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='/images/default-avatar.svg'" />`
               : `<div class="w-8 h-8 rounded-full ${colors.bg20} flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined ${colors.text} text-sm">person</span></div>`}
             <span class="text-sm font-medium text-slate-600">${escapeHtml(instructorFullName)}</span>
           </div>` : ''}

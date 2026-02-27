@@ -118,7 +118,7 @@ function renderUsers(tbody, list = users) {
   tbody.innerHTML = list.map(user => {
     const roleClass = roleColors[user.role] || roleColors.user
     const profileImage = user.profile_image_url
-      ? `<img src="${escapeHtml(user.profile_image_url)}" alt="${escapeHtml(formatUserName(user))}" class="w-10 h-10 rounded-full object-cover" />`
+      ? `<img src="${escapeHtml(user.profile_image_url)}" alt="${escapeHtml(formatUserName(user))}" class="w-10 h-10 rounded-full object-cover" onerror="this.onerror=null;this.src='/images/default-avatar.svg'" />`
       : `<div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center"><span class="material-symbols-outlined text-slate-400">person</span></div>`
 
     return `
@@ -154,7 +154,7 @@ function openCreateModal() {
   document.getElementById('userId').value = ''
   document.getElementById('userProfileImageUrl').value = ''
   const preview = document.getElementById('userProfileImagePreview')
-  if (preview) preview.src = '/images/default-avatar.png'
+  if (preview) preview.src = '/images/default-avatar.svg'
   if (passwordFields) passwordFields.style.display = 'block'
   if (passwordInput) passwordInput.required = true
   if (passwordConfirmFields) passwordConfirmFields.classList.add('hidden')
@@ -188,7 +188,7 @@ async function openEditModal(id) {
     document.getElementById('userPositionEn').value = user.position_en || ''
     document.getElementById('userProfileImageUrl').value = user.profile_image_url || ''
     const preview = document.getElementById('userProfileImagePreview')
-    if (preview) preview.src = user.profile_image_url || '/images/default-avatar.png'
+    if (preview) preview.src = user.profile_image_url || '/images/default-avatar.svg'
     togglePositionField()
 
     // Password optional when editing
