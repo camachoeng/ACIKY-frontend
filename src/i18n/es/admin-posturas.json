@@ -4,6 +4,8 @@
   "newButton": "Nueva Postura",
   "loading": "Cargando posturas...",
   "empty": "No hay posturas registradas",
+  "searchPlaceholder": "Buscar por nombre...",
+  "noResults": "No se encontraron posturas",
   "modal": {
     "newTitle": "Nueva Postura",
     "editTitle": "Editar Postura",

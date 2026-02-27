@@ -4,6 +4,8 @@
   "newButton": "New Posture",
   "loading": "Loading postures...",
   "empty": "No postures registered",
+  "searchPlaceholder": "Search by name...",
+  "noResults": "No postures found",
   "modal": {
     "newTitle": "New Posture",
     "editTitle": "Edit Posture",

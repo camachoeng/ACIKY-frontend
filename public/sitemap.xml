@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.aciky.org/</loc>
+    <loc>https://aciky.org/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/about.html</loc>
+    <loc>https://aciky.org/pages/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/schedule.html</loc>
+    <loc>https://aciky.org/pages/schedule.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/spaces.html</loc>
+    <loc>https://aciky.org/pages/spaces.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/blog.html</loc>
+    <loc>https://aciky.org/pages/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/golden-routes.html</loc>
+    <loc>https://aciky.org/pages/golden-routes.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/testimonials.html</loc>
+    <loc>https://aciky.org/pages/testimonials.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/contact.html</loc>
+    <loc>https://aciky.org/pages/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/rebirthing.html</loc>
+    <loc>https://aciky.org/pages/rebirthing.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/onlinesadhana.html</loc>
+    <loc>https://aciky.org/pages/onlinesadhana.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/festival.html</loc>
+    <loc>https://aciky.org/pages/festival.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/posturas.html</loc>
+    <loc>https://aciky.org/pages/posturas.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.aciky.org/pages/videos.html</loc>
+    <loc>https://aciky.org/pages/videos.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

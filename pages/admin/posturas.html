@@ -18,13 +18,26 @@
       <section class="px-6 py-8">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Posturas</h1>
+            <div class="flex items-center gap-2">
+              <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Posturas</h1>
+              <span id="posturasCount" class="hidden text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-semibold"></span>
+            </div>
             <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Gestiona las imágenes de posturas de yoga</p>
           </div>
           <button id="createPosturaBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
             <span class="material-symbols-outlined text-sm">add</span>
             <span data-i18n="newButton">Nueva Postura</span>
           </button>
+        </div>
+
+        <!-- Search Input -->
+        <div class="mb-6">
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl pointer-events-none">search</span>
+            <input type="text" id="posturasSearch"
+                   class="w-full pl-10 pr-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                   data-i18n-placeholder="searchPlaceholder" placeholder="Buscar por nombre..." />
+          </div>
         </div>
 
         <!-- Loading State -->

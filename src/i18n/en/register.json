@@ -20,6 +20,8 @@
   "loginLink": "Sign In",
   "errors": {
     "default": "Error signing up",
-    "passwordMismatch": "Passwords do not match"
+    "passwordMismatch": "Passwords do not match",
+    "passwordInvalid": "Password does not meet security requirements",
+    "emailTaken": "This email address is already registered"
   }
 }

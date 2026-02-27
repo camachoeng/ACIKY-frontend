@@ -7,4 +7,4 @@ Disallow: /pages/login.html
 Disallow: /pages/register.html
 Disallow: /pages/verify-email.html
 
-Sitemap: https://www.aciky.org/sitemap.xml
+Sitemap: https://aciky.org/sitemap.xml
