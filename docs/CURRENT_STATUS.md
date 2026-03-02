@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-02-27
+Last updated: 2026-03-02
 
 ## In Progress
 _No active work at this time._
@@ -42,6 +42,10 @@ _No active work at this time._
   - Root cause: `gravity: 'face'` in `uploadImage` handler requires Cloudinary face detection add-on
   - Fix: changed to `gravity: 'center'` → standard center crop, no add-ons required
   - Affected: `POST /api/upload` and `POST /api/upload/image` (admin + user dashboard uploads)
+- [x] Fixed admin user edit silently dropping `profile_image_url` (2026-02-27)
+  - Root cause: `updateUser` destructured `req.body` but never included `profile_image_url`
+  - Fix: backend now accepts, validates (Cloudinary URL check), and saves the field
+  - Also deletes old Cloudinary image when replaced
 - [x] Added `onerror` fallbacks to all database images (2026-02-27)
   - Broken content images (events, schedule, rebirthing) hide gracefully instead of showing broken icon
   - Broken profile images fall back to `default-avatar.svg`
@@ -51,9 +55,19 @@ _No active work at this time._
 - [x] Google Search Console HTML verification file added, ownership verified (2026-02-27)
   - Sitemap fixed: removed `www.` prefix (canonical URL is aciky.org without www)
   - Next step: submit sitemap in GSC → `https://aciky.org/sitemap.xml`
+- [x] Fixed "Missing translation: pageTitle" console warning (2026-03-02)
+  - Root cause: `applyTranslations()` calls `t('pageTitle')` on every page, but most page JSON files lacked the key
+  - Fix: added `"pageTitle": "ACIKY"` to both `es/common.json` and `en/common.json` as fallback
+  - Pages with their own `pageTitle` (e.g. admin-users) still use their specific title
+  - Also added `pages/admin/festival.html` to i18n.js `pageMap` (was registered in vite.config.js but missing from map)
+- [x] Fixed session expiry not logging users out (2026-03-02)
+  - Root cause: `checkAuth()` used `data.isAuthenticated || tokenValid` — localStorage data overrode the backend's "not authenticated" response, keeping users stuck as logged-in
+  - Fix: `checkAuth()` now trusts the backend's `isAuthenticated` value directly; clears both localStorage and sessionStorage when false
+  - localStorage fallback preserved only for actual network failures (backend unreachable)
+  - Mobile Bearer token auth still works — backend validates the token and returns correct `isAuthenticated` value
 
 ## Known Issues
-_No known issues at this time. Update this section when issues are discovered._
+- **Stale broken image URLs in database**: Events, activities, and user profiles uploaded during the pre-Cloudinary period have permanently dead URLs. `onerror` fallbacks hide the broken icons. Fix: re-upload those images via admin panel — the full save pipeline is now confirmed working end-to-end.
 
 ## Next Priorities
 _[User to define next feature priorities]_

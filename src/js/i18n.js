@@ -78,7 +78,8 @@ function getPageName() {
     'pages/admin/rebirthing.html': 'admin-rebirthing',
     'pages/instructor/my-rebirthing.html': 'instructor-rebirthing',
     'pages/event.html': 'events',
-    'pages/admin/events.html': 'admin-events'
+    'pages/admin/events.html': 'admin-events',
+    'pages/admin/festival.html': 'admin-festival'
   }
 
   return pageMap[normalizedPath] || 'home'
