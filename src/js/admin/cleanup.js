@@ -6,6 +6,11 @@ export async function initCleanup() {
   const user = await requireAdmin()
   if (!user) return
 
+  // Warn if running in development environment
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    document.getElementById('devWarning')?.classList.remove('hidden')
+  }
+
   await loadStats()
 
   // Button events
@@ -33,6 +38,15 @@ async function loadStats() {
       document.getElementById('temporaryCount').textContent = stats.temporaryCount || 0
       document.getElementById('permanentCount').textContent = stats.permanentCount || 0
       document.getElementById('totalCount').textContent = stats.totalCount || 0
+
+      // Show environment badge from backend (more reliable than hostname check)
+      const envBadge = document.getElementById('envBadge')
+      if (envBadge && stats.environment) {
+        const isProd = stats.environment === 'production'
+        envBadge.textContent = stats.environment
+        envBadge.className = `inline-block px-2 py-0.5 rounded-full text-xs font-bold ${isProd ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`
+        envBadge.classList.remove('hidden')
+      }
 
       loading?.classList.add('hidden')
       container?.classList.remove('hidden')

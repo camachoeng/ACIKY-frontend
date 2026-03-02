@@ -519,6 +519,12 @@ async function initPage() {
   } else if (path.includes('/pages/register.html')) {
     const { initRegister } = await import('./js/register.js')
     initRegister()
+  } else if (path.includes('/pages/forgot-password.html')) {
+    const { initForgotPassword } = await import('./js/forgot-password.js')
+    initForgotPassword()
+  } else if (path.includes('/pages/reset-password.html')) {
+    const { initResetPassword } = await import('./js/reset-password.js')
+    initResetPassword()
   } else if (path.includes('/pages/schedule.html')) {
     const { initSchedule } = await import('./js/schedule.js')
     initSchedule()
