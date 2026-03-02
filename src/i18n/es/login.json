@@ -9,6 +9,7 @@
   "passwordPlaceholder": "Tu contraseña",
   "submitBtn": "Iniciar Sesión",
   "submitting": "Iniciando...",
+  "forgotPassword": "¿Olvidaste tu contraseña?",
   "noAccount": "No tienes cuenta?",
   "registerLink": "Regístrate",
   "success": {

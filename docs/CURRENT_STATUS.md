@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-03-02
+Last updated: 2026-03-03
 
 ## In Progress
 _No active work at this time._
@@ -66,8 +66,25 @@ _No active work at this time._
   - localStorage fallback preserved only for actual network failures (backend unreachable)
   - Mobile Bearer token auth still works — backend validates the token and returns correct `isAuthenticated` value
 
+- [x] **Secure password recovery (forgot password) - COMPLETE** (2026-03-03)
+  - `pages/forgot-password.html` + `src/js/forgot-password.js` — email request form, generic response (anti-enumeration)
+  - `pages/reset-password.html` + `src/js/reset-password.js` — token from URL, same password validation as register
+  - "¿Olvidaste tu contraseña?" link added to login page
+  - Backend: SHA-256 hashed token stored in DB, bcrypt for new password, single-use (token cleared atomically with password update), 1-hour expiry
+  - Backend uses `FRONTEND_URL` env var for reset link (localhost in dev, aciky.org in prod)
+  - Registered in `vite.config.js`, `main.js`, and `i18n.js` pageMap
+- [x] **Cloudinary cleanup system - COMPLETE** (2026-03-03)
+  - Admin cleanup page now shows environment badge (green=production, amber=development) pulled from backend
+  - Dev warning banner shown automatically when on localhost
+  - Added "1 hora (prueba)" and "2 horas (prueba)" options for testing without waiting 24h
+  - Backend Phase 1: `CLOUDINARY_FOLDER_PREFIX` env var separates dev (`aciky-dev/`) from prod (`aciky/`) uploads — verified working
+  - Backend Phase 2: cleanup now calls `cloudinary.uploader.destroy()` before DB delete — verified: 23 orphaned dev uploads cleaned, production unaffected
+  - Backend Phase 3: `scripts/cleanup.js` standalone script for Heroku Scheduler (production-only guard, runs at 03:00 UTC daily)
+  - Spec: `backend-specs/cleanup-improvements.md`
+
 ## Known Issues
 - **Stale broken image URLs in database**: Events, activities, and user profiles uploaded during the pre-Cloudinary period have permanently dead URLs. `onerror` fallbacks hide the broken icons. Fix: re-upload those images via admin panel — the full save pipeline is now confirmed working end-to-end.
+- **Heroku Scheduler not yet configured**: `scripts/cleanup.js` is ready but the Heroku Scheduler add-on job still needs to be added in the Heroku dashboard.
 
 ## Next Priorities
 _[User to define next feature priorities]_

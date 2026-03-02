@@ -53,6 +53,8 @@ function getPageName() {
     'pages/videos.html': 'videos',
     'pages/login.html': 'login',
     'pages/register.html': 'register',
+    'pages/forgot-password.html': 'forgot-password',
+    'pages/reset-password.html': 'reset-password',
     'pages/verify-email.html': 'verify-email',
     'pages/dashboard.html': 'dashboard',
     'pages/admin/dashboard.html': 'admin-dashboard',
