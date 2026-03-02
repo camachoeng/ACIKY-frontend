@@ -6,16 +6,11 @@ let currentUser = null
 
 export async function checkAuth() {
   try {
-    const authToken = localStorage.getItem('authToken') || sessionStorage.getItem('authToken')
-    const loginTime = localStorage.getItem('loginTime') || sessionStorage.getItem('loginTime')
-    const storedUser = localStorage.getItem('user') || sessionStorage.getItem('user')
-
-    const tokenValid = authToken && loginTime && storedUser &&
-      (Date.now() - parseInt(loginTime)) < (24 * 60 * 60 * 1000)
-
     const data = await apiFetch('/api/auth/check')
-    const isAuthenticated = data.isAuthenticated || tokenValid
-    const user = data.user || (tokenValid ? JSON.parse(storedUser) : null)
+    if (!data) return null // apiFetch handled a 401 and is redirecting
+
+    const isAuthenticated = data.isAuthenticated
+    const user = data.user || null
 
     if (isAuthenticated && user) {
       currentUser = user
@@ -25,16 +20,22 @@ export async function checkAuth() {
       currentUser = null
       localStorage.removeItem('user')
       localStorage.removeItem('loginTime')
+      sessionStorage.removeItem('user')
+      sessionStorage.removeItem('loginTime')
     }
 
     updateAuthUI(isAuthenticated, user)
     return currentUser
   } catch (error) {
+    // Network failure only - use stored data to avoid logging out during brief outages
     console.error('Auth check failed:', error)
     const storedUser = localStorage.getItem('user') || sessionStorage.getItem('user')
-    if (storedUser) {
+    const loginTime = localStorage.getItem('loginTime') || sessionStorage.getItem('loginTime')
+    if (storedUser && loginTime && (Date.now() - parseInt(loginTime)) < (24 * 60 * 60 * 1000)) {
       currentUser = JSON.parse(storedUser)
       updateAuthUI(true, currentUser)
+    } else {
+      currentUser = null
     }
     return currentUser
   }
