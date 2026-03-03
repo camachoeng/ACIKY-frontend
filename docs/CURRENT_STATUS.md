@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-03-03
+Last updated: 2026-03-04
 
 ## In Progress
 _No active work at this time._
@@ -81,10 +81,19 @@ _No active work at this time._
   - Backend Phase 2: cleanup now calls `cloudinary.uploader.destroy()` before DB delete — verified: 23 orphaned dev uploads cleaned, production unaffected
   - Backend Phase 3: `scripts/cleanup.js` standalone script for Heroku Scheduler (production-only guard, runs at 03:00 UTC daily)
   - Spec: `backend-specs/cleanup-improvements.md`
+- [x] **Cloudinary cleanup redesigned — DB-vs-Cloudinary reconciliation - COMPLETE** (2026-03-04)
+  - Replaced time-based temporary-uploads approach with true orphan detection: list all Cloudinary assets, compare against all image URLs in every DB table, delete what's unreferenced
+  - Both dev and prod now share the same `aciky/` Cloudinary folder (removed `aciky-dev/` separation); `uploadController.js` updated to hardcode `'aciky'` prefix
+  - Backend: new `config/databaseSecondary.js` (optional second DB pool from `DB2_*` env vars) + new `services/cloudinaryOrphanService.js` querying both DBs and merging reference sets
+  - Backend: added `GET /api/cleanup/orphaned` (preview/dry-run) and `POST /api/cleanup/orphaned` (delete) to `routes/cleanup.js` and `controllers/cleanupController.js`
+  - Backend: `scripts/cleanup.js` updated to use `cloudinaryOrphanService.deleteOrphaned()` instead of old time-based approach
+  - Frontend: `pages/admin/cleanup.html` + `src/js/admin/cleanup.js` fully redesigned — Analyze button shows Cloudinary total / DB total / orphaned count + list; Delete button with confirmation; auto-re-analyzes after deletion
+  - Dev `.env` now includes `DB2_*` pointing to Heroku prod DB for accurate dual-DB analysis locally
+  - Spec: `backend-specs/cloudinary-orphan-cleanup.md`
 
 ## Known Issues
 - **Stale broken image URLs in database**: Events, activities, and user profiles uploaded during the pre-Cloudinary period have permanently dead URLs. `onerror` fallbacks hide the broken icons. Fix: re-upload those images via admin panel — the full save pipeline is now confirmed working end-to-end.
-- **Heroku Scheduler not yet configured**: `scripts/cleanup.js` is ready but the Heroku Scheduler add-on job still needs to be added in the Heroku dashboard.
+- **Heroku Scheduler not yet configured**: `scripts/cleanup.js` is ready but the Heroku Scheduler add-on job still needs to be added in the Heroku dashboard (`node scripts/cleanup.js`, every 24 hours).
 
 ## Next Priorities
 _[User to define next feature priorities]_

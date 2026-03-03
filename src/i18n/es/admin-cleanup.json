@@ -1,39 +1,38 @@
 {
-  "title": "Limpieza de Archivos",
-  "subtitle": "Gestiona las imágenes temporales subidas",
+  "title": "Limpieza de Cloudinary",
+  "subtitle": "Compara la base de datos con Cloudinary y elimina imágenes huérfanas",
   "backToProfile": "Volver al perfil",
-  "loading": "Cargando estadísticas...",
   "retry": "Reintentar",
-  "stats": {
-    "temporaryLabel": "Archivos Temporales",
-    "permanentLabel": "Archivos Permanentes",
-    "totalLabel": "Total de Archivos"
-  },
-  "actions": {
-    "title": "Acciones de Limpieza",
-    "cleanupTitle": "Limpiar Archivos Temporales",
-    "cleanupDescription": "Elimina archivos temporales subidos hace más de 24 horas que nunca fueron guardados.",
-    "cleanupButton": "Ejecutar Limpieza",
-    "confirmCleanup": "¿Estás seguro de eliminar archivos temporales?",
-    "cleaning": "Limpiando...",
-    "refreshTitle": "Actualizar Estadísticas",
-    "refreshDescription": "Recarga las estadísticas de archivos subidos.",
-    "refreshButton": "Actualizar"
+  "analysis": {
+    "title": "Detector de Imágenes Huérfanas",
+    "description": "Analiza todas las imágenes en Cloudinary y las compara con las referencias en la base de datos. Las imágenes que no están referenciadas en ninguna tabla serán marcadas como huérfanas y podrán eliminarse.",
+    "analyzeButton": "Analizar imágenes",
+    "analyzing": "Analizando...",
+    "stats": {
+      "cloudinaryLabel": "En Cloudinary",
+      "dbLabel": "En la base de datos",
+      "orphanedLabel": "Huérfanas"
+    },
+    "orphanListTitle": "Imágenes a eliminar",
+    "noOrphans": "No se encontraron imágenes huérfanas. ¡Cloudinary está limpio!",
+    "deleteButton": "Eliminar huérfanas",
+    "confirmDelete": "¿Eliminar {count} imágenes huérfanas de Cloudinary? Esta acción no se puede deshacer.",
+    "deleting": "Eliminando...",
+    "reanalyze": "Analizar de nuevo"
   },
   "result": {
     "title": "Resultado de Limpieza",
-    "success": "✅ Limpieza completada exitosamente",
-    "error": "❌ Error en la limpieza",
-    "deletedCount": "Archivos eliminados",
-    "threshold": "Umbral aplicado",
-    "deletedFiles": "Archivos eliminados"
+    "success": "Limpieza completada exitosamente",
+    "error": "Error en la limpieza",
+    "deletedCount": "Imágenes eliminadas"
   },
-  "info": {
-    "title": "¿Qué son los archivos temporales?",
-    "description": "Son imágenes que fueron subidas pero nunca guardadas (el usuario subió una imagen pero no guardó el espacio, galería o publicación). Estos archivos ocupan espacio en Cloudinary sin estar en uso.",
-    "recommendation": "Recomendación: Ejecuta la limpieza semanalmente para mantener el almacenamiento optimizado."
+  "schedule": {
+    "title": "Limpieza Automática",
+    "description": "La limpieza se ejecuta automáticamente cada noche a las 3:00 AM UTC comparando Cloudinary con la base de datos de producción.",
+    "setupNote": "Para activar: configurar Heroku Scheduler con el comando node scripts/cleanup.js cada 24 horas."
   },
   "errors": {
-    "loadError": "Error al cargar estadísticas"
+    "analyzeError": "Error al analizar imágenes",
+    "deleteError": "Error al eliminar imágenes huérfanas"
   }
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Limpieza de archivos - Admin ACIKY" />
+    <meta name="description" content="Limpieza de Cloudinary - Admin ACIKY" />
     <title>Limpieza - Admin ACIKY</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -20,10 +20,10 @@
         <div class="flex items-center justify-between mb-8">
           <div>
             <div class="flex items-center gap-2 mb-1">
-              <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Limpieza de Archivos</h1>
+              <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Limpieza de Cloudinary</h1>
               <span id="envBadge" class="hidden"></span>
             </div>
-            <p class="text-slate-500 text-sm" data-i18n="subtitle">Gestiona las imágenes temporales subidas</p>
+            <p class="text-slate-500 text-sm" data-i18n="subtitle">Compara la base de datos con Cloudinary y elimina imágenes huérfanas</p>
           </div>
           <a href="{{basePath}}/pages/dashboard.html" class="text-primary hover:text-primary-dark transition-colors text-sm font-medium flex items-center gap-1">
             <span class="material-symbols-outlined text-sm">arrow_back</span>
@@ -31,135 +31,115 @@
           </a>
         </div>
 
-        <!-- Statistics Cards -->
-        <div id="statsLoading" class="text-center py-12">
-          <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
-          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando estadísticas...</p>
+        <!-- Orphan Detector Card -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">cloud_sync</span>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-primary-dark" data-i18n="analysis.title">Detector de Imágenes Huérfanas</h2>
+              <p class="text-sm text-slate-500" data-i18n="analysis.description">Analiza todas las imágenes en Cloudinary y las compara con las referencias en la base de datos.</p>
+            </div>
+          </div>
+
+          <!-- Analyze Button -->
+          <div id="analyzeSection">
+            <button id="analyzeBtn" class="bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-primary transition-colors flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm">search</span>
+              <span data-i18n="analysis.analyzeButton">Analizar imágenes</span>
+            </button>
+          </div>
+
+          <!-- Analysis Results (hidden until analyzed) -->
+          <div id="analysisResults" class="hidden mt-6 space-y-5">
+            <!-- Stats Chips -->
+            <div class="grid grid-cols-3 gap-3">
+              <div class="bg-slate-50 rounded-xl p-4 text-center">
+                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span class="material-symbols-outlined text-blue-600 text-sm">cloud</span>
+                </div>
+                <p class="text-xl font-bold text-primary-dark" id="cloudinaryCount">-</p>
+                <p class="text-xs text-slate-500 font-medium" data-i18n="analysis.stats.cloudinaryLabel">En Cloudinary</p>
+              </div>
+              <div class="bg-slate-50 rounded-xl p-4 text-center">
+                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span class="material-symbols-outlined text-green-600 text-sm">storage</span>
+                </div>
+                <p class="text-xl font-bold text-primary-dark" id="dbCount">-</p>
+                <p class="text-xs text-slate-500 font-medium" data-i18n="analysis.stats.dbLabel">En la base de datos</p>
+              </div>
+              <div class="bg-slate-50 rounded-xl p-4 text-center">
+                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span class="material-symbols-outlined text-red-500 text-sm">delete_forever</span>
+                </div>
+                <p class="text-xl font-bold text-red-600" id="orphanedCount">-</p>
+                <p class="text-xs text-slate-500 font-medium" data-i18n="analysis.stats.orphanedLabel">Huérfanas</p>
+              </div>
+            </div>
+
+            <!-- No Orphans State -->
+            <div id="noOrphansMsg" class="hidden p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
+              <span class="material-symbols-outlined text-green-600 flex-shrink-0">check_circle</span>
+              <p class="text-sm text-green-800 font-medium" data-i18n="analysis.noOrphans">No se encontraron imágenes huérfanas. ¡Cloudinary está limpio!</p>
+            </div>
+
+            <!-- Orphan List -->
+            <div id="orphanList" class="hidden">
+              <h3 class="text-sm font-semibold text-slate-600 mb-2" data-i18n="analysis.orphanListTitle">Imágenes a eliminar</h3>
+              <div id="orphanItems" class="bg-slate-50 rounded-xl p-3 max-h-48 overflow-y-auto space-y-1"></div>
+            </div>
+
+            <!-- Delete Button -->
+            <div id="deleteSection" class="hidden flex items-center gap-3">
+              <button id="deleteBtn" class="bg-red-500 text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-red-600 transition-colors flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">delete_sweep</span>
+                <span data-i18n="analysis.deleteButton">Eliminar huérfanas</span>
+              </button>
+              <button id="reanalyzeBtn" class="text-slate-500 hover:text-primary-dark text-sm font-medium flex items-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-sm">refresh</span>
+                <span data-i18n="analysis.reanalyze">Analizar de nuevo</span>
+              </button>
+            </div>
+
+            <!-- No Orphans Reanalyze -->
+            <div id="reanalyzeSection" class="hidden">
+              <button id="reanalyzeBtnClean" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-sm">refresh</span>
+                <span data-i18n="analysis.reanalyze">Analizar de nuevo</span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div id="statsContainer" class="hidden space-y-6">
-          <!-- Stats Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <!-- Temporary Uploads Card -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-              <div class="flex items-center gap-3 mb-2">
-                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
-                  <span class="material-symbols-outlined text-amber-600">schedule</span>
-                </div>
-                <div>
-                  <p class="text-xs font-semibold text-slate-400" data-i18n="stats.temporaryLabel">Archivos Temporales</p>
-                  <p class="text-2xl font-bold text-primary-dark" id="temporaryCount">-</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Permanent Uploads Card -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-              <div class="flex items-center gap-3 mb-2">
-                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <span class="material-symbols-outlined text-green-600">check_circle</span>
-                </div>
-                <div>
-                  <p class="text-xs font-semibold text-slate-400" data-i18n="stats.permanentLabel">Archivos Permanentes</p>
-                  <p class="text-2xl font-bold text-primary-dark" id="permanentCount">-</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Total Uploads Card -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-              <div class="flex items-center gap-3 mb-2">
-                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <span class="material-symbols-outlined text-primary">cloud_upload</span>
-                </div>
-                <div>
-                  <p class="text-xs font-semibold text-slate-400" data-i18n="stats.totalLabel">Total de Archivos</p>
-                  <p class="text-2xl font-bold text-primary-dark" id="totalCount">-</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Cleanup Actions -->
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h2 class="text-lg font-bold text-primary-dark mb-4" data-i18n="actions.title">Acciones de Limpieza</h2>
-
-            <div class="space-y-4">
-              <!-- Manual Cleanup -->
-              <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
-                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span class="material-symbols-outlined text-red-600">delete_sweep</span>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <h3 class="font-bold text-primary-dark mb-1" data-i18n="actions.cleanupTitle">Limpiar Archivos Temporales</h3>
-                  <p class="text-sm text-slate-500 mb-3" data-i18n="actions.cleanupDescription">Elimina archivos temporales subidos hace más de 24 horas que nunca fueron guardados.</p>
-
-                  <!-- Dev environment warning -->
-                  <div id="devWarning" class="hidden mb-3 p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800 flex items-start gap-2">
-                    <span class="material-symbols-outlined text-sm flex-shrink-0">warning</span>
-                    <span data-i18n="actions.devWarning">Estás en entorno de desarrollo. La limpieza afectará imágenes del servidor local, no de producción. Para limpiar producción, ejecuta desde el panel en aciky.org.</span>
-                  </div>
-
-                  <div class="flex items-center gap-3">
-                    <button id="runCleanupBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-600 transition-colors flex items-center gap-2">
-                      <span class="material-symbols-outlined text-sm">delete</span>
-                      <span data-i18n="actions.cleanupButton">Ejecutar Limpieza</span>
-                    </button>
-
-                    <select id="hoursSelect" class="px-3 py-2 rounded-lg border border-slate-200 text-sm bg-white">
-                      <option value="1">1 hora (prueba)</option>
-                      <option value="2">2 horas (prueba)</option>
-                      <option value="24" selected>24 horas</option>
-                      <option value="48">48 horas</option>
-                      <option value="72">72 horas (3 días)</option>
-                      <option value="168">168 horas (7 días)</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Refresh Stats -->
-              <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-xl">
-                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span class="material-symbols-outlined text-blue-600">refresh</span>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <h3 class="font-bold text-primary-dark mb-1" data-i18n="actions.refreshTitle">Actualizar Estadísticas</h3>
-                  <p class="text-sm text-slate-500 mb-3" data-i18n="actions.refreshDescription">Recarga las estadísticas de archivos subidos.</p>
-
-                  <button id="refreshStatsBtn" class="bg-primary-dark text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary transition-colors flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">refresh</span>
-                    <span data-i18n="actions.refreshButton">Actualizar</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Cleanup Result -->
-          <div id="cleanupResult" class="hidden bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h2 class="text-lg font-bold text-primary-dark mb-4" data-i18n="result.title">Resultado de Limpieza</h2>
-            <div id="cleanupResultContent" class="space-y-2"></div>
-          </div>
-
-          <!-- Info Box -->
-          <div class="bg-blue-50 border border-blue-200 rounded-2xl p-4">
-            <div class="flex items-start gap-3">
-              <span class="material-symbols-outlined text-blue-600 flex-shrink-0">info</span>
-              <div class="text-sm text-blue-800">
-                <p class="font-semibold mb-1" data-i18n="info.title">¿Qué son los archivos temporales?</p>
-                <p data-i18n="info.description">Son imágenes que fueron subidas pero nunca guardadas (el usuario subió una imagen pero no guardó el espacio, galería o publicación). Estos archivos ocupan espacio en Cloudinary sin estar en uso.</p>
-                <p class="mt-2" data-i18n="info.recommendation"><strong>Recomendación:</strong> Ejecuta la limpieza semanalmente para mantener el almacenamiento optimizado.</p>
-              </div>
-            </div>
-          </div>
+        <!-- Cleanup Result -->
+        <div id="cleanupResult" class="hidden bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6">
+          <h2 class="text-lg font-bold text-primary-dark mb-4" data-i18n="result.title">Resultado de Limpieza</h2>
+          <div id="cleanupResultContent" class="space-y-2"></div>
         </div>
 
         <!-- Error State -->
-        <div id="statsError" class="hidden text-center py-12">
-          <span class="material-symbols-outlined text-red-500 text-5xl">error</span>
-          <p class="text-red-500 text-sm mt-2" id="statsErrorMessage">Error al cargar estadísticas</p>
-          <button id="retryStatsBtn" class="mt-4 text-primary hover:text-primary-dark text-sm font-medium" data-i18n="retry">Reintentar</button>
+        <div id="analyzeError" class="hidden bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-red-500 flex-shrink-0">error</span>
+            <div>
+              <p class="font-semibold text-red-700 text-sm" data-i18n="errors.analyzeError">Error al analizar imágenes</p>
+              <p class="text-red-600 text-sm mt-1" id="analyzeErrorMessage"></p>
+              <button id="retryBtn" class="mt-3 text-primary hover:text-primary-dark text-sm font-medium" data-i18n="retry">Reintentar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule Info Card -->
+        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-4">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-blue-600 flex-shrink-0">schedule</span>
+            <div class="text-sm text-blue-800">
+              <p class="font-semibold mb-1" data-i18n="schedule.title">Limpieza Automática</p>
+              <p data-i18n="schedule.description">La limpieza se ejecuta automáticamente cada noche a las 3:00 AM UTC comparando Cloudinary con la base de datos de producción.</p>
+              <p class="mt-2 text-blue-700" data-i18n="schedule.setupNote">Para activar: configurar Heroku Scheduler con el comando node scripts/cleanup.js cada 24 horas.</p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
