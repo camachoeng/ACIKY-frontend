@@ -275,6 +275,8 @@ async function uploadFile(file) {
     document.getElementById('posturaImageUrl').value = data.data.url
     document.getElementById('posturaThumbnailUrl').value = data.data.thumbnailUrl || ''
     showUploadPreview(data.data.url)
+    const fileInput = document.getElementById('posturaFileInput')
+    if (fileInput) fileInput.value = ''
 
   } catch (err) {
     console.error('Upload error:', err)
