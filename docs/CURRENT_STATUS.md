@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-03-04
+Last updated: 2026-03-05
 
 ## In Progress
 _No active work at this time._
@@ -90,6 +90,19 @@ _No active work at this time._
   - Frontend: `pages/admin/cleanup.html` + `src/js/admin/cleanup.js` fully redesigned — Analyze button shows Cloudinary total / DB total / orphaned count + list; Delete button with confirmation; auto-re-analyzes after deletion
   - Dev `.env` now includes `DB2_*` pointing to Heroku prod DB for accurate dual-DB analysis locally
   - Spec: `backend-specs/cloudinary-orphan-cleanup.md`
+- [x] **Fixed mobile login (Bearer token fallback in checkAuth) - COMPLETE** (2026-03-04)
+  - Root cause: `authController.checkAuth` only checked `req.session.userId` — never the Bearer token fallback
+  - Mobile Safari blocks cross-origin session cookies → session was always empty → `isAuthenticated: false` immediately after login
+  - Fix: `checkAuth` now uses `getUserId(req)` from `utils/authToken`; if token path, queries DB for user data
+  - Session path (desktop) unchanged; Bearer token path (mobile) added with DB query
+  - Spec: `backend-specs/fix-mobile-auth-check.md`
+- [x] **Fixed "Hola," without name after session expiry - COMPLETE** (2026-03-05)
+  - Root cause: `requireAuth` middleware partially restores the session from Bearer token (sets only `req.session.userId`, not `name`/`email`/etc.); on the next `checkAuth` call the session path was entered but returned `name: undefined`
+  - Fix: `checkAuth` session path now requires `req.session.userId && req.session.email` — if only `userId` is present (partial restore), falls through to the Bearer token / DB path which returns the full user record
+  - Spec: `backend-specs/fix-checkauth-incomplete-session.md`
+- [x] **Fixed file input not detecting re-selected same image in posturas admin** (2026-03-05)
+  - Root cause: browser does not fire `change` event when the same file path is selected again
+  - Fix: reset file input value to `''` after each successful upload in `src/js/admin/posturas.js`
 
 ## Known Issues
 - **Stale broken image URLs in database**: Events, activities, and user profiles uploaded during the pre-Cloudinary period have permanently dead URLs. `onerror` fallbacks hide the broken icons. Fix: re-upload those images via admin panel — the full save pipeline is now confirmed working end-to-end.
