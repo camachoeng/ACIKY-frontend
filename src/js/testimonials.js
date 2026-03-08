@@ -79,15 +79,12 @@ function setupAuthSection() {
   const writeSection = document.getElementById('writeTestimonialSection')
   const loginSection = document.getElementById('loginPromptSection')
 
-  if (user && user.role === 'user') {
+  if (user) {
     writeSection?.classList.remove('hidden')
     loginSection?.classList.add('hidden')
-  } else if (!user) {
-    writeSection?.classList.add('hidden')
-    loginSection?.classList.remove('hidden')
   } else {
     writeSection?.classList.add('hidden')
-    loginSection?.classList.add('hidden')
+    loginSection?.classList.remove('hidden')
   }
 }
 

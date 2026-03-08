@@ -59,6 +59,8 @@ export default defineConfig(() => {
           adminFestival: resolve(__dirname, 'pages/admin/festival.html'),
           forgotPassword: resolve(__dirname, 'pages/forgot-password.html'),
           resetPassword: resolve(__dirname, 'pages/reset-password.html'),
+          privacy: resolve(__dirname, 'pages/privacy.html'),
+          terms: resolve(__dirname, 'pages/terms.html'),
           notFound: resolve(__dirname, 'pages/404.html')
         }
       }

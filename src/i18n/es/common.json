@@ -26,7 +26,10 @@
     "openMenu": "Abrir menú"
   },
   "footer": {
-    "copyright": "ACIKY - Todos los derechos reservados."
+    "copyright": "ACIKY - Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Uso",
+    "contact": "Contacto"
   },
   "adminNav": {
     "admin": "Admin",

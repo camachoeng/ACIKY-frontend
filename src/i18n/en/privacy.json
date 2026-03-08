@@ -1,0 +1,32 @@
+{
+  "privacy": {
+    "pageTitle": "Privacy Policy - ACIKY",
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 2026",
+    "intro": "At ACIKY we respect your privacy. This policy explains what data we collect, how we use it, and your rights as a user of the platform.",
+    "collectTitle": "What data do we collect?",
+    "collect1": "Name, last name, and spiritual name (when you register)",
+    "collect2": "Email address (for authentication and communications)",
+    "collect3": "Profile photo (optional, stored on Cloudinary)",
+    "collect4": "Testimonials you choose to submit voluntarily",
+    "collect5": "A functional session cookie to keep you logged in",
+    "useTitle": "How do we use your data?",
+    "use1": "To manage your account and access to the platform",
+    "use2": "To display your name and photo on approved testimonials",
+    "use3": "To send you relevant ACIKY information if you requested it",
+    "use4": "To improve the platform experience",
+    "cookiesTitle": "Cookies",
+    "cookies": "We only use a functional session cookie required for you to log in. We do not use tracking or advertising cookies.",
+    "thirdPartyTitle": "Third parties",
+    "thirdParty": "Your images are stored on Cloudinary. The platform is hosted on Heroku and GitHub Pages. We do not sell or share your data with third parties for commercial purposes.",
+    "retentionTitle": "Data retention",
+    "retention": "We keep your data while your account is active. You can request deletion of your account and data at any time.",
+    "rightsTitle": "Your rights",
+    "rights1": "Access the data we hold about you",
+    "rights2": "Request correction of inaccurate data",
+    "rights3": "Request deletion of your account",
+    "rights4": "Withdraw your testimonial at any time",
+    "contactTitle": "Contact",
+    "contact": "For any privacy-related questions, contact us via WhatsApp or through our contact page."
+  }
+}
