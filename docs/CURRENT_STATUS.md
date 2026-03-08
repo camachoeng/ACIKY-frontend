@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-03-05
+Last updated: 2026-03-07
 
 ## In Progress
 _No active work at this time._
@@ -103,6 +103,17 @@ _No active work at this time._
 - [x] **Fixed file input not detecting re-selected same image in posturas admin** (2026-03-05)
   - Root cause: browser does not fire `change` event when the same file path is selected again
   - Fix: reset file input value to `''` after each successful upload in `src/js/admin/posturas.js`
+- [x] **Allowed instructor and admin roles to write testimonials** (2026-03-07)
+  - Root cause: `setupAuthSection()` in `src/js/testimonials.js` only showed the write form for `role === 'user'`; instructors and admins fell into the else branch (both sections hidden)
+  - Fix: simplified condition to show write form for any authenticated user regardless of role
+  - Also updated `testimonials.subtitle` i18n key: "practicantes" → "comunidad" / "practitioners" → "community"
+- [x] **Privacy Policy and Terms of Use pages - COMPLETE** (2026-03-07)
+  - `pages/privacy.html` + `src/i18n/es/privacy.json` + `src/i18n/en/privacy.json`
+  - `pages/terms.html` + `src/i18n/es/terms.json` + `src/i18n/en/terms.json`
+  - Terms includes dedicated "Publicación de blogs" section covering the CEU ACIKY Tribunal review process and Yogi Bhajan teaching alignment requirement
+  - Footer updated with Privacy Policy, Terms of Use, and Contact links (visible on every page)
+  - Both pages registered in `vite.config.js` and `i18n.js` pageMap
+  - Footer link i18n keys added to `es/common.json` and `en/common.json`
 
 ## Known Issues
 - **Stale broken image URLs in database**: Events, activities, and user profiles uploaded during the pre-Cloudinary period have permanently dead URLs. `onerror` fallbacks hide the broken icons. Fix: re-upload those images via admin panel — the full save pipeline is now confirmed working end-to-end.

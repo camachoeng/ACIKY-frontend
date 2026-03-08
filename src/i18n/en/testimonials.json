@@ -1,7 +1,7 @@
 {
   "testimonials": {
     "title": "Testimonials",
-    "subtitle": "What our practitioners say about their experience at ACIKY",
+    "subtitle": "What our community says about their experience at ACIKY",
     "loading": "Loading testimonials...",
     "error": "Could not load testimonials",
     "empty": "No testimonials available yet",

@@ -1,0 +1,32 @@
+{
+  "privacy": {
+    "pageTitle": "Política de Privacidad - ACIKY",
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: marzo 2026",
+    "intro": "En ACIKY respetamos tu privacidad. Esta política explica qué datos recopilamos, cómo los usamos y tus derechos como usuario de la plataforma.",
+    "collectTitle": "¿Qué datos recopilamos?",
+    "collect1": "Nombre, apellido y nombre espiritual (al registrarte)",
+    "collect2": "Correo electrónico (para autenticación y comunicaciones)",
+    "collect3": "Foto de perfil (opcional, almacenada en Cloudinary)",
+    "collect4": "Testimonios que decides publicar voluntariamente",
+    "collect5": "Cookie de sesión funcional para mantener tu sesión activa",
+    "useTitle": "¿Cómo usamos tus datos?",
+    "use1": "Gestionar tu cuenta y acceso a la plataforma",
+    "use2": "Mostrar tu nombre y foto en testimonios aprobados",
+    "use3": "Enviarte información relevante sobre ACIKY si lo solicitaste",
+    "use4": "Mejorar la experiencia de la plataforma",
+    "cookiesTitle": "Cookies",
+    "cookies": "Usamos únicamente una cookie de sesión funcional necesaria para que puedas iniciar sesión. No usamos cookies de rastreo ni publicidad.",
+    "thirdPartyTitle": "Terceros",
+    "thirdParty": "Tus imágenes se almacenan en Cloudinary. La plataforma está alojada en Heroku y GitHub Pages. No vendemos ni compartimos tus datos con terceros para fines comerciales.",
+    "retentionTitle": "Retención de datos",
+    "retention": "Conservamos tus datos mientras tu cuenta esté activa. Puedes solicitar la eliminación de tu cuenta y tus datos en cualquier momento.",
+    "rightsTitle": "Tus derechos",
+    "rights1": "Acceder a los datos que tenemos sobre ti",
+    "rights2": "Solicitar corrección de datos incorrectos",
+    "rights3": "Solicitar la eliminación de tu cuenta",
+    "rights4": "Retirar tu testimonio en cualquier momento",
+    "contactTitle": "Contacto",
+    "contact": "Para cualquier consulta sobre privacidad, contáctanos por WhatsApp o a través de nuestra página de contacto."
+  }
+}
