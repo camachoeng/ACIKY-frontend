@@ -33,6 +33,8 @@
     "instructorsHelp": "Selecciona uno o más instructores",
     "loadingInstructors": "Cargando instructores...",
     "noInstructors": "No hay instructores disponibles",
+    "instructorOrder": "Orden de Instructores",
+    "instructorOrderHelp": "El orden aquí determina cómo aparecen en la tarjeta del espacio.",
     "active": "Espacio Activo",
     "saveButton": "Guardar Espacio",
     "cancelButton": "Cancelar",

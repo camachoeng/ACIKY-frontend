@@ -24,6 +24,19 @@
 
       <!-- Blog List -->
       <section id="blogListSection" class="px-4 md:px-8 lg:px-16 py-8">
+        <!-- Search Bar -->
+        <div id="blogSearchBar" class="hidden mb-4 max-w-lg">
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+            <input type="search" id="blogSearch"
+                   class="w-full pl-9 pr-4 py-2.5 rounded-2xl border border-slate-200 bg-white text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                   data-i18n-placeholder="blog.searchPlaceholder" placeholder="Buscar artículos..." />
+          </div>
+        </div>
+
+        <!-- Tag Filters -->
+        <div id="blogTagFilters" class="hidden flex flex-wrap gap-2 mb-6"></div>
+
         <!-- Loading State -->
         <div id="blogLoading" class="text-center py-12">
           <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
@@ -43,8 +56,29 @@
           <p class="text-slate-500 text-sm mt-2" data-i18n="blog.empty">No hay artículos disponibles</p>
         </div>
 
+        <!-- No Search Results -->
+        <div id="blogNoResults" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">search_off</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="blog.noResults">No se encontraron artículos para tu búsqueda.</p>
+        </div>
+
         <!-- Blog Cards Grid -->
         <div id="blogContainer" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <!-- Pagination -->
+        <div id="blogPagination" class="hidden flex items-center justify-center gap-3 mt-8">
+          <button id="blogPrevBtn"
+                  class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-slate-200 text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span data-i18n="blog.prevPage">Anterior</span>
+          </button>
+          <span id="blogPageInfo" class="text-sm text-slate-500"></span>
+          <button id="blogNextBtn"
+                  class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-slate-200 text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors">
+            <span data-i18n="blog.nextPage">Siguiente</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
       </section>
 
       <!-- Single Post Detail (hidden by default) -->

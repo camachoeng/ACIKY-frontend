@@ -6,6 +6,13 @@
     "error": "Could not load articles",
     "empty": "No articles available",
     "readMore": "Read more",
-    "backToList": "Back to blog"
+    "backToList": "Back to blog",
+    "allTags": "All",
+    "searchPlaceholder": "Search articles...",
+    "noResults": "No articles found for your search.",
+    "page": "Page",
+    "of": "of",
+    "prevPage": "Previous",
+    "nextPage": "Next"
   }
 }

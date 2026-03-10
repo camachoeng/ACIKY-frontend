@@ -22,7 +22,7 @@
     },
     "rebirthing": {
       "title": "Rebirthing",
-      "description": "Deep transformative ceremonies."
+      "description": "Deep transformative experiences."
     },
     "goldenRoutes": {
       "title": "Golden Routes",
@@ -52,9 +52,9 @@
     "viewAll": "View all routes"
   },
   "homeRebirthing": {
-    "title": "Rebirthing Ceremonies",
-    "subtitle": "Upcoming transformative ceremonies",
-    "viewAll": "View all ceremonies"
+    "title": "Rebirthing",
+    "subtitle": "Upcoming transformative experiences",
+    "viewAll": "View all experiences"
   },
   "homeSpaces": {
     "title": "Practice Spaces",

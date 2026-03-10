@@ -36,7 +36,7 @@
     "instructors": "Instructors",
     "instructorsHelp": "Hold Ctrl/Cmd to select multiple",
     "participants": "Participants",
-    "spaces": "Spaces established",
+    "spaces": "Spaces reached",
     "cancel": "Cancel",
     "save": "Save",
     "saving": "Saving..."
@@ -44,9 +44,24 @@
   "errors": {
     "loadError": "Error loading routes",
     "saveError": "Error saving route",
-    "deleteError": "Error deleting route"
+    "deleteError": "Error deleting route",
+    "visionSaveError": "Error saving vision"
   },
   "confirm": {
     "delete": "Delete route \"{{name}}\"?"
+  },
+  "vision": {
+    "editButton": "Edit Vision",
+    "modalTitle": "Edit Vision 2025-2027",
+    "goal2025Title": "Goal 2025 Title",
+    "goal2025Text": "Goal 2025 Description",
+    "goal2026Title": "Goal 2026 Title",
+    "goal2026Text": "Goal 2026 Description",
+    "goal2027Title": "Goal 2027 Title",
+    "goal2027Text": "Goal 2027 Description",
+    "save": "Save Vision",
+    "saving": "Saving...",
+    "saved": "✓ Vision saved",
+    "cancel": "Cancel"
   }
 }

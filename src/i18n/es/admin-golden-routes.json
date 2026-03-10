@@ -36,7 +36,7 @@
     "instructors": "Instructores",
     "instructorsHelp": "Hold Ctrl/Cmd para seleccionar varios",
     "participants": "Participantes",
-    "spaces": "Espacios establecidos",
+    "spaces": "Espacios alcanzados",
     "cancel": "Cancelar",
     "save": "Guardar",
     "saving": "Guardando..."
@@ -44,9 +44,24 @@
   "errors": {
     "loadError": "Error al cargar rutas",
     "saveError": "Error al guardar ruta",
-    "deleteError": "Error al eliminar ruta"
+    "deleteError": "Error al eliminar ruta",
+    "visionSaveError": "Error al guardar la visión"
   },
   "confirm": {
     "delete": "¿Eliminar la ruta \"{{name}}\"?"
+  },
+  "vision": {
+    "editButton": "Editar Visión",
+    "modalTitle": "Editar Visión 2025-2027",
+    "goal2025Title": "Título Meta 2025",
+    "goal2025Text": "Descripción Meta 2025",
+    "goal2026Title": "Título Meta 2026",
+    "goal2026Text": "Descripción Meta 2026",
+    "goal2027Title": "Título Meta 2027",
+    "goal2027Text": "Descripción Meta 2027",
+    "save": "Guardar Visión",
+    "saving": "Guardando...",
+    "saved": "✓ Visión guardada",
+    "cancel": "Cancelar"
   }
 }

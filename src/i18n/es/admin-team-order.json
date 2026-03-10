@@ -1,0 +1,13 @@
+{
+  "title": "Orden del Equipo",
+  "subtitle": "Arrastra o usa las flechas para organizar el orden de aparición en la página Acerca de",
+  "saveButton": "Guardar Orden",
+  "saving": "Guardando...",
+  "saved": "Orden guardado exitosamente",
+  "loading": "Cargando equipo...",
+  "empty": "No hay instructores en el equipo.",
+  "errors": {
+    "loadError": "Error al cargar el equipo",
+    "saveError": "Error al guardar el orden"
+  }
+}

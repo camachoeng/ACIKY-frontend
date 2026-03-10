@@ -41,12 +41,79 @@ export async function initAdminGoldenRoutes() {
     if (action === 'delete') confirmDelete(routeId)
   })
 
+  // Vision editing
+  document.getElementById('editVisionBtn')?.addEventListener('click', openVisionModal)
+  document.getElementById('visionModalOverlay')?.addEventListener('click', closeVisionModal)
+  document.getElementById('cancelVisionBtn')?.addEventListener('click', closeVisionModal)
+  document.getElementById('saveVisionBtn')?.addEventListener('click', saveVision)
+
   window.addEventListener('languageChanged', () => {
     const container = document.getElementById('routesContainer')
     if (container && allRoutes.length > 0) {
       renderRoutes(container)
     }
   })
+}
+
+async function openVisionModal() {
+  const modal = document.getElementById('visionModal')
+  document.getElementById('visionFormError')?.classList.add('hidden')
+
+  try {
+    const data = await apiFetch('/api/settings')
+    const s = data.data || {}
+    const goals = ['2025', '2026', '2027']
+    goals.forEach(year => {
+      const titleEl = document.getElementById(`visionInput${year}Title`)
+      const textEl = document.getElementById(`visionInput${year}Text`)
+      if (titleEl) titleEl.value = s[`vision_goal${year}_title`] || ''
+      if (textEl) textEl.value = s[`vision_goal${year}_text`] || ''
+    })
+  } catch {
+    // leave fields empty, user can still fill in
+  }
+
+  modal?.classList.remove('hidden')
+}
+
+function closeVisionModal() {
+  document.getElementById('visionModal')?.classList.add('hidden')
+}
+
+async function saveVision() {
+  const saveBtn = document.getElementById('saveVisionBtn')
+  const originalText = saveBtn.textContent
+  saveBtn.disabled = true
+  saveBtn.textContent = t('vision.saving')
+  document.getElementById('visionFormError')?.classList.add('hidden')
+
+  const goals = ['2025', '2026', '2027']
+  const settings = []
+  goals.forEach(year => {
+    settings.push({ key: `vision_goal${year}_title`, value: document.getElementById(`visionInput${year}Title`)?.value.trim() || '' })
+    settings.push({ key: `vision_goal${year}_text`, value: document.getElementById(`visionInput${year}Text`)?.value.trim() || '' })
+  })
+
+  try {
+    await apiFetch('/api/settings', {
+      method: 'PUT',
+      body: JSON.stringify({ settings })
+    })
+    saveBtn.textContent = t('vision.saved')
+    setTimeout(() => {
+      closeVisionModal()
+      saveBtn.disabled = false
+      saveBtn.textContent = originalText
+    }, 1200)
+  } catch (err) {
+    const errEl = document.getElementById('visionFormError')
+    if (errEl) {
+      errEl.textContent = t('errors.visionSaveError') + ': ' + err.message
+      errEl.classList.remove('hidden')
+    }
+    saveBtn.disabled = false
+    saveBtn.textContent = originalText
+  }
 }
 
 async function loadRoutes() {

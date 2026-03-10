@@ -6,6 +6,13 @@
     "error": "No se pudo cargar los artículos",
     "empty": "No hay artículos disponibles",
     "readMore": "Leer más",
-    "backToList": "Volver al blog"
+    "backToList": "Volver al blog",
+    "allTags": "Todos",
+    "searchPlaceholder": "Buscar artículos...",
+    "noResults": "No se encontraron artículos para tu búsqueda.",
+    "page": "Página",
+    "of": "de",
+    "prevPage": "Anterior",
+    "nextPage": "Siguiente"
   }
 }

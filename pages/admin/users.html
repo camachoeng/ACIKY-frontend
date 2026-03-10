@@ -27,7 +27,7 @@
         <!-- Search -->
         <div class="relative mb-4">
           <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">search</span>
-          <input id="usersSearch" type="search" placeholder="Buscar por nombre o email..."
+          <input id="usersSearch" type="search" data-i18n-placeholder="table.searchPlaceholder" placeholder="Buscar por nombre o email..."
                  class="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white" />
         </div>
 
@@ -105,42 +105,42 @@
                      placeholder="correo@ejemplo.com" />
             </div>
             <div id="passwordFields">
-              <label for="userPassword" class="block text-sm font-medium text-primary-dark mb-1">Contrasena</label>
+              <label for="userPassword" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.password">Contraseña</label>
               <div class="relative">
                 <input type="password" id="userPassword" minlength="8"
                        class="w-full px-4 py-3 pr-12 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                       placeholder="Dejar vacio para no cambiar" />
+                       data-i18n-placeholder="modal.passwordPlaceholder" placeholder="Dejar vacío para no cambiar" />
                 <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors" data-target="userPassword">
                   <span class="material-symbols-outlined text-xl">visibility</span>
                 </button>
               </div>
-              <p class="mt-1 text-xs text-slate-400">Min. 8 caracteres, debe incluir mayusculas, minusculas, numeros y caracteres especiales</p>
+              <p class="mt-1 text-xs text-slate-400" data-i18n="modal.passwordHint">Min. 8 caracteres, debe incluir mayúsculas, minúsculas, números y caracteres especiales</p>
             </div>
             <div id="passwordConfirmFields" class="hidden">
-              <label for="userPasswordConfirm" class="block text-sm font-medium text-primary-dark mb-1">Confirmar Contrasena</label>
+              <label for="userPasswordConfirm" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.confirmPassword">Confirmar Contraseña</label>
               <div class="relative">
                 <input type="password" id="userPasswordConfirm" minlength="8"
                        class="w-full px-4 py-3 pr-12 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                       placeholder="Escribe la contrasena de nuevo" />
+                       data-i18n-placeholder="modal.confirmPasswordPlaceholder" placeholder="Escribe la contraseña de nuevo" />
                 <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors" data-target="userPasswordConfirm">
                   <span class="material-symbols-outlined text-xl">visibility</span>
                 </button>
               </div>
             </div>
             <div>
-              <label for="userRole" class="block text-sm font-medium text-primary-dark mb-1">Rol</label>
+              <label for="userRole" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.role">Rol</label>
               <select id="userRole"
                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white">
-                <option value="user">Usuario</option>
-                <option value="instructor">Instructor</option>
-                <option value="admin">Admin</option>
+                <option value="user" data-i18n="modal.roleUser">Usuario</option>
+                <option value="instructor" data-i18n="modal.roleInstructor">Instructor</option>
+                <option value="admin" data-i18n="modal.roleAdmin">Admin</option>
               </select>
             </div>
             <div id="positionField" class="hidden">
-              <label for="userPosition" class="block text-sm font-medium text-primary-dark mb-1">Cargo / Titulo</label>
+              <label for="userPosition" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.position">Cargo / Título</label>
               <input type="text" id="userPosition" maxlength="255"
                      class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                     placeholder="Ej: Instructora de Kundalini Yoga" />
+                     data-i18n-placeholder="modal.positionPlaceholder" placeholder="Ej: Instructora de Kundalini Yoga" />
               <label for="userPositionEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1">Position (EN)</label>
               <input type="text" id="userPositionEn" maxlength="255"
                      class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"

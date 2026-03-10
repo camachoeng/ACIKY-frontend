@@ -35,7 +35,9 @@ async function loadSpaces() {
   try {
     const data = await apiFetch('/api/spaces')
     // Public page should only show active spaces, even if user is logged in as instructor/admin
-    allSpaces = (data.data || []).filter(s => s.active)
+    allSpaces = (data.data || [])
+      .filter(s => s.active)
+      .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'es', { sensitivity: 'base' }))
     filteredSpaces = allSpaces
     loading?.classList.add('hidden')
 

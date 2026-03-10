@@ -40,6 +40,7 @@ export default defineConfig(() => {
           adminTestimonials: resolve(__dirname, 'pages/admin/testimonials.html'),
           adminGoldenRoutes: resolve(__dirname, 'pages/admin/golden-routes.html'),
           adminSpaces: resolve(__dirname, 'pages/admin/spaces.html'),
+          adminTeamOrder: resolve(__dirname, 'pages/admin/team-order.html'),
           adminCleanup: resolve(__dirname, 'pages/admin/cleanup.html'),
           blog: resolve(__dirname, 'pages/blog.html'),
           testimonials: resolve(__dirname, 'pages/testimonials.html'),

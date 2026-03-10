@@ -7,6 +7,7 @@ let allRoutes = []
 
 export async function initGoldenRoutes() {
   await loadRoutes()
+  loadVisionSettings()
   initRoutesContactCta()
 
   document.getElementById('routesRetry')
@@ -15,6 +16,23 @@ export async function initGoldenRoutes() {
   window.addEventListener('languageChanged', () => {
     if (allRoutes.length > 0) renderAll()
   })
+}
+
+async function loadVisionSettings() {
+  try {
+    const data = await apiFetch('/api/settings')
+    const s = data.data || {}
+    const goals = ['goal2025', 'goal2026', 'goal2027']
+    goals.forEach(goal => {
+      const key = goal.charAt(0).toUpperCase() + goal.slice(1)
+      const titleEl = document.getElementById(`vision${key}Title`)
+      const textEl = document.getElementById(`vision${key}Text`)
+      if (titleEl && s[`vision_${goal}_title`]) titleEl.textContent = s[`vision_${goal}_title`]
+      if (textEl && s[`vision_${goal}_text`]) textEl.textContent = s[`vision_${goal}_text`]
+    })
+  } catch {
+    // silently keep i18n defaults
+  }
 }
 
 function initRoutesContactCta() {
@@ -84,10 +102,13 @@ function renderActiveRoutes(routes) {
     const desc = localized(item, 'description') || ''
 
     return `
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-      ${item.image_url ? `
-      <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(name)}" class="w-full" />` : ''}
-      <div class="p-6">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+      <div class="h-52 bg-slate-100 flex-shrink-0 overflow-hidden">
+        ${item.image_url
+          ? `<img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(name)}" class="w-full h-full object-cover" />`
+          : `<div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-slate-300 text-5xl">route</span></div>`}
+      </div>
+      <div class="p-6 flex flex-col flex-1">
         <div class="flex items-center gap-2 mb-3">
           <span class="material-symbols-outlined text-primary text-xl">route</span>
           <h3 class="font-bold text-primary-dark">${escapeHtml(name)}</h3>

@@ -66,6 +66,7 @@ function getPageName() {
     'pages/admin/testimonials.html': 'admin-testimonials',
     'pages/admin/golden-routes.html': 'admin-golden-routes',
     'pages/admin/spaces.html': 'admin-spaces',
+    'pages/admin/team-order.html': 'admin-team-order',
     'pages/admin/cleanup.html': 'admin-cleanup',
     'pages/blog.html': 'blog',
     'pages/testimonials.html': 'testimonials',

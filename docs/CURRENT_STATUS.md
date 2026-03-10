@@ -1,11 +1,43 @@
 # Current Project Status
 
-Last updated: 2026-03-09
+Last updated: 2026-03-10
 
 ## In Progress
 _No active work at this time._
 
 ## Recently Completed
+- [x] **Admin users modal bilingual fix - COMPLETE** (2026-03-10)
+  - `src/js/admin/users.js`: imported `t()` from i18n.js, replaced all hardcoded Spanish strings with `t()` calls
+  - `pages/admin/users.html`: added `data-i18n` / `data-i18n-placeholder` to all hardcoded labels and inputs (password, role, position, search)
+  - `src/i18n/es/admin-users.json` + `en/admin-users.json`: added `table.searchPlaceholder` key
+- [x] **Golden Routes Vision section editable - COMPLETE** (2026-03-10)
+  - `pages/golden-routes.html`: added IDs to vision goal elements
+  - `src/js/goldenRoutes.js`: added `loadVisionSettings()` — calls `GET /api/settings`, overrides vision DOM; falls back to i18n defaults on error
+  - `pages/admin/golden-routes.html`: added "Editar Visión" button + 6-field vision modal
+  - `src/js/admin/goldenRoutes.js`: `openVisionModal()`, `closeVisionModal()`, `saveVision()` using `PUT /api/settings`
+  - `src/i18n/es/admin-golden-routes.json` + `en/`: added full `vision` section keys + `errors.visionSaveError`
+  - Backend: `settingsRepository.js`, `settingsService.js`, `settingsController.js`, `routes/settings.js` — `GET /api/settings` (public), `PUT /api/settings` (requireAdmin)
+
+## Recently Completed
+- [x] **Blog tags bilingual + multiple fixes - COMPLETE** (2026-03-10)
+  - Blog tags now bilingual: `tags_en VARCHAR(500)` column added to `blog_posts`; admin form shows ES + EN tag fields; public blog uses `localized(post, 'tags')` so tag filter shows correct language; language switch resets active tag
+  - Admin spaces list sorted alphabetically by name
+  - Homepage spaces carousel re-renders on language change (was missing from `languageChanged` listener)
+  - "Espacios Establecidos" → "Espacios Alcanzados" / "Spaces Reached" in admin and public golden routes (both ES and EN i18n)
+  - Route cards (public golden-routes page + homepage carousel) now uniform height: fixed `h-52` / `h-40` image area with placeholder icon when no image; `flex flex-col` layout
+  - Editable Vision section in golden routes: admin can click "Editar Visión" to open modal and update the 3 goals via `PUT /api/settings`; public page loads overrides via `GET /api/settings` and falls back to i18n defaults
+  - Backend spec at `backend-specs/site-settings.md` (new `site_settings` table + `/api/settings` endpoints needed)
+  - Backend spec at `backend-specs/blog-tags-en.md` (`tags_en` column + repo/service/controller pass-through)
+- [x] **Admin instructor ordering - COMPLETE** (2026-03-10)
+  - New `pages/admin/team-order.html` page: admin can reorder instructors for the "Our Team" section on the About page using up/down arrows; saves via `PUT /api/users/team/order`
+  - Spaces modal: when ≥2 instructors are selected, an "Instructor Order" section appears with up/down arrows; the saved `instructor_ids` array preserves this order, which the backend uses as `sort_order` in `space_instructors`
+  - Backend spec at `backend-specs/instructor-ordering.md`
+  - "Orden Equipo" link added to admin nav
+- [x] **Stale broken image URLs resolved - COMPLETE** (2026-03-10)
+  - Pre-Cloudinary broken image URLs re-uploaded via admin panel
+  - Full save pipeline confirmed working end-to-end
+- [x] **Heroku Scheduler configured - COMPLETE** (2026-03-10)
+  - `node scripts/cleanup.js` job added in Heroku dashboard, runs every 24 hours
 - [x] **Admin dashboard notifications - COMPLETE** (2026-03-09)
   - Dashboard now fetches pending testimonials (`GET /api/testimonials`) and recent blog posts (`GET /api/blog`)
   - Amber card shows pending testimonial count → links to testimonials admin (hidden when 0)
@@ -136,8 +168,7 @@ _No active work at this time._
   - Footer link i18n keys added to `es/common.json` and `en/common.json`
 
 ## Known Issues
-- **Stale broken image URLs in database**: Events, activities, and user profiles uploaded during the pre-Cloudinary period have permanently dead URLs. `onerror` fallbacks hide the broken icons. Fix: re-upload those images via admin panel — the full save pipeline is now confirmed working end-to-end.
-- **Heroku Scheduler not yet configured**: `scripts/cleanup.js` is ready but the Heroku Scheduler add-on job still needs to be added in the Heroku dashboard (`node scripts/cleanup.js`, every 24 hours).
+_No known issues at this time._
 
 ## Next Priorities
 _[User to define next feature priorities]_

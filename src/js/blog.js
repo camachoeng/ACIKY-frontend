@@ -2,8 +2,13 @@ import { apiFetch } from './api.js'
 import { localized, t } from './i18n.js'
 import { shareContent } from './utils/share.js'
 
+const POSTS_PER_PAGE = 9
+
 let allPosts = []
+let filteredPosts = []
+let currentPage = 1
 let currentPostId = null
+let activeTag = null
 
 export async function initBlog() {
   await loadPosts()
@@ -14,7 +19,9 @@ export async function initBlog() {
     if (currentPostId) {
       showPostDetail(currentPostId)
     } else if (allPosts.length > 0) {
-      renderPosts()
+      activeTag = null
+      renderTagFilters()
+      applySearch()
     }
   })
 
@@ -39,6 +46,10 @@ async function loadPosts() {
   error?.classList.add('hidden')
   empty?.classList.add('hidden')
   container?.classList.add('hidden')
+  document.getElementById('blogSearchBar')?.classList.add('hidden')
+  document.getElementById('blogTagFilters')?.classList.add('hidden')
+  document.getElementById('blogPagination')?.classList.add('hidden')
+  document.getElementById('blogNoResults')?.classList.add('hidden')
 
   try {
     const response = await apiFetch('/api/blog')
@@ -48,8 +59,9 @@ async function loadPosts() {
     if (allPosts.length === 0) {
       empty?.classList.remove('hidden')
     } else {
-      container?.classList.remove('hidden')
-      renderPosts()
+      document.getElementById('blogSearchBar')?.classList.remove('hidden')
+      renderTagFilters()
+      applySearch()
     }
   } catch {
     loading?.classList.add('hidden')
@@ -57,17 +69,113 @@ async function loadPosts() {
   }
 }
 
-function renderPosts() {
-  const container = document.getElementById('blogContainer')
+function applySearch() {
+  const query = document.getElementById('blogSearch')?.value.trim().toLowerCase() || ''
+
+  filteredPosts = allPosts.filter(post => {
+    if (activeTag) {
+      const postTags = (localized(post, 'tags') || '').split(',').map(t => t.trim().toLowerCase())
+      if (!postTags.includes(activeTag.toLowerCase())) return false
+    }
+    if (query) {
+      const title = (localized(post, 'title') || '').toLowerCase()
+      const content = (localized(post, 'content') || '').toLowerCase()
+      const author = (post.author_name || '').toLowerCase()
+      return title.includes(query) || content.includes(query) || author.includes(query)
+    }
+    return true
+  })
+
+  currentPage = 1
+  renderPage()
+}
+
+function renderTagFilters() {
+  const container = document.getElementById('blogTagFilters')
   if (!container) return
 
-  container.innerHTML = allPosts.map(post => {
-    const title = localized(post, 'title')
-    const content = localized(post, 'content') || ''
-    const snippet = content.length > 150 ? content.substring(0, 150) + '...' : content
-    const date = formatDate(post.created_at)
+  const tags = [...new Set(
+    allPosts
+      .flatMap(p => (localized(p, 'tags') || '').split(',').map(t => t.trim()).filter(Boolean))
+  )].sort()
 
+  if (tags.length === 0) {
+    container.classList.add('hidden')
+    return
+  }
+
+  container.classList.remove('hidden')
+  container.innerHTML = [null, ...tags].map(tag => {
+    const isActive = tag === activeTag
+    const label = tag === null ? t('blog.allTags') : tag
     return `
+      <button
+        class="blog-tag-btn px-3 py-1.5 rounded-full text-xs font-medium border transition-colors
+               ${isActive
+                 ? 'bg-primary-dark text-white border-primary-dark'
+                 : 'bg-white text-slate-600 border-slate-200 hover:border-primary hover:text-primary'}"
+        data-tag="${tag === null ? '' : escapeHtml(tag)}">
+        ${escapeHtml(label)}
+      </button>`
+  }).join('')
+
+  container.addEventListener('click', handleTagClick, { once: true })
+}
+
+function handleTagClick(e) {
+  const btn = e.target.closest('.blog-tag-btn')
+  const container = document.getElementById('blogTagFilters')
+  container?.addEventListener('click', handleTagClick, { once: true })
+  if (!btn) return
+
+  activeTag = btn.dataset.tag || null
+  renderTagFilters()
+  applySearch()
+}
+
+function renderPage() {
+  const container = document.getElementById('blogContainer')
+  const noResults = document.getElementById('blogNoResults')
+  const pagination = document.getElementById('blogPagination')
+  if (!container) return
+
+  if (filteredPosts.length === 0) {
+    container.classList.add('hidden')
+    pagination?.classList.add('hidden')
+    noResults?.classList.remove('hidden')
+    return
+  }
+
+  noResults?.classList.add('hidden')
+
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
+  const start = (currentPage - 1) * POSTS_PER_PAGE
+  const pagePosts = filteredPosts.slice(start, start + POSTS_PER_PAGE)
+
+  container.innerHTML = pagePosts.map(post => renderCard(post)).join('')
+  container.classList.remove('hidden')
+
+  if (totalPages > 1) {
+    const pageInfo = document.getElementById('blogPageInfo')
+    const prevBtn = document.getElementById('blogPrevBtn')
+    const nextBtn = document.getElementById('blogNextBtn')
+
+    if (pageInfo) pageInfo.textContent = `${t('blog.page')} ${currentPage} ${t('blog.of')} ${totalPages}`
+    if (prevBtn) prevBtn.disabled = currentPage === 1
+    if (nextBtn) nextBtn.disabled = currentPage === totalPages
+    pagination?.classList.remove('hidden')
+  } else {
+    pagination?.classList.add('hidden')
+  }
+}
+
+function renderCard(post) {
+  const title = localized(post, 'title')
+  const content = localized(post, 'content') || ''
+  const snippet = content.length > 150 ? content.substring(0, 150) + '...' : content
+  const date = formatDate(post.created_at)
+
+  return `
     <div class="blog-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
          data-post-id="${post.id}">
       <div class="p-6">
@@ -91,7 +199,6 @@ function renderPosts() {
         </div>
       </div>
     </div>`
-  }).join('')
 }
 
 function showPostDetail(id) {
@@ -156,7 +263,6 @@ function showPostList() {
 function setupEvents() {
   const container = document.getElementById('blogContainer')
   container?.addEventListener('click', (e) => {
-    // Check share button first to prevent card open
     const shareBtn = e.target.closest('.blog-share-btn')
     if (shareBtn) {
       const id = parseInt(shareBtn.dataset.shareId)
@@ -184,6 +290,25 @@ function setupEvents() {
     const title = localized(post, 'title')
     const url = `${location.origin}${location.pathname}#post-${currentPostId}`
     shareContent({ title, text: title, url })
+  })
+
+  document.getElementById('blogSearch')?.addEventListener('input', applySearch)
+
+  document.getElementById('blogPrevBtn')?.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--
+      renderPage()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  })
+
+  document.getElementById('blogNextBtn')?.addEventListener('click', () => {
+    const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
+    if (currentPage < totalPages) {
+      currentPage++
+      renderPage()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   })
 }
 
