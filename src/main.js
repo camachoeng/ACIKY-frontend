@@ -215,7 +215,7 @@ async function initHomeSpaces() {
       return
     }
 
-    container.innerHTML = spaces.slice(0, 4).map(item => {
+    container.innerHTML = spaces.map(item => {
       const spaceName = localized(item, 'name')
       const instructorCount = item.instructors ? item.instructors.length : 0
       const instructorText = instructorCount === 0
@@ -425,6 +425,36 @@ function initActivitiesCarousel() {
   updateButtonStates()
 }
 
+function initSpacesCarousel() {
+  const carousel = document.getElementById('homeSpacesContainer')
+  const prevBtn = document.getElementById('spacesPrevBtn')
+  const nextBtn = document.getElementById('spacesNextBtn')
+
+  if (!carousel || !prevBtn || !nextBtn) return
+
+  const scrollAmount = 300 // Card width (280px) + gap (20px)
+
+  const updateButtonStates = () => {
+    const isAtStart = carousel.scrollLeft <= 10
+    const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10
+    prevBtn.disabled = isAtStart
+    nextBtn.disabled = isAtEnd
+  }
+
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+    setTimeout(updateButtonStates, 300)
+  })
+
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    setTimeout(updateButtonStates, 300)
+  })
+
+  carousel.addEventListener('scroll', updateButtonStates)
+  updateButtonStates()
+}
+
 // Listen for language changes to re-render home dynamic sections
 window.addEventListener('languageChanged', () => {
   initHomeEvents()
@@ -432,7 +462,7 @@ window.addEventListener('languageChanged', () => {
   initHomeTestimonials()
   initHomeGoldenRoutes()
   initHomeRebirthing()
-  initHomeSpaces()
+  initHomeSpaces().then(initSpacesCarousel)
 })
 
 function translateSchedule(schedule) {
@@ -514,7 +544,7 @@ async function initPage() {
     initHomeTestimonials()
     initHomeGoldenRoutes()
     initHomeRebirthing()
-    initHomeSpaces()
+    initHomeSpaces().then(initSpacesCarousel)
     initHomeContactCta()
     initActivitiesCarousel()
   } else if (path.includes('/pages/login.html')) {
