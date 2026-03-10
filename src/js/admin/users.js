@@ -1,5 +1,6 @@
 import { requireAdmin, getUser } from '../auth.js'
 import { apiFetch } from '../api.js'
+import { t } from '../i18n.js'
 import { formatUserName } from '../utils/formatUserName.js'
 
 let users = []
@@ -78,12 +79,14 @@ async function loadUsers() {
 
   try {
     const data = await apiFetch('/api/users')
-    users = data.data || []
+    users = (data.data || []).sort((a, b) =>
+      (a.name || '').localeCompare(b.name || '', 'es', { sensitivity: 'base' })
+    )
     renderUsers(tbody)
   } catch (err) {
     tbody.innerHTML = `
       <tr><td colspan="5" class="px-6 py-8 text-center text-red-500 text-sm">
-        Error al cargar usuarios: ${escapeHtml(err.message)}
+        ${t('table.loadError')}: ${escapeHtml(err.message)}
       </td></tr>`
   }
 }
@@ -104,7 +107,7 @@ function renderUsers(tbody, list = users) {
   if (list.length === 0) {
     tbody.innerHTML = `
       <tr><td colspan="5" class="px-6 py-8 text-center text-slate-400 text-sm">
-        No hay usuarios registrados
+        ${t('table.empty')}
       </td></tr>`
     return
   }
@@ -149,7 +152,7 @@ function openCreateModal() {
   const passwordInput = document.getElementById('userPassword')
   const passwordConfirmFields = document.getElementById('passwordConfirmFields')
 
-  if (title) title.textContent = 'Nuevo Usuario'
+  if (title) title.textContent = t('modal.newTitle')
   if (form) form.reset()
   document.getElementById('userId').value = ''
   document.getElementById('userProfileImageUrl').value = ''
@@ -175,7 +178,7 @@ async function openEditModal(id) {
     const data = await apiFetch(`/api/users/${id}`)
     const user = data.data
 
-    if (title) title.textContent = 'Editar Usuario'
+    if (title) title.textContent = t('modal.editTitle')
     document.getElementById('userId').value = user.id
     document.getElementById('userName').value = user.name || ''
     document.getElementById('userLastName').value = user.last_name || ''
@@ -199,7 +202,7 @@ async function openEditModal(id) {
     hideFormError()
     if (modal) modal.classList.remove('hidden')
   } catch (err) {
-    alert('Error al cargar usuario: ' + err.message)
+    alert(t('errors.loadUser') + ': ' + err.message)
   }
 }
 
@@ -207,7 +210,7 @@ async function saveUser(e) {
   e.preventDefault()
   const saveBtn = document.getElementById('saveUserBtn')
   saveBtn.disabled = true
-  saveBtn.textContent = 'Guardando...'
+  saveBtn.textContent = t('modal.saving')
   hideFormError()
 
   const id = document.getElementById('userId').value
@@ -223,9 +226,9 @@ async function saveUser(e) {
 
   // Validate password confirmation
   if (password && password !== passwordConfirm) {
-    showFormError('Las contraseñas no coinciden')
+    showFormError(t('errors.passwordMismatch'))
     saveBtn.disabled = false
-    saveBtn.textContent = 'Guardar'
+    saveBtn.textContent = t('modal.save')
     return
   }
 
@@ -248,9 +251,9 @@ async function saveUser(e) {
       })
     } else {
       if (!password) {
-        showFormError('La contraseña es requerida para nuevos usuarios')
+        showFormError(t('errors.passwordRequired'))
         saveBtn.disabled = false
-        saveBtn.textContent = 'Guardar'
+        saveBtn.textContent = t('modal.save')
         return
       }
       await apiFetch('/api/users', {
@@ -262,11 +265,11 @@ async function saveUser(e) {
     closeModal()
     await loadUsers()
   } catch (err) {
-    showFormError(err.message || 'Error al guardar usuario')
+    showFormError(err.message || t('errors.saveError'))
   }
 
   saveBtn.disabled = false
-  saveBtn.textContent = 'Guardar'
+  saveBtn.textContent = t('modal.save')
 }
 
 async function confirmDelete(id) {
@@ -275,17 +278,17 @@ async function confirmDelete(id) {
 
   const currentUser = getUser()
   if (currentUser && currentUser.id === id) {
-    alert('No puedes eliminar tu propia cuenta')
+    alert(t('errors.cannotDeleteSelf'))
     return
   }
 
-  if (!confirm(`Eliminar usuario "${formatUserName(user)}"?`)) return
+  if (!confirm(t('confirm.delete', { name: formatUserName(user) }))) return
 
   try {
     await apiFetch(`/api/users/${id}`, { method: 'DELETE' })
     await loadUsers()
   } catch (err) {
-    alert('Error al eliminar: ' + err.message)
+    alert(t('errors.deleteError') + ': ' + err.message)
   }
 }
 

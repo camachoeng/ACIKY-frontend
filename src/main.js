@@ -177,10 +177,13 @@ async function initHomeGoldenRoutes() {
 
     const base = import.meta.env.BASE_URL
     container.innerHTML = routes.slice(0, 4).map(item => `
-      <a href="${base}pages/golden-routes.html" class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden block">
-        ${item.image_url ? `
-        <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(localized(item, 'name'))}" class="w-full" />` : ''}
-        <div class="p-4">
+      <a href="${base}pages/golden-routes.html" class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+        <div class="h-40 bg-slate-100 flex-shrink-0 overflow-hidden">
+          ${item.image_url
+            ? `<img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(localized(item, 'name'))}" class="w-full h-full object-cover" />`
+            : `<div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-slate-300 text-4xl">route</span></div>`}
+        </div>
+        <div class="p-4 flex flex-col flex-1">
           <h4 class="font-bold text-primary-dark text-sm mb-2">${escapeHtml(localized(item, 'name'))}</h4>
           <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
             <span class="material-symbols-outlined text-xs">location_on</span>
@@ -429,6 +432,7 @@ window.addEventListener('languageChanged', () => {
   initHomeTestimonials()
   initHomeGoldenRoutes()
   initHomeRebirthing()
+  initHomeSpaces()
 })
 
 function translateSchedule(schedule) {
@@ -588,6 +592,9 @@ async function initPage() {
   } else if (path.includes('/pages/festival.html')) {
     const { initFestival } = await import('./js/festival.js')
     initFestival()
+  } else if (path.includes('/pages/admin/team-order.html')) {
+    const { initAdminTeamOrder } = await import('./js/admin/team-order.js')
+    initAdminTeamOrder()
   } else if (path.includes('/pages/admin/spaces.html')) {
     const { initAdminSpaces } = await import('./js/admin/spaces.js')
     initAdminSpaces()

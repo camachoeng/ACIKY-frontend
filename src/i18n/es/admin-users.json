@@ -11,7 +11,8 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "empty": "No hay usuarios registrados",
-    "loadError": "Error al cargar usuarios"
+    "loadError": "Error al cargar usuarios",
+    "searchPlaceholder": "Buscar por nombre o email..."
   },
   "modal": {
     "newTitle": "Nuevo Usuario",

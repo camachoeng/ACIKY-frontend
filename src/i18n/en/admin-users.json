@@ -11,7 +11,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "empty": "No registered users",
-    "loadError": "Error loading users"
+    "loadError": "Error loading users",
+    "searchPlaceholder": "Search by name or email..."
   },
   "modal": {
     "newTitle": "New User",

@@ -64,7 +64,9 @@ async function loadSpaces() {
 
   try {
     const data = await apiFetch('/api/spaces')
-    allSpaces = data.data || []
+    allSpaces = (data.data || []).sort((a, b) =>
+      (a.name || '').localeCompare(b.name || '', 'es', { sensitivity: 'base' })
+    )
 
     loading?.classList.add('hidden')
 
@@ -262,6 +264,97 @@ function populateInstructorCheckboxes(selectedInstructorIds = []) {
       </label>
     `
   }).join('')
+
+  // Initialize order list based on selection
+  updateInstructorOrderList(selectedInstructorIds)
+
+  // Listen for checkbox changes to update order list
+  container.querySelectorAll('input[name="instructorIds"]').forEach(cb => {
+    cb.addEventListener('change', () => updateInstructorOrderList())
+  })
+}
+
+// Ordered list of instructor IDs (maintained as user reorders)
+let instructorOrderedIds = []
+
+function updateInstructorOrderList(initialOrder = null) {
+  const section = document.getElementById('instructorOrderSection')
+  const list = document.getElementById('instructorOrderList')
+  if (!section || !list) return
+
+  const checkedIds = Array.from(
+    document.querySelectorAll('input[name="instructorIds"]:checked')
+  ).map(cb => parseInt(cb.value))
+
+  if (checkedIds.length < 2) {
+    section.classList.add('hidden')
+    instructorOrderedIds = checkedIds
+    return
+  }
+
+  // If initialOrder provided, use it; otherwise merge with existing order
+  if (initialOrder !== null) {
+    instructorOrderedIds = [
+      ...initialOrder.filter(id => checkedIds.includes(id)),
+      ...checkedIds.filter(id => !initialOrder.includes(id))
+    ]
+  } else {
+    instructorOrderedIds = [
+      ...instructorOrderedIds.filter(id => checkedIds.includes(id)),
+      ...checkedIds.filter(id => !instructorOrderedIds.includes(id))
+    ]
+  }
+
+  section.classList.remove('hidden')
+  renderInstructorOrderList(list)
+}
+
+function renderInstructorOrderList(list) {
+  list.innerHTML = instructorOrderedIds.map((id, index) => {
+    const instructor = allInstructors.find(i => i.id === id)
+    if (!instructor) return ''
+    const isFirst = index === 0
+    const isLast = index === instructorOrderedIds.length - 1
+    return `
+      <div class="flex items-center gap-2 bg-white rounded-xl p-2 border border-slate-100" data-instructor-id="${id}">
+        <span class="text-xs font-bold text-slate-400 w-4 shrink-0">${index + 1}</span>
+        <span class="flex-1 text-sm text-slate-700 truncate">${escapeHtml(formatUserName(instructor))}</span>
+        <button type="button" data-order-action="up" data-id="${id}"
+                class="p-1 rounded-lg transition-colors ${isFirst ? 'text-slate-200 cursor-not-allowed' : 'text-slate-500 hover:bg-slate-100 hover:text-primary'}"
+                ${isFirst ? 'disabled' : ''}>
+          <span class="material-symbols-outlined text-sm">arrow_upward</span>
+        </button>
+        <button type="button" data-order-action="down" data-id="${id}"
+                class="p-1 rounded-lg transition-colors ${isLast ? 'text-slate-200 cursor-not-allowed' : 'text-slate-500 hover:bg-slate-100 hover:text-primary'}"
+                ${isLast ? 'disabled' : ''}>
+          <span class="material-symbols-outlined text-sm">arrow_downward</span>
+        </button>
+      </div>
+    `
+  }).join('')
+
+  list.addEventListener('click', handleOrderListClick, { once: true })
+}
+
+function handleOrderListClick(e) {
+  const btn = e.target.closest('[data-order-action]')
+  const list = document.getElementById('instructorOrderList')
+  if (!list) return
+
+  // Re-attach listener for next click
+  list.addEventListener('click', handleOrderListClick, { once: true })
+
+  if (!btn) return
+  const { orderAction, id } = btn.dataset
+  const idx = instructorOrderedIds.indexOf(parseInt(id))
+
+  if (orderAction === 'up' && idx > 0) {
+    ;[instructorOrderedIds[idx - 1], instructorOrderedIds[idx]] = [instructorOrderedIds[idx], instructorOrderedIds[idx - 1]]
+    renderInstructorOrderList(list)
+  } else if (orderAction === 'down' && idx < instructorOrderedIds.length - 1) {
+    ;[instructorOrderedIds[idx], instructorOrderedIds[idx + 1]] = [instructorOrderedIds[idx + 1], instructorOrderedIds[idx]]
+    renderInstructorOrderList(list)
+  }
 }
 
 async function openNewModal() {
@@ -283,6 +376,7 @@ async function openNewModal() {
   document.getElementById('imageUploadZone')?.classList.remove('hidden')
 
   // Load and populate instructors
+  instructorOrderedIds = []
   await loadInstructors()
   populateInstructorCheckboxes()
 
@@ -336,7 +430,8 @@ async function openEditModal(id) {
     document.getElementById('imageUploadZone')?.classList.remove('hidden')
   }
 
-  // Load and populate instructors with selected ones
+  // Load and populate instructors with selected ones (preserve existing order)
+  instructorOrderedIds = []
   await loadInstructors()
   const selectedInstructorIds = space.instructors ? space.instructors.map(i => i.id) : []
   populateInstructorCheckboxes(selectedInstructorIds)
@@ -406,9 +501,11 @@ async function saveSpace(e) {
     return
   }
 
-  // Get selected instructor IDs from checkboxes
-  const instructorCheckboxes = document.querySelectorAll('input[name="instructorIds"]:checked')
-  const instructor_ids = Array.from(instructorCheckboxes).map(cb => parseInt(cb.value))
+  // Get instructor IDs in display order (from order list when ≥2, else from checkboxes)
+  const section = document.getElementById('instructorOrderSection')
+  const instructor_ids = section && !section.classList.contains('hidden')
+    ? [...instructorOrderedIds]
+    : Array.from(document.querySelectorAll('input[name="instructorIds"]:checked')).map(cb => parseInt(cb.value))
 
   // Parse disciplines (Spanish and English)
   const disciplinesEs = document.getElementById('spaceDisciplines').value

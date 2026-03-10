@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Orden del Equipo - Admin ACIKY" />
+    <title>Orden del Equipo - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8 max-w-xl mx-auto">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Orden del Equipo</h1>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Usa las flechas para organizar el orden de aparición en la página Acerca de</p>
+          </div>
+          <button id="saveOrderBtn"
+                  class="inline-flex items-center gap-2 bg-primary-dark text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-primary transition-colors shadow-sm">
+            <span class="material-symbols-outlined text-sm">save</span>
+            <span data-i18n="saveButton">Guardar Orden</span>
+          </button>
+        </div>
+
+        <!-- Success message -->
+        <div id="saveSuccess" class="hidden mb-4 p-3 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">check_circle</span>
+          <span data-i18n="saved">Orden guardado exitosamente</span>
+        </div>
+
+        <!-- Error message -->
+        <div id="saveError" class="hidden mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+
+        <!-- Loading State -->
+        <div id="teamLoading" class="text-center py-12">
+          <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="loading">Cargando equipo...</p>
+        </div>
+
+        <!-- Team List -->
+        <div id="teamList" class="hidden space-y-2"></div>
+
+        <!-- Empty State -->
+        <div id="teamEmpty" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-5xl text-slate-300">group</span>
+          <p class="text-slate-400 text-sm mt-2" data-i18n="empty">No hay instructores en el equipo.</p>
+        </div>
+      </section>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

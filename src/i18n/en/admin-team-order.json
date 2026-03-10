@@ -1,0 +1,13 @@
+{
+  "title": "Team Order",
+  "subtitle": "Use the arrows to organize the display order in the About page",
+  "saveButton": "Save Order",
+  "saving": "Saving...",
+  "saved": "Order saved successfully",
+  "loading": "Loading team...",
+  "empty": "No instructors in the team.",
+  "errors": {
+    "loadError": "Error loading team",
+    "saveError": "Error saving order"
+  }
+}

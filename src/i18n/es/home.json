@@ -22,7 +22,7 @@
     },
     "rebirthing": {
       "title": "Renacimientos",
-      "description": "Ceremonias transformadoras profundas."
+      "description": "Transformación profunda."
     },
     "goldenRoutes": {
       "title": "Rutas Doradas",
@@ -52,9 +52,9 @@
     "viewAll": "Ver todas las rutas"
   },
   "homeRebirthing": {
-    "title": "Ceremonias de Renacimiento",
-    "subtitle": "Próximas ceremonias transformadoras",
-    "viewAll": "Ver todas las ceremonias"
+    "title": "Renacimientos",
+    "subtitle": "Próximos renacimientos para una transformación profunda",
+    "viewAll": "Ver todos los renacimientos"
   },
   "homeSpaces": {
     "title": "Espacios de Práctica",

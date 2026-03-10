@@ -36,7 +36,7 @@
     "instructors": "Instructores",
     "instructorsHelp": "Hold Ctrl/Cmd para seleccionar varios",
     "participants": "Participantes",
-    "spaces": "Espacios establecidos",
+    "spaces": "Espacios alcanzados",
     "cancel": "Cancelar",
     "save": "Guardar",
     "saving": "Guardando..."
@@ -44,9 +44,33 @@
   "errors": {
     "loadError": "Error al cargar rutas",
     "saveError": "Error al guardar ruta",
-    "deleteError": "Error al eliminar ruta"
+    "deleteError": "Error al eliminar ruta",
+    "visionSaveError": "Error al guardar la visión"
   },
   "confirm": {
     "delete": "¿Eliminar la ruta \"{{name}}\"?"
+  },
+  "vision": {
+    "editButton": "Editar Visión",
+    "modalTitle": "Editar Visión",
+    "sectionTitle": "Título de sección",
+    "sectionTitlePlaceholder": "Ej: Visión 2025-2027",
+    "sectionTitleEn": "Section title (EN)",
+    "goal1Title": "Título Meta 1",
+    "goal1TitleEn": "Goal 1 Title (EN)",
+    "goal1Text": "Descripción Meta 1",
+    "goal1TextEn": "Goal 1 Description (EN)",
+    "goal2Title": "Título Meta 2",
+    "goal2TitleEn": "Goal 2 Title (EN)",
+    "goal2Text": "Descripción Meta 2",
+    "goal2TextEn": "Goal 2 Description (EN)",
+    "goal3Title": "Título Meta 3",
+    "goal3TitleEn": "Goal 3 Title (EN)",
+    "goal3Text": "Descripción Meta 3",
+    "goal3TextEn": "Goal 3 Description (EN)",
+    "save": "Guardar Visión",
+    "saving": "Guardando...",
+    "saved": "✓ Visión guardada",
+    "cancel": "Cancelar"
   }
 }

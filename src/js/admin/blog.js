@@ -100,6 +100,13 @@ function renderPosts(container) {
             <p class="text-slate-400 text-xs mt-1">
               ${escapeHtml(post.author_name || '')} &middot; ${escapeHtml(date)}
             </p>
+            ${post.tags ? `
+              <div class="flex flex-wrap gap-1 mt-2">
+                ${post.tags.split(',').map(tag => tag.trim()).filter(Boolean).map(tag =>
+                  `<span class="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">${escapeHtml(tag)}</span>`
+                ).join('')}
+              </div>
+            ` : ''}
             <p class="text-slate-500 text-sm mt-2 line-clamp-2">${escapeHtml(snippet)}</p>
           </div>
           <div class="flex items-center gap-2 shrink-0">
@@ -129,6 +136,8 @@ function openCreateModal() {
   if (form) form.reset()
   document.getElementById('postId').value = ''
   document.getElementById('postPublished').checked = false
+  document.getElementById('postTags').value = ''
+  document.getElementById('postTagsEn').value = ''
   hideFormError()
   if (modal) modal.classList.remove('hidden')
 }
@@ -146,6 +155,8 @@ function openEditModal(id) {
   document.getElementById('postTitleEn').value = post.title_en || ''
   document.getElementById('postContent').value = post.content || ''
   document.getElementById('postContentEn').value = post.content_en || ''
+  document.getElementById('postTags').value = post.tags || ''
+  document.getElementById('postTagsEn').value = post.tags_en || ''
   document.getElementById('postPublished').checked = !!post.published
 
   hideFormError()
@@ -167,11 +178,16 @@ async function savePost(e) {
   const contentEn = document.getElementById('postContentEn').value.trim()
   const published = document.getElementById('postPublished').checked ? 1 : 0
 
+  const tags = document.getElementById('postTags').value.trim()
+  const tagsEn = document.getElementById('postTagsEn').value.trim()
+
   const body = {
     title,
     title_en: titleEn || null,
     content,
     content_en: contentEn || null,
+    tags: tags || null,
+    tags_en: tagsEn || null,
     published
   }
 

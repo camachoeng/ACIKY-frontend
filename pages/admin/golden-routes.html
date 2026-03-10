@@ -22,10 +22,16 @@
             <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Rutas Doradas</h1>
             <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Gestiona las rutas de expansion</p>
           </div>
-          <button id="createRouteBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
-            <span class="material-symbols-outlined text-sm">add</span>
-            <span data-i18n="newButton">Nueva Ruta</span>
-          </button>
+          <div class="flex items-center gap-3">
+            <button id="editVisionBtn" class="border border-primary text-primary px-4 py-2 rounded-full text-sm font-medium hover:bg-primary hover:text-white transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">edit_note</span>
+              <span data-i18n="vision.editButton">Editar Visión</span>
+            </button>
+            <button id="createRouteBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span>
+              <span data-i18n="newButton">Nueva Ruta</span>
+            </button>
+          </div>
         </div>
 
         <!-- Loading State -->
@@ -166,6 +172,59 @@
                 <button type="submit" id="saveRouteBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.save">Guardar</button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vision Edit Modal -->
+      <div id="visionModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" id="visionModalOverlay"></div>
+        <div class="absolute inset-x-4 top-4 bottom-4 max-w-lg mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
+          <div class="p-8">
+            <h2 class="text-xl font-bold text-primary-dark mb-6" data-i18n="vision.modalTitle">Editar Visión 2025-2027</h2>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="vision.sectionTitle">Título de sección</label>
+                <input type="text" id="visionInputSectionTitle" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" data-i18n-placeholder="vision.sectionTitlePlaceholder" placeholder="Visión 2025-2027" />
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="vision.sectionTitleEn">Section title (EN)</label>
+                <input type="text" id="visionInputSectionTitleEn" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" placeholder="E.g.: Vision 2025-2027" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="vision.goal1Title">Título Meta 1</label>
+                <input type="text" id="visionInput2025Title" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" placeholder="Meta 1" />
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="vision.goal1TitleEn">Goal 1 Title (EN)</label>
+                <input type="text" id="visionInput2025TitleEn" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" placeholder="Goal 1" />
+                <label class="block text-xs font-medium text-slate-500 mt-2 mb-1" data-i18n="vision.goal1Text">Descripción Meta 1</label>
+                <textarea id="visionInput2025Text" rows="2" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"></textarea>
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="vision.goal1TextEn">Goal 1 Description (EN)</label>
+                <textarea id="visionInput2025TextEn" rows="2" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"></textarea>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="vision.goal2Title">Título Meta 2</label>
+                <input type="text" id="visionInput2026Title" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" placeholder="Meta 2" />
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="vision.goal2TitleEn">Goal 2 Title (EN)</label>
+                <input type="text" id="visionInput2026TitleEn" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" placeholder="Goal 2" />
+                <label class="block text-xs font-medium text-slate-500 mt-2 mb-1" data-i18n="vision.goal2Text">Descripción Meta 2</label>
+                <textarea id="visionInput2026Text" rows="2" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"></textarea>
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="vision.goal2TextEn">Goal 2 Description (EN)</label>
+                <textarea id="visionInput2026TextEn" rows="2" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"></textarea>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="vision.goal3Title">Título Meta 3</label>
+                <input type="text" id="visionInput2027Title" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" placeholder="Meta 3" />
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="vision.goal3TitleEn">Goal 3 Title (EN)</label>
+                <input type="text" id="visionInput2027TitleEn" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm" placeholder="Goal 3" />
+                <label class="block text-xs font-medium text-slate-500 mt-2 mb-1" data-i18n="vision.goal3Text">Descripción Meta 3</label>
+                <textarea id="visionInput2027Text" rows="2" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"></textarea>
+                <label class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="vision.goal3TextEn">Goal 3 Description (EN)</label>
+                <textarea id="visionInput2027TextEn" rows="2" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"></textarea>
+              </div>
+              <div id="visionFormError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+              <div class="flex gap-3 pt-2">
+                <button type="button" id="cancelVisionBtn" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="vision.cancel">Cancelar</button>
+                <button type="button" id="saveVisionBtn" class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="vision.save">Guardar Visión</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
