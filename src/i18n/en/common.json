@@ -78,6 +78,8 @@
     "previous": "Previous",
     "search": "Search",
     "noResults": "No results",
-    "actions": "Actions"
+    "actions": "Actions",
+    "share": "Share",
+    "urlCopied": "URL copied"
   }
 }

@@ -6,6 +6,11 @@
     "instructors": "Instructores",
     "locations": "Ubicaciones"
   },
+  "notifications": {
+    "title": "Notificaciones",
+    "pendingTestimonials": "testimonio(s) pendiente(s) de aprobación",
+    "recentBlogs": "blog(s) publicado(s) esta semana"
+  },
   "quickActions": {
     "title": "Acciones Rápidas",
     "manageUsers": {

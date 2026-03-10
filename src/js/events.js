@@ -1,12 +1,18 @@
 // Event detail page
 import { t, localized, getLanguage } from './i18n.js'
 import { apiFetch } from './api.js'
+import { shareContent } from './utils/share.js'
 
 let cachedEvent = null
 
 export async function initEvent() {
   await loadEvent()
   updateWhatsAppLink()
+
+  document.getElementById('eventShareBtn')?.addEventListener('click', () => {
+    const name = cachedEvent ? localized(cachedEvent, 'name') : ''
+    shareContent({ title: name, text: name, url: window.location.href })
+  })
 
   window.addEventListener('languageChanged', () => {
     updateWhatsAppLink()

@@ -49,10 +49,16 @@
 
       <!-- Single Post Detail (hidden by default) -->
       <section id="blogDetail" class="hidden px-4 md:px-8 lg:px-16 py-8">
-        <button id="blogBackBtn" class="flex items-center gap-1 text-primary font-medium text-sm mb-6 hover:underline">
-          <span class="material-symbols-outlined text-sm">arrow_back</span>
-          <span data-i18n="blog.backToList">Volver al blog</span>
-        </button>
+        <div class="flex items-center justify-between mb-6">
+          <button id="blogBackBtn" class="flex items-center gap-1 text-primary font-medium text-sm hover:underline">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span data-i18n="blog.backToList">Volver al blog</span>
+          </button>
+          <button id="blogShareBtn" class="flex items-center gap-1 text-slate-500 font-medium text-sm hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-sm">share</span>
+            <span data-i18n="common.share">Compartir</span>
+          </button>
+        </div>
         <article class="max-w-3xl mx-auto">
           <h2 id="blogDetailTitle" class="text-3xl font-bold text-primary-dark"></h2>
           <div class="flex items-center gap-3 mt-4 text-sm text-slate-500">

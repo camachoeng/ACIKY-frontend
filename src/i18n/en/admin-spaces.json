@@ -61,7 +61,8 @@
     "saveError": "Error saving space",
     "deleteError": "Error deleting space",
     "uploadError": "Error uploading image",
-    "requiredFields": "Please fill in all required fields"
+    "requiredFields": "Please fill in all required fields",
+    "gpsUrlDeprecated": "This link (maps.app.goo.gl) no longer works — Firebase Dynamic Links was discontinued. Copy the URL directly from the browser address bar in Google Maps (must start with maps.google.com or google.com/maps)."
   },
   "success": {
     "saved": "Space saved successfully",

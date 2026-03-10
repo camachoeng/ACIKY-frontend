@@ -1,5 +1,6 @@
 import { apiFetch } from './api.js'
 import { localized } from './i18n.js'
+import { shareContent } from './utils/share.js'
 
 let allItems = []
 
@@ -102,12 +103,15 @@ function setupLightbox() {
   const lightboxTitle = document.getElementById('lightboxTitle')
   const lightboxDescription = document.getElementById('lightboxDescription')
 
+  let currentLightboxTitle = ''
+
   // Open lightbox on card click
   container?.addEventListener('click', (e) => {
     const card = e.target.closest('.postura-card')
     if (!card) return
 
     const { image, title, description } = card.dataset
+    currentLightboxTitle = title
 
     lightboxTitle.textContent = title
     lightboxDescription.textContent = description
@@ -117,6 +121,10 @@ function setupLightbox() {
     modal.classList.remove('hidden')
     modal.classList.add('flex')
     document.body.style.overflow = 'hidden'
+  })
+
+  document.getElementById('lightboxShareBtn')?.addEventListener('click', () => {
+    shareContent({ title: currentLightboxTitle, text: currentLightboxTitle, url: window.location.href })
   })
 
   // Close lightbox

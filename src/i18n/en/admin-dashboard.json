@@ -6,6 +6,11 @@
     "instructors": "Instructors",
     "locations": "Locations"
   },
+  "notifications": {
+    "title": "Notifications",
+    "pendingTestimonials": "pending testimonial(s) awaiting approval",
+    "recentBlogs": "new blog post(s) this week"
+  },
   "quickActions": {
     "title": "Quick Actions",
     "manageUsers": {
