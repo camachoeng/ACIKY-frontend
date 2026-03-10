@@ -252,9 +252,17 @@
           <h3 class="text-2xl font-bold text-primary-dark" data-i18n="homeSpaces.title">Espacios de Práctica</h3>
           <p class="text-slate-500 text-sm mt-1" data-i18n="homeSpaces.subtitle">Conoce dónde practicar Kundalini Yoga en Cuba</p>
         </div>
-        <div id="homeSpacesContainer" class="flex overflow-x-auto gap-5 px-6 pb-4 hide-scrollbar">
-          <div class="min-w-[280px] flex items-center justify-center py-8">
-            <span class="material-symbols-outlined text-primary text-2xl animate-spin">progress_activity</span>
+        <div class="relative">
+          <button id="spacesPrevBtn" class="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200 text-primary-dark hover:bg-primary-dark hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Previous spaces">
+            <span class="material-symbols-outlined text-xl">chevron_left</span>
+          </button>
+          <button id="spacesNextBtn" class="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200 text-primary-dark hover:bg-primary-dark hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Next spaces">
+            <span class="material-symbols-outlined text-xl">chevron_right</span>
+          </button>
+          <div id="homeSpacesContainer" class="flex overflow-x-auto gap-5 px-6 pb-4 hide-scrollbar scroll-smooth">
+            <div class="min-w-[280px] flex items-center justify-center py-8">
+              <span class="material-symbols-outlined text-primary text-2xl animate-spin">progress_activity</span>
+            </div>
           </div>
         </div>
         <div class="px-6 mt-4">
