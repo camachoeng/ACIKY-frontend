@@ -1,6 +1,6 @@
 import { apiFetch } from './api.js'
 import { getUser } from './auth.js'
-import { localized, t } from './i18n.js'
+import { localized, t, getLanguage } from './i18n.js'
 import { formatUserName } from './utils/formatUserName.js'
 
 let allRoutes = []
@@ -15,6 +15,7 @@ export async function initGoldenRoutes() {
 
   window.addEventListener('languageChanged', () => {
     if (allRoutes.length > 0) renderAll()
+    loadVisionSettings()
   })
 }
 
@@ -22,13 +23,19 @@ async function loadVisionSettings() {
   try {
     const data = await apiFetch('/api/settings')
     const s = data.data || {}
+    const isEn = getLanguage() !== 'es'
+    const sectionTitle = document.getElementById('visionSectionTitle')
+    const sectionTitleVal = isEn ? (s['vision_section_title_en'] || s['vision_section_title']) : s['vision_section_title']
+    if (sectionTitle && sectionTitleVal) sectionTitle.textContent = sectionTitleVal
     const goals = ['goal2025', 'goal2026', 'goal2027']
     goals.forEach(goal => {
       const key = goal.charAt(0).toUpperCase() + goal.slice(1)
       const titleEl = document.getElementById(`vision${key}Title`)
       const textEl = document.getElementById(`vision${key}Text`)
-      if (titleEl && s[`vision_${goal}_title`]) titleEl.textContent = s[`vision_${goal}_title`]
-      if (textEl && s[`vision_${goal}_text`]) textEl.textContent = s[`vision_${goal}_text`]
+      const titleVal = isEn ? (s[`vision_${goal}_title_en`] || s[`vision_${goal}_title`]) : s[`vision_${goal}_title`]
+      const textVal = isEn ? (s[`vision_${goal}_text_en`] || s[`vision_${goal}_text`]) : s[`vision_${goal}_text`]
+      if (titleEl && titleVal) titleEl.textContent = titleVal
+      if (textEl && textVal) textEl.textContent = textVal
     })
   } catch {
     // silently keep i18n defaults
