@@ -32,6 +32,9 @@ export async function initAdminSpaces() {
   // Image upload
   setupImageUpload()
 
+  // GPS URL deprecation warning
+  setupGpsLocationWarning()
+
   const container = document.getElementById('spacesContainer')
   container?.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-action]')
@@ -273,6 +276,7 @@ async function openNewModal() {
   document.getElementById('spaceId').value = ''
   document.getElementById('imageUrl').value = ''
   document.getElementById('spaceActive').checked = true
+  checkGpsUrl()
 
   // Reset image preview
   document.getElementById('imagePreview')?.classList.add('hidden')
@@ -305,6 +309,7 @@ async function openEditModal(id) {
   document.getElementById('spaceAddressEn').value = space.address_en || ''
   document.getElementById('spaceMunicipality').value = space.municipality || ''
   document.getElementById('spaceGpsLocation').value = space.gps_location || ''
+  checkGpsUrl()
   document.getElementById('spacePhone').value = space.phone || ''
   document.getElementById('spaceEmail').value = space.email || ''
   document.getElementById('spaceActive').checked = space.active
@@ -338,6 +343,43 @@ async function openEditModal(id) {
 
   hideFormError()
   modal?.classList.remove('hidden')
+}
+
+function setupGpsLocationWarning() {
+  const input = document.getElementById('spaceGpsLocation')
+  if (!input) return
+
+  const warning = document.createElement('p')
+  warning.id = 'gpsUrlWarning'
+  warning.className = 'hidden text-xs text-accent-terracotta mt-1'
+  const icon = document.createElement('span')
+  icon.className = 'material-symbols-outlined text-xs align-middle mr-1'
+  icon.textContent = 'warning'
+  const text = document.createElement('span')
+  text.id = 'gpsUrlWarningText'
+  warning.appendChild(icon)
+  warning.appendChild(text)
+  input.insertAdjacentElement('afterend', warning)
+
+  input.addEventListener('input', checkGpsUrl)
+}
+
+function checkGpsUrl() {
+  const input = document.getElementById('spaceGpsLocation')
+  const warning = document.getElementById('gpsUrlWarning')
+  const text = document.getElementById('gpsUrlWarningText')
+  if (!input || !warning) return
+
+  const value = input.value.trim()
+  const isDeprecated = value.includes('maps.app.goo.gl') ||
+    (value.includes('goo.gl') && value.includes('maps'))
+
+  if (isDeprecated) {
+    if (text) text.textContent = t('errors.gpsUrlDeprecated')
+    warning.classList.remove('hidden')
+  } else {
+    warning.classList.add('hidden')
+  }
 }
 
 function closeModal() {

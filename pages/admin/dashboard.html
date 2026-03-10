@@ -42,6 +42,35 @@
           </div>
         </div>
 
+        <!-- Notifications -->
+        <div id="notificationsSection" class="hidden mb-8">
+          <h2 class="text-xl font-bold text-primary-dark mb-4" data-i18n="notifications.title">Notificaciones</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="{{basePath}}/pages/admin/testimonials.html"
+               id="pendingTestimonialsCard"
+               class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-center gap-4 hover:bg-amber-100 transition-colors">
+              <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-amber-600">pending_actions</span>
+              </div>
+              <div>
+                <p id="pendingTestimonialsCount" class="text-2xl font-bold text-amber-700">0</p>
+                <p class="text-sm text-amber-600" data-i18n="notifications.pendingTestimonials">testimonio(s) pendiente(s) de aprobación</p>
+              </div>
+            </a>
+            <a href="{{basePath}}/pages/admin/blog.html"
+               id="recentBlogsCard"
+               class="hidden bg-primary/5 border border-primary/20 rounded-2xl p-5 flex items-center gap-4 hover:bg-primary/10 transition-colors">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-primary">article</span>
+              </div>
+              <div>
+                <p id="recentBlogsCount" class="text-2xl font-bold text-primary-dark">0</p>
+                <p class="text-sm text-primary" data-i18n="notifications.recentBlogs">blog(s) publicado(s) esta semana</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <!-- Quick Actions -->
         <h2 class="text-xl font-bold text-primary-dark mb-4" data-i18n="quickActions.title">Acciones Rapidas</h2>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">

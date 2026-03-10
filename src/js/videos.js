@@ -1,5 +1,6 @@
 import { apiFetch } from './api.js'
 import { localized } from './i18n.js'
+import { shareContent } from './utils/share.js'
 
 let allVideos = []
 
@@ -88,12 +89,15 @@ function setupVideoModal() {
   const videoTitle = document.getElementById('videoTitle')
   const videoDescription = document.getElementById('videoDescription')
 
+  let currentVideoUrl = ''
+
   // Open modal on card click
   container?.addEventListener('click', (e) => {
     const card = e.target.closest('.video-card')
     if (!card) return
 
     const { youtube, title, description } = card.dataset
+    currentVideoUrl = youtube
 
     videoTitle.textContent = title
     videoDescription.textContent = description
@@ -102,6 +106,11 @@ function setupVideoModal() {
     modal.classList.remove('hidden')
     modal.classList.add('flex')
     document.body.style.overflow = 'hidden'
+  })
+
+  document.getElementById('videoShareBtn')?.addEventListener('click', () => {
+    const title = videoTitle?.textContent || ''
+    shareContent({ title, text: title, url: currentVideoUrl || window.location.href })
   })
 
   // Close modal

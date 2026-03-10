@@ -1,9 +1,29 @@
 # Current Project Status
 
-Last updated: 2026-03-07
+Last updated: 2026-03-09
 
 ## In Progress
 _No active work at this time._
+
+## Recently Completed
+- [x] **Admin dashboard notifications - COMPLETE** (2026-03-09)
+  - Dashboard now fetches pending testimonials (`GET /api/testimonials`) and recent blog posts (`GET /api/blog`)
+  - Amber card shows pending testimonial count → links to testimonials admin (hidden when 0)
+  - Green card shows blog posts published in the last 7 days → links to blog admin (hidden when 0)
+  - Notifications section only appears when at least one count is > 0
+- [x] **Social sharing (Web Share API) - COMPLETE** (2026-03-09)
+  - Created `src/js/utils/share.js`: uses `navigator.share()` natively; falls back to clipboard copy + toast notification
+  - Blog: share button on each card (shares `blog.html#post-{id}`) + share button in post detail view
+  - Schedule: share button next to book button on each class card (shares schedule page URL)
+  - Events: share button below WhatsApp CTA (shares event page URL with `?id=`)
+  - Posturas: share button inside lightbox (shares posturas page URL)
+  - Videos: share button inside video modal (shares YouTube URL directly)
+  - Added `common.share` and `common.urlCopied` i18n keys to both languages
+- [x] **GPS URL deprecation warning in admin spaces - COMPLETE** (2026-03-09)
+  - `maps.app.goo.gl` links from Google Maps "Share" button stopped working (Firebase Dynamic Links discontinued Aug 2025)
+  - Admin spaces form now shows a red inline warning when a deprecated short URL is detected in the GPS Location field
+  - Warning is bilingual, non-blocking (doesn't prevent saving), and also triggers when opening existing spaces with bad URLs
+  - Fix: admins must copy the full URL from the browser address bar in Google Maps (starts with `maps.google.com` or `google.com/maps`)
 
 ## Recently Completed
 - [x] **Context-First Development setup - COMPLETE** (2026-02-24)

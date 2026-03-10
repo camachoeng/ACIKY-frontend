@@ -61,7 +61,8 @@
     "saveError": "Error al guardar espacio",
     "deleteError": "Error al eliminar espacio",
     "uploadError": "Error al subir imagen",
-    "requiredFields": "Por favor completa todos los campos requeridos"
+    "requiredFields": "Por favor completa todos los campos requeridos",
+    "gpsUrlDeprecated": "Este enlace (maps.app.goo.gl) ya no funciona — Firebase Dynamic Links fue descontinuado. Copia la URL directamente desde la barra del navegador en Google Maps (debe empezar con maps.google.com o google.com/maps)."
   },
   "success": {
     "saved": "Espacio guardado exitosamente",

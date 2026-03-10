@@ -1,5 +1,6 @@
 import { apiFetch } from './api.js'
 import { localized, t } from './i18n.js'
+import { shareContent } from './utils/share.js'
 
 let allPosts = []
 let currentPostId = null
@@ -80,7 +81,14 @@ function renderPosts() {
           <time>${escapeHtml(date)}</time>
         </div>
         <p class="text-sm text-slate-500 mt-3 line-clamp-3">${escapeHtml(snippet)}</p>
-        <span class="inline-block mt-4 text-primary font-medium text-sm">${t('blog.readMore')} &rarr;</span>
+        <div class="flex items-center justify-between mt-4">
+          <span class="text-primary font-medium text-sm">${t('blog.readMore')} &rarr;</span>
+          <button class="blog-share-btn p-1.5 rounded-full hover:bg-primary/10 text-slate-400 hover:text-primary transition-colors"
+                  data-share-id="${post.id}"
+                  title="${escapeHtml(t('common.share'))}">
+            <span class="material-symbols-outlined text-base">share</span>
+          </button>
+        </div>
       </div>
     </div>`
   }).join('')
@@ -148,6 +156,19 @@ function showPostList() {
 function setupEvents() {
   const container = document.getElementById('blogContainer')
   container?.addEventListener('click', (e) => {
+    // Check share button first to prevent card open
+    const shareBtn = e.target.closest('.blog-share-btn')
+    if (shareBtn) {
+      const id = parseInt(shareBtn.dataset.shareId)
+      const post = allPosts.find(p => p.id === id)
+      if (post) {
+        const title = localized(post, 'title')
+        const url = `${location.origin}${location.pathname}#post-${id}`
+        shareContent({ title, text: title, url })
+      }
+      return
+    }
+
     const card = e.target.closest('[data-post-id]')
     if (!card) return
     showPostDetail(parseInt(card.dataset.postId))
@@ -155,6 +176,15 @@ function setupEvents() {
 
   document.getElementById('blogBackBtn')?.addEventListener('click', showPostList)
   document.getElementById('blogRetry')?.addEventListener('click', loadPosts)
+
+  document.getElementById('blogShareBtn')?.addEventListener('click', () => {
+    if (!currentPostId) return
+    const post = allPosts.find(p => p.id === currentPostId)
+    if (!post) return
+    const title = localized(post, 'title')
+    const url = `${location.origin}${location.pathname}#post-${currentPostId}`
+    shareContent({ title, text: title, url })
+  })
 }
 
 function formatDate(dateStr) {
