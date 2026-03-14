@@ -83,6 +83,7 @@ function getPageName() {
     'pages/event.html': 'events',
     'pages/admin/events.html': 'admin-events',
     'pages/admin/festival.html': 'admin-festival',
+    'pages/admin/online-sadhana.html': 'admin-online-sadhana',
     'pages/privacy.html': 'privacy',
     'pages/terms.html': 'terms'
   }

@@ -6,6 +6,13 @@
   "saving": "Guardando...",
   "saved": "Cambios guardados",
   "saveError": "Error al guardar los cambios",
+  "program": {
+    "hide": "Ocultar Programa",
+    "show": "Mostrar Programa"
+  },
+  "errors": {
+    "saveError": "Error al guardar"
+  },
   "details": {
     "title": "Detalles del Evento",
     "topic": "Tema del Festival",

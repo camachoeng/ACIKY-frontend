@@ -11,7 +11,19 @@ export async function initFestival() {
     renderDynamicSections()
   })
 
-  await loadFestivalSettings()
+  await Promise.all([loadFestivalSettings(), loadProgramVisibility()])
+}
+
+async function loadProgramVisibility() {
+  try {
+    const data = await apiFetch('/api/settings')
+    const s = data.data || {}
+    if (s['festival_program_visible'] === '0') {
+      document.getElementById('festivalProgramSection')?.classList.add('hidden')
+    }
+  } catch {
+    // silently keep section visible on error
+  }
 }
 
 async function loadFestivalSettings() {

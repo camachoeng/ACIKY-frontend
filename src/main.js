@@ -616,6 +616,9 @@ async function initPage() {
   } else if (path.includes('/pages/rebirthing.html')) {
     const { initRebirthing } = await import('./js/rebirthing.js')
     initRebirthing()
+  } else if (path.includes('/pages/admin/online-sadhana.html')) {
+    const { initAdminOnlineSadhana } = await import('./js/admin/onlineSadhana.js')
+    initAdminOnlineSadhana()
   } else if (path.includes('/pages/onlinesadhana.html')) {
     const { initOnlineSadhana } = await import('./js/onlinesadhana.js')
     initOnlineSadhana()
