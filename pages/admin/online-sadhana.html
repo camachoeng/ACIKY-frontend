@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sadhana Online - Admin ACIKY" />
+    <title>Sadhana Online - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Sadhanas Online</h1>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Gestiona los practicantes actuales de la sadhana</p>
+          </div>
+          <button id="addParticipantBtn" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">person_add</span>
+            <span data-i18n="addButton">Agregar Practicante</span>
+          </button>
+        </div>
+
+        <!-- Participants Grid -->
+        <div id="participantsList" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div class="col-span-full flex justify-center py-8">
+            <span class="material-symbols-outlined animate-spin text-primary text-3xl">progress_activity</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Add Participant Modal -->
+      <div id="addModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="fixed inset-0 bg-black/50" id="addModalOverlay"></div>
+        <div class="relative inset-x-4 my-8 max-w-lg mx-auto bg-white rounded-3xl p-8 shadow-xl">
+          <h2 class="text-xl font-bold text-primary-dark mb-4" data-i18n="modal.title">Agregar Practicante</h2>
+          <div class="relative mb-4">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">search</span>
+            <input id="userPickerSearch" type="search" data-i18n-placeholder="modal.searchPlaceholder" placeholder="Buscar usuario..."
+                   class="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white" />
+          </div>
+          <div id="userPickerList" class="max-h-64 overflow-y-auto space-y-2">
+            <div class="flex justify-center py-4">
+              <span class="material-symbols-outlined animate-spin text-primary text-2xl">progress_activity</span>
+            </div>
+          </div>
+          <div class="flex justify-end mt-4">
+            <button type="button" id="cancelAddBtn" class="px-6 py-2 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> footer}}
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

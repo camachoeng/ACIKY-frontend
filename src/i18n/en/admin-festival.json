@@ -6,6 +6,13 @@
   "saving": "Saving...",
   "saved": "Changes saved",
   "saveError": "Error saving changes",
+  "program": {
+    "hide": "Hide Program",
+    "show": "Show Program"
+  },
+  "errors": {
+    "saveError": "Error saving"
+  },
   "details": {
     "title": "Event Details",
     "topic": "Festival Topic",

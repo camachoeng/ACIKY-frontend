@@ -58,6 +58,7 @@ export default defineConfig(() => {
           event: resolve(__dirname, 'pages/event.html'),
           adminEvents: resolve(__dirname, 'pages/admin/events.html'),
           adminFestival: resolve(__dirname, 'pages/admin/festival.html'),
+          adminOnlineSadhana: resolve(__dirname, 'pages/admin/online-sadhana.html'),
           forgotPassword: resolve(__dirname, 'pages/forgot-password.html'),
           resetPassword: resolve(__dirname, 'pages/reset-password.html'),
           privacy: resolve(__dirname, 'pages/privacy.html'),

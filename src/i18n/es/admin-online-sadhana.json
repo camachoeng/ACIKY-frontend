@@ -1,0 +1,24 @@
+{
+  "pageTitle": "Sadhana Online - Admin",
+  "title": "Sadhanas Online",
+  "subtitle": "Gestiona los practicantes actuales de la sadhana",
+  "addButton": "Agregar Practicante",
+  "participants": {
+    "empty": "No hay practicantes registrados",
+    "loadError": "Error al cargar practicantes"
+  },
+  "modal": {
+    "title": "Agregar Practicante",
+    "searchPlaceholder": "Buscar usuario por nombre o email...",
+    "empty": "No hay usuarios disponibles para agregar",
+    "loadError": "Error al cargar usuarios",
+    "cancel": "Cancelar"
+  },
+  "errors": {
+    "addError": "Error al agregar practicante",
+    "removeError": "Error al eliminar practicante"
+  },
+  "confirm": {
+    "remove": "¿Eliminar a {{name}} de la sadhana?"
+  }
+}

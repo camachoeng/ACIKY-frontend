@@ -1,9 +1,26 @@
 # Current Project Status
 
-Last updated: 2026-03-10
+Last updated: 2026-03-14
 
 ## In Progress
 _No active work at this time._
+
+## Recently Completed
+- [x] **Online Sadhana participants + Festival program toggle - COMPLETE** (2026-03-14)
+  - `pages/onlinesadhana.html`: added hidden `#sadhanaParticipantsSection` with `#sadhanaParticipantsGrid`; shown only when participants exist
+  - `src/js/onlinesadhana.js`: `loadParticipants()` fetches `GET /api/sadhana/participants`, renders circular profile images with CSS hover tooltip showing name
+  - `pages/admin/online-sadhana.html`: new admin page — grid of current participants + user picker modal with search
+  - `src/js/admin/onlineSadhana.js`: `initAdminOnlineSadhana()` — load/add/remove participants, searchable picker of users not yet added
+  - `src/i18n/es|en/admin-online-sadhana.json`: new translation files
+  - `src/i18n/es|en/onlinesadhana.json`: added `participants.title/subtitle`
+  - `src/i18n/es|en/common.json`: added `adminNav.sadhana`
+  - `src/partials/admin-nav.html`: added "Sadhana" link
+  - `vite.config.js`, `src/js/i18n.js`, `src/main.js`: registered new admin page
+  - `backend-specs/sadhana-participants.md`: spec (implemented by backend)
+  - `pages/festival.html`: added `id="festivalProgramSection"` to program section
+  - `src/js/festival.js`: `loadProgramVisibility()` calls `GET /api/settings`, hides program section if `festival_program_visible === '0'`
+  - `pages/admin/festival.html`: added "Ocultar/Mostrar Programa" toggle button in page header
+  - `src/js/admin/festival.js`: `loadProgramVisibility()` + `toggleProgramVisibility()` — toggle via `PUT /api/settings`, button updates icon/label reactively
 
 ## Recently Completed
 - [x] **Admin users modal bilingual fix - COMPLETE** (2026-03-10)

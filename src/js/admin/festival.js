@@ -51,13 +51,16 @@ const DEFAULT_PROGRAM = [
 let programData = []
 let activeDay = 0
 
+let programVisible = true
+
 export async function initAdminFestival() {
   const user = await requireAdmin()
   if (!user) return
 
-  await loadSettings()
+  await Promise.all([loadSettings(), loadProgramVisibility()])
 
   document.getElementById('saveBtn')?.addEventListener('click', saveSettings)
+  document.getElementById('toggleProgramBtn')?.addEventListener('click', toggleProgramVisibility)
 
   document.querySelectorAll('.day-tab').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -309,6 +312,45 @@ function getVal(id) {
 function setVal(id, val) {
   const el = document.getElementById(id)
   if (el) el.value = val || ''
+}
+
+async function loadProgramVisibility() {
+  try {
+    const data = await apiFetch('/api/settings')
+    const s = data.data || {}
+    programVisible = s['festival_program_visible'] !== '0'
+    updateToggleBtn()
+  } catch {
+    // keep default (visible)
+  }
+}
+
+function updateToggleBtn() {
+  const icon = document.getElementById('toggleProgramIcon')
+  const label = document.getElementById('toggleProgramLabel')
+  if (icon) icon.textContent = programVisible ? 'visibility_off' : 'visibility'
+  if (label) {
+    label.textContent = programVisible ? t('program.hide') : t('program.show')
+    label.dataset.i18n = programVisible ? 'program.hide' : 'program.show'
+  }
+}
+
+async function toggleProgramVisibility() {
+  const btn = document.getElementById('toggleProgramBtn')
+  if (btn) btn.disabled = true
+  try {
+    programVisible = !programVisible
+    await apiFetch('/api/settings', {
+      method: 'PUT',
+      body: JSON.stringify({ settings: [{ key: 'festival_program_visible', value: programVisible ? '1' : '0' }] })
+    })
+    updateToggleBtn()
+  } catch (err) {
+    programVisible = !programVisible // revert
+    alert(t('errors.saveError') + ': ' + err.message)
+  } finally {
+    if (btn) btn.disabled = false
+  }
 }
 
 function escapeHtml(str) {
