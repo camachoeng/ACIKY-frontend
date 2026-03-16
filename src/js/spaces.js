@@ -1,6 +1,7 @@
 import { apiFetch } from './api.js'
 import { t, getLanguage } from './i18n.js'
 import { formatUserName } from './utils/formatUserName.js'
+import { shareContent } from './utils/share.js'
 
 let allSpaces = []
 let filteredSpaces = []
@@ -10,6 +11,13 @@ export async function initSpaces() {
 
   document.getElementById('spacesRetry')
     ?.addEventListener('click', loadSpaces)
+
+  document.getElementById('spacesContainer')
+    ?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.space-share-btn')
+      if (!btn) return
+      shareContent({ title: btn.dataset.name, text: btn.dataset.name, url: window.location.href })
+    })
 
   window.addEventListener('languageChanged', () => {
     if (allSpaces.length > 0) {
@@ -227,6 +235,12 @@ function renderSpaces() {
                 <span>${t('card.locationButton')}</span>
               </a>
             ` : ''}
+
+            <button class="space-share-btn inline-flex items-center justify-center gap-1 px-3 py-2 bg-slate-100 text-slate-500 text-xs font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
+                    data-name="${escapeHtml(spaceName)}">
+              <span class="material-symbols-outlined text-sm">share</span>
+              <span>${t('common.share')}</span>
+            </button>
           </div>
         </div>
       </div>

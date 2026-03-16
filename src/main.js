@@ -99,20 +99,21 @@ async function initHomeTestimonials() {
       return
     }
 
+    const base = import.meta.env.BASE_URL
     container.innerHTML = testimonials.slice(0, 3).map(item => {
       const authorName = item.name ? `${item.name} ${item.last_name || ''}`.trim() : (item.author_name || '')
       const photoHtml = item.profile_image_url
         ? `<img src="${escapeHtml(item.profile_image_url)}" alt="${escapeHtml(authorName)}" class="w-8 h-8 rounded-full object-cover flex-shrink-0" />`
         : `<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-primary text-base">person</span></div>`
       return `
-      <div class="min-w-[280px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+      <a href="${base}pages/testimonials.html" class="min-w-[280px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100 block hover:shadow-md transition-shadow">
         <span class="material-symbols-outlined text-primary/20 text-2xl">format_quote</span>
         <p class="text-slate-600 text-sm mt-2 leading-relaxed line-clamp-4">${escapeHtml(localized(item, 'content'))}</p>
         <div class="mt-4 flex items-center gap-2">
           ${photoHtml}
           <p class="text-primary-dark font-semibold text-sm">${escapeHtml(authorName)}</p>
         </div>
-      </div>`
+      </a>`
     }).join('')
   } catch {
     const section = document.getElementById('homeTestimonialsSection')
@@ -160,31 +161,49 @@ async function initHomeRebirthing() {
   }
 }
 
-// Home page: load active golden routes
+// Home page: load all golden routes sorted (planning first, then active by date)
 async function initHomeGoldenRoutes() {
   const container = document.getElementById('homeGoldenRoutesContainer')
   if (!container) return
 
   try {
-    const data = await apiFetch('/api/routes?status=active')
-    const routes = data.data || []
+    const data = await apiFetch('/api/routes')
+    const raw = data.data || []
 
-    if (routes.length === 0) {
+    if (raw.length === 0) {
       const section = document.getElementById('homeGoldenRoutesSection')
       if (section) section.classList.add('hidden')
       return
     }
 
+    const order = { planning: 0, active: 1 }
+    const routes = [...raw].sort((a, b) => {
+      const aO = order[a.status] ?? 2
+      const bO = order[b.status] ?? 2
+      if (aO !== bO) return aO - bO
+      const aD = a.start_date ? new Date(a.start_date) : null
+      const bD = b.start_date ? new Date(b.start_date) : null
+      if (!aD && !bD) return 0
+      if (!aD) return 1
+      if (!bD) return -1
+      return a.status === 'planning' ? aD - bD : bD - aD
+    })
+
     const base = import.meta.env.BASE_URL
-    container.innerHTML = routes.slice(0, 4).map(item => `
-      <a href="${base}pages/golden-routes.html" class="min-w-[280px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+    container.innerHTML = routes.map(item => {
+      const isPlanning = item.status === 'planning'
+      return `
+      <a href="${base}pages/golden-routes.html" class="min-w-[280px] bg-white rounded-2xl shadow-sm border ${isPlanning ? 'border-amber-200/50' : 'border-slate-100'} overflow-hidden flex flex-col">
         <div class="h-40 bg-slate-100 flex-shrink-0 overflow-hidden">
           ${item.image_url
             ? `<img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(localized(item, 'name'))}" class="w-full h-full object-cover" />`
             : `<div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-slate-300 text-4xl">route</span></div>`}
         </div>
         <div class="p-4 flex flex-col flex-1">
-          <h4 class="font-bold text-primary-dark text-sm mb-2">${escapeHtml(localized(item, 'name'))}</h4>
+          <div class="flex items-center justify-between gap-1 mb-2">
+            <h4 class="font-bold text-primary-dark text-sm truncate">${escapeHtml(localized(item, 'name'))}</h4>
+            ${isPlanning ? `<span class="flex-shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700">${t('goldenRoutes.planningBadge')}</span>` : ''}
+          </div>
           <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
             <span class="material-symbols-outlined text-xs">location_on</span>
             <span>${escapeHtml(item.origin || '')}</span>
@@ -193,7 +212,8 @@ async function initHomeGoldenRoutes() {
           </div>
           <p class="text-slate-600 text-xs leading-relaxed line-clamp-2">${escapeHtml(localized(item, 'description'))}</p>
         </div>
-      </a>`).join('')
+      </a>`
+    }).join('')
   } catch {
     const section = document.getElementById('homeGoldenRoutesSection')
     if (section) section.classList.add('hidden')
@@ -207,7 +227,9 @@ async function initHomeSpaces() {
 
   try {
     const data = await apiFetch('/api/spaces')
-    const spaces = (data.data || []).filter(s => s.active)
+    const spaces = (data.data || [])
+      .filter(s => s.active)
+      .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'es', { sensitivity: 'base' }))
 
     if (spaces.length === 0) {
       const section = document.getElementById('homeSpacesSection')
@@ -455,12 +477,42 @@ function initSpacesCarousel() {
   updateButtonStates()
 }
 
+function initGoldenRoutesCarousel() {
+  const carousel = document.getElementById('homeGoldenRoutesContainer')
+  const prevBtn = document.getElementById('goldenRoutesPrevBtn')
+  const nextBtn = document.getElementById('goldenRoutesNextBtn')
+
+  if (!carousel || !prevBtn || !nextBtn) return
+
+  const scrollAmount = 300
+
+  const updateButtonStates = () => {
+    const isAtStart = carousel.scrollLeft <= 10
+    const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10
+    prevBtn.disabled = isAtStart
+    nextBtn.disabled = isAtEnd
+  }
+
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+    setTimeout(updateButtonStates, 300)
+  })
+
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    setTimeout(updateButtonStates, 300)
+  })
+
+  carousel.addEventListener('scroll', updateButtonStates)
+  updateButtonStates()
+}
+
 // Listen for language changes to re-render home dynamic sections
 window.addEventListener('languageChanged', () => {
   initHomeEvents()
   initHeroSchedule()
   initHomeTestimonials()
-  initHomeGoldenRoutes()
+  initHomeGoldenRoutes().then(initGoldenRoutesCarousel)
   initHomeRebirthing()
   initHomeSpaces().then(initSpacesCarousel)
 })
@@ -542,7 +594,7 @@ async function initPage() {
     initHomeEvents()
     initHeroSchedule()
     initHomeTestimonials()
-    initHomeGoldenRoutes()
+    initHomeGoldenRoutes().then(initGoldenRoutesCarousel)
     initHomeRebirthing()
     initHomeSpaces().then(initSpacesCarousel)
     initHomeContactCta()

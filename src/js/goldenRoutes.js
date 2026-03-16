@@ -81,19 +81,36 @@ async function loadRoutes() {
   }
 }
 
-function renderAll() {
-  const active = allRoutes.filter(r => r.status === 'active')
-  const planned = allRoutes.filter(r => r.status === 'planning')
+function sortRoutes(routes) {
+  // Planning first (sorted by start_date asc), then active (newest first), then others
+  const order = { planning: 0, active: 1 }
+  return [...routes].sort((a, b) => {
+    const aOrder = order[a.status] ?? 2
+    const bOrder = order[b.status] ?? 2
+    if (aOrder !== bOrder) return aOrder - bOrder
+    // Within same status: planning by start_date asc, active by start_date desc (newest first)
+    const aDate = a.start_date ? new Date(a.start_date) : null
+    const bDate = b.start_date ? new Date(b.start_date) : null
+    if (!aDate && !bDate) return 0
+    if (!aDate) return 1
+    if (!bDate) return -1
+    return a.status === 'planning' ? aDate - bDate : bDate - aDate
+  })
+}
 
-  renderActiveRoutes(active)
-  renderPlannedRoutes(planned)
+function renderAll() {
+  renderAllRoutes(sortRoutes(allRoutes))
   renderImpactStats(allRoutes)
 }
 
-function renderActiveRoutes(routes) {
+function renderAllRoutes(routes) {
   const container = document.getElementById('activeRoutesContainer')
   const empty = document.getElementById('routesEmpty')
+  const plannedSection = document.getElementById('plannedSection')
   if (!container) return
+
+  // Hide the old planned section (routes are now unified)
+  if (plannedSection) plannedSection.classList.add('hidden')
 
   if (routes.length === 0) {
     container.classList.add('hidden')
@@ -107,18 +124,22 @@ function renderActiveRoutes(routes) {
   container.innerHTML = routes.map(item => {
     const name = localized(item, 'name') || ''
     const desc = localized(item, 'description') || ''
+    const isPlanning = item.status === 'planning'
 
     return `
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col">
+    <div class="bg-white rounded-2xl shadow-sm border ${isPlanning ? 'border-amber-200/50' : 'border-slate-100'} overflow-hidden flex flex-col">
       <div class="h-52 bg-slate-100 flex-shrink-0 overflow-hidden">
         ${item.image_url
           ? `<img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(name)}" class="w-full h-full object-cover" />`
           : `<div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-slate-300 text-5xl">route</span></div>`}
       </div>
       <div class="p-6 flex flex-col flex-1">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="material-symbols-outlined text-primary text-xl">route</span>
-          <h3 class="font-bold text-primary-dark">${escapeHtml(name)}</h3>
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">route</span>
+            <h3 class="font-bold text-primary-dark truncate">${escapeHtml(name)}</h3>
+          </div>
+          ${isPlanning ? `<span class="flex-shrink-0 px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700">${escapeHtml(t('routes.planned.badge'))}</span>` : ''}
         </div>
         <div class="flex items-center gap-1 text-xs text-slate-500 mb-3">
           <span class="material-symbols-outlined text-xs">location_on</span>
@@ -126,9 +147,9 @@ function renderActiveRoutes(routes) {
           <span class="material-symbols-outlined text-xs">arrow_forward</span>
           <span>${escapeHtml(item.destination || '')}</span>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">${escapeHtml(desc)}</p>
+        ${desc ? `<p class="text-slate-600 text-sm leading-relaxed mb-4">${escapeHtml(desc)}</p>` : ''}
         ${item.start_date || item.end_date ? `
-        <div class="flex items-center gap-1 text-xs text-primary mb-2">
+        <div class="flex items-center gap-1 text-xs ${isPlanning ? 'text-amber-600' : 'text-primary'} mb-2">
           <span class="material-symbols-outlined text-xs">schedule</span>
           <span>${item.start_date ? formatDate(item.start_date) : '---'} → ${item.end_date ? formatDate(item.end_date) : '---'}</span>
         </div>` : ''}
@@ -155,53 +176,6 @@ function renderActiveRoutes(routes) {
           </span>` : ''}
         </div>
       </div>
-    </div>`
-  }).join('')
-}
-
-function renderPlannedRoutes(routes) {
-  const section = document.getElementById('plannedSection')
-  const container = document.getElementById('plannedRoutesContainer')
-  if (!section || !container) return
-
-  if (routes.length === 0) {
-    section.classList.add('hidden')
-    return
-  }
-
-  section.classList.remove('hidden')
-
-  container.innerHTML = routes.map(item => {
-    const name = localized(item, 'name') || ''
-    const badgeText = t('routes.planned.badge')
-
-    return `
-    <div class="bg-white rounded-2xl shadow-sm border border-amber-200/50 p-5">
-      <div class="flex items-center justify-between mb-2">
-        <h3 class="font-bold text-primary-dark text-sm">${escapeHtml(name)}</h3>
-        <span class="px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700">${escapeHtml(badgeText)}</span>
-      </div>
-      <div class="flex items-center gap-1 text-xs text-slate-500">
-        <span class="material-symbols-outlined text-xs">location_on</span>
-        <span>${escapeHtml(item.origin || '')}</span>
-        <span class="material-symbols-outlined text-xs">arrow_forward</span>
-        <span>${escapeHtml(item.destination || '')}</span>
-      </div>
-      ${item.start_date || item.end_date ? `
-      <p class="text-xs text-amber-600 mt-2 font-medium flex items-center gap-1">
-        <span class="material-symbols-outlined text-xs">schedule</span>
-        ${item.start_date ? formatDate(item.start_date) : '---'} → ${item.end_date ? formatDate(item.end_date) : '---'}
-      </p>` : ''}
-      ${item.instructors && item.instructors.length > 0 ? `
-      <div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
-        <div class="flex -space-x-1.5">
-          ${item.instructors.map(i => i.profile_image_url
-            ? `<img src="${escapeHtml(i.profile_image_url)}" alt="${escapeHtml(formatUserName(i))}" class="w-5 h-5 rounded-full object-cover border border-white flex-shrink-0" />`
-            : `<div class="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center border border-white flex-shrink-0"><span class="material-symbols-outlined text-primary" style="font-size:10px">person</span></div>`
-          ).join('')}
-        </div>
-        <span>${escapeHtml(item.instructors.map(i => formatUserName(i)).join(', '))}</span>
-      </div>` : ''}
     </div>`
   }).join('')
 }

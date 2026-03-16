@@ -1,28 +1,64 @@
 # Current Project Status
 
-Last updated: 2026-03-14
+Last updated: 2026-03-16
 
 ## In Progress
 _No active work at this time._
 
 ## Recently Completed
+- [x] **PDF upload endpoint - COMPLETE** (2026-03-16)
+  - `POST /api/upload/pdf` — dedicated multer instance (field `file`, 10 MB, PDF-only), Cloudinary `resource_type: 'raw'`, folder `aciky/documents`
+  - `src/js/admin/blog.js`: PDF upload now calls `/api/upload/pdf` with field `file` (was incorrectly using `/api/upload/content` with field `image`)
+  - `backend-specs/upload-pdf-endpoint.md`: spec
+- [x] **Blog rich content: images & PDFs - COMPLETE** (2026-03-16)
+  - New block-based content model: `content_blocks` JSON replaces flat `content` textarea
+  - `src/js/admin/blogBlocks.js`: new module — block editor with text blocks (ES/EN), image blocks (upload via `/api/upload/content`), reorder (up/down), delete
+  - `pages/admin/blog.html`: modal widened to `max-w-2xl`; content replaced by blocks editor with "+ Texto" / "+ Imagen" buttons; PDF attachment section (upload + bilingual title)
+  - `src/js/admin/blog.js`: integrates blocks module + PDF upload; post list shows image/PDF badges; legacy posts (no `content_blocks`) still editable
+  - `src/js/blog.js`: public detail view renders blocks (`<figure>` for images, paragraphs for text), PDF download card below content; card snippets and search use `content_blocks` when present
+  - `pages/blog.html`: added `#blogDetailPdf` container
+  - `src/i18n/es|en/admin-blog.json`: added `modal.blocks.*` and `modal.pdf.*` keys
+  - `src/i18n/es|en/blog.json`: added `attachment` and `downloadPdf` keys
+  - Backend (applied): `content_blocks TEXT`, `pdf_url VARCHAR(500)`, `pdf_title VARCHAR(200)`, `pdf_title_en VARCHAR(200)` added to `blog_posts`; `blogRepository` SELECT/create/update extended; `blogService` passes fields through; prod migration pending
+  - `backend-specs/blog-rich-content.md`: full spec
+- [x] **"Hola null" in verification email - FIXED** (2026-03-16)
+  - Root cause: `authService.js:398` used `user.username` (nullable login handle) instead of `user.name` in `resendVerificationEmail`
+  - `emailService.js:116`: added `username || 'Amigo/a'` defensive fallback
+  - `backend-specs/fix-verification-email-null-name.md`: spec with resolution notes
+- [x] **UI improvements batch - COMPLETE** (2026-03-16)
+  - `src/js/spaces.js`: share button added to each space card (same delegation pattern as schedule)
+  - `src/main.js` `initHomeSpaces()`: spaces sorted alphabetically by name
+  - `src/js/goldenRoutes.js`: unified sorted route list (planning first by start_date asc, then active newest-first); planning badge inline on card; description no longer line-clamped; `renderActiveRoutes` + `renderPlannedRoutes` replaced by `renderAllRoutes`
+  - `index.html` golden routes section: carousel nav buttons (desktop); all routes shown (removed `slice(4)` + `?status=active` filter)
+  - `src/main.js` `initHomeGoldenRoutes()`: fetches all routes, applies same sort, `initGoldenRoutesCarousel()` added
+  - `src/main.js` `initHomeTestimonials()`: cards now `<a>` links to `pages/testimonials.html`
+  - `index.html`: removed "Ver todas las rutas", "Ver todos los espacios", "Ver todos los testimonios" view-all links
+  - `src/i18n/es|en/home.json`: added `goldenRoutes.planningBadge`
 - [x] **Online Sadhana participants + Festival program toggle - COMPLETE** (2026-03-14)
-  - `pages/onlinesadhana.html`: added hidden `#sadhanaParticipantsSection` with `#sadhanaParticipantsGrid`; shown only when participants exist
-  - `src/js/onlinesadhana.js`: `loadParticipants()` fetches `GET /api/sadhana/participants`, renders circular profile images with CSS hover tooltip showing name
-  - `pages/admin/online-sadhana.html`: new admin page — grid of current participants + user picker modal with search
-  - `src/js/admin/onlineSadhana.js`: `initAdminOnlineSadhana()` — load/add/remove participants, searchable picker of users not yet added
+  - `pages/onlinesadhana.html`: added hidden `#sadhanaParticipantsSection`; shown only when participants exist
+  - `src/js/onlinesadhana.js`: `loadParticipants()` fetches `GET /api/sadhana/participants`, renders circular profile images with CSS hover tooltip showing name; re-renders on language change
+  - `pages/admin/online-sadhana.html`: new admin page — grid of current participants with remove button + searchable user picker modal
+  - `src/js/admin/onlineSadhana.js`: `initAdminOnlineSadhana()` — load/add/remove participants; fixed event delegation (listeners attached once in init, not on every re-render)
   - `src/i18n/es|en/admin-online-sadhana.json`: new translation files
   - `src/i18n/es|en/onlinesadhana.json`: added `participants.title/subtitle`
   - `src/i18n/es|en/common.json`: added `adminNav.sadhana`
-  - `src/partials/admin-nav.html`: added "Sadhana" link
-  - `vite.config.js`, `src/js/i18n.js`, `src/main.js`: registered new admin page
-  - `backend-specs/sadhana-participants.md`: spec (implemented by backend)
+  - `src/partials/admin-nav.html`: added "Sadhana" nav link
+  - `vite.config.js`, `src/js/i18n.js`, `src/main.js`: registered new admin page + route
+  - `backend-specs/sadhana-participants.md`: spec — `sadhana_participants` table, GET/POST/DELETE `/api/sadhana/participants` (implemented)
   - `pages/festival.html`: added `id="festivalProgramSection"` to program section
-  - `src/js/festival.js`: `loadProgramVisibility()` calls `GET /api/settings`, hides program section if `festival_program_visible === '0'`
-  - `pages/admin/festival.html`: added "Ocultar/Mostrar Programa" toggle button in page header
-  - `src/js/admin/festival.js`: `loadProgramVisibility()` + `toggleProgramVisibility()` — toggle via `PUT /api/settings`, button updates icon/label reactively
-
-## Recently Completed
+  - `src/js/festival.js`: `loadProgramVisibility()` — hides program section if `festival_program_visible === '0'`
+  - `pages/admin/festival.html`: "Ocultar/Mostrar Programa" toggle button in page header
+  - `src/js/admin/festival.js`: `loadProgramVisibility()` + `toggleProgramVisibility()` — toggle via `PUT /api/settings`, icon/label update reactively
+  - `src/i18n/es|en/admin-festival.json`: added `program.hide/show` keys
+- [x] **Homepage spaces full carousel - COMPLETE** (2026-03-14)
+  - `index.html`: added prev/next nav buttons around spaces container (desktop only, same pattern as Activities)
+  - `src/main.js`: `initHomeSpaces()` now shows all active spaces (removed `slice(0,4)`); added `initSpacesCarousel()` with disabled-state logic; called on page load and language change
+- [x] **Golden Routes Vision — English fields + year editable + language fix - COMPLETE** (2026-03-14)
+  - Admin vision modal: added EN input/textarea for section title and each goal title/description (teal labels)
+  - `src/js/admin/goldenRoutes.js`: `openVisionModal()` and `saveVision()` populate/save `_en` setting keys
+  - `src/js/goldenRoutes.js`: `loadVisionSettings()` uses `_en` variant when language is English, falls back to Spanish; added `getLanguage` import; re-runs on `languageChanged` to prevent i18n overwrite
+  - `pages/golden-routes.html`: added `id="visionSectionTitle"` to `<h2>`; placeholders on title inputs show i18n defaults
+  - `src/i18n/es|en/admin-golden-routes.json`: added `sectionTitleEn`, `goalNTitleEn`, `goalNTextEn` keys
 - [x] **Admin users modal bilingual fix - COMPLETE** (2026-03-10)
   - `src/js/admin/users.js`: imported `t()` from i18n.js, replaced all hardcoded Spanish strings with `t()` calls
   - `pages/admin/users.html`: added `data-i18n` / `data-i18n-placeholder` to all hardcoded labels and inputs (password, role, position, search)

@@ -79,8 +79,14 @@ function applySearch() {
     }
     if (query) {
       const title = (localized(post, 'title') || '').toLowerCase()
-      const content = (localized(post, 'content') || '').toLowerCase()
       const author = (post.author_name || '').toLowerCase()
+      let content = (localized(post, 'content') || '').toLowerCase()
+      if (post.content_blocks) {
+        try {
+          const blocks = JSON.parse(post.content_blocks)
+          content = blocks.filter(b => b.type === 'text').map(b => `${b.content_es || ''} ${b.content_en || ''}`).join(' ').toLowerCase()
+        } catch { /* keep legacy content */ }
+      }
       return title.includes(query) || content.includes(query) || author.includes(query)
     }
     return true
@@ -169,10 +175,23 @@ function renderPage() {
   }
 }
 
+function getPostSnippet(post) {
+  if (post.content_blocks) {
+    try {
+      const blocks = JSON.parse(post.content_blocks)
+      const lang = document.documentElement.lang === 'en' ? 'en' : 'es'
+      const first = blocks.find(b => b.type === 'text')
+      const text = (lang === 'en' && first?.content_en ? first.content_en : first?.content_es) || ''
+      return text.length > 150 ? text.substring(0, 150) + '...' : text
+    } catch { /* fall through */ }
+  }
+  const content = localized(post, 'content') || ''
+  return content.length > 150 ? content.substring(0, 150) + '...' : content
+}
+
 function renderCard(post) {
   const title = localized(post, 'title')
-  const content = localized(post, 'content') || ''
-  const snippet = content.length > 150 ? content.substring(0, 150) + '...' : content
+  const snippet = getPostSnippet(post)
   const date = formatDate(post.created_at)
 
   return `
@@ -238,13 +257,68 @@ function showPostDetail(id) {
   }
 
   const contentEl = document.getElementById('blogDetailContent')
-  contentEl.innerHTML = escapeHtml(content)
+  if (post.content_blocks) {
+    try {
+      const blocks = JSON.parse(post.content_blocks)
+      contentEl.innerHTML = blocks.map(block => renderContentBlock(block, post)).join('')
+    } catch {
+      contentEl.innerHTML = renderPlainText(content)
+    }
+  } else {
+    contentEl.innerHTML = renderPlainText(content)
+  }
+
+  // PDF attachment
+  const pdfEl = document.getElementById('blogDetailPdf')
+  if (pdfEl) {
+    if (post.pdf_url) {
+      const pdfTitle = localized(post, 'pdf_title') || t('blog.downloadPdf')
+      pdfEl.classList.remove('hidden')
+      pdfEl.innerHTML = `
+        <a href="${escapeHtml(post.pdf_url)}" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-3 px-5 py-3 bg-accent-terracotta/10 border border-accent-terracotta/30 rounded-2xl hover:bg-accent-terracotta/20 transition-colors">
+          <span class="material-symbols-outlined text-accent-terracotta text-2xl">picture_as_pdf</span>
+          <div>
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">${t('blog.attachment')}</p>
+            <p class="text-sm font-bold text-primary-dark">${escapeHtml(pdfTitle)}</p>
+          </div>
+          <span class="material-symbols-outlined text-slate-400 ml-2">download</span>
+        </a>`
+    } else {
+      pdfEl.classList.add('hidden')
+      pdfEl.innerHTML = ''
+    }
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+function renderPlainText(content) {
+  return escapeHtml(content)
     .split('\n')
     .filter(line => line.trim())
     .map(line => `<p class="mb-4">${line}</p>`)
     .join('')
+}
 
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+function renderContentBlock(block, post) {
+  if (block.type === 'image') {
+    const caption = localized({ caption: block.caption_es, caption_en: block.caption_en }, 'caption')
+    return `
+      <figure class="my-6">
+        <img src="${escapeHtml(block.url)}" alt="${escapeHtml(caption)}"
+             class="w-full rounded-2xl shadow-sm" onerror="this.onerror=null;this.style.display='none'" />
+        ${caption ? `<figcaption class="text-xs text-slate-400 text-center mt-2">${escapeHtml(caption)}</figcaption>` : ''}
+      </figure>`
+  }
+  // Text block
+  const lang = document.documentElement.lang === 'en' ? 'en' : 'es'
+  const text = (lang === 'en' && block.content_en ? block.content_en : block.content_es) || ''
+  return text
+    .split('\n')
+    .filter(line => line.trim())
+    .map(line => `<p class="mb-4">${escapeHtml(line)}</p>`)
+    .join('')
 }
 
 function showPostList() {
