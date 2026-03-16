@@ -16,6 +16,26 @@
     "titlePlaceholder": "Article title",
     "content": "Content",
     "contentPlaceholder": "Write the article content...",
+    "blocks": {
+      "addText": "+ Text",
+      "addImage": "+ Image",
+      "text": "Text block",
+      "image": "Image",
+      "textPlaceholder": "Write the content here...",
+      "textEnPlaceholder": "English content (optional)...",
+      "uploadImage": "Upload image",
+      "changeImage": "Change image",
+      "uploading": "Uploading...",
+      "captionEs": "Caption (ES)",
+      "captionEn": "Caption (EN)",
+      "captionPlaceholder": "Image description (optional)"
+    },
+    "pdf": {
+      "label": "PDF Attachment (optional)",
+      "upload": "Upload PDF",
+      "titleLabel": "PDF Title (ES)",
+      "titlePlaceholder": "E.g.: Kriya Guide"
+    },
     "tags": "Tags (ES)",
     "tagsPlaceholder": "Kundalini Yoga, Meditación, Bienestar...",
     "tagsHelp": "Separate with commas",

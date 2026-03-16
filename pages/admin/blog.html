@@ -53,39 +53,74 @@
       <!-- Blog Post Modal -->
       <div id="blogModal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black/50" id="blogModalOverlay"></div>
-        <div class="absolute inset-x-4 top-4 bottom-4 max-w-lg mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
+        <div class="absolute inset-x-4 top-4 bottom-4 max-w-2xl mx-auto bg-white rounded-3xl shadow-xl overflow-y-auto">
           <div class="p-8">
             <h2 id="blogModalTitle" class="text-xl font-bold text-primary-dark mb-6" data-i18n="modal.newTitle">Nuevo Artículo</h2>
 
-            <form id="blogForm" class="space-y-4">
+            <form id="blogForm" class="space-y-5">
               <input type="hidden" id="postId" />
 
-              <!-- Title (ES) -->
+              <!-- Title (ES + EN) -->
               <div>
                 <label for="postTitle" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.title">Título</label>
                 <input type="text" id="postTitle" required
                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
                        data-i18n-placeholder="modal.titlePlaceholder" placeholder="Título del artículo" />
-
-                <!-- Title (EN) -->
                 <label for="postTitleEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1">Title (EN)</label>
                 <input type="text" id="postTitleEn"
                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
                        placeholder="English translation (optional)" />
               </div>
 
-              <!-- Content (ES) -->
+              <!-- Content Blocks -->
               <div>
-                <label for="postContent" class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.content">Contenido</label>
-                <textarea id="postContent" rows="8" required
-                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
-                          data-i18n-placeholder="modal.contentPlaceholder" placeholder="Escribe el contenido del artículo..."></textarea>
+                <div class="flex items-center justify-between mb-3">
+                  <label class="text-sm font-medium text-primary-dark" data-i18n="modal.content">Contenido</label>
+                  <div class="flex items-center gap-2">
+                    <button type="button" id="addTextBlockBtn"
+                            class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-600 hover:border-primary hover:text-primary transition-colors">
+                      <span class="material-symbols-outlined text-sm">text_fields</span>
+                      <span data-i18n="modal.blocks.addText">+ Texto</span>
+                    </button>
+                    <button type="button" id="addImageBlockBtn"
+                            class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-600 hover:border-primary hover:text-primary transition-colors">
+                      <span class="material-symbols-outlined text-sm">image</span>
+                      <span data-i18n="modal.blocks.addImage">+ Imagen</span>
+                    </button>
+                  </div>
+                </div>
+                <div id="blocksEditor" class="space-y-3"></div>
+              </div>
 
-                <!-- Content (EN) -->
-                <label for="postContentEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1">Content (EN)</label>
-                <textarea id="postContentEn" rows="8"
-                          class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
-                          placeholder="English translation (optional)"></textarea>
+              <!-- PDF Attachment -->
+              <div class="border border-slate-200 rounded-2xl p-4">
+                <p class="text-sm font-medium text-primary-dark mb-3" data-i18n="modal.pdf.label">Adjunto PDF (opcional)</p>
+                <div id="pdfPreview" class="hidden flex items-center gap-3 p-3 bg-slate-50 rounded-xl mb-3">
+                  <span class="material-symbols-outlined text-accent-terracotta text-2xl">picture_as_pdf</span>
+                  <div class="flex-1 min-w-0">
+                    <p id="pdfFileName" class="text-sm font-medium text-slate-700 truncate"></p>
+                    <input type="hidden" id="pdfUrl" />
+                  </div>
+                  <button type="button" id="removePdfBtn" class="p-1 text-accent-terracotta hover:text-red-600 transition-colors">
+                    <span class="material-symbols-outlined text-sm">close</span>
+                  </button>
+                </div>
+                <label id="pdfUploadLabel" class="cursor-pointer inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 text-sm font-medium text-slate-600 hover:border-primary hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined text-sm">upload_file</span>
+                  <span data-i18n="modal.pdf.upload">Subir PDF</span>
+                  <input type="file" id="pdfFileInput" accept=".pdf" class="hidden" />
+                </label>
+                <p id="pdfUploadProgress" class="hidden text-xs text-slate-400 mt-2" data-i18n="modal.blocks.uploading">Subiendo...</p>
+                <div class="mt-3 space-y-2">
+                  <label class="block text-xs font-medium text-slate-500" data-i18n="modal.pdf.titleLabel">Título del PDF (ES)</label>
+                  <input type="text" id="pdfTitle"
+                         class="w-full px-3 py-2 rounded-xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         data-i18n-placeholder="modal.pdf.titlePlaceholder" placeholder="Ej: Guía de Kriyas" />
+                  <label class="block text-xs font-medium text-accent-teal">PDF Title (EN)</label>
+                  <input type="text" id="pdfTitleEn"
+                         class="w-full px-3 py-2 rounded-xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                         placeholder="E.g.: Kriya Guide" />
+                </div>
               </div>
 
               <!-- Tags -->
@@ -95,7 +130,6 @@
                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
                        data-i18n-placeholder="modal.tagsPlaceholder" placeholder="Kundalini Yoga, Meditación, Bienestar..." />
                 <p class="text-xs text-slate-400 mt-1" data-i18n="modal.tagsHelp">Separa con comas</p>
-
                 <label for="postTagsEn" class="block text-xs font-medium text-accent-teal mt-2 mb-1" data-i18n="modal.tagsEn">Tags (EN)</label>
                 <input type="text" id="postTagsEn"
                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"

@@ -1,6 +1,7 @@
 import { requireInstructor } from '../auth.js'
 import { apiFetch } from '../api.js'
 import { t } from '../i18n.js'
+import { initBlocks, addBlock, getBlocks, render as renderBlocks } from './blogBlocks.js'
 
 let allPosts = []
 let currentUser = null
@@ -15,7 +16,6 @@ export async function initAdminBlog() {
   if (!user) return
   currentUser = user
 
-  // Hide admin nav for instructors (they shouldn't see the admin panel)
   if (user.role === 'instructor') {
     const adminNav = document.querySelector('nav.bg-primary-dark')
     if (adminNav) adminNav.classList.add('hidden')
@@ -23,17 +23,14 @@ export async function initAdminBlog() {
 
   await loadPosts()
 
-  document.getElementById('createPostBtn')
-    ?.addEventListener('click', openCreateModal)
-
-  document.getElementById('blogModalOverlay')
-    ?.addEventListener('click', closeModal)
-
-  document.getElementById('cancelPostBtn')
-    ?.addEventListener('click', closeModal)
-
-  document.getElementById('blogForm')
-    ?.addEventListener('submit', savePost)
+  document.getElementById('createPostBtn')?.addEventListener('click', openCreateModal)
+  document.getElementById('blogModalOverlay')?.addEventListener('click', closeModal)
+  document.getElementById('cancelPostBtn')?.addEventListener('click', closeModal)
+  document.getElementById('blogForm')?.addEventListener('submit', savePost)
+  document.getElementById('addTextBlockBtn')?.addEventListener('click', () => addBlock('text'))
+  document.getElementById('addImageBlockBtn')?.addEventListener('click', () => addBlock('image'))
+  document.getElementById('removePdfBtn')?.addEventListener('click', removePdf)
+  document.getElementById('pdfFileInput')?.addEventListener('change', handlePdfUpload)
 
   const container = document.getElementById('blogContainer')
   container?.addEventListener('click', (e) => {
@@ -47,6 +44,8 @@ export async function initAdminBlog() {
   })
 }
 
+// ─── Load / Render ────────────────────────────────────────────────────────────
+
 async function loadPosts() {
   const container = document.getElementById('blogContainer')
   const loading = document.getElementById('blogLoading')
@@ -59,12 +58,10 @@ async function loadPosts() {
   try {
     const data = await apiFetch('/api/blog/all')
     let posts = data.data || []
-
     if (currentUser.role === 'instructor') {
       posts = posts.filter(p => p.author_id === currentUser.id)
     }
     allPosts = posts
-
     loading?.classList.add('hidden')
 
     if (allPosts.length === 0) {
@@ -77,10 +74,7 @@ async function loadPosts() {
     loading?.classList.add('hidden')
     if (container) {
       container.classList.remove('hidden')
-      container.innerHTML = `
-        <div class="text-center py-8 text-red-500 text-sm">
-          ${t('errors.loadError')}: ${escapeHtml(err.message)}
-        </div>`
+      container.innerHTML = `<div class="text-center py-8 text-red-500 text-sm">${t('errors.loadError')}: ${escapeHtml(err.message)}</div>`
     }
   }
 }
@@ -90,23 +84,36 @@ function renderPosts(container) {
     const status = post.published ? STATUS_STYLES.published : STATUS_STYLES.draft
     const statusLabel = post.published ? t('status.published') : t('status.draft')
     const date = formatDate(post.created_at)
-    const snippet = (post.content || '').substring(0, 100)
+
+    // Use first text block snippet if available, otherwise fall back to content
+    let snippet = ''
+    if (post.content_blocks) {
+      try {
+        const blocks = JSON.parse(post.content_blocks)
+        const first = blocks.find(b => b.type === 'text')
+        snippet = (first?.content_es || '').substring(0, 100)
+      } catch { snippet = '' }
+    } else {
+      snippet = (post.content || '').substring(0, 100)
+    }
+
+    // Show image badge if post has image blocks
+    const hasImages = post.content_blocks && (() => {
+      try { return JSON.parse(post.content_blocks).some(b => b.type === 'image') } catch { return false }
+    })()
+    const hasPdf = !!post.pdf_url
 
     return `
       <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
         <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
           <div class="flex-1 min-w-0">
-            <h3 class="font-bold text-primary-dark text-base truncate">${escapeHtml(post.title)}</h3>
-            <p class="text-slate-400 text-xs mt-1">
-              ${escapeHtml(post.author_name || '')} &middot; ${escapeHtml(date)}
-            </p>
-            ${post.tags ? `
-              <div class="flex flex-wrap gap-1 mt-2">
-                ${post.tags.split(',').map(tag => tag.trim()).filter(Boolean).map(tag =>
-                  `<span class="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">${escapeHtml(tag)}</span>`
-                ).join('')}
-              </div>
-            ` : ''}
+            <div class="flex items-center gap-2 flex-wrap">
+              <h3 class="font-bold text-primary-dark text-base truncate">${escapeHtml(post.title)}</h3>
+              ${hasImages ? `<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-accent-teal/10 text-accent-teal text-[10px] font-bold"><span class="material-symbols-outlined text-xs">image</span></span>` : ''}
+              ${hasPdf ? `<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-accent-terracotta/10 text-accent-terracotta text-[10px] font-bold"><span class="material-symbols-outlined text-xs">picture_as_pdf</span></span>` : ''}
+            </div>
+            <p class="text-slate-400 text-xs mt-1">${escapeHtml(post.author_name || '')} &middot; ${escapeHtml(date)}</p>
+            ${post.tags ? `<div class="flex flex-wrap gap-1 mt-2">${post.tags.split(',').map(tag => tag.trim()).filter(Boolean).map(tag => `<span class="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">${escapeHtml(tag)}</span>`).join('')}</div>` : ''}
             <p class="text-slate-500 text-sm mt-2 line-clamp-2">${escapeHtml(snippet)}</p>
           </div>
           <div class="flex items-center gap-2 shrink-0">
@@ -127,41 +134,70 @@ function renderPosts(container) {
   }).join('')
 }
 
+// ─── Modal ────────────────────────────────────────────────────────────────────
+
 function openCreateModal() {
   const modal = document.getElementById('blogModal')
   const title = document.getElementById('blogModalTitle')
-  const form = document.getElementById('blogForm')
-
   if (title) title.textContent = t('modal.newTitle')
-  if (form) form.reset()
+
   document.getElementById('postId').value = ''
-  document.getElementById('postPublished').checked = false
+  document.getElementById('postTitle').value = ''
+  document.getElementById('postTitleEn').value = ''
   document.getElementById('postTags').value = ''
   document.getElementById('postTagsEn').value = ''
+  document.getElementById('postPublished').checked = false
+  clearPdfUI()
   hideFormError()
+
+  initBlocks([])
   if (modal) modal.classList.remove('hidden')
 }
 
 function openEditModal(id) {
   const modal = document.getElementById('blogModal')
-  const title = document.getElementById('blogModalTitle')
-
   const post = allPosts.find(p => p.id === id)
   if (!post) return
 
+  const title = document.getElementById('blogModalTitle')
   if (title) title.textContent = t('modal.editTitle')
+
   document.getElementById('postId').value = post.id
   document.getElementById('postTitle').value = post.title || ''
   document.getElementById('postTitleEn').value = post.title_en || ''
-  document.getElementById('postContent').value = post.content || ''
-  document.getElementById('postContentEn').value = post.content_en || ''
   document.getElementById('postTags').value = post.tags || ''
   document.getElementById('postTagsEn').value = post.tags_en || ''
   document.getElementById('postPublished').checked = !!post.published
 
+  // PDF
+  clearPdfUI()
+  if (post.pdf_url) {
+    document.getElementById('pdfUrl').value = post.pdf_url
+    document.getElementById('pdfTitle').value = post.pdf_title || ''
+    document.getElementById('pdfTitleEn').value = post.pdf_title_en || ''
+    showPdfPreview(post.pdf_url)
+  }
+
+  // Blocks: parse content_blocks or convert legacy content to single block
+  let blocks = []
+  if (post.content_blocks) {
+    try { blocks = JSON.parse(post.content_blocks) } catch { blocks = [] }
+  }
+  if (blocks.length === 0) {
+    blocks = [{ type: 'text', content_es: post.content || '', content_en: post.content_en || '', url: '', caption_es: '', caption_en: '' }]
+  }
+
   hideFormError()
+  initBlocks(blocks)
   if (modal) modal.classList.remove('hidden')
 }
+
+function closeModal() {
+  const modal = document.getElementById('blogModal')
+  if (modal) modal.classList.add('hidden')
+}
+
+// ─── Save ─────────────────────────────────────────────────────────────────────
 
 async function savePost(e) {
   e.preventDefault()
@@ -172,38 +208,33 @@ async function savePost(e) {
   hideFormError()
 
   const id = document.getElementById('postId').value
-  const title = document.getElementById('postTitle').value.trim()
-  const titleEn = document.getElementById('postTitleEn').value.trim()
-  const content = document.getElementById('postContent').value.trim()
-  const contentEn = document.getElementById('postContentEn').value.trim()
-  const published = document.getElementById('postPublished').checked ? 1 : 0
+  const blocks = getBlocks()
 
-  const tags = document.getElementById('postTags').value.trim()
-  const tagsEn = document.getElementById('postTagsEn').value.trim()
+  // Also keep a plain-text `content` field for backwards compat (first text block)
+  const firstText = blocks.find(b => b.type === 'text')
+  const content = firstText?.content_es || ''
+  const contentEn = firstText?.content_en || ''
 
   const body = {
-    title,
-    title_en: titleEn || null,
+    title: document.getElementById('postTitle').value.trim(),
+    title_en: document.getElementById('postTitleEn').value.trim() || null,
     content,
     content_en: contentEn || null,
-    tags: tags || null,
-    tags_en: tagsEn || null,
-    published
+    content_blocks: JSON.stringify(blocks),
+    tags: document.getElementById('postTags').value.trim() || null,
+    tags_en: document.getElementById('postTagsEn').value.trim() || null,
+    pdf_url: document.getElementById('pdfUrl').value || null,
+    pdf_title: document.getElementById('pdfTitle').value.trim() || null,
+    pdf_title_en: document.getElementById('pdfTitleEn').value.trim() || null,
+    published: document.getElementById('postPublished').checked ? 1 : 0
   }
 
   try {
     if (id) {
-      await apiFetch(`/api/blog/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify(body)
-      })
+      await apiFetch(`/api/blog/${id}`, { method: 'PUT', body: JSON.stringify(body) })
     } else {
-      await apiFetch('/api/blog', {
-        method: 'POST',
-        body: JSON.stringify(body)
-      })
+      await apiFetch('/api/blog', { method: 'POST', body: JSON.stringify(body) })
     }
-
     closeModal()
     await loadPosts()
   } catch (err) {
@@ -214,12 +245,64 @@ async function savePost(e) {
   saveBtn.textContent = originalText
 }
 
+// ─── PDF upload ───────────────────────────────────────────────────────────────
+
+async function handlePdfUpload(e) {
+  const file = e.target.files[0]
+  if (!file) return
+  e.target.value = ''
+
+  const progress = document.getElementById('pdfUploadProgress')
+  const label = document.getElementById('pdfUploadLabel')
+  if (progress) progress.classList.remove('hidden')
+  if (label) label.classList.add('opacity-50', 'pointer-events-none')
+
+  try {
+    const formData = new FormData()
+    formData.append('file', file)
+    const response = await apiFetch('/api/upload/pdf', { method: 'POST', body: formData, headers: {} })
+    if (response.data?.url) {
+      document.getElementById('pdfUrl').value = response.data.url
+      showPdfPreview(response.data.url, file.name)
+    }
+  } catch {
+    // silently fail — user can retry
+  }
+
+  if (progress) progress.classList.add('hidden')
+  if (label) label.classList.remove('opacity-50', 'pointer-events-none')
+}
+
+function showPdfPreview(url, fileName) {
+  const preview = document.getElementById('pdfPreview')
+  const fileNameEl = document.getElementById('pdfFileName')
+  if (!preview || !fileNameEl) return
+  // Extract filename from URL if not provided
+  const displayName = fileName || decodeURIComponent(url.split('/').pop().split('?')[0])
+  fileNameEl.textContent = displayName
+  preview.classList.remove('hidden')
+}
+
+function removePdf() {
+  document.getElementById('pdfUrl').value = ''
+  document.getElementById('pdfTitle').value = ''
+  document.getElementById('pdfTitleEn').value = ''
+  document.getElementById('pdfPreview')?.classList.add('hidden')
+}
+
+function clearPdfUI() {
+  document.getElementById('pdfUrl').value = ''
+  document.getElementById('pdfTitle').value = ''
+  document.getElementById('pdfTitleEn').value = ''
+  document.getElementById('pdfPreview')?.classList.add('hidden')
+}
+
+// ─── Delete / Toggle ──────────────────────────────────────────────────────────
+
 async function confirmDelete(id) {
   const post = allPosts.find(p => p.id === id)
   if (!post) return
-
   if (!confirm(t('confirm.delete', { title: post.title }))) return
-
   try {
     await apiFetch(`/api/blog/${id}`, { method: 'DELETE' })
     await loadPosts()
@@ -231,42 +314,28 @@ async function confirmDelete(id) {
 async function togglePublished(id) {
   const post = allPosts.find(p => p.id === id)
   if (!post) return
-
   try {
-    await apiFetch(`/api/blog/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ published: post.published ? 0 : 1 })
-    })
+    await apiFetch(`/api/blog/${id}`, { method: 'PUT', body: JSON.stringify({ published: post.published ? 0 : 1 }) })
     await loadPosts()
   } catch (err) {
     alert(t('errors.toggleError') + ': ' + err.message)
   }
 }
 
-function closeModal() {
-  const modal = document.getElementById('blogModal')
-  if (modal) modal.classList.add('hidden')
-}
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function showFormError(msg) {
   const el = document.getElementById('blogFormError')
-  if (el) {
-    el.textContent = msg
-    el.classList.remove('hidden')
-  }
+  if (el) { el.textContent = msg; el.classList.remove('hidden') }
 }
 
 function hideFormError() {
-  const el = document.getElementById('blogFormError')
-  if (el) el.classList.add('hidden')
+  document.getElementById('blogFormError')?.classList.add('hidden')
 }
 
 function formatDate(dateStr) {
   if (!dateStr) return ''
-  const date = new Date(dateStr)
-  return date.toLocaleDateString(undefined, {
-    year: 'numeric', month: 'short', day: 'numeric'
-  })
+  return new Date(dateStr).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
 }
 
 function escapeHtml(str) {

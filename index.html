@@ -203,11 +203,6 @@
             <span class="material-symbols-outlined text-primary text-2xl animate-spin">progress_activity</span>
           </div>
         </div>
-        <div class="px-6 mt-4">
-          <a href="{{basePath}}/pages/testimonials.html" class="text-primary font-medium text-sm hover:underline" data-i18n="testimonials.viewAll">
-            Ver todos los testimonios &rarr;
-          </a>
-        </div>
       </section>
 
       <!-- Golden Routes Section -->
@@ -216,15 +211,18 @@
           <h3 class="text-2xl font-bold text-primary-dark" data-i18n="goldenRoutes.title">Rutas Doradas</h3>
           <p class="text-slate-500 text-sm mt-1" data-i18n="goldenRoutes.subtitle">Llevando el Kundalini Yoga a toda Cuba</p>
         </div>
-        <div id="homeGoldenRoutesContainer" class="flex overflow-x-auto gap-5 px-6 pb-4 hide-scrollbar">
-          <div class="min-w-[280px] flex items-center justify-center py-8">
-            <span class="material-symbols-outlined text-primary text-2xl animate-spin">progress_activity</span>
+        <div class="relative">
+          <button id="goldenRoutesPrevBtn" class="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200 text-primary-dark hover:bg-primary-dark hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Previous routes">
+            <span class="material-symbols-outlined text-xl">chevron_left</span>
+          </button>
+          <button id="goldenRoutesNextBtn" class="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200 text-primary-dark hover:bg-primary-dark hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Next routes">
+            <span class="material-symbols-outlined text-xl">chevron_right</span>
+          </button>
+          <div id="homeGoldenRoutesContainer" class="flex overflow-x-auto gap-5 px-6 pb-4 hide-scrollbar scroll-smooth">
+            <div class="min-w-[280px] flex items-center justify-center py-8">
+              <span class="material-symbols-outlined text-primary text-2xl animate-spin">progress_activity</span>
+            </div>
           </div>
-        </div>
-        <div class="px-6 mt-4">
-          <a href="{{basePath}}/pages/golden-routes.html" class="text-primary font-medium text-sm hover:underline" data-i18n="goldenRoutes.viewAll">
-            Ver todas las rutas &rarr;
-          </a>
         </div>
       </section>
 
@@ -264,11 +262,6 @@
               <span class="material-symbols-outlined text-primary text-2xl animate-spin">progress_activity</span>
             </div>
           </div>
-        </div>
-        <div class="px-6 mt-4">
-          <a href="{{basePath}}/pages/spaces.html" class="text-primary font-medium text-sm hover:underline" data-i18n="homeSpaces.viewAll">
-            Ver todos los espacios &rarr;
-          </a>
         </div>
       </section>
 

@@ -42,14 +42,15 @@
     }
   },
   "testimonials": {
-    "title": "What our students say",
+    "title": "What our community says",
     "subtitle": "Real experiences from our community",
     "viewAll": "View all testimonials"
   },
   "goldenRoutes": {
     "title": "Golden Routes",
     "subtitle": "Bringing Kundalini Yoga to all of Cuba",
-    "viewAll": "View all routes"
+    "viewAll": "View all routes",
+    "planningBadge": "Planning"
   },
   "homeRebirthing": {
     "title": "Rebirthing",
