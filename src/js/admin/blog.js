@@ -252,8 +252,18 @@ async function handlePdfUpload(e) {
   if (!file) return
   e.target.value = ''
 
+  const errorEl = document.getElementById('pdfUploadError')
   const progress = document.getElementById('pdfUploadProgress')
   const label = document.getElementById('pdfUploadLabel')
+
+  if (errorEl) errorEl.classList.add('hidden')
+
+  const MAX_PDF_BYTES = 10 * 1024 * 1024
+  if (file.size > MAX_PDF_BYTES) {
+    if (errorEl) { errorEl.textContent = t('modal.pdf.tooLarge'); errorEl.classList.remove('hidden') }
+    return
+  }
+
   if (progress) progress.classList.remove('hidden')
   if (label) label.classList.add('opacity-50', 'pointer-events-none')
 
@@ -265,8 +275,8 @@ async function handlePdfUpload(e) {
       document.getElementById('pdfUrl').value = response.data.url
       showPdfPreview(response.data.url, file.name)
     }
-  } catch {
-    // silently fail — user can retry
+  } catch (err) {
+    if (errorEl) { errorEl.textContent = t('modal.pdf.uploadError') + ': ' + err.message; errorEl.classList.remove('hidden') }
   }
 
   if (progress) progress.classList.add('hidden')
@@ -299,16 +309,41 @@ function clearPdfUI() {
 
 // ─── Delete / Toggle ──────────────────────────────────────────────────────────
 
-async function confirmDelete(id) {
+function confirmDelete(id) {
   const post = allPosts.find(p => p.id === id)
   if (!post) return
-  if (!confirm(t('confirm.delete', { title: post.title }))) return
-  try {
-    await apiFetch(`/api/blog/${id}`, { method: 'DELETE' })
-    await loadPosts()
-  } catch (err) {
-    alert(t('errors.deleteError') + ': ' + err.message)
+  const modal = document.getElementById('deleteConfirmModal')
+  const msg = document.getElementById('deleteConfirmMessage')
+  const okBtn = document.getElementById('deleteConfirmOk')
+  const cancelBtn = document.getElementById('deleteConfirmCancel')
+  if (!modal || !okBtn || !cancelBtn) return
+
+  if (msg) msg.textContent = t('confirm.delete', { title: post.title })
+  modal.classList.remove('hidden')
+  modal.classList.add('flex')
+
+  const close = () => { modal.classList.add('hidden'); modal.classList.remove('flex') }
+
+  const onOk = async () => {
+    cleanup()
+    close()
+    try {
+      await apiFetch(`/api/blog/${id}`, { method: 'DELETE' })
+      await loadPosts()
+    } catch (err) {
+      alert(t('errors.deleteError') + ': ' + err.message)
+    }
   }
+
+  const onCancel = () => { cleanup(); close() }
+
+  const cleanup = () => {
+    okBtn.removeEventListener('click', onOk)
+    cancelBtn.removeEventListener('click', onCancel)
+  }
+
+  okBtn.addEventListener('click', onOk)
+  cancelBtn.addEventListener('click', onCancel)
 }
 
 async function togglePublished(id) {

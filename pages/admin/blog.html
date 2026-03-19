@@ -111,6 +111,7 @@
                   <input type="file" id="pdfFileInput" accept=".pdf" class="hidden" />
                 </label>
                 <p id="pdfUploadProgress" class="hidden text-xs text-slate-400 mt-2" data-i18n="modal.blocks.uploading">Subiendo...</p>
+                <p id="pdfUploadError" class="hidden text-xs text-red-500 mt-2"></p>
                 <div class="mt-3 space-y-2">
                   <label class="block text-xs font-medium text-slate-500" data-i18n="modal.pdf.titleLabel">Título del PDF (ES)</label>
                   <input type="text" id="pdfTitle"
@@ -156,6 +157,18 @@
         </div>
       </div>
     </main>
+
+    <!-- Delete Confirm Modal -->
+    <div id="deleteConfirmModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative bg-white rounded-3xl shadow-xl p-6 w-full max-w-sm">
+        <p id="deleteConfirmMessage" class="text-slate-700 text-sm font-medium mb-5"></p>
+        <div class="flex gap-3">
+          <button id="deleteConfirmCancel" class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="confirm.cancel">Cancelar</button>
+          <button id="deleteConfirmOk" class="flex-1 py-3 rounded-2xl bg-accent-terracotta text-white font-bold hover:opacity-90 transition-opacity" data-i18n="confirm.deleteConfirm">Eliminar</button>
+        </div>
+      </div>
+    </div>
 
     {{> footer}}
 

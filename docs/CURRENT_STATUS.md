@@ -5,10 +5,14 @@ Last updated: 2026-03-16
 ## In Progress
 _No active work at this time._
 
+## Pending Actions
+_None._
+
 ## Recently Completed
-- [x] **PDF upload endpoint - COMPLETE** (2026-03-16)
-  - `POST /api/upload/pdf` — dedicated multer instance (field `file`, 10 MB, PDF-only), Cloudinary `resource_type: 'raw'`, folder `aciky/documents`
-  - `src/js/admin/blog.js`: PDF upload now calls `/api/upload/pdf` with field `file` (was incorrectly using `/api/upload/content` with field `image`)
+- [x] **PDF upload endpoint + download fix - COMPLETE** (2026-03-16)
+  - `POST /api/upload/pdf` — dedicated multer instance (field `file`, 10 MB, PDF-only), Cloudinary `resource_type: 'raw'`, `use_filename: true`, `unique_filename: true`, folder `aciky/documents`
+  - `use_filename: true` was the key fix — without it Cloudinary generates a URL with no extension → served as `application/octet-stream` → browser downloads as generic "File" instead of PDF
+  - `src/js/admin/blog.js`: PDF upload calls `/api/upload/pdf` with field `file`
   - `backend-specs/upload-pdf-endpoint.md`: spec
 - [x] **Blog rich content: images & PDFs - COMPLETE** (2026-03-16)
   - New block-based content model: `content_blocks` JSON replaces flat `content` textarea

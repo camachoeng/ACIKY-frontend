@@ -34,7 +34,9 @@
       "label": "Adjunto PDF (opcional)",
       "upload": "Subir PDF",
       "titleLabel": "Título del PDF (ES)",
-      "titlePlaceholder": "Ej: Guía de Kriyas"
+      "titlePlaceholder": "Ej: Guía de Kriyas",
+      "tooLarge": "El PDF es demasiado grande. Máximo 10 MB.",
+      "uploadError": "Error al subir el PDF"
     },
     "tags": "Etiquetas (ES)",
     "tagsPlaceholder": "Kundalini Yoga, Meditación, Bienestar...",
@@ -53,6 +55,8 @@
     "toggleError": "Error al cambiar estado"
   },
   "confirm": {
-    "delete": "¿Eliminar \"{{title}}\"?"
+    "delete": "¿Eliminar \"{{title}}\"?",
+    "deleteConfirm": "Eliminar",
+    "cancel": "Cancelar"
   }
 }
