@@ -28,7 +28,8 @@
       "uploading": "Subiendo...",
       "captionEs": "Pie de foto (ES)",
       "captionEn": "Caption (EN)",
-      "captionPlaceholder": "Descripción de la imagen (opcional)"
+      "captionPlaceholder": "Descripción de la imagen (opcional)",
+      "uploadError": "Error al subir la imagen"
     },
     "pdf": {
       "label": "Adjunto PDF (opcional)",

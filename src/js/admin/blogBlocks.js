@@ -104,7 +104,7 @@ function attachContainerListener() {
 
 async function uploadBlockImage(id, file) {
   const progressEl = document.getElementById(`blk-progress-${id}`)
-  if (progressEl) progressEl.classList.remove('hidden')
+  if (progressEl) { progressEl.classList.remove('hidden'); progressEl.style.color = '' }
 
   const block = blocks.find(b => b.id === id)
   if (!block) return
@@ -117,9 +117,11 @@ async function uploadBlockImage(id, file) {
       syncAllFromDOM()
       block.url = response.data.url
       render()
+    } else {
+      if (progressEl) { progressEl.textContent = t('modal.blocks.uploadError'); progressEl.style.color = 'red'; progressEl.classList.remove('hidden') }
     }
-  } catch {
-    if (progressEl) progressEl.classList.add('hidden')
+  } catch (err) {
+    if (progressEl) { progressEl.textContent = (t('modal.blocks.uploadError') || 'Error') + ': ' + err.message; progressEl.style.color = 'red'; progressEl.classList.remove('hidden') }
   }
 }
 

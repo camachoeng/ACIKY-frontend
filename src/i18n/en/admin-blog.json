@@ -28,7 +28,8 @@
       "uploading": "Uploading...",
       "captionEs": "Caption (ES)",
       "captionEn": "Caption (EN)",
-      "captionPlaceholder": "Image description (optional)"
+      "captionPlaceholder": "Image description (optional)",
+      "uploadError": "Error uploading image"
     },
     "pdf": {
       "label": "PDF Attachment (optional)",
