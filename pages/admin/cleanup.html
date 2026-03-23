@@ -91,15 +91,22 @@
             </div>
 
             <!-- Delete Button -->
-            <div id="deleteSection" class="hidden flex items-center gap-3">
-              <button id="deleteBtn" class="bg-red-500 text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-red-600 transition-colors flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm">delete_sweep</span>
-                <span data-i18n="analysis.deleteButton">Eliminar huérfanas</span>
-              </button>
-              <button id="reanalyzeBtn" class="text-slate-500 hover:text-primary-dark text-sm font-medium flex items-center gap-1 transition-colors">
-                <span class="material-symbols-outlined text-sm">refresh</span>
-                <span data-i18n="analysis.reanalyze">Analizar de nuevo</span>
-              </button>
+            <div id="deleteSection" class="hidden space-y-3">
+              <div id="deleteRow" class="flex items-center gap-3">
+                <button id="deleteBtn" class="bg-red-500 text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-red-600 transition-colors flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sm">delete_sweep</span>
+                  <span data-i18n="analysis.deleteButton">Eliminar huérfanas</span>
+                </button>
+                <button id="reanalyzeBtn" class="text-slate-500 hover:text-primary-dark text-sm font-medium flex items-center gap-1 transition-colors">
+                  <span class="material-symbols-outlined text-sm">refresh</span>
+                  <span data-i18n="analysis.reanalyze">Analizar de nuevo</span>
+                </button>
+              </div>
+              <div id="deleteConfirmRow" class="hidden items-center gap-3 p-3 bg-red-50 rounded-xl">
+                <p class="text-sm text-red-700 font-medium flex-1" id="deleteConfirmText"></p>
+                <button id="deleteCancelBtn" class="px-4 py-2 rounded-xl border border-slate-200 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="confirm.cancel">Cancelar</button>
+                <button id="deleteConfirmBtn" class="px-4 py-2 rounded-xl bg-red-500 text-white text-sm font-bold hover:bg-red-600 transition-colors" data-i18n="confirm.deleteConfirm">Eliminar</button>
+              </div>
             </div>
 
             <!-- No Orphans Reanalyze -->
@@ -108,6 +115,105 @@
                 <span class="material-symbols-outlined text-sm">refresh</span>
                 <span data-i18n="analysis.reanalyze">Analizar de nuevo</span>
               </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Orphan Detector Card -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-accent-terracotta/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-accent-terracotta">picture_as_pdf</span>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-primary-dark" data-i18n="pdf.title">Detector de PDFs Huérfanos</h2>
+              <p class="text-sm text-slate-500" data-i18n="pdf.description">Analiza todos los PDFs en Cloudinary y los compara con las referencias en la base de datos.</p>
+            </div>
+          </div>
+
+          <div id="analyzePdfSection">
+            <button id="analyzePdfBtn" class="bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-primary transition-colors flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm">search</span>
+              <span data-i18n="pdf.analyzeButton">Analizar PDFs</span>
+            </button>
+          </div>
+
+          <div id="pdfAnalysisResults" class="hidden mt-6 space-y-5">
+            <div class="grid grid-cols-3 gap-3">
+              <div class="bg-slate-50 rounded-xl p-4 text-center">
+                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span class="material-symbols-outlined text-blue-600 text-sm">cloud</span>
+                </div>
+                <p class="text-xl font-bold text-primary-dark" id="pdfCloudinaryCount">-</p>
+                <p class="text-xs text-slate-500 font-medium" data-i18n="analysis.stats.cloudinaryLabel">En Cloudinary</p>
+              </div>
+              <div class="bg-slate-50 rounded-xl p-4 text-center">
+                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span class="material-symbols-outlined text-green-600 text-sm">storage</span>
+                </div>
+                <p class="text-xl font-bold text-primary-dark" id="pdfDbCount">-</p>
+                <p class="text-xs text-slate-500 font-medium" data-i18n="analysis.stats.dbLabel">En la base de datos</p>
+              </div>
+              <div class="bg-slate-50 rounded-xl p-4 text-center">
+                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span class="material-symbols-outlined text-red-500 text-sm">delete_forever</span>
+                </div>
+                <p class="text-xl font-bold text-red-600" id="pdfOrphanedCount">-</p>
+                <p class="text-xs text-slate-500 font-medium" data-i18n="analysis.stats.orphanedLabel">Huérfanos</p>
+              </div>
+            </div>
+
+            <div id="pdfNoOrphansMsg" class="hidden p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
+              <span class="material-symbols-outlined text-green-600 flex-shrink-0">check_circle</span>
+              <p class="text-sm text-green-800 font-medium" data-i18n="pdf.noOrphans">No se encontraron PDFs huérfanos. ¡Cloudinary está limpio!</p>
+            </div>
+
+            <div id="pdfOrphanList" class="hidden">
+              <h3 class="text-sm font-semibold text-slate-600 mb-2" data-i18n="pdf.orphanListTitle">PDFs a eliminar</h3>
+              <div id="pdfOrphanItems" class="bg-slate-50 rounded-xl p-3 max-h-48 overflow-y-auto space-y-1"></div>
+            </div>
+
+            <div id="pdfDeleteSection" class="hidden space-y-3">
+              <div id="pdfDeleteRow" class="flex items-center gap-3">
+                <button id="deletePdfBtn" class="bg-red-500 text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-red-600 transition-colors flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sm">delete_sweep</span>
+                  <span data-i18n="pdf.deleteButton">Eliminar huérfanos</span>
+                </button>
+                <button id="reanalyzePdfBtn" class="text-slate-500 hover:text-primary-dark text-sm font-medium flex items-center gap-1 transition-colors">
+                  <span class="material-symbols-outlined text-sm">refresh</span>
+                  <span data-i18n="analysis.reanalyze">Analizar de nuevo</span>
+                </button>
+              </div>
+              <div id="pdfConfirmRow" class="hidden items-center gap-3 p-3 bg-red-50 rounded-xl">
+                <p class="text-sm text-red-700 font-medium flex-1" id="pdfConfirmText"></p>
+                <button id="pdfCancelBtn" class="px-4 py-2 rounded-xl border border-slate-200 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="confirm.cancel">Cancelar</button>
+                <button id="pdfConfirmBtn" class="px-4 py-2 rounded-xl bg-red-500 text-white text-sm font-bold hover:bg-red-600 transition-colors" data-i18n="confirm.deleteConfirm">Eliminar</button>
+              </div>
+            </div>
+
+            <div id="pdfReanalyzeSection" class="hidden">
+              <button id="reanalyzePdfBtnClean" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-sm">refresh</span>
+                <span data-i18n="analysis.reanalyze">Analizar de nuevo</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Cleanup Result -->
+        <div id="pdfCleanupResult" class="hidden bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6">
+          <h2 class="text-lg font-bold text-primary-dark mb-4" data-i18n="result.title">Resultado de Limpieza</h2>
+          <div id="pdfCleanupResultContent" class="space-y-2"></div>
+        </div>
+
+        <!-- PDF Error State -->
+        <div id="analyzePdfError" class="hidden bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-red-500 flex-shrink-0">error</span>
+            <div>
+              <p class="font-semibold text-red-700 text-sm" data-i18n="errors.analyzePdfError">Error al analizar PDFs</p>
+              <p class="text-red-600 text-sm mt-1" id="analyzePdfErrorMessage"></p>
+              <button id="retryPdfBtn" class="mt-3 text-primary hover:text-primary-dark text-sm font-medium" data-i18n="retry">Reintentar</button>
             </div>
           </div>
         </div>

@@ -58,7 +58,8 @@ export async function initSchedule() {
     const shareBtn = e.target.closest('.schedule-share-btn')
     if (shareBtn) {
       const name = shareBtn.dataset.shareName
-      shareContent({ title: name, text: name, url: window.location.href })
+      const imageUrl = shareBtn.dataset.shareImage || null
+      shareContent({ title: name, text: name, url: window.location.href, imageUrl })
       return
     }
 
@@ -160,6 +161,7 @@ function renderClassCard(activity, index) {
         <div class="flex items-center gap-2">
           <button class="schedule-share-btn p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-xl transition-colors"
                   data-share-name="${escapeAttr(activityName)}"
+                  data-share-image="${escapeAttr(activity.image_url || '')}"
                   title="${escapeAttr(t('common.share'))}">
             <span class="material-symbols-outlined text-base">share</span>
           </button>
