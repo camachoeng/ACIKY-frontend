@@ -31,8 +31,23 @@
     "description": "La limpieza se ejecuta automáticamente cada noche a las 3:00 AM UTC comparando Cloudinary con la base de datos de producción.",
     "setupNote": "Para activar: configurar Heroku Scheduler con el comando node scripts/cleanup.js cada 24 horas."
   },
+  "pdf": {
+    "title": "Detector de PDFs Huérfanos",
+    "description": "Analiza todos los PDFs en Cloudinary y los compara con las referencias en la base de datos.",
+    "analyzeButton": "Analizar PDFs",
+    "noOrphans": "No se encontraron PDFs huérfanos. ¡Cloudinary está limpio!",
+    "orphanListTitle": "PDFs a eliminar",
+    "deleteButton": "Eliminar huérfanos",
+    "confirmDelete": "¿Eliminar {count} PDFs huérfanos de Cloudinary? Esta acción no se puede deshacer.",
+    "deletedCount": "PDFs eliminados"
+  },
+  "confirm": {
+    "cancel": "Cancelar",
+    "deleteConfirm": "Eliminar"
+  },
   "errors": {
     "analyzeError": "Error al analizar imágenes",
+    "analyzePdfError": "Error al analizar PDFs",
     "deleteError": "Error al eliminar imágenes huérfanas"
   }
 }

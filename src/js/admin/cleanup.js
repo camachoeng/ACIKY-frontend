@@ -3,16 +3,27 @@ import { apiFetch } from '../api.js'
 import { t } from '../i18n.js'
 
 let lastAnalysisData = null
+let lastPdfAnalysisData = null
 
 export async function initCleanup() {
   const user = await requireAdmin()
   if (!user) return
 
   document.getElementById('analyzeBtn')?.addEventListener('click', runAnalysis)
-  document.getElementById('deleteBtn')?.addEventListener('click', runDelete)
+  document.getElementById('deleteBtn')?.addEventListener('click', showDeleteConfirm)
+  document.getElementById('deleteCancelBtn')?.addEventListener('click', hideDeleteConfirm)
+  document.getElementById('deleteConfirmBtn')?.addEventListener('click', runDelete)
   document.getElementById('reanalyzeBtn')?.addEventListener('click', runAnalysis)
   document.getElementById('reanalyzeBtnClean')?.addEventListener('click', runAnalysis)
   document.getElementById('retryBtn')?.addEventListener('click', runAnalysis)
+
+  document.getElementById('analyzePdfBtn')?.addEventListener('click', runPdfAnalysis)
+  document.getElementById('deletePdfBtn')?.addEventListener('click', showPdfDeleteConfirm)
+  document.getElementById('pdfCancelBtn')?.addEventListener('click', hidePdfDeleteConfirm)
+  document.getElementById('pdfConfirmBtn')?.addEventListener('click', runPdfDelete)
+  document.getElementById('reanalyzePdfBtn')?.addEventListener('click', runPdfAnalysis)
+  document.getElementById('reanalyzePdfBtnClean')?.addEventListener('click', runPdfAnalysis)
+  document.getElementById('retryPdfBtn')?.addEventListener('click', runPdfAnalysis)
 }
 
 async function runAnalysis() {
@@ -91,14 +102,26 @@ async function runAnalysis() {
   }
 }
 
+function showDeleteConfirm() {
+  if (!lastAnalysisData) return
+  const count = lastAnalysisData.orphanedCount
+  const msg = (t('analysis.confirmDelete') || '¿Eliminar {count} imágenes huérfanas de Cloudinary? Esta acción no se puede deshacer.').replace('{count}', count)
+  const el = document.getElementById('deleteConfirmText')
+  if (el) el.textContent = msg
+  document.getElementById('deleteRow')?.classList.add('hidden')
+  const row = document.getElementById('deleteConfirmRow')
+  if (row) { row.classList.remove('hidden'); row.style.display = 'flex' }
+}
+
+function hideDeleteConfirm() {
+  document.getElementById('deleteRow')?.classList.remove('hidden')
+  const row = document.getElementById('deleteConfirmRow')
+  if (row) { row.classList.add('hidden'); row.style.display = '' }
+}
+
 async function runDelete() {
   if (!lastAnalysisData) return
-
-  const count = lastAnalysisData.orphanedCount
-  const confirmMsg = (t('analysis.confirmDelete') || '¿Eliminar {count} imágenes huérfanas de Cloudinary? Esta acción no se puede deshacer.')
-    .replace('{count}', count)
-
-  if (!confirm(confirmMsg)) return
+  hideDeleteConfirm()
 
   const deleteBtn = document.getElementById('deleteBtn')
   const reanalyzeBtn = document.getElementById('reanalyzeBtn')
@@ -159,6 +182,154 @@ async function runDelete() {
     if (deleteBtn) {
       deleteBtn.disabled = false
       deleteBtn.innerHTML = `<span class="material-symbols-outlined text-sm">delete_sweep</span> <span>${t('analysis.deleteButton') || 'Eliminar huérfanas'}</span>`
+    }
+    if (reanalyzeBtn) reanalyzeBtn.disabled = false
+  }
+}
+
+async function runPdfAnalysis() {
+  const analyzeBtn = document.getElementById('analyzePdfBtn')
+  const analysisResults = document.getElementById('pdfAnalysisResults')
+  const analyzeError = document.getElementById('analyzePdfError')
+  const cleanupResult = document.getElementById('pdfCleanupResult')
+
+  analyzeError?.classList.add('hidden')
+  cleanupResult?.classList.add('hidden')
+
+  if (analyzeBtn) {
+    analyzeBtn.disabled = true
+    analyzeBtn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">progress_activity</span> <span>${t('analysis.analyzing') || 'Analizando...'}</span>`
+  }
+
+  try {
+    const data = await apiFetch('/api/cleanup/orphaned-pdfs')
+
+    if (!data.success || !data.data) throw new Error(data.message || 'Invalid response')
+
+    const { cloudinaryTotal, dbTotal, orphanedCount, orphaned } = data.data
+    lastPdfAnalysisData = data.data
+
+    document.getElementById('pdfCloudinaryCount').textContent = cloudinaryTotal
+    document.getElementById('pdfDbCount').textContent = dbTotal
+    document.getElementById('pdfOrphanedCount').textContent = orphanedCount
+
+    const noOrphansMsg = document.getElementById('pdfNoOrphansMsg')
+    const orphanList = document.getElementById('pdfOrphanList')
+    const deleteSection = document.getElementById('pdfDeleteSection')
+    const reanalyzeSection = document.getElementById('pdfReanalyzeSection')
+
+    if (orphanedCount === 0) {
+      noOrphansMsg?.classList.remove('hidden')
+      orphanList?.classList.add('hidden')
+      deleteSection?.classList.add('hidden')
+      reanalyzeSection?.classList.remove('hidden')
+    } else {
+      noOrphansMsg?.classList.add('hidden')
+      reanalyzeSection?.classList.add('hidden')
+      deleteSection?.classList.remove('hidden')
+      orphanList?.classList.remove('hidden')
+
+      const orphanItems = document.getElementById('pdfOrphanItems')
+      if (orphanItems && orphaned) {
+        orphanItems.innerHTML = orphaned
+          .map(item => `<p class="text-xs font-mono text-slate-600 py-0.5">• ${escapeHtml(item.publicId)}</p>`)
+          .join('')
+      }
+    }
+
+    analysisResults?.classList.remove('hidden')
+
+  } catch (err) {
+    analyzeError?.classList.remove('hidden')
+    const msg = document.getElementById('analyzePdfErrorMessage')
+    if (msg) msg.textContent = err.message
+  } finally {
+    if (analyzeBtn) {
+      analyzeBtn.disabled = false
+      analyzeBtn.innerHTML = `<span class="material-symbols-outlined text-sm">search</span> <span>${t('pdf.analyzeButton') || 'Analizar PDFs'}</span>`
+    }
+  }
+}
+
+function showPdfDeleteConfirm() {
+  if (!lastPdfAnalysisData) return
+  const count = lastPdfAnalysisData.orphanedCount
+  const msg = (t('pdf.confirmDelete') || '¿Eliminar {count} PDFs huérfanos de Cloudinary? Esta acción no se puede deshacer.').replace('{count}', count)
+  const el = document.getElementById('pdfConfirmText')
+  if (el) el.textContent = msg
+  document.getElementById('pdfDeleteRow')?.classList.add('hidden')
+  const row = document.getElementById('pdfConfirmRow')
+  if (row) { row.classList.remove('hidden'); row.style.display = 'flex' }
+}
+
+function hidePdfDeleteConfirm() {
+  document.getElementById('pdfDeleteRow')?.classList.remove('hidden')
+  const row = document.getElementById('pdfConfirmRow')
+  if (row) { row.classList.add('hidden'); row.style.display = '' }
+}
+
+async function runPdfDelete() {
+  if (!lastPdfAnalysisData) return
+  hidePdfDeleteConfirm()
+
+  const deleteBtn = document.getElementById('deletePdfBtn')
+  const reanalyzeBtn = document.getElementById('reanalyzePdfBtn')
+  const cleanupResult = document.getElementById('pdfCleanupResult')
+  const cleanupResultContent = document.getElementById('pdfCleanupResultContent')
+
+  if (deleteBtn) {
+    deleteBtn.disabled = true
+    deleteBtn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">progress_activity</span> <span>${t('analysis.deleting') || 'Eliminando...'}</span>`
+  }
+  if (reanalyzeBtn) reanalyzeBtn.disabled = true
+
+  cleanupResult?.classList.add('hidden')
+
+  try {
+    const data = await apiFetch('/api/cleanup/orphaned-pdfs', { method: 'POST' })
+
+    if (!data.success) throw new Error(data.message || 'Deletion failed')
+
+    const result = data.data || {}
+
+    if (cleanupResultContent) {
+      cleanupResultContent.innerHTML = `
+        <div class="p-4 bg-green-50 border border-green-200 rounded-xl">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-green-600 flex-shrink-0">check_circle</span>
+            <div class="text-sm">
+              <p class="font-semibold text-green-800 mb-2">${escapeHtml(t('result.success') || 'Limpieza completada exitosamente')}</p>
+              <p class="text-green-700"><strong>${escapeHtml(t('pdf.deletedCount') || 'PDFs eliminados')}:</strong> ${result.deletedCount ?? 0}</p>
+              ${result.failed > 0 ? `<p class="text-amber-700 mt-1">Errores: ${result.failed}</p>` : ''}
+            </div>
+          </div>
+        </div>
+      `
+    }
+    cleanupResult?.classList.remove('hidden')
+
+    lastPdfAnalysisData = null
+    setTimeout(() => runPdfAnalysis(), 800)
+
+  } catch (err) {
+    if (cleanupResultContent) {
+      cleanupResultContent.innerHTML = `
+        <div class="p-4 bg-red-50 border border-red-200 rounded-xl">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-red-600 flex-shrink-0">error</span>
+            <div class="text-sm">
+              <p class="font-semibold text-red-800 mb-1">${escapeHtml(t('result.error') || 'Error en la limpieza')}</p>
+              <p class="text-red-700">${escapeHtml(err.message)}</p>
+            </div>
+          </div>
+        </div>
+      `
+    }
+    cleanupResult?.classList.remove('hidden')
+  } finally {
+    if (deleteBtn) {
+      deleteBtn.disabled = false
+      deleteBtn.innerHTML = `<span class="material-symbols-outlined text-sm">delete_sweep</span> <span>${t('pdf.deleteButton') || 'Eliminar huérfanos'}</span>`
     }
     if (reanalyzeBtn) reanalyzeBtn.disabled = false
   }

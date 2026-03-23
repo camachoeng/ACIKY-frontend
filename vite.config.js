@@ -8,6 +8,10 @@ export default defineConfig(() => {
 
   return {
     base: basePath + '/',
+    server: {
+    port: 5174,
+    strictPort: true,
+    },
     plugins: [
       tailwindcss(),
       handlebars({

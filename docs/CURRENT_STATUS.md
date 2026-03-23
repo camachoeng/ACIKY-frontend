@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-03-16
+Last updated: 2026-03-23
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,25 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Orphaned PDF cleanup fixes - COMPLETE** (2026-03-23)
+  - `pages/admin/cleanup.html`: confirm rows for both image and PDF delete use `class="hidden"` only (no `flex` in initial class — was causing display conflict with Tailwind); `style.display` set explicitly in JS
+  - `src/js/admin/cleanup.js`: `showDeleteConfirm`/`showPdfDeleteConfirm` now set `row.style.display = 'flex'` directly to bypass Tailwind class conflicts; `window.confirm()` removed from both image and PDF delete flows
+  - Backend: safety guard removed from `cloudinaryOrphanPdfService.js` — 80% threshold blocked deletion when all/most PDFs were orphaned (meaningless at single-digit PDF counts)
+  - Backend: `POST /api/upload/content` changed from `requireAdmin` → `requireAuth` so instructors can upload content images for blog blocks
+- [x] **Orphaned PDF cleanup - COMPLETE** (2026-03-21)
+  - `pages/admin/cleanup.html`: added "Detector de PDFs Huérfanos" card below the image one (same structure — stats chips, orphan list, delete button)
+  - `src/js/admin/cleanup.js`: `runPdfAnalysis()` and `runPdfDelete()` calling `/api/cleanup/orphaned-pdfs`; `lastPdfAnalysisData` tracks state separately from images
+  - `src/i18n/es|en/admin-cleanup.json`: added `pdf.*` keys and `errors.analyzePdfError`
+  - Backend: `services/cloudinaryOrphanPdfService.js` — lists `resource_type: 'raw'` assets under `aciky/documents`, compares against `blog_posts.pdf_url`, 80% safety guard; deletion uses `{ resource_type: 'raw' }`
+  - Backend: `controllers/cleanupController.js` — added `previewOrphanedPdfs` and `deleteOrphanedPdfs`
+  - Backend: `routes/cleanup.js` — `GET /api/cleanup/orphaned-pdfs` and `POST /api/cleanup/orphaned-pdfs` (both `requireAdmin`)
+  - `backend-specs/cleanup-orphaned-pdfs.md`: spec
+- [x] **Blog admin bug fixes - COMPLETE** (2026-03-19)
+  - `pages/admin/blog.html`: added `#pdfUploadError` element; added custom `#deleteConfirmModal` (replaces `window.confirm()` which is silently suppressed on mobile)
+  - `src/js/admin/blog.js`: PDF upload now validates 10 MB client-side and shows a clear error; catch block shows actual error instead of silently failing; `confirmDelete` uses custom modal instead of `window.confirm()`
+  - `src/js/admin/blogBlocks.js`: image block upload now shows the actual error (red text) on failure instead of silently hiding the progress spinner — revealed that `POST /api/upload/content` required admin role
+  - Backend: changed `POST /api/upload/content` from `requireAdmin` → `requireAuth` so instructors can upload content images for blog blocks
+  - `src/i18n/es|en/admin-blog.json`: added `modal.pdf.tooLarge`, `modal.pdf.uploadError`, `modal.blocks.uploadError`, `confirm.deleteConfirm`, `confirm.cancel` keys
 - [x] **PDF upload endpoint + download fix - COMPLETE** (2026-03-16)
   - `POST /api/upload/pdf` — dedicated multer instance (field `file`, 10 MB, PDF-only), Cloudinary `resource_type: 'raw'`, `use_filename: true`, `unique_filename: true`, folder `aciky/documents`
   - `use_filename: true` was the key fix — without it Cloudinary generates a URL with no extension → served as `application/octet-stream` → browser downloads as generic "File" instead of PDF

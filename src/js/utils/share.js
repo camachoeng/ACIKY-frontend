@@ -1,9 +1,25 @@
 import { t } from '../i18n.js'
 
-export async function shareContent({ title, text, url }) {
+export async function shareContent({ title, text, url, imageUrl }) {
   if (navigator.share) {
     try {
-      await navigator.share({ title, text, url })
+      const shareData = { title, text, url }
+
+      if (imageUrl && navigator.canShare) {
+        try {
+          const res = await fetch(imageUrl)
+          const blob = await res.blob()
+          const ext = blob.type.split('/')[1] || 'jpg'
+          const file = new File([blob], `image.${ext}`, { type: blob.type })
+          if (navigator.canShare({ files: [file] })) {
+            shareData.files = [file]
+          }
+        } catch {
+          // image unavailable — share without it
+        }
+      }
+
+      await navigator.share(shareData)
     } catch (err) {
       if (err.name !== 'AbortError') {
         await fallbackCopy(url)
