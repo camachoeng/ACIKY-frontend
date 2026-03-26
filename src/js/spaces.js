@@ -16,7 +16,8 @@ export async function initSpaces() {
     ?.addEventListener('click', (e) => {
       const btn = e.target.closest('.space-share-btn')
       if (!btn) return
-      shareContent({ title: btn.dataset.name, text: btn.dataset.name, url: window.location.href })
+      const imageUrl = btn.dataset.shareImage || null
+      shareContent({ title: btn.dataset.name, text: btn.dataset.name, url: window.location.href, imageUrl })
     })
 
   window.addEventListener('languageChanged', () => {
@@ -236,8 +237,19 @@ function renderSpaces() {
               </a>
             ` : ''}
 
+            ${space.website_url ? `
+              <a href="${escapeHtml(space.website_url)}"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="flex-1 min-w-[120px] inline-flex items-center justify-center gap-1 px-3 py-2 bg-primary/10 text-primary text-xs font-medium rounded-lg hover:bg-primary/20 transition-colors">
+                <span class="material-symbols-outlined text-sm">language</span>
+                <span>${t('card.websiteButton')}</span>
+              </a>
+            ` : ''}
+
             <button class="space-share-btn inline-flex items-center justify-center gap-1 px-3 py-2 bg-slate-100 text-slate-500 text-xs font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
-                    data-name="${escapeHtml(spaceName)}">
+                    data-name="${escapeHtml(spaceName)}"
+                    data-share-image="${escapeAttr(space.image_url || '')}">
               <span class="material-symbols-outlined text-sm">share</span>
               <span>${t('common.share')}</span>
             </button>

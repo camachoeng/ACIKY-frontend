@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-03-23
+Last updated: 2026-03-26
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,24 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **OG image tags + share image improvements - COMPLETE** (2026-03-26)
+  - `pages/schedule.html`: added `og:type`, `og:url`, `og:title`, `og:description`, `og:image` (activity-classes.png) — URL preview shows hero image in WhatsApp/social
+  - `pages/festival.html`: same OG tags added (activity-festival.png)
+  - `src/js/spaces.js`: space share button now carries `data-share-image` with the space's Cloudinary URL; passed as `imageUrl` to `shareContent` — space image is included when sharing via Web Share API
+  - `src/js/posturas.js`: `currentLightboxImage` tracked alongside `currentLightboxTitle`; lightbox share button now passes `imageUrl` to `shareContent` — posture image included in share
+  - `src/js/schedule.js`: class share button already had `data-share-image` (added 2026-03-24)
+  - `src/js/utils/share.js`: supports `imageUrl` param — fetches image as blob, passes as `files` to `navigator.share()` if supported; falls back gracefully
+- [x] **Instructor role & routes fixes - COMPLETE** (2026-03-24)
+  - `vite.config.js`: added `instructorMyRoutes` entry — `pages/instructor/my-routes.html` was missing from the build, causing 404 in production
+  - Backend: `authController.checkAuth` now always queries the DB for a fresh user record (both session and Bearer token paths); role changes by admin take effect on the user's next page load with no re-login required
+  - `backend-specs/fix-stale-role-after-role-change.md`: spec
+- [x] **Space website URL - COMPLETE** (2026-03-24)
+  - `pages/admin/spaces.html`: added "Sitio Web" URL input field below Email
+  - `src/js/admin/spaces.js`: populates and saves `website_url`
+  - `src/js/spaces.js`: "Sitio web" / "Website" button on public card (green, `language` icon), shown only when URL is set
+  - `src/i18n/es|en/spaces.json`: added `card.websiteButton`
+  - `src/i18n/es|en/admin-spaces.json`: added `modal.website` and `modal.websitePlaceholder`
+  - Backend: `website_url VARCHAR(500)` added to spaces table; `spaceRepository.js` create/update + `spaceService.js` pass-through
 - [x] **Orphaned PDF cleanup fixes - COMPLETE** (2026-03-23)
   - `pages/admin/cleanup.html`: confirm rows for both image and PDF delete use `class="hidden"` only (no `flex` in initial class — was causing display conflict with Tailwind); `style.display` set explicitly in JS
   - `src/js/admin/cleanup.js`: `showDeleteConfirm`/`showPdfDeleteConfirm` now set `row.style.display = 'flex'` directly to bypass Tailwind class conflicts; `window.confirm()` removed from both image and PDF delete flows

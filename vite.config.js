@@ -57,6 +57,7 @@ export default defineConfig(() => {
           instructorClasses: resolve(__dirname, 'pages/instructor/my-classes.html'),
           instructorMySpace: resolve(__dirname, 'pages/instructor/my-space.html'),
           instructorMyRebirthing: resolve(__dirname, 'pages/instructor/my-rebirthing.html'),
+          instructorMyRoutes: resolve(__dirname, 'pages/instructor/my-routes.html'),
           adminRebirthing: resolve(__dirname, 'pages/admin/rebirthing.html'),
           verifyEmail: resolve(__dirname, 'pages/verify-email.html'),
           event: resolve(__dirname, 'pages/event.html'),

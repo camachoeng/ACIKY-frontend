@@ -20,7 +20,8 @@
     "disciplines": "Disciplines",
     "emailButton": "Send email",
     "whatsappButton": "WhatsApp",
-    "locationButton": "View location"
+    "locationButton": "View location",
+    "websiteButton": "Website"
   },
   "loading": "Loading spaces...",
   "empty": "No spaces available at this time",

@@ -104,6 +104,7 @@ function setupLightbox() {
   const lightboxDescription = document.getElementById('lightboxDescription')
 
   let currentLightboxTitle = ''
+  let currentLightboxImage = null
 
   // Open lightbox on card click
   container?.addEventListener('click', (e) => {
@@ -112,6 +113,7 @@ function setupLightbox() {
 
     const { image, title, description } = card.dataset
     currentLightboxTitle = title
+    currentLightboxImage = image || null
 
     lightboxTitle.textContent = title
     lightboxDescription.textContent = description
@@ -124,7 +126,7 @@ function setupLightbox() {
   })
 
   document.getElementById('lightboxShareBtn')?.addEventListener('click', () => {
-    shareContent({ title: currentLightboxTitle, text: currentLightboxTitle, url: window.location.href })
+    shareContent({ title: currentLightboxTitle, text: currentLightboxTitle, url: window.location.href, imageUrl: currentLightboxImage })
   })
 
   // Close lightbox

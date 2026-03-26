@@ -406,6 +406,7 @@ async function openEditModal(id) {
   checkGpsUrl()
   document.getElementById('spacePhone').value = space.phone || ''
   document.getElementById('spaceEmail').value = space.email || ''
+  document.getElementById('spaceWebsite').value = space.website_url || ''
   document.getElementById('spaceActive').checked = space.active
 
   // Disciplines (convert array to comma-separated strings - Spanish and English)
@@ -534,6 +535,7 @@ async function saveSpace(e) {
     gps_location: document.getElementById('spaceGpsLocation').value.trim() || null,
     phone: document.getElementById('spacePhone').value.trim() || null,
     email: document.getElementById('spaceEmail').value.trim() || null,
+    website_url: document.getElementById('spaceWebsite').value.trim() || null,
     active: document.getElementById('spaceActive').checked,
     instructor_ids,
     disciplines
