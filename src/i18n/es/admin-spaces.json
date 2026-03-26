@@ -29,6 +29,8 @@
     "phonePlaceholder": "+53 5 0759360",
     "email": "Email del Instructor",
     "emailPlaceholder": "instructor@example.com",
+    "website": "Sitio Web",
+    "websitePlaceholder": "https://example.com",
     "instructors": "Instructores Asignados",
     "instructorsHelp": "Selecciona uno o más instructores",
     "loadingInstructors": "Cargando instructores...",
