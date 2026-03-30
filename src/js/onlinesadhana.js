@@ -2,8 +2,12 @@
 import { t } from './i18n.js'
 import { apiFetch } from './api.js'
 import { formatUserName } from './utils/formatUserName.js'
+import { getWhatsAppNumber, buildWhatsAppUrl } from './utils/whatsapp.js'
 
-export function initOnlineSadhana() {
+let waPhone = '5350759360'
+
+export async function initOnlineSadhana() {
+  waPhone = await getWhatsAppNumber()
   updateWhatsAppLink()
   loadParticipants()
 
@@ -17,7 +21,7 @@ function updateWhatsAppLink() {
   const whatsappBtn = document.getElementById('whatsappCtaBtn')
   if (!whatsappBtn) return
   const message = t('cta.whatsappMessage')
-  whatsappBtn.href = `https://wa.me/5350759360?text=${encodeURIComponent(message)}`
+  whatsappBtn.href = buildWhatsAppUrl(waPhone, message)
 }
 
 async function loadParticipants() {

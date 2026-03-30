@@ -713,7 +713,20 @@ async function initPage() {
   } else if (path.includes('/pages/admin/events.html')) {
     const { initAdminEvents } = await import('./js/admin/adminEvents.js')
     initAdminEvents()
+  } else if (path.includes('/pages/admin/settings.html')) {
+    const { initAdminSettings } = await import('./js/admin/settings.js')
+    initAdminSettings()
   }
+}
+
+async function updatePageWhatsAppLinks() {
+  try {
+    const { getWhatsAppNumber } = await import('./js/utils/whatsapp.js')
+    const phone = await getWhatsAppNumber()
+    document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
+      a.href = a.href.replace(/wa\.me\/\d+/, `wa.me/${phone}`)
+    })
+  } catch { /* silent */ }
 }
 
 // Initialize
@@ -727,4 +740,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   initLanguageToggle()
   await checkAuth()
   await initPage()
+  updatePageWhatsAppLinks()
 })

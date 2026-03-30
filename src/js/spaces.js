@@ -249,7 +249,7 @@ function renderSpaces() {
 
             <button class="space-share-btn inline-flex items-center justify-center gap-1 px-3 py-2 bg-slate-100 text-slate-500 text-xs font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
                     data-name="${escapeHtml(spaceName)}"
-                    data-share-image="${escapeAttr(space.image_url || '')}">
+                    data-share-image="${escapeHtml(space.image || '')}">
               <span class="material-symbols-outlined text-sm">share</span>
               <span>${t('common.share')}</span>
             </button>

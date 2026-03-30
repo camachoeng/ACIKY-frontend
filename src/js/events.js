@@ -2,10 +2,13 @@
 import { t, localized, getLanguage } from './i18n.js'
 import { apiFetch } from './api.js'
 import { shareContent } from './utils/share.js'
+import { getWhatsAppNumber, buildWhatsAppUrl } from './utils/whatsapp.js'
 
 let cachedEvent = null
+let waPhone = '5350759360'
 
 export async function initEvent() {
+  waPhone = await getWhatsAppNumber()
   await loadEvent()
   updateWhatsAppLink()
 
@@ -27,7 +30,7 @@ function updateWhatsAppLink() {
     ? (getLanguage() === 'en' && cachedEvent.name_en ? cachedEvent.name_en : cachedEvent.name)
     : ''
   const message = t('cta.whatsappMessage', { name })
-  btn.href = `https://wa.me/5350759360?text=${encodeURIComponent(message)}`
+  btn.href = buildWhatsAppUrl(waPhone, message)
 }
 
 async function loadEvent() {

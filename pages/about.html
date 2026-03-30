@@ -67,9 +67,12 @@
         </div>
       </section>
 
-      <!-- Nuestro Equipo Section (Dynamic) -->
+      <!-- Comité Directivo Section (Dynamic) -->
       <section class="px-6 mb-12">
-        <h2 class="text-2xl font-bold text-primary-dark mb-6" data-i18n="team.title">Nuestro Equipo</h2>
+        <h2 class="text-2xl font-bold text-primary-dark mb-3" data-i18n="team.title">Comité Directivo</h2>
+        <p class="text-sm text-slate-600 leading-relaxed mb-6" data-i18n="team.description">
+          En ACIKY no hay un líder máximo: las decisiones se toman en conjunto.
+        </p>
 
         <!-- Loading State -->
         <div id="teamLoading" class="text-center py-12">
@@ -90,7 +93,22 @@
         <!-- Empty State -->
         <div id="teamEmpty" class="hidden text-center py-12">
           <span class="material-symbols-outlined text-slate-300 text-4xl">groups</span>
-          <p class="text-slate-500 text-sm mt-2" data-i18n="team.empty">Pronto conocerás a nuestro equipo</p>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="team.empty">Pronto conocerás al Comité Directivo</p>
+        </div>
+
+        <!-- Join Committee CTA -->
+        <div class="mt-8 bg-primary/5 border border-primary/20 rounded-2xl p-6 text-center">
+          <span class="material-symbols-outlined text-primary text-3xl mb-2 block">group_add</span>
+          <h3 class="font-bold text-primary-dark text-base mb-2" data-i18n="team.joinTitle">¿Quieres ser parte del Comité?</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4" data-i18n="team.joinDescription">
+            Si sientes el llamado a contribuir al crecimiento de ACIKY, escríbenos.
+          </p>
+          <a id="teamJoinWhatsappBtn" href="https://wa.me/5350759360"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-5 py-3 bg-primary-dark text-white text-sm font-bold rounded-2xl hover:bg-primary transition-colors">
+            <span class="material-symbols-outlined text-base">chat</span>
+            <span data-i18n="team.joinButton">Preguntar por WhatsApp</span>
+          </a>
         </div>
       </section>
 

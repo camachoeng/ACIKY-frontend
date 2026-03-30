@@ -175,6 +175,17 @@ function renderPage() {
   }
 }
 
+function getPostImage(post) {
+  if (post.content_blocks) {
+    try {
+      const blocks = JSON.parse(post.content_blocks)
+      const imgBlock = blocks.find(b => b.type === 'image')
+      if (imgBlock?.url) return imgBlock.url
+    } catch { /* fall through */ }
+  }
+  return null
+}
+
 function getPostSnippet(post) {
   if (post.content_blocks) {
     try {
@@ -193,10 +204,12 @@ function renderCard(post) {
   const title = localized(post, 'title')
   const snippet = getPostSnippet(post)
   const date = formatDate(post.created_at)
+  const imageUrl = getPostImage(post)
 
   return `
     <div class="blog-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
          data-post-id="${post.id}">
+      ${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(title)}" class="w-full h-44 object-cover" onerror="this.onerror=null;this.style.display='none'" />` : ''}
       <div class="p-6">
         <h3 class="font-bold text-primary-dark text-lg">${escapeHtml(title)}</h3>
         <div class="flex items-center gap-2 mt-2 text-xs text-slate-400">
@@ -212,6 +225,7 @@ function renderCard(post) {
           <span class="text-primary font-medium text-sm">${t('blog.readMore')} &rarr;</span>
           <button class="blog-share-btn p-1.5 rounded-full hover:bg-primary/10 text-slate-400 hover:text-primary transition-colors"
                   data-share-id="${post.id}"
+                  data-share-image="${escapeHtml(imageUrl || '')}"
                   title="${escapeHtml(t('common.share'))}">
             <span class="material-symbols-outlined text-base">share</span>
           </button>
@@ -344,7 +358,8 @@ function setupEvents() {
       if (post) {
         const title = localized(post, 'title')
         const url = `${location.origin}${location.pathname}#post-${id}`
-        shareContent({ title, text: title, url })
+        const imageUrl = shareBtn.dataset.shareImage || getPostImage(post) || null
+        shareContent({ title, text: title, url, imageUrl })
       }
       return
     }
@@ -363,7 +378,8 @@ function setupEvents() {
     if (!post) return
     const title = localized(post, 'title')
     const url = `${location.origin}${location.pathname}#post-${currentPostId}`
-    shareContent({ title, text: title, url })
+    const imageUrl = getPostImage(post)
+    shareContent({ title, text: title, url, imageUrl })
   })
 
   document.getElementById('blogSearch')?.addEventListener('input', applySearch)
