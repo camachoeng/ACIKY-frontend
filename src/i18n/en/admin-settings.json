@@ -1,0 +1,19 @@
+{
+  "title": "Site Settings",
+  "subtitle": "General website settings",
+  "whatsapp": {
+    "title": "WhatsApp Number",
+    "description": "Number used on all contact buttons across the site",
+    "label": "Number (digits only, with country code)",
+    "placeholder": "5350759360",
+    "hint": "Example: 5350759360 (Cuba) · 34612345678 (Spain) · 15551234567 (USA)",
+    "save": "Save",
+    "saved": "Number saved successfully",
+    "errorEmpty": "Number cannot be empty",
+    "previewLabel": "Link preview:"
+  },
+  "errors": {
+    "loadError": "Could not load settings",
+    "saveError": "Error saving. Please try again."
+  }
+}

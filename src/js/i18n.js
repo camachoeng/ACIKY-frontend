@@ -85,7 +85,8 @@ function getPageName() {
     'pages/admin/festival.html': 'admin-festival',
     'pages/admin/online-sadhana.html': 'admin-online-sadhana',
     'pages/privacy.html': 'privacy',
-    'pages/terms.html': 'terms'
+    'pages/terms.html': 'terms',
+    'pages/admin/settings.html': 'admin-settings'
   }
 
   return pageMap[normalizedPath] || 'home'

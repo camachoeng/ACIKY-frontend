@@ -18,12 +18,17 @@
     "description": "Kundalini Yoga is an ancient practice that combines physical postures, breathing techniques, meditation, and mantras to awaken the vital energy that resides at the base of the spine."
   },
   "team": {
-    "title": "Our Team",
+    "title": "Board Committee",
+    "description": "At ACIKY there is no single leader: decisions are made together. Each Committee member brings their voice and vision, guiding the association with horizontality and mutual respect.",
     "loading": "Loading team...",
     "error": "Could not load team",
     "retry": "Retry",
-    "empty": "You will soon meet our team",
-    "photoAlt": "Photo of {{name}}"
+    "empty": "You will soon meet the Board Committee",
+    "photoAlt": "Photo of {{name}}",
+    "joinTitle": "Want to join the Committee?",
+    "joinDescription": "If you feel the calling to contribute to ACIKY's growth, reach out. We'd love to meet you.",
+    "joinButton": "Ask via WhatsApp",
+    "whatsappMessage": "Hello, I'd like to know more about joining ACIKY's Board Committee (este mensaje es desde el sitio web de ACIKY)"
   },
   "values": {
     "title": "Our Values",

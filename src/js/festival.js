@@ -1,10 +1,13 @@
 // Festival page
 import { t, getLanguage } from './i18n.js'
 import { apiFetch } from './api.js'
+import { getWhatsAppNumber, buildWhatsAppUrl } from './utils/whatsapp.js'
 
 let festivalSettings = null
+let waPhone = '5350759360'
 
 export async function initFestival() {
+  waPhone = await getWhatsAppNumber()
   updateWhatsAppLink()
   window.addEventListener('languageChanged', () => {
     updateWhatsAppLink()
@@ -141,8 +144,7 @@ function updateWhatsAppLink() {
   if (!whatsappBtn) return
 
   const message = t('cta.whatsappMessage')
-  const encodedMessage = encodeURIComponent(message)
-  whatsappBtn.href = `https://wa.me/5350759360?text=${encodedMessage}`
+  whatsappBtn.href = buildWhatsAppUrl(waPhone, message)
 }
 
 function escapeHtml(str) {

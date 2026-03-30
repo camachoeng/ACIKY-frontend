@@ -1,0 +1,19 @@
+{
+  "title": "Configuración del Sitio",
+  "subtitle": "Ajustes generales del sitio web",
+  "whatsapp": {
+    "title": "Número de WhatsApp",
+    "description": "Número usado en todos los botones de contacto del sitio",
+    "label": "Número (solo dígitos, con código de país)",
+    "placeholder": "5350759360",
+    "hint": "Ejemplo: 5350759360 (Cuba) · 34612345678 (España) · 15551234567 (EE.UU.)",
+    "save": "Guardar",
+    "saved": "Número guardado correctamente",
+    "errorEmpty": "El número no puede estar vacío",
+    "previewLabel": "Vista previa del enlace:"
+  },
+  "errors": {
+    "loadError": "No se pudo cargar la configuración",
+    "saveError": "Error al guardar. Intenta nuevamente."
+  }
+}

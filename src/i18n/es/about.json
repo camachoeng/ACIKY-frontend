@@ -18,12 +18,17 @@
     "description": "El Kundalini Yoga es una práctica milenaria que combina posturas físicas, técnicas de respiración, meditación y mantras para despertar la energía vital que reside en la base de la columna vertebral."
   },
   "team": {
-    "title": "Nuestro Equipo",
+    "title": "Comité Directivo",
+    "description": "En ACIKY no hay un líder máximo: las decisiones se toman en conjunto. Cada miembro del Comité aporta su voz y su visión, guiando el camino de la asociación con horizontalidad y respeto mutuo.",
     "loading": "Cargando equipo...",
     "error": "No se pudo cargar el equipo",
     "retry": "Reintentar",
-    "empty": "Pronto conocerás a nuestro equipo",
-    "photoAlt": "Foto de {{name}}"
+    "empty": "Pronto conocerás al Comité Directivo",
+    "photoAlt": "Foto de {{name}}",
+    "joinTitle": "¿Quieres ser parte del Comité?",
+    "joinDescription": "Si sientes el llamado a contribuir al crecimiento de ACIKY, escríbenos. Nos encantaría conocerte.",
+    "joinButton": "Preguntar por WhatsApp",
+    "whatsappMessage": "Hola, me gustaría saber más sobre cómo ser parte del Comité Directivo de ACIKY (este mensaje es desde el sitio web de ACIKY)"
   },
   "values": {
     "title": "Nuestros Valores",

@@ -1,10 +1,13 @@
 import { apiFetch } from './api.js'
 import { t, localized } from './i18n.js'
 import { formatUserName } from './utils/formatUserName.js'
+import { getWhatsAppNumber, buildWhatsAppUrl } from './utils/whatsapp.js'
 
 const DEFAULT_AVATAR = '/public/images/default-avatar.svg'
+let waPhone = '5350759360'
 
 export async function initAbout() {
+  waPhone = await getWhatsAppNumber()
   const loading = document.getElementById('teamLoading')
   const errorEl = document.getElementById('teamError')
   const container = document.getElementById('teamContainer')
@@ -40,9 +43,20 @@ export async function initAbout() {
   if (retryBtn) retryBtn.addEventListener('click', loadTeam)
 
   // Listen for language changes to re-render
-  window.addEventListener('languageChanged', loadTeam)
+  window.addEventListener('languageChanged', () => {
+    loadTeam()
+    updateJoinWhatsAppLink()
+  })
 
   loadTeam()
+  updateJoinWhatsAppLink()
+}
+
+function updateJoinWhatsAppLink() {
+  const btn = document.getElementById('teamJoinWhatsappBtn')
+  if (btn) {
+    btn.href = buildWhatsAppUrl(waPhone, t('team.whatsappMessage'))
+  }
 }
 
 function renderTeamCard(instructor) {

@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-03-26
+Last updated: 2026-03-30
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,22 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Configurable WhatsApp number from admin - COMPLETE** (2026-03-30)
+  - `src/js/utils/whatsapp.js`: new utility — `getWhatsAppNumber()` fetches from `/api/settings`, caches, falls back to `5350759360`; `buildWhatsAppUrl(phone, message)` builds `wa.me/` URLs; `resetWhatsAppCache()` clears cache
+  - `src/js/about.js`, `events.js`, `festival.js`, `onlinesadhana.js`, `rebirthing.js`, `schedule.js`: each now awaits `getWhatsAppNumber()` on init and uses `buildWhatsAppUrl()` — all dynamic WhatsApp buttons use the configured number
+  - `src/main.js`: added `updatePageWhatsAppLinks()` — runs on every page load, replaces the number in any static `href="https://wa.me/..."` links; covers `contact.html`, `privacy.html`, `terms.html`
+  - `pages/admin/settings.html` + `src/js/admin/settings.js`: new admin page under "Configuración" in admin nav — loads current number, shows live link preview, saves via `PUT /api/settings`, calls `resetWhatsAppCache()` after save
+  - `src/i18n/es|en/admin-settings.json`: new translation files
+  - `vite.config.js`, `i18n.js`, `admin-nav.html`, `main.js`: registered new admin page
+  - `src/i18n/es|en/common.json`: added `adminNav.settings` key
+  - Backend: `settingsController.js` + `settingsService.js` updated — `PUT /api/settings` accepts flat object, validates `whatsapp_number` (strips non-digits, 7–15 digit range)
+  - `backend-specs/whatsapp-number-setting.md`: spec
+- [x] **UI fixes batch - COMPLETE** (2026-03-30)
+  - `src/js/spaces.js`: fixed `escapeAttr` ReferenceError (undefined function causing prod error on spaces page) — replaced with `escapeHtml`
+  - `src/js/blog.js`: blog cards now show first image from `content_blocks`; share buttons pass `imageUrl` to `shareContent()` in both card list and detail view
+  - `src/js/goldenRoutes.js`: added share button per route card with `data-share-image`; imports and uses `shareContent()`
+  - `pages/about.html` + `src/js/about.js`: "Nuestro Equipo" renamed to "Comité Directivo"; added collective decision-making description; added WhatsApp CTA block to join committee (bilingual, updates on language change)
+  - `src/i18n/es|en/about.json`: added `team.description`, `team.joinTitle`, `team.joinDescription`, `team.joinButton`, `team.whatsappMessage` keys; updated `team.title` and `team.empty`
 - [x] **OG image tags + share image improvements - COMPLETE** (2026-03-26)
   - `pages/schedule.html`: added `og:type`, `og:url`, `og:title`, `og:description`, `og:image` (activity-classes.png) — URL preview shows hero image in WhatsApp/social
   - `pages/festival.html`: same OG tags added (activity-festival.png)

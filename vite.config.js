@@ -68,7 +68,8 @@ export default defineConfig(() => {
           resetPassword: resolve(__dirname, 'pages/reset-password.html'),
           privacy: resolve(__dirname, 'pages/privacy.html'),
           terms: resolve(__dirname, 'pages/terms.html'),
-          notFound: resolve(__dirname, 'pages/404.html')
+          notFound: resolve(__dirname, 'pages/404.html'),
+          adminSettings: resolve(__dirname, 'pages/admin/settings.html')
         }
       }
     }

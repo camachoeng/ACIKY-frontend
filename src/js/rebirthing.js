@@ -2,10 +2,13 @@
 import { t, localized } from './i18n.js'
 import { apiFetch } from './api.js'
 import { formatUserName } from './utils/formatUserName.js'
+import { getWhatsAppNumber, buildWhatsAppUrl } from './utils/whatsapp.js'
 
 let cachedSessions = []
+let waPhone = '5350759360'
 
 export async function initRebirthing() {
+  waPhone = await getWhatsAppNumber()
   updateWhatsAppLink()
   await loadSessions()
 
@@ -23,8 +26,7 @@ function updateWhatsAppLink() {
   if (!whatsappBtn) return
 
   const message = t('cta.whatsappMessage')
-  const encodedMessage = encodeURIComponent(message)
-  whatsappBtn.href = `https://wa.me/5350759360?text=${encodedMessage}`
+  whatsappBtn.href = buildWhatsAppUrl(waPhone, message)
 }
 
 async function loadSessions() {
@@ -57,7 +59,7 @@ function renderSessions(container, sessions) {
 
     const sessionName = localized(s, 'name')
     const bookMessage = t('sessions.bookMessage', { name: sessionName })
-    const whatsappUrl = `https://wa.me/5350759360?text=${encodeURIComponent(bookMessage)}`
+    const whatsappUrl = buildWhatsAppUrl(waPhone, bookMessage)
 
     return `
       <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">

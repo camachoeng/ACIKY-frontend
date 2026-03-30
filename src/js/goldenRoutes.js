@@ -2,6 +2,7 @@ import { apiFetch } from './api.js'
 import { getUser } from './auth.js'
 import { localized, t, getLanguage } from './i18n.js'
 import { formatUserName } from './utils/formatUserName.js'
+import { shareContent } from './utils/share.js'
 
 let allRoutes = []
 
@@ -12,6 +13,15 @@ export async function initGoldenRoutes() {
 
   document.getElementById('routesRetry')
     ?.addEventListener('click', loadRoutes)
+
+  document.getElementById('activeRoutesContainer')
+    ?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.route-share-btn')
+      if (!btn) return
+      const name = btn.dataset.routeName
+      const imageUrl = btn.dataset.shareImage || null
+      shareContent({ title: name, text: name, url: window.location.href, imageUrl })
+    })
 
   window.addEventListener('languageChanged', () => {
     if (allRoutes.length > 0) renderAll()
@@ -174,6 +184,14 @@ function renderAllRoutes(routes) {
             <span class="material-symbols-outlined text-xs text-accent-terracotta">home</span>
             ${item.spaces_established} ${escapeHtml(t('routes.spaces'))}
           </span>` : ''}
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex justify-end">
+          <button class="route-share-btn inline-flex items-center gap-1 px-3 py-1.5 bg-slate-100 text-slate-500 text-xs font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
+                  data-route-name="${escapeHtml(name)}"
+                  data-share-image="${escapeHtml(item.image_url || '')}">
+            <span class="material-symbols-outlined text-sm">share</span>
+            <span>${escapeHtml(t('common.share'))}</span>
+          </button>
         </div>
       </div>
     </div>`
