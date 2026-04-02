@@ -1,4 +1,4 @@
-import { apiFetch } from './api.js'
+import { apiFetch, API_BASE } from './api.js'
 import { t, getLanguage } from './i18n.js'
 import { formatUserName } from './utils/formatUserName.js'
 import { shareContent } from './utils/share.js'
@@ -16,8 +16,9 @@ export async function initSpaces() {
     ?.addEventListener('click', (e) => {
       const btn = e.target.closest('.space-share-btn')
       if (!btn) return
-      const imageUrl = btn.dataset.shareImage || null
-      shareContent({ title: btn.dataset.name, text: btn.dataset.name, url: window.location.href, imageUrl })
+      const id = btn.dataset.shareId
+      const url = id ? `${API_BASE}/share/space/${id}` : window.location.href
+      shareContent({ title: btn.dataset.name, text: btn.dataset.name, url })
     })
 
   window.addEventListener('languageChanged', () => {
@@ -249,7 +250,7 @@ function renderSpaces() {
 
             <button class="space-share-btn inline-flex items-center justify-center gap-1 px-3 py-2 bg-slate-100 text-slate-500 text-xs font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
                     data-name="${escapeHtml(spaceName)}"
-                    data-share-image="${escapeHtml(space.image || '')}">
+                    data-share-id="${space.id}">
               <span class="material-symbols-outlined text-sm">share</span>
               <span>${t('common.share')}</span>
             </button>

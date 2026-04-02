@@ -1,4 +1,4 @@
-import { apiFetch } from './api.js'
+import { apiFetch, API_BASE } from './api.js'
 import { localized, t } from './i18n.js'
 import { shareContent } from './utils/share.js'
 
@@ -357,9 +357,8 @@ function setupEvents() {
       const post = allPosts.find(p => p.id === id)
       if (post) {
         const title = localized(post, 'title')
-        const url = `${location.origin}${location.pathname}#post-${id}`
-        const imageUrl = shareBtn.dataset.shareImage || getPostImage(post) || null
-        shareContent({ title, text: title, url, imageUrl })
+        const url = `${API_BASE}/share/blog/${id}`
+        shareContent({ title, text: title, url })
       }
       return
     }
@@ -377,9 +376,8 @@ function setupEvents() {
     const post = allPosts.find(p => p.id === currentPostId)
     if (!post) return
     const title = localized(post, 'title')
-    const url = `${location.origin}${location.pathname}#post-${currentPostId}`
-    const imageUrl = getPostImage(post)
-    shareContent({ title, text: title, url, imageUrl })
+    const url = `${API_BASE}/share/blog/${currentPostId}`
+    shareContent({ title, text: title, url })
   })
 
   document.getElementById('blogSearch')?.addEventListener('input', applySearch)

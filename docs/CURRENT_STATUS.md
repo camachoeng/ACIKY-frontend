@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-03-30
+Last updated: 2026-04-01
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,14 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Share fix + OG tags + multiple instructors per class - COMPLETE** (2026-04-01)
+  - `src/js/utils/share.js`: removed image file attachment logic — now shares URL only; WhatsApp/social apps generate preview from OG tags automatically
+  - `pages/about.html`, `blog.html`, `testimonials.html`, `golden-routes.html`, `spaces.html`, `onlinesadhana.html`, `posturas.html`, `rebirthing.html`, `videos.html`, `contact.html`, `event.html`: added full `og:type/url/title/description/image/image:alt` meta tags; content-specific images used where available (activity-rutas, activity-spaces, activity-sadhana, activity-rebirthing), `og-image.png` as fallback
+  - Dynamic OG per item: `src/js/schedule.js`, `spaces.js`, `goldenRoutes.js`, `posturas.js`, `blog.js` — share buttons now build URL as `API_BASE/share/:type/:id` instead of `window.location.href`; `data-share-image` replaced with `data-share-id`; all import `API_BASE` from `api.js`
+  - `backend-specs/og-share-endpoints.md`: spec for `GET /share/:type/:id` — backend implemented: returns minimal HTML page with correct OG tags + `<meta http-equiv="refresh">` redirect to frontend; handles activity, space, route, blog, posture; mounted at `/share` (no `/api/` prefix)
+  - Multiple instructors per class: `pages/admin/schedule.html` — `<select>` replaced with chip picker (`#activityInstructorList`); `src/js/admin/schedule.js` — `renderInstructorPicker()` with toggle chips, saves `instructor_ids[]`; `src/js/schedule.js` — public view renders stacked avatars + comma-separated names, falls back to old flat fields
+  - `backend-specs/multiple-instructors-per-class.md`: spec — backend implemented: new `activity_instructors` junction table (CASCADE deletes), seeded from existing `instructor_id`; `activityRepository` adds `findInstructorsForActivities()` + `setInstructors()`; all activity responses include `instructors: [...]` array; `instructor_id` kept for backward compat (set to first instructor)
+  - `docs/guia-usuario.md` + `docs/guia-usuario.pdf`: user-facing documentation (non-technical, Spanish) describing every public page, buttons, forms, and account features
 - [x] **Configurable WhatsApp number from admin - COMPLETE** (2026-03-30)
   - `src/js/utils/whatsapp.js`: new utility — `getWhatsAppNumber()` fetches from `/api/settings`, caches, falls back to `5350759360`; `buildWhatsAppUrl(phone, message)` builds `wa.me/` URLs; `resetWhatsAppCache()` clears cache
   - `src/js/about.js`, `events.js`, `festival.js`, `onlinesadhana.js`, `rebirthing.js`, `schedule.js`: each now awaits `getWhatsAppNumber()` on init and uses `buildWhatsAppUrl()` — all dynamic WhatsApp buttons use the configured number

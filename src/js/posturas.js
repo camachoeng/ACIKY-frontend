@@ -1,4 +1,4 @@
-import { apiFetch } from './api.js'
+import { apiFetch, API_BASE } from './api.js'
 import { localized } from './i18n.js'
 import { shareContent } from './utils/share.js'
 
@@ -72,6 +72,7 @@ function renderPosturas(query = '') {
     const altText = localized(item, 'alt_text') || title
     return `
     <div class="postura-card group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+         data-id="${item.id}"
          data-image="${escapeAttr(item.image_url)}"
          data-title="${escapeAttr(title)}"
          data-description="${escapeAttr(description)}">
@@ -105,15 +106,17 @@ function setupLightbox() {
 
   let currentLightboxTitle = ''
   let currentLightboxImage = null
+  let currentLightboxId = null
 
   // Open lightbox on card click
   container?.addEventListener('click', (e) => {
     const card = e.target.closest('.postura-card')
     if (!card) return
 
-    const { image, title, description } = card.dataset
+    const { id, image, title, description } = card.dataset
     currentLightboxTitle = title
     currentLightboxImage = image || null
+    currentLightboxId = id || null
 
     lightboxTitle.textContent = title
     lightboxDescription.textContent = description
@@ -126,7 +129,8 @@ function setupLightbox() {
   })
 
   document.getElementById('lightboxShareBtn')?.addEventListener('click', () => {
-    shareContent({ title: currentLightboxTitle, text: currentLightboxTitle, url: window.location.href, imageUrl: currentLightboxImage })
+    const url = currentLightboxId ? `${API_BASE}/share/posture/${currentLightboxId}` : window.location.href
+    shareContent({ title: currentLightboxTitle, text: currentLightboxTitle, url })
   })
 
   // Close lightbox

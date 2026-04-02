@@ -4,6 +4,7 @@ import { formatUserName } from '../utils/formatUserName.js'
 
 let activities = []
 let instructors = []
+let selectedInstructorIds = []
 
 export async function initAdminSchedule() {
   const user = await requireAdmin()
@@ -46,17 +47,46 @@ async function loadInstructors() {
   try {
     const data = await apiFetch('/api/users/instructors')
     instructors = data.data || []
-    populateInstructorSelect()
+    renderInstructorPicker()
   } catch (err) {
     console.error('Error loading instructors:', err)
   }
 }
 
-function populateInstructorSelect() {
-  const select = document.getElementById('activityInstructor')
-  if (!select) return
-  select.innerHTML = '<option value="">Sin instructor</option>' +
-    instructors.map(i => `<option value="${i.id}">${escapeHtml(formatUserName(i))}</option>`).join('')
+function renderInstructorPicker() {
+  const container = document.getElementById('activityInstructorList')
+  if (!container) return
+
+  if (instructors.length === 0) {
+    container.innerHTML = '<span class="text-sm text-slate-400 italic">No hay instructores disponibles</span>'
+    return
+  }
+
+  container.innerHTML = instructors.map(i => {
+    const name = escapeHtml(formatUserName(i))
+    const isSelected = selectedInstructorIds.includes(i.id)
+    return `
+      <button type="button" data-instructor-id="${i.id}"
+              class="instructor-chip flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors
+                     ${isSelected
+                       ? 'bg-primary-dark text-white border-primary-dark'
+                       : 'bg-white text-slate-600 border-slate-200 hover:border-primary hover:text-primary'}">
+        <span class="material-symbols-outlined text-sm">${isSelected ? 'check' : 'add'}</span>
+        ${name}
+      </button>`
+  }).join('')
+
+  container.querySelectorAll('.instructor-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = parseInt(btn.dataset.instructorId)
+      if (selectedInstructorIds.includes(id)) {
+        selectedInstructorIds = selectedInstructorIds.filter(x => x !== id)
+      } else {
+        selectedInstructorIds.push(id)
+      }
+      renderInstructorPicker()
+    })
+  })
 }
 
 async function loadActivities() {
@@ -106,7 +136,7 @@ function renderActivities(container) {
             : ''}
         </div>
         <p class="text-sm text-slate-500">${escapeHtml(activity.schedule || 'Sin horario')}</p>
-        <p class="text-xs text-slate-400 mt-1">${escapeHtml(activity.location || 'Sin ubicacion')} | ${activity.duration || '--'} min | ${activity.instructor_name ? escapeHtml(activity.instructor_name) : 'Sin instructor'}</p>
+        <p class="text-xs text-slate-400 mt-1">${escapeHtml(activity.location || 'Sin ubicacion')} | ${activity.duration || '--'} min | ${activity.instructors && activity.instructors.length > 0 ? activity.instructors.map(i => escapeHtml(formatUserName(i))).join(', ') : (activity.instructor_name ? escapeHtml(activity.instructor_name) : 'Sin instructor')}</p>
       </div>
       <div class="flex gap-1 flex-shrink-0">
         <button data-action="toggle" data-id="${activity.id}" class="p-2 rounded-xl hover:bg-slate-50 ${activity.active ? 'text-green-600' : 'text-slate-400'}" title="${activity.active ? 'Desactivar' : 'Activar'}">
@@ -131,6 +161,8 @@ function openCreateModal() {
   if (title) title.textContent = 'Nueva Clase'
   if (form) form.reset()
   document.getElementById('activityId').value = ''
+  selectedInstructorIds = []
+  renderInstructorPicker()
   resetImageUpload()
   hideFormError()
   if (modal) modal.classList.remove('hidden')
@@ -153,7 +185,11 @@ async function openEditModal(id) {
     document.getElementById('activityClassTime').value = a.class_time ? a.class_time.substring(0, 5) : ''
     document.getElementById('activityDuration').value = a.duration || ''
     document.getElementById('activityLocation').value = a.location || ''
-    document.getElementById('activityInstructor').value = a.instructor_id || ''
+    selectedInstructorIds = (a.instructors || []).map(i => i.id)
+    if (selectedInstructorIds.length === 0 && a.instructor_id) {
+      selectedInstructorIds = [a.instructor_id]
+    }
+    renderInstructorPicker()
     document.getElementById('activityPrice').value = a.price || ''
     document.getElementById('activityIcon').value = a.icon || ''
     document.getElementById('activityDifficulty').value = a.difficulty_level || 'all'
@@ -198,7 +234,7 @@ async function saveActivity(e) {
     class_time: classTime || null,
     duration: document.getElementById('activityDuration').value || null,
     location: document.getElementById('activityLocation').value.trim(),
-    instructor_id: document.getElementById('activityInstructor').value || null,
+    instructor_ids: selectedInstructorIds,
     price: document.getElementById('activityPrice').value || null,
     icon: document.getElementById('activityIcon').value.trim(),
     difficulty_level: document.getElementById('activityDifficulty').value,
