@@ -1,4 +1,4 @@
-import { apiFetch } from './api.js'
+import { apiFetch, API_BASE } from './api.js'
 import { getUser } from './auth.js'
 import { t, localized } from './i18n.js'
 import { formatUserName } from './utils/formatUserName.js'
@@ -62,8 +62,9 @@ export async function initSchedule() {
     const shareBtn = e.target.closest('.schedule-share-btn')
     if (shareBtn) {
       const name = shareBtn.dataset.shareName
-      const imageUrl = shareBtn.dataset.shareImage || null
-      shareContent({ title: name, text: name, url: window.location.href, imageUrl })
+      const id = shareBtn.dataset.shareId
+      const url = id ? `${API_BASE}/share/activity/${id}` : window.location.href
+      shareContent({ title: name, text: name, url })
       return
     }
 
@@ -122,8 +123,11 @@ function renderClassCard(activity, index) {
   const activityName = localized(activity, 'name')
   const activityDescription = localized(activity, 'description')
   const activityLocation = localized(activity, 'location')
-  const instructorFullName = formatUserName({ name: activity.instructor_name, last_name: activity.instructor_last_name, spiritual_name: activity.instructor_spiritual_name })
-  const bookMessage = t('card.bookMessage', { name: activityName, instructor: instructorFullName || '' })
+  const activityInstructors = activity.instructors && activity.instructors.length > 0
+    ? activity.instructors
+    : (activity.instructor_name ? [{ name: activity.instructor_name, last_name: activity.instructor_last_name, spiritual_name: activity.instructor_spiritual_name, profile_image_url: activity.instructor_profile_image_url }] : [])
+  const instructorNames = activityInstructors.map(i => formatUserName(i)).join(', ')
+  const bookMessage = t('card.bookMessage', { name: activityName, instructor: instructorNames || '' })
 
   return `
     <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100">
@@ -142,12 +146,15 @@ function renderClassCard(activity, index) {
           </div>
           <p class="text-sm text-slate-500 mb-2">${escapeHtml(activityLocation)}</p>
           ${activityDescription ? `<p class="text-xs text-slate-500 mb-2 line-clamp-2">${escapeHtml(activityDescription)}</p>` : ''}
-          ${instructorFullName ? `
-          <div class="flex items-center gap-2 mb-3">
-            ${activity.instructor_profile_image_url
-              ? `<img src="${escapeHtml(activity.instructor_profile_image_url)}" alt="${escapeHtml(instructorFullName)}" class="w-8 h-8 rounded-full object-cover flex-shrink-0" onerror="this.onerror=null;this.src='/images/default-avatar.svg'" />`
-              : `<div class="w-8 h-8 rounded-full ${colors.bg20} flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined ${colors.text} text-sm">person</span></div>`}
-            <span class="text-sm font-medium text-slate-600">${escapeHtml(instructorFullName)}</span>
+          ${activityInstructors.length > 0 ? `
+          <div class="flex items-center gap-2 mb-3 flex-wrap">
+            <div class="flex -space-x-2">
+              ${activityInstructors.map(i => i.profile_image_url
+                ? `<img src="${escapeHtml(i.profile_image_url)}" alt="${escapeHtml(formatUserName(i))}" class="w-8 h-8 rounded-full object-cover border-2 border-white flex-shrink-0" onerror="this.onerror=null;this.src='/images/default-avatar.svg'" />`
+                : `<div class="w-8 h-8 rounded-full ${colors.bg20} border-2 border-white flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined ${colors.text} text-sm">person</span></div>`
+              ).join('')}
+            </div>
+            <span class="text-sm font-medium text-slate-600">${escapeHtml(instructorNames)}</span>
           </div>` : ''}
           <div class="flex items-center gap-2 text-xs text-slate-400">
             <span class="material-symbols-outlined text-sm">schedule</span>
@@ -165,7 +172,7 @@ function renderClassCard(activity, index) {
         <div class="flex items-center gap-2">
           <button class="schedule-share-btn p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-xl transition-colors"
                   data-share-name="${escapeAttr(activityName)}"
-                  data-share-image="${escapeAttr(activity.image_url || '')}"
+                  data-share-id="${activity.id}"
                   title="${escapeAttr(t('common.share'))}">
             <span class="material-symbols-outlined text-base">share</span>
           </button>

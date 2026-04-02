@@ -1,4 +1,4 @@
-import { apiFetch } from './api.js'
+import { apiFetch, API_BASE } from './api.js'
 import { getUser } from './auth.js'
 import { localized, t, getLanguage } from './i18n.js'
 import { formatUserName } from './utils/formatUserName.js'
@@ -19,8 +19,9 @@ export async function initGoldenRoutes() {
       const btn = e.target.closest('.route-share-btn')
       if (!btn) return
       const name = btn.dataset.routeName
-      const imageUrl = btn.dataset.shareImage || null
-      shareContent({ title: name, text: name, url: window.location.href, imageUrl })
+      const id = btn.dataset.shareId
+      const url = id ? `${API_BASE}/share/route/${id}` : window.location.href
+      shareContent({ title: name, text: name, url })
     })
 
   window.addEventListener('languageChanged', () => {
@@ -188,7 +189,7 @@ function renderAllRoutes(routes) {
         <div class="mt-4 pt-4 border-t border-slate-100 flex justify-end">
           <button class="route-share-btn inline-flex items-center gap-1 px-3 py-1.5 bg-slate-100 text-slate-500 text-xs font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors"
                   data-route-name="${escapeHtml(name)}"
-                  data-share-image="${escapeHtml(item.image_url || '')}">
+                  data-share-id="${item.id}">
             <span class="material-symbols-outlined text-sm">share</span>
             <span>${escapeHtml(t('common.share'))}</span>
           </button>
