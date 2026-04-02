@@ -4,7 +4,7 @@ import { formatUserName } from '../utils/formatUserName.js'
 
 let activities = []
 let instructors = []
-let selectedInstructorIds = []
+let instructorOrderedIds = []
 
 export async function initAdminSchedule() {
   const user = await requireAdmin()
@@ -47,46 +47,115 @@ async function loadInstructors() {
   try {
     const data = await apiFetch('/api/users/instructors')
     instructors = data.data || []
-    renderInstructorPicker()
+    populateInstructorCheckboxes()
   } catch (err) {
     console.error('Error loading instructors:', err)
   }
 }
 
-function renderInstructorPicker() {
+function populateInstructorCheckboxes(selectedIds = []) {
   const container = document.getElementById('activityInstructorList')
   if (!container) return
 
   if (instructors.length === 0) {
-    container.innerHTML = '<span class="text-sm text-slate-400 italic">No hay instructores disponibles</span>'
+    container.innerHTML = '<p class="text-xs text-slate-400">No hay instructores disponibles</p>'
     return
   }
 
   container.innerHTML = instructors.map(i => {
-    const name = escapeHtml(formatUserName(i))
-    const isSelected = selectedInstructorIds.includes(i.id)
+    const isChecked = selectedIds.includes(i.id)
     return `
-      <button type="button" data-instructor-id="${i.id}"
-              class="instructor-chip flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors
-                     ${isSelected
-                       ? 'bg-primary-dark text-white border-primary-dark'
-                       : 'bg-white text-slate-600 border-slate-200 hover:border-primary hover:text-primary'}">
-        <span class="material-symbols-outlined text-sm">${isSelected ? 'check' : 'add'}</span>
-        ${name}
-      </button>`
+      <label class="flex items-center gap-2 p-2 hover:bg-white rounded-lg cursor-pointer transition-colors">
+        <input type="checkbox"
+               name="activityInstructorIds"
+               value="${i.id}"
+               ${isChecked ? 'checked' : ''}
+               class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
+        <span class="text-sm text-slate-700">${escapeHtml(formatUserName(i))}</span>
+      </label>`
   }).join('')
 
-  container.querySelectorAll('.instructor-chip').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = parseInt(btn.dataset.instructorId)
-      if (selectedInstructorIds.includes(id)) {
-        selectedInstructorIds = selectedInstructorIds.filter(x => x !== id)
-      } else {
-        selectedInstructorIds.push(id)
-      }
-      renderInstructorPicker()
-    })
+  updateInstructorOrderList(selectedIds)
+
+  container.querySelectorAll('input[name="activityInstructorIds"]').forEach(cb => {
+    cb.addEventListener('change', () => updateInstructorOrderList())
   })
+}
+
+function updateInstructorOrderList(initialOrder = null) {
+  const section = document.getElementById('activityInstructorOrderSection')
+  const list = document.getElementById('activityInstructorOrderList')
+  if (!section || !list) return
+
+  const checkedIds = Array.from(
+    document.querySelectorAll('input[name="activityInstructorIds"]:checked')
+  ).map(cb => parseInt(cb.value))
+
+  if (checkedIds.length < 2) {
+    section.classList.add('hidden')
+    instructorOrderedIds = checkedIds
+    return
+  }
+
+  if (initialOrder !== null) {
+    instructorOrderedIds = [
+      ...initialOrder.filter(id => checkedIds.includes(id)),
+      ...checkedIds.filter(id => !initialOrder.includes(id))
+    ]
+  } else {
+    instructorOrderedIds = [
+      ...instructorOrderedIds.filter(id => checkedIds.includes(id)),
+      ...checkedIds.filter(id => !instructorOrderedIds.includes(id))
+    ]
+  }
+
+  section.classList.remove('hidden')
+  renderInstructorOrderList(list)
+}
+
+function renderInstructorOrderList(list) {
+  list.innerHTML = instructorOrderedIds.map((id, index) => {
+    const instructor = instructors.find(i => i.id === id)
+    if (!instructor) return ''
+    const isFirst = index === 0
+    const isLast = index === instructorOrderedIds.length - 1
+    return `
+      <div class="flex items-center gap-2 bg-white rounded-xl p-2 border border-slate-100">
+        <span class="text-xs font-bold text-slate-400 w-4 shrink-0">${index + 1}</span>
+        <span class="flex-1 text-sm text-slate-700 truncate">${escapeHtml(formatUserName(instructor))}</span>
+        <button type="button" data-order-action="up" data-id="${id}"
+                class="p-1 rounded-lg transition-colors ${isFirst ? 'text-slate-200 cursor-not-allowed' : 'text-slate-500 hover:bg-slate-100 hover:text-primary'}"
+                ${isFirst ? 'disabled' : ''}>
+          <span class="material-symbols-outlined text-sm">arrow_upward</span>
+        </button>
+        <button type="button" data-order-action="down" data-id="${id}"
+                class="p-1 rounded-lg transition-colors ${isLast ? 'text-slate-200 cursor-not-allowed' : 'text-slate-500 hover:bg-slate-100 hover:text-primary'}"
+                ${isLast ? 'disabled' : ''}>
+          <span class="material-symbols-outlined text-sm">arrow_downward</span>
+        </button>
+      </div>`
+  }).join('')
+
+  list.addEventListener('click', handleOrderListClick, { once: true })
+}
+
+function handleOrderListClick(e) {
+  const list = document.getElementById('activityInstructorOrderList')
+  if (!list) return
+  list.addEventListener('click', handleOrderListClick, { once: true })
+
+  const btn = e.target.closest('[data-order-action]')
+  if (!btn) return
+  const { orderAction, id } = btn.dataset
+  const idx = instructorOrderedIds.indexOf(parseInt(id))
+
+  if (orderAction === 'up' && idx > 0) {
+    ;[instructorOrderedIds[idx - 1], instructorOrderedIds[idx]] = [instructorOrderedIds[idx], instructorOrderedIds[idx - 1]]
+    renderInstructorOrderList(list)
+  } else if (orderAction === 'down' && idx < instructorOrderedIds.length - 1) {
+    ;[instructorOrderedIds[idx], instructorOrderedIds[idx + 1]] = [instructorOrderedIds[idx + 1], instructorOrderedIds[idx]]
+    renderInstructorOrderList(list)
+  }
 }
 
 async function loadActivities() {
@@ -161,8 +230,8 @@ function openCreateModal() {
   if (title) title.textContent = 'Nueva Clase'
   if (form) form.reset()
   document.getElementById('activityId').value = ''
-  selectedInstructorIds = []
-  renderInstructorPicker()
+  instructorOrderedIds = []
+  populateInstructorCheckboxes()
   resetImageUpload()
   hideFormError()
   if (modal) modal.classList.remove('hidden')
@@ -185,11 +254,10 @@ async function openEditModal(id) {
     document.getElementById('activityClassTime').value = a.class_time ? a.class_time.substring(0, 5) : ''
     document.getElementById('activityDuration').value = a.duration || ''
     document.getElementById('activityLocation').value = a.location || ''
-    selectedInstructorIds = (a.instructors || []).map(i => i.id)
-    if (selectedInstructorIds.length === 0 && a.instructor_id) {
-      selectedInstructorIds = [a.instructor_id]
-    }
-    renderInstructorPicker()
+    const currentIds = (a.instructors || []).map(i => i.id)
+    const selectedIds = currentIds.length === 0 && a.instructor_id ? [a.instructor_id] : currentIds
+    instructorOrderedIds = []
+    populateInstructorCheckboxes(selectedIds)
     document.getElementById('activityPrice').value = a.price || ''
     document.getElementById('activityIcon').value = a.icon || ''
     document.getElementById('activityDifficulty').value = a.difficulty_level || 'all'
@@ -234,7 +302,9 @@ async function saveActivity(e) {
     class_time: classTime || null,
     duration: document.getElementById('activityDuration').value || null,
     location: document.getElementById('activityLocation').value.trim(),
-    instructor_ids: selectedInstructorIds,
+    instructor_ids: document.getElementById('activityInstructorOrderSection')?.classList.contains('hidden') === false
+      ? [...instructorOrderedIds]
+      : Array.from(document.querySelectorAll('input[name="activityInstructorIds"]:checked')).map(cb => parseInt(cb.value)),
     price: document.getElementById('activityPrice').value || null,
     icon: document.getElementById('activityIcon').value.trim(),
     difficulty_level: document.getElementById('activityDifficulty').value,
