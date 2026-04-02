@@ -107,10 +107,17 @@
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-primary-dark mb-1">Instructores</label>
-                <div id="activityInstructorList" class="flex flex-wrap gap-2 p-3 rounded-2xl border border-slate-200 min-h-[48px] bg-white">
-                  <span class="text-sm text-slate-400 italic">Cargando instructores...</span>
+                <label class="block text-sm font-medium text-primary-dark mb-2">Instructores</label>
+                <div id="activityInstructorList" class="space-y-2 max-h-40 overflow-y-auto p-3 bg-slate-50 rounded-2xl border border-slate-200">
+                  <p class="text-xs text-slate-400">Cargando instructores...</p>
                 </div>
+              </div>
+
+              <!-- Instructor order (shown when ≥2 instructors selected) -->
+              <div id="activityInstructorOrderSection" class="hidden">
+                <label class="block text-sm font-medium text-primary-dark mb-2">Orden de Instructores</label>
+                <div id="activityInstructorOrderList" class="space-y-1.5 p-3 bg-slate-50 rounded-2xl border border-slate-200"></div>
+                <p class="text-xs text-slate-400 mt-1">El orden aquí determina cómo aparecen en la tarjeta de la clase.</p>
               </div>
 
               <div class="grid grid-cols-2 gap-4">
