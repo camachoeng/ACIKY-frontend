@@ -3,7 +3,7 @@ export const API_BASE =
   window.location.hostname === 'aciky.org' ||
   window.location.hostname === 'www.aciky.org' ||
   window.location.hostname === 'camachoeng.github.io'
-    ? 'https://aciky-backend-298cb7d6b0a8.herokuapp.com'
+    ? 'https://api.aciky.org'
     : window.location.hostname === '192.168.1.70'
     ? 'http://192.168.1.70:3000'
     : 'http://localhost:3000'
