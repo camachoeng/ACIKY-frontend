@@ -342,7 +342,7 @@ async function toggleProgramVisibility() {
     programVisible = !programVisible
     await apiFetch('/api/settings', {
       method: 'PUT',
-      body: JSON.stringify({ settings: [{ key: 'festival_program_visible', value: programVisible ? '1' : '0' }] })
+      body: JSON.stringify({ festival_program_visible: programVisible ? '1' : '0' })
     })
     updateToggleBtn()
   } catch (err) {
