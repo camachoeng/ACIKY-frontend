@@ -36,7 +36,7 @@ export async function initAdminDashboard() {
 async function loadNotifications() {
   try {
     const [testimonialsData, blogData] = await Promise.all([
-      apiFetch('/api/testimonials'),
+      apiFetch('/api/testimonials/all'),
       apiFetch('/api/blog')
     ])
 
