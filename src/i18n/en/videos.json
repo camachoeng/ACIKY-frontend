@@ -4,6 +4,8 @@
     "subtitle": "Learn yoga with our tutorial videos",
     "loading": "Loading videos...",
     "error": "Could not load videos",
-    "empty": "No videos available"
+    "empty": "No videos available",
+    "search": "Search video...",
+    "noResults": "No videos found with that name"
   }
 }

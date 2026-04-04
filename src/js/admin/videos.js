@@ -73,8 +73,9 @@ async function loadPosturas() {
     } else {
       if (container) {
         container.classList.remove('hidden')
-        renderPosturas(container)
+        renderPosturas()
       }
+      setupSearch()
     }
   } catch (err) {
     if (loading) loading.classList.add('hidden')
@@ -88,8 +89,31 @@ async function loadPosturas() {
   }
 }
 
-function renderPosturas(container) {
-  container.innerHTML = posturas.map(item => {
+function setupSearch() {
+  const input = document.getElementById('videosSearch')
+  if (!input) return
+  input.addEventListener('input', () => renderPosturas(input.value))
+}
+
+function renderPosturas(query = '') {
+  const container = document.getElementById('videosContainer')
+  const noResults = document.getElementById('videosNoResults')
+  if (!container) return
+
+  const filtered = query.trim()
+    ? posturas.filter(item => (item.title || '').toLowerCase().includes(query.trim().toLowerCase()))
+    : posturas
+
+  if (filtered.length === 0) {
+    container.classList.add('hidden')
+    noResults?.classList.remove('hidden')
+    return
+  }
+
+  noResults?.classList.add('hidden')
+  container.classList.remove('hidden')
+
+  container.innerHTML = filtered.map(item => {
     const hasVideo = !!item.youtube_url
     const thumbnail = item.thumbnail_url || item.image_url
 

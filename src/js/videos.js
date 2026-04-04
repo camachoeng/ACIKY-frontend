@@ -7,10 +7,14 @@ let allVideos = []
 export async function initVideos() {
   await loadVideos()
   setupVideoModal()
+  setupSearch()
 
   // Re-render with localized text when language changes (no re-fetch needed)
   window.addEventListener('languageChanged', () => {
-    if (allVideos.length > 0) renderVideos()
+    if (allVideos.length > 0) {
+      const query = document.getElementById('videosSearch')?.value || ''
+      renderVideos(query)
+    }
   })
 }
 
@@ -45,11 +49,25 @@ async function loadVideos() {
   }
 }
 
-function renderVideos() {
+function renderVideos(query = '') {
   const container = document.getElementById('videosContainer')
+  const noResults = document.getElementById('videosNoResults')
   if (!container) return
 
-  container.innerHTML = allVideos.map(item => {
+  const filtered = query.trim()
+    ? allVideos.filter(item => localized(item, 'title').toLowerCase().includes(query.trim().toLowerCase()))
+    : allVideos
+
+  if (filtered.length === 0) {
+    container.classList.add('hidden')
+    noResults?.classList.remove('hidden')
+    return
+  }
+
+  noResults?.classList.add('hidden')
+  container.classList.remove('hidden')
+
+  container.innerHTML = filtered.map(item => {
     const title = localized(item, 'title')
     const description = localized(item, 'description')
     const altText = localized(item, 'alt_text') || title
@@ -79,6 +97,12 @@ function renderVideos() {
       </div>
     </div>`
   }).join('')
+}
+
+function setupSearch() {
+  const input = document.getElementById('videosSearch')
+  if (!input) return
+  input.addEventListener('input', () => renderVideos(input.value))
 }
 
 function setupVideoModal() {

@@ -1,5 +1,5 @@
 import { requireAdmin } from '../auth.js'
-import { apiFetch, getApiUrl } from '../api.js'
+import { apiFetch } from '../api.js'
 
 let posturas = []
 
@@ -260,20 +260,17 @@ async function uploadFile(file) {
     const formData = new FormData()
     formData.append('image', file)
 
-    const response = await fetch(getApiUrl('/api/upload/gallery'), {
+    const data = await apiFetch('/api/upload/gallery', {
       method: 'POST',
-      credentials: 'include',
       body: formData
     })
 
-    const data = await response.json()
-
-    if (!response.ok) {
-      throw new Error(data.message || 'Error al subir imagen')
+    if (!data.data?.url) {
+      throw new Error('Error al subir imagen')
     }
 
     document.getElementById('posturaImageUrl').value = data.data.url
-    document.getElementById('posturaThumbnailUrl').value = data.data.thumbnailUrl || ''
+    document.getElementById('posturaThumbnailUrl').value = data.data.thumbnailUrl || data.data.url
     showUploadPreview(data.data.url)
     const fileInput = document.getElementById('posturaFileInput')
     if (fileInput) fileInput.value = ''
