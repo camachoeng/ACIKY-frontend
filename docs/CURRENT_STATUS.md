@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-04-01
+Last updated: 2026-04-04
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,18 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Search bars, domain migration, auth fixes, UI improvements - COMPLETE** (2026-04-02 – 2026-04-04)
+  - `pages/videos.html` + `pages/admin/videos.html`: added search bar and no results state, matching posturas pattern
+  - `src/js/videos.js`: `renderVideos(query)` filters by title, `setupSearch()` wires input, language change preserves query
+  - `src/js/admin/videos.js`: same pattern — `renderPosturas(query)` + `setupSearch()`
+  - `src/i18n/es|en/videos.json`: added `search` and `noResults` keys
+  - `src/js/admin/dashboard.js`: fixed 404 — changed `/api/testimonials` → `/api/testimonials/all`
+  - `src/js/admin/posturas.js`: fixed 401 on image upload — replaced raw `fetch()` with `apiFetch()` so Bearer token is included; removed unused `getApiUrl` import
+  - `src/js/admin/schedule.js`: replaced chip picker with checkbox + order list pattern (same as spaces admin)
+  - `pages/admin/schedule.html`: updated instructor section to match — scrollable checkbox list + order section
+  - **Custom domain `api.aciky.org`**: migrated DNS from Namecheap to Cloudflare (free); Cloudflare proxies `api.aciky.org` → Heroku with Flexible SSL via Page Rule; `src/js/api.js` production URL updated to `https://api.aciky.org`
+  - `src/js/utils/share.js`: reverted WhatsApp Web fallback — desktop falls back to clipboard copy + toast (original behavior)
+
 - [x] **Share fix + OG tags + multiple instructors per class - COMPLETE** (2026-04-01)
   - `src/js/utils/share.js`: removed image file attachment logic — now shares URL only; WhatsApp/social apps generate preview from OG tags automatically
   - `pages/about.html`, `blog.html`, `testimonials.html`, `golden-routes.html`, `spaces.html`, `onlinesadhana.html`, `posturas.html`, `rebirthing.html`, `videos.html`, `contact.html`, `event.html`: added full `og:type/url/title/description/image/image:alt` meta tags; content-specific images used where available (activity-rutas, activity-spaces, activity-sadhana, activity-rebirthing), `og-image.png` as fallback

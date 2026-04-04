@@ -6,10 +6,6 @@
   "saving": "Guardando...",
   "saved": "Cambios guardados",
   "saveError": "Error al guardar los cambios",
-  "program": {
-    "hide": "Ocultar Programa",
-    "show": "Mostrar Programa"
-  },
   "errors": {
     "saveError": "Error al guardar"
   },
@@ -42,6 +38,8 @@
     "earlyBirdTextEnPlaceholder": "Early registration discount description... (optional)"
   },
   "program": {
+    "hide": "Ocultar Programa",
+    "show": "Mostrar Programa",
     "title": "Programa del Festival",
     "day1tab": "Día 1",
     "day2tab": "Día 2",
