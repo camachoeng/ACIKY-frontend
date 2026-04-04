@@ -21,6 +21,20 @@
           <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Vincula videos de YouTube a las posturas existentes</p>
         </div>
 
+        <!-- Search -->
+        <div class="relative max-w-md mb-6">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+          <input id="videosSearch" type="search"
+            class="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-primary"
+            placeholder="Buscar postura..." />
+        </div>
+
+        <!-- No Results State -->
+        <div id="videosNoResults" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">search_off</span>
+          <p class="text-slate-400 text-sm mt-2">No se encontraron posturas con ese nombre</p>
+        </div>
+
         <!-- Loading State -->
         <div id="videosLoading" class="text-center py-12">
           <span class="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>

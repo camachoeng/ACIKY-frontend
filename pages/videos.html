@@ -28,8 +28,18 @@
         </div>
       </section>
 
+      <!-- Search -->
+      <section class="px-6 py-4">
+        <div class="relative max-w-md">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+          <input id="videosSearch" type="search"
+            class="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-primary"
+            data-i18n-placeholder="videos.search" />
+        </div>
+      </section>
+
       <!-- Videos Grid -->
-      <section class="px-6 py-8">
+      <section class="px-6 py-4">
         <!-- Loading State -->
         <div id="videosLoading" class="text-center py-12">
           <span class="material-symbols-outlined text-primary text-4xl animate-spin">progress_activity</span>
@@ -47,6 +57,12 @@
         <div id="videosEmpty" class="hidden text-center py-12">
           <span class="material-symbols-outlined text-slate-300 text-4xl">videocam_off</span>
           <p class="text-slate-500 text-sm mt-2" data-i18n="videos.empty">No hay videos disponibles</p>
+        </div>
+
+        <!-- No Results State -->
+        <div id="videosNoResults" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-slate-300 text-4xl">search_off</span>
+          <p class="text-slate-500 text-sm mt-2" data-i18n="videos.noResults">No se encontraron videos con ese nombre</p>
         </div>
 
         <!-- Videos Container -->

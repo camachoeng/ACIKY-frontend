@@ -4,6 +4,8 @@
     "subtitle": "Aprende yoga con nuestros videos tutoriales",
     "loading": "Cargando videos...",
     "error": "No se pudo cargar los videos",
-    "empty": "No hay videos disponibles"
+    "empty": "No hay videos disponibles",
+    "search": "Buscar video...",
+    "noResults": "No se encontraron videos con ese nombre"
   }
 }
