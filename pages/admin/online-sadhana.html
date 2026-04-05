@@ -35,6 +35,32 @@
         </div>
       </section>
 
+      <!-- Program Editor -->
+      <section class="px-6 py-8 border-t border-slate-100">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-primary-dark" data-i18n="program.title">Programa de la Sadhana</h2>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="program.subtitle">Define la secuencia de pasos de la práctica</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="programSaveStatus" class="text-sm text-primary hidden"></span>
+            <button id="saveProgramBtn" class="bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">save</span>
+              <span data-i18n="program.saveButton">Guardar Programa</span>
+            </button>
+          </div>
+        </div>
+        <div id="programEditor" class="space-y-6 max-w-3xl">
+          <div class="flex justify-center py-8">
+            <span class="material-symbols-outlined animate-spin text-primary text-3xl">progress_activity</span>
+          </div>
+        </div>
+        <button id="addPartBtn" class="mt-4 flex items-center gap-1 text-sm text-primary hover:text-primary-dark font-medium">
+          <span class="material-symbols-outlined text-sm">add_circle</span>
+          <span data-i18n="program.addPart">Agregar Parte</span>
+        </button>
+      </section>
+
       <!-- Add Participant Modal -->
       <div id="addModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
         <div class="fixed inset-0 bg-black/50" id="addModalOverlay"></div>

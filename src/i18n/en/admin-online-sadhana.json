@@ -14,6 +14,22 @@
     "loadError": "Error loading users",
     "cancel": "Cancel"
   },
+  "program": {
+    "title": "Sadhana Program",
+    "subtitle": "Define the sequence of practice steps",
+    "saveButton": "Save Program",
+    "saved": "Saved",
+    "saving": "Saving...",
+    "saveError": "Error saving program",
+    "addPart": "Add Part",
+    "addStep": "Add Step",
+    "partTitle": "Part title",
+    "partTitleEn": "Part title (EN)",
+    "stepEs": "Step (ES)",
+    "stepEn": "Step (EN)",
+    "stepPlaceholder": "E.g.: Reading of pauri 35, 11 times.",
+    "stepEnPlaceholder": "E.g.: Reading of pauri 35, 11 times."
+  },
   "errors": {
     "addError": "Error adding practitioner",
     "removeError": "Error removing practitioner"
