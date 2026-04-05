@@ -14,6 +14,22 @@
     "loadError": "Error al cargar usuarios",
     "cancel": "Cancelar"
   },
+  "program": {
+    "title": "Programa de la Sadhana",
+    "subtitle": "Define la secuencia de pasos de la práctica",
+    "saveButton": "Guardar Programa",
+    "saved": "Guardado",
+    "saving": "Guardando...",
+    "saveError": "Error al guardar el programa",
+    "addPart": "Agregar Parte",
+    "addStep": "Agregar Paso",
+    "partTitle": "Título de la parte",
+    "partTitleEn": "Part title (EN)",
+    "stepEs": "Paso (ES)",
+    "stepEn": "Step (EN)",
+    "stepPlaceholder": "Ej: Lectura del pauri 35, 11 veces.",
+    "stepEnPlaceholder": "E.g.: Reading of pauri 35, 11 times."
+  },
   "errors": {
     "addError": "Error al agregar practicante",
     "removeError": "Error al eliminar practicante"
