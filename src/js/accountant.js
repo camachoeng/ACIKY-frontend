@@ -111,7 +111,7 @@ function renderTransactions(transactions) {
     const typeStyle = isIncome ? 'bg-green-100 text-green-700' : 'bg-red-50 text-red-600'
     const amountStyle = isIncome ? 'text-green-600' : 'text-accent-terracotta'
     const sign = isIncome ? '+' : '-'
-    const date = new Date(tx.date + 'T12:00:00').toLocaleDateString('es-CU', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    const date = new Date(tx.date.slice(0, 10) + 'T12:00:00').toLocaleDateString('es-CU', { day: '2-digit', month: '2-digit', year: 'numeric' })
 
     return `
       <div class="bg-white rounded-2xl border border-slate-100 shadow-sm px-5 py-4 flex items-start gap-4 flex-wrap">
