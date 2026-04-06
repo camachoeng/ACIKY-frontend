@@ -1,0 +1,71 @@
+{
+  "pageTitle": "Contabilidad - Admin ACIKY",
+  "title": "Contabilidad",
+  "subtitle": "Gestiona ingresos y gastos de ACIKY",
+  "addButton": "Agregar transacción",
+  "exchangeRate": {
+    "label": "Tasa de cambio",
+    "hint": "1 USD =",
+    "cup": "CUP",
+    "save": "Guardar",
+    "saved": "Guardada",
+    "saveError": "Error al guardar la tasa"
+  },
+  "summary": {
+    "title": "Fondo ACIKY",
+    "income": "Ingresos",
+    "expenses": "Gastos",
+    "balance": "Balance",
+    "cup": "CUP",
+    "usd": "USD",
+    "total": "Total equivalente",
+    "viewIn": "Ver en"
+  },
+  "filter": {
+    "all": "Todas",
+    "income": "Ingresos",
+    "expense": "Gastos",
+    "month": "Mes"
+  },
+  "table": {
+    "date": "Fecha",
+    "type": "Tipo",
+    "category": "Categoría",
+    "description": "Descripción",
+    "amount": "Monto",
+    "actions": "Acciones"
+  },
+  "type": {
+    "income": "Ingreso",
+    "expense": "Gasto"
+  },
+  "empty": "No hay transacciones registradas.",
+  "modal": {
+    "addTitle": "Agregar transacción",
+    "editTitle": "Editar transacción",
+    "type": "Tipo",
+    "typeIncome": "Ingreso",
+    "typeExpense": "Gasto",
+    "amount": "Monto",
+    "amountPlaceholder": "0.00",
+    "currency": "Moneda",
+    "category": "Categoría",
+    "categoryPlaceholder": "Ej: Donaciones, Materiales, Transporte...",
+    "description": "Descripción (opcional)",
+    "descriptionPlaceholder": "Detalle adicional...",
+    "date": "Fecha",
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "cancel": "Cancelar"
+  },
+  "errors": {
+    "loadError": "Error al cargar transacciones",
+    "saveError": "Error al guardar la transacción",
+    "deleteError": "Error al eliminar la transacción",
+    "required": "Completa todos los campos obligatorios."
+  },
+  "confirm": {
+    "delete": "¿Eliminar esta transacción?"
+  },
+  "donationBadge": "Donación"
+}

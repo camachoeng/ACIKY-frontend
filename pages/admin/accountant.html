@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contabilidad - Admin ACIKY" />
+    <title>Contabilidad - Admin ACIKY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen">
+    {{> header}}
+    {{> admin-nav}}
+
+    <main class="pb-12">
+      <section class="px-6 py-8">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+          <div>
+            <h1 class="text-2xl font-bold text-primary-dark" data-i18n="title">Contabilidad</h1>
+            <p class="text-slate-500 text-sm mt-1" data-i18n="subtitle">Gestiona ingresos y gastos de ACIKY</p>
+          </div>
+          <div class="flex items-center gap-3 flex-wrap">
+            <!-- Exchange rate -->
+            <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-2xl px-4 py-2 text-sm">
+              <span class="text-slate-500" data-i18n="exchangeRate.hint">1 USD =</span>
+              <input type="number" id="exchangeRateInput" min="1" step="1" class="w-20 border-none outline-none text-primary-dark font-bold text-right bg-transparent" placeholder="520" />
+              <span class="text-slate-500" data-i18n="exchangeRate.cup">CUP</span>
+              <button id="saveRateBtn" class="text-primary hover:text-primary-dark transition-colors font-medium text-xs" data-i18n="exchangeRate.save">Guardar</button>
+              <span id="rateSaveStatus" class="text-xs text-primary hidden"></span>
+            </div>
+            <!-- Add transaction -->
+            <button id="addTransactionBtn" class="bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">add</span>
+              <span data-i18n="addButton">Agregar transacción</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Fund Summary -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 mb-6">
+          <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+            <h2 class="font-bold text-primary-dark flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+              <span data-i18n="summary.title">Fondo ACIKY</span>
+            </h2>
+            <!-- Total currency toggle -->
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-slate-500" data-i18n="summary.viewIn">Ver en</span>
+              <button data-total-currency="CUP" class="total-currency-btn px-3 py-1 rounded-full text-xs font-bold bg-primary-dark text-white">CUP</button>
+              <button data-total-currency="USD" class="total-currency-btn px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">USD</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <!-- CUP column -->
+            <div class="space-y-2">
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">CUP</p>
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-500" data-i18n="summary.income">Ingresos</span>
+                <span id="incomeCup" class="font-semibold text-green-600">—</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-500" data-i18n="summary.expenses">Gastos</span>
+                <span id="expenseCup" class="font-semibold text-accent-terracotta">—</span>
+              </div>
+              <div class="flex justify-between text-sm border-t border-slate-100 pt-2">
+                <span class="font-semibold text-primary-dark" data-i18n="summary.balance">Balance</span>
+                <span id="balanceCup" class="font-bold text-primary-dark">—</span>
+              </div>
+            </div>
+
+            <!-- USD column -->
+            <div class="space-y-2">
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">USD</p>
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-500" data-i18n="summary.income">Ingresos</span>
+                <span id="incomeUsd" class="font-semibold text-green-600">—</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-500" data-i18n="summary.expenses">Gastos</span>
+                <span id="expenseUsd" class="font-semibold text-accent-terracotta">—</span>
+              </div>
+              <div class="flex justify-between text-sm border-t border-slate-100 pt-2">
+                <span class="font-semibold text-primary-dark" data-i18n="summary.balance">Balance</span>
+                <span id="balanceUsd" class="font-bold text-primary-dark">—</span>
+              </div>
+            </div>
+
+            <!-- Total column -->
+            <div class="space-y-2 bg-primary/5 rounded-xl p-4">
+              <p class="text-xs font-bold text-primary uppercase tracking-wide" data-i18n="summary.total">Total equivalente</p>
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-500" data-i18n="summary.income">Ingresos</span>
+                <span id="totalIncome" class="font-semibold text-green-600">—</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-500" data-i18n="summary.expenses">Gastos</span>
+                <span id="totalExpense" class="font-semibold text-accent-terracotta">—</span>
+              </div>
+              <div class="flex justify-between text-sm border-t border-primary/20 pt-2">
+                <span class="font-semibold text-primary-dark" data-i18n="summary.balance">Balance</span>
+                <span id="totalBalance" class="font-bold text-lg text-primary-dark">—</span>
+              </div>
+              <p id="totalCurrencyLabel" class="text-xs text-primary text-right font-medium">CUP</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-3 mb-4 items-center">
+          <div class="flex gap-1 bg-white border border-slate-200 rounded-2xl p-1">
+            <button data-filter-type="all" class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium bg-primary-dark text-white" data-i18n="filter.all">Todas</button>
+            <button data-filter-type="income" class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-500 hover:bg-slate-50" data-i18n="filter.income">Ingresos</button>
+            <button data-filter-type="expense" class="type-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-500 hover:bg-slate-50" data-i18n="filter.expense">Gastos</button>
+          </div>
+          <input type="month" id="monthFilter" class="px-3 py-2 rounded-2xl border border-slate-200 text-sm outline-none focus:border-primary bg-white" />
+        </div>
+
+        <!-- Transactions list -->
+        <div id="transactionsList" class="space-y-2">
+          <div class="flex justify-center py-12">
+            <span class="material-symbols-outlined animate-spin text-primary text-3xl">progress_activity</span>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Add/Edit Modal -->
+    <div id="transactionModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+      <div class="fixed inset-0 bg-black/50" id="modalOverlay"></div>
+      <div class="relative inset-x-4 my-8 max-w-lg mx-auto bg-white rounded-3xl p-8 shadow-xl">
+        <h2 id="modalTitle" class="text-xl font-bold text-primary-dark mb-5" data-i18n="modal.addTitle">Agregar transacción</h2>
+
+        <div class="space-y-4">
+          <!-- Type -->
+          <div>
+            <label class="block text-sm font-medium text-primary-dark mb-2" data-i18n="modal.type">Tipo</label>
+            <div class="flex gap-2">
+              <button type="button" data-modal-type="income" class="modal-type-btn flex-1 py-2 rounded-xl border-2 border-primary bg-primary/5 text-primary-dark text-sm font-medium" data-i18n="modal.typeIncome">Ingreso</button>
+              <button type="button" data-modal-type="expense" class="modal-type-btn flex-1 py-2 rounded-xl border-2 border-slate-200 text-slate-500 text-sm font-medium hover:border-slate-300" data-i18n="modal.typeExpense">Gasto</button>
+            </div>
+            <input type="hidden" id="modalType" value="income" />
+          </div>
+
+          <!-- Amount + Currency -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.amount">Monto <span class="text-accent-terracotta">*</span></label>
+              <input type="number" id="modalAmount" min="0.01" step="0.01"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm"
+                     data-i18n-placeholder="modal.amountPlaceholder" placeholder="0.00" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.currency">Moneda <span class="text-accent-terracotta">*</span></label>
+              <select id="modalCurrency" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm bg-white">
+                <option value="CUP">CUP</option>
+                <option value="USD">USD</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div>
+            <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.category">Categoría <span class="text-accent-terracotta">*</span></label>
+            <input type="text" id="modalCategory" maxlength="200"
+                   class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm"
+                   data-i18n-placeholder="modal.categoryPlaceholder" placeholder="Ej: Donaciones, Materiales..." />
+          </div>
+
+          <!-- Date -->
+          <div>
+            <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.date">Fecha <span class="text-accent-terracotta">*</span></label>
+            <input type="date" id="modalDate"
+                   class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm" />
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="modal.description">Descripción (opcional)</label>
+            <textarea id="modalDescription" rows="2" maxlength="500"
+                      class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm resize-none"
+                      data-i18n-placeholder="modal.descriptionPlaceholder" placeholder="Detalle adicional..."></textarea>
+          </div>
+
+          <!-- Error -->
+          <div id="modalError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button type="button" id="modalCancelBtn"
+                  class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+          <button type="button" id="modalSaveBtn"
+                  class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.save">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    {{> footer}}
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

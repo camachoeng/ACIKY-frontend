@@ -9,6 +9,13 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Accountant module - COMPLETE** (2026-04-05)
+  - `backend-specs/accountant.md`: spec — backend implemented: `transactions` table; `GET /api/transactions?type=&currency=&month=` (instructor+admin), `POST/PUT/DELETE /api/transactions` (admin); `donationController` fires `createFromDonation` non-blocking on confirmation
+  - `pages/admin/accountant.html` + `src/js/admin/accountant.js`: fund summary split by CUP/USD + total with conversion toggle, editable exchange rate saved to `/api/settings`, filter by type/month, add/edit/delete transactions modal
+  - `pages/accountant.html` + `src/js/accountant.js`: read-only ledger for instructor+admin roles, same summary + filters, redirects `role=user` to home
+  - `src/i18n/es|en/accountant.json` + `admin-accountant.json`: new translation files
+  - `vite.config.js`, `src/main.js`, `src/js/i18n.js`, `src/partials/admin-nav.html`, `src/i18n/es|en/common.json`: registered both pages; "Contabilidad" added to admin nav
+
 - [x] **Donations system + sadhana program editor + festival program toggle fix - COMPLETE** (2026-04-05)
   - `backend-specs/donations.md`: spec — backend implemented: `donations` table; `POST /api/donations` (public), `GET /api/donations?status=` (admin), `PUT /api/donations/:id/status` (admin)
   - `pages/donations.html` + `src/js/donations.js`: public donations page — loads PayPal URL from settings, shows PayPal button if configured, self-report form (name, email, amount, currency, PayPal transaction ID, notes)

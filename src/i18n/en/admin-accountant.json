@@ -1,0 +1,71 @@
+{
+  "pageTitle": "Accounting - Admin ACIKY",
+  "title": "Accounting",
+  "subtitle": "Manage ACIKY income and expenses",
+  "addButton": "Add transaction",
+  "exchangeRate": {
+    "label": "Exchange rate",
+    "hint": "1 USD =",
+    "cup": "CUP",
+    "save": "Save",
+    "saved": "Saved",
+    "saveError": "Error saving rate"
+  },
+  "summary": {
+    "title": "ACIKY Fund",
+    "income": "Income",
+    "expenses": "Expenses",
+    "balance": "Balance",
+    "cup": "CUP",
+    "usd": "USD",
+    "total": "Total equivalent",
+    "viewIn": "View in"
+  },
+  "filter": {
+    "all": "All",
+    "income": "Income",
+    "expense": "Expenses",
+    "month": "Month"
+  },
+  "table": {
+    "date": "Date",
+    "type": "Type",
+    "category": "Category",
+    "description": "Description",
+    "amount": "Amount",
+    "actions": "Actions"
+  },
+  "type": {
+    "income": "Income",
+    "expense": "Expense"
+  },
+  "empty": "No transactions recorded.",
+  "modal": {
+    "addTitle": "Add transaction",
+    "editTitle": "Edit transaction",
+    "type": "Type",
+    "typeIncome": "Income",
+    "typeExpense": "Expense",
+    "amount": "Amount",
+    "amountPlaceholder": "0.00",
+    "currency": "Currency",
+    "category": "Category",
+    "categoryPlaceholder": "E.g.: Donations, Materials, Transport...",
+    "description": "Description (optional)",
+    "descriptionPlaceholder": "Additional detail...",
+    "date": "Date",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel"
+  },
+  "errors": {
+    "loadError": "Error loading transactions",
+    "saveError": "Error saving transaction",
+    "deleteError": "Error deleting transaction",
+    "required": "Please fill in all required fields."
+  },
+  "confirm": {
+    "delete": "Delete this transaction?"
+  },
+  "donationBadge": "Donation"
+}
