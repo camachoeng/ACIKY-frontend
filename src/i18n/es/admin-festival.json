@@ -37,6 +37,17 @@
     "earlyBirdTextEn": "Text (EN)",
     "earlyBirdTextEnPlaceholder": "Early registration discount description... (optional)"
   },
+  "donations": {
+    "title": "Configuración de Donaciones",
+    "paypalUrl": "Enlace de PayPal",
+    "paypalUrlPlaceholder": "https://paypal.me/tuusuario",
+    "paypalUrlHint": "Si está vacío, el botón de PayPal no se mostrará.",
+    "descriptionEs": "Descripción (ES)",
+    "descriptionEn": "Descripción (EN)",
+    "descriptionPlaceholder": "Ej: Tu donación apoya el festival y la comunidad ACIKY.",
+    "descriptionEnPlaceholder": "E.g.: Your donation supports the festival and the ACIKY community.",
+    "viewDonations": "Ver donaciones recibidas"
+  },
   "program": {
     "hide": "Ocultar Programa",
     "show": "Mostrar Programa",

@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-04-04
+Last updated: 2026-04-05
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,23 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Donations system + sadhana program editor + festival program toggle fix - COMPLETE** (2026-04-05)
+  - `backend-specs/donations.md`: spec — backend implemented: `donations` table; `POST /api/donations` (public), `GET /api/donations?status=` (admin), `PUT /api/donations/:id/status` (admin)
+  - `pages/donations.html` + `src/js/donations.js`: public donations page — loads PayPal URL from settings, shows PayPal button if configured, self-report form (name, email, amount, currency, PayPal transaction ID, notes)
+  - `pages/admin/donations.html` + `src/js/admin/donations.js`: admin panel — filter tabs (all/pending/confirmed/rejected), confirm/reject buttons per submission
+  - `pages/admin/festival.html` + `src/js/admin/festival.js`: added donation config section (PayPal URL, description ES/EN, link to donations admin); `loadProgramVisibility` now also populates donation fields; `saveSettings` includes donation fields
+  - `pages/festival.html`: added "Apoya el Festival" CTA card linking to donations page
+  - `src/i18n/es|en/donations.json`, `admin-donations.json`: new translation files
+  - `src/i18n/es|en/festival.json`: added `donations.*` keys
+  - `src/i18n/es|en/admin-festival.json`: added `donations.*` keys
+  - `vite.config.js`, `src/main.js`, `src/js/i18n.js`, `src/partials/admin-nav.html`, `src/i18n/es|en/common.json`: registered donations and admin-donations pages
+  - **Festival program toggle fix**: `src/js/admin/festival.js` — `toggleProgramVisibility` was sending `{ settings: [{key, value}] }` but backend expects flat object; fixed to `{ festival_program_visible: '1'|'0' }`
+  - **i18n duplicate key fix**: `src/i18n/es|en/admin-festival.json` had duplicate `program` key — `hide`/`show` were being overwritten; merged into single `program` object
+  - **Sadhana program editor**: `pages/admin/online-sadhana.html` + `src/js/admin/onlineSadhana.js` — add/remove parts and steps (ES/EN), save to `/api/settings` as `sadhana_program_json`
+  - **Sadhana program public view**: `pages/onlinesadhana.html` + `src/js/onlinesadhana.js` — renders program from settings, hidden if empty, re-renders on language change; default program pre-loaded (2 parts: Primera/Segunda Parte)
+  - `src/i18n/es|en/onlinesadhana.json`: added `program.*` keys
+  - `src/i18n/es|en/admin-online-sadhana.json`: added `program.*` keys
+
 - [x] **Search bars, domain migration, auth fixes, UI improvements - COMPLETE** (2026-04-02 – 2026-04-04)
   - `pages/videos.html` + `pages/admin/videos.html`: added search bar and no results state, matching posturas pattern
   - `src/js/videos.js`: `renderVideos(query)` filters by title, `setupSearch()` wires input, language change preserves query

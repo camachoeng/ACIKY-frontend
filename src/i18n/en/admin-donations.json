@@ -1,0 +1,40 @@
+{
+  "pageTitle": "Donations - Admin ACIKY",
+  "title": "Donations",
+  "subtitle": "Manage and confirm received donations",
+  "filter": {
+    "all": "All",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "rejected": "Rejected"
+  },
+  "table": {
+    "name": "Donor",
+    "email": "Email",
+    "amount": "Amount",
+    "method": "Method",
+    "transactionRef": "Transaction ID",
+    "notes": "Message",
+    "status": "Status",
+    "date": "Date",
+    "actions": "Actions"
+  },
+  "status": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "rejected": "Rejected"
+  },
+  "actions": {
+    "confirm": "Confirm",
+    "reject": "Reject"
+  },
+  "empty": "No donations recorded.",
+  "errors": {
+    "loadError": "Error loading donations",
+    "updateError": "Error updating status"
+  },
+  "methods": {
+    "paypal": "PayPal",
+    "bank_transfer": "Bank transfer"
+  }
+}
