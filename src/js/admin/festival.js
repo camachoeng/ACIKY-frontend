@@ -268,7 +268,7 @@ async function saveSettings() {
   if (saveStatus) saveStatus.textContent = t('saving')
   hideError()
 
-  const body = {
+  const festivalBody = {
     topic_es: getVal('topicEs') || null,
     topic_en: getVal('topicEn') || null,
     dates_es: getVal('datesEs') || null,
@@ -281,14 +281,20 @@ async function saveSettings() {
     early_bird_title_en: getVal('earlyBirdTitleEn') || null,
     early_bird_text_es: getVal('earlyBirdTextEs') || null,
     early_bird_text_en: getVal('earlyBirdTextEn') || null,
-    program_json: programData,
-    donation_paypal_url: getVal('donationPaypalUrl') || null,
-    donation_description_es: getVal('donationDescriptionEs') || null,
-    donation_description_en: getVal('donationDescriptionEn') || null
+    program_json: programData
+  }
+
+  const settingsBody = {
+    donation_paypal_url: getVal('donationPaypalUrl') || '',
+    donation_description_es: getVal('donationDescriptionEs') || '',
+    donation_description_en: getVal('donationDescriptionEn') || ''
   }
 
   try {
-    await apiFetch('/api/festival', { method: 'PUT', body: JSON.stringify(body) })
+    await Promise.all([
+      apiFetch('/api/festival', { method: 'PUT', body: JSON.stringify(festivalBody) }),
+      apiFetch('/api/settings', { method: 'PUT', body: JSON.stringify(settingsBody) })
+    ])
     if (saveStatus) saveStatus.textContent = t('saved')
     setTimeout(() => { if (saveStatus) saveStatus.textContent = '' }, 3000)
   } catch (err) {
