@@ -179,6 +179,9 @@ function openModal(tx = null) {
 
   if (title) title.textContent = tx ? t('modal.editTitle') : t('modal.addTitle')
 
+  const saveBtn = document.getElementById('modalSaveBtn')
+  if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = t('modal.save') }
+
   setModalType(tx?.type || 'income')
   document.getElementById('modalAmount').value = tx?.amount || ''
   document.getElementById('modalCurrency').value = tx?.currency || 'CUP'
