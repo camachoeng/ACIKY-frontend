@@ -1,0 +1,34 @@
+{
+  "pageTitle": "Finanzas - ACIKY",
+  "title": "Finanzas de ACIKY",
+  "subtitle": "Transparencia financiera de nuestra organización",
+  "summary": {
+    "title": "Fondo ACIKY",
+    "income": "Ingresos",
+    "expenses": "Gastos",
+    "balance": "Balance",
+    "cup": "CUP",
+    "usd": "USD",
+    "total": "Total equivalente",
+    "viewIn": "Ver en"
+  },
+  "filter": {
+    "all": "Todas",
+    "income": "Ingresos",
+    "expense": "Gastos",
+    "month": "Mes"
+  },
+  "table": {
+    "date": "Fecha",
+    "type": "Tipo",
+    "category": "Categoría",
+    "description": "Descripción",
+    "amount": "Monto"
+  },
+  "type": {
+    "income": "Ingreso",
+    "expense": "Gasto"
+  },
+  "empty": "No hay transacciones registradas.",
+  "donationBadge": "Donación"
+}

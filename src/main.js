@@ -722,6 +722,12 @@ async function initPage() {
   } else if (path.includes('/pages/donations.html')) {
     const { initDonations } = await import('./js/donations.js')
     initDonations()
+  } else if (path.includes('/pages/admin/accountant.html')) {
+    const { initAdminAccountant } = await import('./js/admin/accountant.js')
+    initAdminAccountant()
+  } else if (path.includes('/pages/accountant.html')) {
+    const { initAccountant } = await import('./js/accountant.js')
+    initAccountant()
   }
 }
 

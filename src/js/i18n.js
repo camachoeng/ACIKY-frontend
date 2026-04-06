@@ -88,7 +88,9 @@ function getPageName() {
     'pages/terms.html': 'terms',
     'pages/admin/settings.html': 'admin-settings',
     'pages/donations.html': 'donations',
-    'pages/admin/donations.html': 'admin-donations'
+    'pages/admin/donations.html': 'admin-donations',
+    'pages/accountant.html': 'accountant',
+    'pages/admin/accountant.html': 'admin-accountant'
   }
 
   return pageMap[normalizedPath] || 'home'
