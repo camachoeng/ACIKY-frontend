@@ -281,7 +281,10 @@ async function saveSettings() {
     early_bird_title_en: getVal('earlyBirdTitleEn') || null,
     early_bird_text_es: getVal('earlyBirdTextEs') || null,
     early_bird_text_en: getVal('earlyBirdTextEn') || null,
-    program_json: programData
+    program_json: programData,
+    donation_paypal_url: getVal('donationPaypalUrl') || null,
+    donation_description_es: getVal('donationDescriptionEs') || null,
+    donation_description_en: getVal('donationDescriptionEn') || null
   }
 
   try {
@@ -320,6 +323,9 @@ async function loadProgramVisibility() {
     const s = data.data || {}
     programVisible = s['festival_program_visible'] !== '0'
     updateToggleBtn()
+    setVal('donationPaypalUrl', s['donation_paypal_url'])
+    setVal('donationDescriptionEs', s['donation_description_es'])
+    setVal('donationDescriptionEn', s['donation_description_en'])
   } catch {
     // keep default (visible)
   }

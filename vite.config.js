@@ -69,7 +69,9 @@ export default defineConfig(() => {
           privacy: resolve(__dirname, 'pages/privacy.html'),
           terms: resolve(__dirname, 'pages/terms.html'),
           notFound: resolve(__dirname, 'pages/404.html'),
-          adminSettings: resolve(__dirname, 'pages/admin/settings.html')
+          adminSettings: resolve(__dirname, 'pages/admin/settings.html'),
+          donations: resolve(__dirname, 'pages/donations.html'),
+          adminDonations: resolve(__dirname, 'pages/admin/donations.html')
         }
       }
     }

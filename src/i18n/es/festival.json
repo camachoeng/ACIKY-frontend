@@ -192,6 +192,11 @@
       "item10": "Acceso a la comunidad privada post-festival"
     }
   },
+  "donations": {
+    "title": "Apoya el Festival",
+    "description": "Tu donación hace posible este evento y apoya a la comunidad ACIKY.",
+    "button": "Donar ahora"
+  },
   "cta": {
     "title": "¿Listo para Iluminar tu Camino?",
     "description": "Para más información sobre el próximo Festival Faro de Luz, fechas, precios y registro temprano, contáctanos.",

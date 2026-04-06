@@ -1,0 +1,44 @@
+{
+  "pageTitle": "Donaciones - ACIKY",
+  "hero": {
+    "title": "Apoya a ACIKY",
+    "subtitle": "Tu donación impulsa el Kundalini Yoga en Cuba"
+  },
+  "intro": {
+    "title": "¿Por qué donar?",
+    "description": "Tu donación apoya directamente a nuestra comunidad de instructores y practicantes de Kundalini Yoga en Cuba. Cada aporte nos ayuda a organizar eventos, mantener espacios de práctica y llevar el yoga a más personas."
+  },
+  "paypal": {
+    "title": "Donar por PayPal",
+    "instructions": "Haz clic en el botón para ir a la página de pago de PayPal. Una vez completado el pago, regresa aquí y completa el formulario de confirmación.",
+    "button": "Donar por PayPal"
+  },
+  "confirm": {
+    "title": "Confirmar tu donación",
+    "subtitle": "Después de realizar el pago, completa este formulario para que podamos registrar tu donación.",
+    "name": "Nombre completo",
+    "namePlaceholder": "Tu nombre",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "tu@correo.com",
+    "amount": "Monto donado",
+    "amountPlaceholder": "Ej: 10.00",
+    "currency": "Moneda",
+    "transactionRef": "ID de transacción de PayPal",
+    "transactionRefPlaceholder": "Ej: 1AB23456CD789012E",
+    "transactionRefHint": "Puedes encontrarlo en el correo de confirmación de PayPal.",
+    "notes": "Mensaje opcional",
+    "notesPlaceholder": "¿Quieres dejar algún mensaje? (opcional)",
+    "submit": "Enviar confirmación",
+    "submitting": "Enviando...",
+    "successTitle": "¡Gracias por tu donación!",
+    "successMessage": "Hemos recibido tu confirmación. Verificaremos el pago y nos pondremos en contacto contigo si es necesario.",
+    "errorRequired": "Por favor completa los campos obligatorios: nombre, correo y monto.",
+    "errorAmount": "El monto debe ser un número mayor a 0.",
+    "errorSubmit": "Error al enviar. Por favor intenta de nuevo."
+  },
+  "currencies": {
+    "USD": "USD - Dólar",
+    "CLP": "CLP - Peso Chileno",
+    "EUR": "EUR - Euro"
+  }
+}

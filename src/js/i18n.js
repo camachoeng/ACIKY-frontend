@@ -86,7 +86,9 @@ function getPageName() {
     'pages/admin/online-sadhana.html': 'admin-online-sadhana',
     'pages/privacy.html': 'privacy',
     'pages/terms.html': 'terms',
-    'pages/admin/settings.html': 'admin-settings'
+    'pages/admin/settings.html': 'admin-settings',
+    'pages/donations.html': 'donations',
+    'pages/admin/donations.html': 'admin-donations'
   }
 
   return pageMap[normalizedPath] || 'home'
