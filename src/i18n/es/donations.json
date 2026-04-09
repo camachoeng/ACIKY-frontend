@@ -13,6 +13,12 @@
     "instructions": "Haz clic en el botón para ir a la página de pago de PayPal. Una vez completado el pago, regresa aquí y completa el formulario de confirmación.",
     "button": "Donar por PayPal"
   },
+  "cup": {
+    "title": "Donar en CUP (transferencia bancaria)",
+    "instructions": "Realiza una transferencia bancaria o Transfermóvil a los datos siguientes. Luego completa el formulario de confirmación con la referencia de la operación.",
+    "cardLabel": "Número de tarjeta",
+    "phoneLabel": "Teléfono (Transfermóvil)"
+  },
   "confirm": {
     "title": "Confirmar tu donación",
     "subtitle": "Después de realizar el pago, completa este formulario para que podamos registrar tu donación.",
@@ -23,9 +29,9 @@
     "amount": "Monto donado",
     "amountPlaceholder": "Ej: 10.00",
     "currency": "Moneda",
-    "transactionRef": "ID de transacción de PayPal",
-    "transactionRefPlaceholder": "Ej: 1AB23456CD789012E",
-    "transactionRefHint": "Puedes encontrarlo en el correo de confirmación de PayPal.",
+    "transactionRef": "Referencia de la transacción",
+    "transactionRefPlaceholder": "Ej: 1AB23456CD789012E o MM6047Q4FA987",
+    "transactionRefHint": "ID de PayPal o número de operación bancaria (ej: MM6047Q4FA987).",
     "notes": "Mensaje opcional",
     "notesPlaceholder": "¿Quieres dejar algún mensaje? (opcional)",
     "submit": "Enviar confirmación",
@@ -37,8 +43,9 @@
     "errorSubmit": "Error al enviar. Por favor intenta de nuevo."
   },
   "currencies": {
+    "CUP": "CUP - Peso Cubano",
     "USD": "USD - Dólar",
-    "CLP": "CLP - Peso Chileno",
-    "EUR": "EUR - Euro"
+    "EUR": "EUR - Euro",
+    "CLP": "CLP - Peso Chileno"
   }
 }

@@ -67,5 +67,19 @@
   "confirm": {
     "delete": "Delete this transaction?"
   },
-  "donationBadge": "Donation"
+  "donationBadge": "Donation",
+  "convertButton": "Convert CUP → USD",
+  "conversion": {
+    "title": "Convert CUP → USD",
+    "subtitle": "Record the CUP outflow and USD inflow in one step.",
+    "cupAmount": "CUP to convert",
+    "usdAmount": "USD received",
+    "rate": "Rate used (1 USD = X CUP)",
+    "rateHint": "Pre-filled with the current rate. Change it if you used a different one.",
+    "date": "Date",
+    "description": "Description (optional)",
+    "descriptionPlaceholder": "E.g.: Exchange at CADECA",
+    "preview": "2 transactions will be created:",
+    "save": "Record conversion"
+  }
 }
