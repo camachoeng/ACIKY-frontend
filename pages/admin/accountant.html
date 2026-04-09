@@ -32,6 +32,11 @@
               <button id="saveRateBtn" class="text-primary hover:text-primary-dark transition-colors font-medium text-xs" data-i18n="exchangeRate.save">Guardar</button>
               <span id="rateSaveStatus" class="text-xs text-primary hidden"></span>
             </div>
+            <!-- Convert CUP to USD -->
+            <button id="convertBtn" class="bg-accent-teal text-white px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">currency_exchange</span>
+              <span data-i18n="convertButton">Convertir CUP → USD</span>
+            </button>
             <!-- Add transaction -->
             <button id="addTransactionBtn" class="bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary transition-colors flex items-center gap-1">
               <span class="material-symbols-outlined text-sm">add</span>
@@ -196,6 +201,66 @@
                   class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
           <button type="button" id="modalSaveBtn"
                   class="flex-1 py-3 rounded-2xl bg-primary-dark text-white font-bold hover:bg-primary transition-colors" data-i18n="modal.save">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conversion Modal -->
+    <div id="conversionModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+      <div class="fixed inset-0 bg-black/50" id="conversionModalOverlay"></div>
+      <div class="relative inset-x-4 my-8 max-w-md mx-auto bg-white rounded-3xl p-8 shadow-xl">
+        <h2 class="text-xl font-bold text-primary-dark mb-1" data-i18n="conversion.title">Convertir CUP → USD</h2>
+        <p class="text-xs text-slate-500 mb-5" data-i18n="conversion.subtitle">Registra la salida de CUP y la entrada de USD en un solo paso.</p>
+
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="conversion.cupAmount">CUP a convertir <span class="text-accent-terracotta">*</span></label>
+              <input type="number" id="convCupAmount" min="0.01" step="0.01"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder="0.00" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="conversion.usdAmount">USD recibidos <span class="text-accent-terracotta">*</span></label>
+              <input type="number" id="convUsdAmount" min="0.01" step="0.01"
+                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder="0.00" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="conversion.rate">Tasa usada (1 USD = X CUP) <span class="text-accent-terracotta">*</span></label>
+            <input type="number" id="convRate" min="1" step="1"
+                   class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm" placeholder="520" />
+            <p class="text-xs text-slate-400 mt-1" data-i18n="conversion.rateHint">Pre-rellenada con la tasa actual. Cámbiala si usaste otra.</p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="conversion.date">Fecha <span class="text-accent-terracotta">*</span></label>
+            <input type="date" id="convDate"
+                   class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="conversion.description">Descripción (opcional)</label>
+            <input type="text" id="convDescription" maxlength="200"
+                   class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary outline-none text-sm"
+                   data-i18n-placeholder="conversion.descriptionPlaceholder" placeholder="Ej: Conversión en CADECA" />
+          </div>
+
+          <!-- Preview -->
+          <div id="convPreview" class="hidden bg-slate-50 rounded-xl p-3 space-y-1 text-xs text-slate-600">
+            <p class="font-semibold text-slate-700" data-i18n="conversion.preview">Se crearán 2 transacciones:</p>
+            <p id="convPreviewExpense" class="text-accent-terracotta"></p>
+            <p id="convPreviewIncome" class="text-green-600"></p>
+          </div>
+
+          <div id="convError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button type="button" id="convCancelBtn"
+                  class="flex-1 py-3 rounded-2xl border border-slate-200 font-medium text-slate-600 hover:bg-slate-50 transition-colors" data-i18n="modal.cancel">Cancelar</button>
+          <button type="button" id="convSaveBtn"
+                  class="flex-1 py-3 rounded-2xl bg-accent-teal text-white font-bold hover:opacity-90 transition-opacity" data-i18n="conversion.save">Registrar conversión</button>
         </div>
       </div>
     </div>

@@ -45,6 +45,16 @@ export async function initAdminAccountant() {
   document.querySelectorAll('.modal-type-btn').forEach(btn => {
     btn.addEventListener('click', () => setModalType(btn.dataset.modalType))
   })
+
+  document.getElementById('convertBtn')?.addEventListener('click', openConversionModal)
+  document.getElementById('conversionModalOverlay')?.addEventListener('click', closeConversionModal)
+  document.getElementById('convCancelBtn')?.addEventListener('click', closeConversionModal)
+  document.getElementById('convSaveBtn')?.addEventListener('click', saveConversion)
+
+  // Live preview on input
+  ;['convCupAmount', 'convUsdAmount', 'convRate'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', updateConversionPreview)
+  })
 }
 
 async function loadExchangeRate() {
@@ -280,6 +290,84 @@ function updateTotalCurrencyBtns() {
     btn.classList.toggle('bg-slate-100', !active)
     btn.classList.toggle('text-slate-600', !active)
   })
+}
+
+function openConversionModal() {
+  document.getElementById('convCupAmount').value = ''
+  document.getElementById('convUsdAmount').value = ''
+  document.getElementById('convRate').value = exchangeRate
+  document.getElementById('convDate').value = new Date().toISOString().slice(0, 10)
+  document.getElementById('convDescription').value = ''
+  document.getElementById('convPreview')?.classList.add('hidden')
+  document.getElementById('convError')?.classList.add('hidden')
+  const btn = document.getElementById('convSaveBtn')
+  if (btn) { btn.disabled = false; btn.textContent = t('conversion.save') }
+  document.getElementById('conversionModal')?.classList.remove('hidden')
+}
+
+function closeConversionModal() {
+  document.getElementById('conversionModal')?.classList.add('hidden')
+}
+
+function updateConversionPreview() {
+  const cup = parseFloat(document.getElementById('convCupAmount')?.value)
+  const usd = parseFloat(document.getElementById('convUsdAmount')?.value)
+  const preview = document.getElementById('convPreview')
+  if (!preview) return
+
+  if (cup > 0 && usd > 0) {
+    preview.classList.remove('hidden')
+    document.getElementById('convPreviewExpense').textContent =
+      `− ${cup.toLocaleString('es-CU', { minimumFractionDigits: 2 })} CUP (Gasto)`
+    document.getElementById('convPreviewIncome').textContent =
+      `+ ${usd.toLocaleString('es-CU', { minimumFractionDigits: 2 })} USD (Ingreso)`
+  } else {
+    preview.classList.add('hidden')
+  }
+}
+
+async function saveConversion() {
+  const btn = document.getElementById('convSaveBtn')
+  const errorEl = document.getElementById('convError')
+  if (errorEl) errorEl.classList.add('hidden')
+
+  const cup = parseFloat(document.getElementById('convCupAmount')?.value)
+  const usd = parseFloat(document.getElementById('convUsdAmount')?.value)
+  const rate = parseFloat(document.getElementById('convRate')?.value)
+  const date = document.getElementById('convDate')?.value
+  const description = document.getElementById('convDescription')?.value.trim()
+  const desc = description || null
+
+  if (!cup || !usd || !rate || !date || cup <= 0 || usd <= 0 || rate <= 0) {
+    const el = document.getElementById('convError')
+    if (el) { el.textContent = t('errors.required'); el.classList.remove('hidden') }
+    return
+  }
+
+  btn.disabled = true
+  btn.textContent = t('modal.saving')
+
+  const category = `Conversión CUP→USD (tasa: ${rate})`
+
+  try {
+    await Promise.all([
+      apiFetch('/api/transactions', {
+        method: 'POST',
+        body: JSON.stringify({ type: 'expense', amount: cup, currency: 'CUP', category, date, description: desc })
+      }),
+      apiFetch('/api/transactions', {
+        method: 'POST',
+        body: JSON.stringify({ type: 'income', amount: usd, currency: 'USD', category, date, description: desc })
+      })
+    ])
+    closeConversionModal()
+    await loadTransactions()
+  } catch (err) {
+    const el = document.getElementById('convError')
+    if (el) { el.textContent = t('errors.saveError') + ': ' + err.message; el.classList.remove('hidden') }
+    btn.disabled = false
+    btn.textContent = t('conversion.save')
+  }
 }
 
 function showModalError(msg) {

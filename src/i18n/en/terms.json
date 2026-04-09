@@ -2,7 +2,7 @@
   "terms": {
     "pageTitle": "Terms of Use - ACIKY",
     "title": "Terms of Use",
-    "lastUpdated": "Last updated: March 2026",
+    "lastUpdated": "Last updated: April 2026",
     "intro": "By using the ACIKY platform you agree to these terms. If you do not agree, please do not use the site.",
     "useTitle": "Use of the platform",
     "use1": "The site is available to anyone interested in Kundalini Yoga",
@@ -28,6 +28,12 @@
     "termination": "We may suspend or delete accounts that violate these terms. You may also request deletion of your account at any time by contacting us.",
     "changesTitle": "Changes to the terms",
     "changes": "We may update these terms at any time. Changes will be posted on this page. Continued use of the site implies acceptance of the updated terms.",
+    "donationsTitle": "Donations",
+    "donations1": "Donations received go to the ACIKY general fund to finance activities, events, and community maintenance. They are not tax-deductible.",
+    "donations2": "Donations are voluntary and non-refundable once confirmed by the ACIKY team.",
+    "donations3": "ACIKY verifies payments manually against its PayPal history. Confirmation may take up to 48 hours.",
+    "donations4": "The donor's name and email are stored solely for internal record-keeping and are not shared with third parties.",
+    "donations5": "ACIKY reserves the right to change, add, or remove available payment methods at any time.",
     "contactTitle": "Contact",
     "contact": "Have questions? Contact us via WhatsApp or through our contact page."
   }

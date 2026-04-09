@@ -67,5 +67,19 @@
   "confirm": {
     "delete": "¿Eliminar esta transacción?"
   },
-  "donationBadge": "Donación"
+  "donationBadge": "Donación",
+  "convertButton": "Convertir CUP → USD",
+  "conversion": {
+    "title": "Convertir CUP → USD",
+    "subtitle": "Registra la salida de CUP y la entrada de USD en un solo paso.",
+    "cupAmount": "CUP a convertir",
+    "usdAmount": "USD recibidos",
+    "rate": "Tasa usada (1 USD = X CUP)",
+    "rateHint": "Pre-rellenada con la tasa actual. Cámbiala si usaste otra.",
+    "date": "Fecha",
+    "description": "Descripción (opcional)",
+    "descriptionPlaceholder": "Ej: Conversión en CADECA",
+    "preview": "Se crearán 2 transacciones:",
+    "save": "Registrar conversión"
+  }
 }

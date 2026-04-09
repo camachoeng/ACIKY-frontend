@@ -62,6 +62,37 @@
         </div>
       </section>
 
+      <!-- CUP section -->
+      <section class="px-4 md:px-8 lg:px-16 py-6">
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary">account_balance</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cup.title">Donar en CUP (transferencia bancaria)</h2>
+          </div>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-i18n="cup.instructions">
+            Realiza una transferencia bancaria o Transfermóvil a los datos siguientes. Luego completa el formulario de confirmación con la referencia de la operación.
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 bg-background rounded-xl px-4 py-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0">credit_card</span>
+              <div class="min-w-0">
+                <p class="text-xs text-slate-500 mb-0.5" data-i18n="cup.cardLabel">Número de tarjeta</p>
+                <p class="text-sm font-bold text-primary-dark tracking-widest select-all">9205-9598-7644-2634</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 bg-background rounded-xl px-4 py-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0">smartphone</span>
+              <div class="min-w-0">
+                <p class="text-xs text-slate-500 mb-0.5" data-i18n="cup.phoneLabel">Teléfono (Transfermóvil)</p>
+                <p class="text-sm font-bold text-primary-dark select-all">+53 5 3200499</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Confirmation form -->
       <section class="px-4 md:px-8 lg:px-16 py-6">
         <div class="max-w-2xl mx-auto">
@@ -114,20 +145,21 @@
               <div>
                 <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="confirm.currency">Moneda</label>
                 <select id="donorCurrency" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white">
+                  <option value="CUP" data-i18n="currencies.CUP">CUP - Peso Cubano</option>
                   <option value="USD" data-i18n="currencies.USD">USD - Dólar</option>
-                  <option value="CLP" data-i18n="currencies.CLP">CLP - Peso Chileno</option>
                   <option value="EUR" data-i18n="currencies.EUR">EUR - Euro</option>
+                  <option value="CLP" data-i18n="currencies.CLP">CLP - Peso Chileno</option>
                 </select>
               </div>
             </div>
 
             <!-- Transaction ref -->
             <div>
-              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="confirm.transactionRef">ID de transacción de PayPal</label>
+              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="confirm.transactionRef">Referencia de la transacción</label>
               <input type="text" id="donorTransactionRef" maxlength="255"
                      class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                     data-i18n-placeholder="confirm.transactionRefPlaceholder" placeholder="1AB23456CD789012E" />
-              <p class="text-xs text-slate-400 mt-1" data-i18n="confirm.transactionRefHint">Puedes encontrarlo en el correo de confirmación de PayPal.</p>
+                     data-i18n-placeholder="confirm.transactionRefPlaceholder" placeholder="Ej: 1AB23456CD789012E o MM6047Q4FA987" />
+              <p class="text-xs text-slate-400 mt-1" data-i18n="confirm.transactionRefHint">ID de PayPal o número de operación bancaria (ej: MM6047Q4FA987).</p>
             </div>
 
             <!-- Notes -->
