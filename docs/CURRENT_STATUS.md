@@ -9,6 +9,12 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Instructor bio self-edit on profile page - COMPLETE** (2026-04-13)
+  - `backend-specs/instructor-bio-self-edit.md`: spec — backend implemented: `PUT /api/users/profile` now accepts `bio` and `bio_en`, saved only for instructor/admin role, empty strings stored as null
+  - `pages/dashboard.html`: bio (ES) + bio_en (EN) textareas added to profile form inside `#profileBioSection`, hidden by default
+  - `src/js/dashboard.js`: shows bio section and populates fields on load for instructor/admin; includes bio/bio_en in PUT body on save
+  - `src/i18n/es|en/dashboard.json`: added `form.bio`, `form.bioPlaceholder`, `form.bioHint`, `form.bioEn`, `form.bioEnPlaceholder` keys
+
 - [x] **Instructor bio + lineage attribution + about page principles - COMPLETE** (2026-04-13)
   - `backend-specs/instructor-bio.md`: spec — backend implemented: `bio` TEXT + `bio_en` TEXT added to `users` table; `userRepository.findTeamMembers/findAll/update`, `spaceRepository.findInstructorsBySpaceId(s)` updated to include bio fields; `userService.createUser/updateUser` pass bio through with same role guard as position
   - `pages/admin/users.html` + `src/js/admin/users.js`: bio/bio_en textareas added inside `#positionField` (shows only for instructor/admin role); populated on edit, saved on submit

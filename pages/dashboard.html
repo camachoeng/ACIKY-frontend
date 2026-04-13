@@ -79,6 +79,24 @@
                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-500 outline-none text-sm cursor-not-allowed" />
               </div>
 
+              <!-- Bio fields (shown only for instructor/admin) -->
+              <div id="profileBioSection" class="hidden space-y-3">
+                <div class="h-px bg-slate-100"></div>
+                <div>
+                  <label for="profileBio" class="block text-sm font-medium text-slate-600 mb-1" data-i18n="form.bio">Descripción (ES)</label>
+                  <textarea id="profileBio" name="bio" rows="3" maxlength="500"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm resize-none"
+                            data-i18n-placeholder="form.bioPlaceholder"></textarea>
+                  <p class="text-xs text-slate-400 mt-1" data-i18n="form.bioHint">Aparece en tu tarjeta del equipo y en las fichas de espacios.</p>
+                </div>
+                <div>
+                  <label for="profileBioEn" class="block text-xs font-medium text-accent-teal mb-1" data-i18n="form.bioEn">Description (EN)</label>
+                  <textarea id="profileBioEn" name="bio_en" rows="3" maxlength="500"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm resize-none"
+                            data-i18n-placeholder="form.bioEnPlaceholder"></textarea>
+                </div>
+              </div>
+
               <button type="submit" id="saveProfileBtn"
                       class="w-full bg-primary-dark text-white font-bold py-3 rounded-xl shadow-md transition-transform active:scale-95 hover:bg-primary"
                       data-i18n="form.saveButton">
