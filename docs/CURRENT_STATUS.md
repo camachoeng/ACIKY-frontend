@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-04-05
+Last updated: 2026-04-13
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,16 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Instructor bio + lineage attribution + about page principles - COMPLETE** (2026-04-13)
+  - `backend-specs/instructor-bio.md`: spec — backend implemented: `bio` TEXT + `bio_en` TEXT added to `users` table; `userRepository.findTeamMembers/findAll/update`, `spaceRepository.findInstructorsBySpaceId(s)` updated to include bio fields; `userService.createUser/updateUser` pass bio through with same role guard as position
+  - `pages/admin/users.html` + `src/js/admin/users.js`: bio/bio_en textareas added inside `#positionField` (shows only for instructor/admin role); populated on edit, saved on submit
+  - `src/js/about.js`: team cards now render bio below position using `localized()` for language switching
+  - `src/js/spaces.js`: instructor bio shown below instructor name on space cards when there is exactly one instructor
+  - `src/partials/footer.html` + `src/i18n/es|en/common.json`: added lineage line — "Kundalini Yoga tal como lo enseñó Yogi Bhajan®" (ES) / "Kundalini Yoga as taught by Yogi Bhajan®" (EN) — appears on every page
+  - `pages/about.html` + `src/i18n/es|en/about.json`: added "Nuestro Linaje / Our Lineage" section (Yogi Bhajan 1929–2004, Aquarian Dharma, trademark badge); added "Principios Rectores / Guiding Principles" section with all 11 organizational principles, bilingual
+  - `pages/donations.html` + `src/i18n/es|en/donations.json`: added CUP national donation section (card 9205-9598-7644-2634, phone +53 5 3200499); added CUP to currency dropdown (first option); generalized transaction ref field to cover PayPal ID and Cuban bank transaction number (e.g. MM6047Q4FA987)
+  - `src/i18n/es|en/terms.json`: added `donationsTitle` + `donations1–5` keys covering fund destination, no-refund policy, manual verification, data privacy, payment method changes; updated `lastUpdated` to April 2026
+
 - [x] **Accountant module - COMPLETE** (2026-04-05)
   - `backend-specs/accountant.md`: spec — backend implemented: `transactions` table; `GET /api/transactions?type=&currency=&month=` (instructor+admin), `POST/PUT/DELETE /api/transactions` (admin); `donationController` fires `createFromDonation` non-blocking on confirmation
   - `pages/admin/accountant.html` + `src/js/admin/accountant.js`: fund summary split by CUP/USD + total with conversion toggle, editable exchange rate saved to `/api/settings`, filter by type/month, add/edit/delete transactions modal

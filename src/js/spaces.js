@@ -150,8 +150,15 @@ function renderSpaces() {
     // Clean phone number for WhatsApp (remove spaces and dashes)
     const cleanPhone = space.phone ? space.phone.replace(/[\s-]/g, '') : ''
 
-    const hasMultipleInstructors = space.instructors && space.instructors.filter(i => i).length > 1
+    const activeInstructors = space.instructors ? space.instructors.filter(i => i) : []
+    const hasMultipleInstructors = activeInstructors.length > 1
     const instructorLabel = hasMultipleInstructors ? t('card.instructors') : t('card.instructor')
+
+    // Show bio only when there is a single instructor with a bio
+    const singleInstructor = activeInstructors.length === 1 ? activeInstructors[0] : null
+    const instructorBio = singleInstructor
+      ? escapeHtml(isEnglish && singleInstructor.bio_en ? singleInstructor.bio_en : (singleInstructor.bio || ''))
+      : ''
 
     return `
       <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
@@ -165,8 +172,8 @@ function renderSpaces() {
           <div class="space-y-2 mb-4">
             <div class="flex items-start gap-2">
               <div class="flex-shrink-0 flex -space-x-1.5 mt-0.5">
-                ${space.instructors && space.instructors.filter(i => i).length > 0
-                  ? space.instructors.filter(i => i).map(i => i.profile_image_url
+                ${activeInstructors.length > 0
+                  ? activeInstructors.map(i => i.profile_image_url
                     ? `<img src="${escapeHtml(i.profile_image_url)}" alt="${escapeHtml(formatUserName(i))}" class="w-6 h-6 rounded-full object-cover border border-white" />`
                     : `<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border border-white"><span class="material-symbols-outlined text-primary" style="font-size:12px">person</span></div>`
                   ).join('')
@@ -175,6 +182,7 @@ function renderSpaces() {
               <div class="flex-1 min-w-0">
                 <p class="text-xs font-semibold text-slate-400">${instructorLabel}</p>
                 <p class="text-sm text-slate-600">${escapeHtml(instructorNames)}</p>
+                ${instructorBio ? `<p class="text-xs text-slate-400 leading-relaxed mt-1">${instructorBio}</p>` : ''}
               </div>
             </div>
 

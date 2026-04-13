@@ -36,6 +36,8 @@
     "roleAdmin": "Admin",
     "position": "Cargo / Título",
     "positionPlaceholder": "Ej: Instructora de Kundalini Yoga",
+    "bio": "Descripción breve (ES)",
+    "bioPlaceholder": "Breve descripción del instructor...",
     "profileImage": "Foto de Perfil",
     "uploadImage": "Subir Imagen",
     "imageHint": "JPG, PNG o WEBP. Máx. 5MB",

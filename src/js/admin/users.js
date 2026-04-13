@@ -189,6 +189,8 @@ async function openEditModal(id) {
     if (passwordConfirmInput) passwordConfirmInput.value = ''
     document.getElementById('userPosition').value = user.position || ''
     document.getElementById('userPositionEn').value = user.position_en || ''
+    document.getElementById('userBio').value = user.bio || ''
+    document.getElementById('userBioEn').value = user.bio_en || ''
     document.getElementById('userProfileImageUrl').value = user.profile_image_url || ''
     const preview = document.getElementById('userProfileImagePreview')
     if (preview) preview.src = user.profile_image_url || '/images/default-avatar.svg'
@@ -233,6 +235,8 @@ async function saveUser(e) {
   }
 
   const positionEn = document.getElementById('userPositionEn').value.trim()
+  const bio = document.getElementById('userBio').value.trim()
+  const bioEn = document.getElementById('userBioEn').value.trim()
 
   const profile_image_url = document.getElementById('userProfileImageUrl').value.trim() || null
 
@@ -241,6 +245,8 @@ async function saveUser(e) {
   if (role !== 'user') {
     body.position = position || null
     body.position_en = positionEn || null
+    body.bio = bio || null
+    body.bio_en = bioEn || null
   }
 
   try {
