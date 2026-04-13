@@ -63,10 +63,11 @@ function renderTeamCard(instructor) {
   const imageUrl = instructor.profile_image_url || DEFAULT_AVATAR
   const name = escapeHtml(formatUserName(instructor))
   const position = escapeHtml(localized(instructor, 'position'))
+  const bio = escapeHtml(localized(instructor, 'bio'))
   const altText = t('team.photoAlt', { name })
 
   return `
-    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center">
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 text-center flex flex-col items-center">
       <img
         src="${imageUrl}"
         alt="${altText}"
@@ -75,7 +76,8 @@ function renderTeamCard(instructor) {
         onerror="this.src='${DEFAULT_AVATAR}'"
       />
       <h3 class="font-bold text-primary-dark text-sm">${name}</h3>
-      <p class="text-xs text-slate-500 mt-1">${position}</p>
+      ${position ? `<p class="text-xs text-slate-500 mt-1">${position}</p>` : ''}
+      ${bio ? `<p class="text-xs text-slate-400 leading-relaxed mt-2">${bio}</p>` : ''}
     </div>
   `
 }
