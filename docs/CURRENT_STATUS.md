@@ -9,6 +9,13 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Blog author bio + spaces instructor bio - COMPLETE** (2026-04-17)
+  - `backend-specs/blog-author-fix-and-bio.md`: spec — backend implemented: added `u.bio AS author_bio` and `u.bio_en AS author_bio_en` to all three SELECT queries in `blogRepository.js` (`findAllPublished`, `findAll`, `findById`); `author_id` was confirmed to never be overwritten on edit
+  - `pages/blog.html`: restructured author header in detail view — larger avatar, name + date inline, `#blogDetailAuthorBio` element below (hidden when empty)
+  - `src/js/blog.js`: `showPostDetail` now renders `post.author_bio`/`post.author_bio_en` into `#blogDetailAuthorBio`, respects current language
+  - `src/js/spaces.js`: replaced stacked-avatars layout with per-instructor rows; each instructor now shows avatar + name + bio regardless of how many instructors a space has
+
+## Recently Completed
 - [x] **About page: membership CTAs + donation section + principles carousel - COMPLETE** (2026-04-17)
   - `pages/about.html`: added "Únete a ACIKY" membership section (KRI-certified member card + become-certified card, both with WhatsApp CTAs); added donation inspiration section linking to `pages/donations.html`; converted guiding principles `<ol>` to horizontal scrollable carousel with prev/next nav buttons
   - `src/js/about.js`: merged WhatsApp link updates into single `updateWhatsAppLinks()`; added `initPrinciplesCarousel()` with scroll/disabled-state logic

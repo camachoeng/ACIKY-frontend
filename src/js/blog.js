@@ -270,6 +270,18 @@ function showPostDetail(id) {
     }
   }
 
+  const bioEl = document.getElementById('blogDetailAuthorBio')
+  if (bioEl) {
+    const lang = document.documentElement.lang === 'en' ? 'en' : 'es'
+    const bio = (lang === 'en' && post.author_bio_en ? post.author_bio_en : post.author_bio) || ''
+    if (bio) {
+      bioEl.textContent = bio
+      bioEl.classList.remove('hidden')
+    } else {
+      bioEl.classList.add('hidden')
+    }
+  }
+
   const contentEl = document.getElementById('blogDetailContent')
   if (post.content_blocks) {
     try {
