@@ -45,18 +45,22 @@ export async function initAbout() {
   // Listen for language changes to re-render
   window.addEventListener('languageChanged', () => {
     loadTeam()
-    updateJoinWhatsAppLink()
+    updateWhatsAppLinks()
   })
 
   loadTeam()
-  updateJoinWhatsAppLink()
+  updateWhatsAppLinks()
 }
 
-function updateJoinWhatsAppLink() {
-  const btn = document.getElementById('teamJoinWhatsappBtn')
-  if (btn) {
-    btn.href = buildWhatsAppUrl(waPhone, t('team.whatsappMessage'))
-  }
+function updateWhatsAppLinks() {
+  const teamBtn = document.getElementById('teamJoinWhatsappBtn')
+  if (teamBtn) teamBtn.href = buildWhatsAppUrl(waPhone, t('team.whatsappMessage'))
+
+  const memberBtn = document.getElementById('membershipWhatsappBtn')
+  if (memberBtn) memberBtn.href = buildWhatsAppUrl(waPhone, t('membership.member.whatsappMessage'))
+
+  const certifyBtn = document.getElementById('certifyWhatsappBtn')
+  if (certifyBtn) certifyBtn.href = buildWhatsAppUrl(waPhone, t('membership.certify.whatsappMessage'))
 }
 
 function renderTeamCard(instructor) {

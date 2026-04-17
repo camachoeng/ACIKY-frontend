@@ -196,6 +196,54 @@
         </div>
       </section>
 
+      <!-- Membership Section -->
+      <section class="px-6 mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-primary">badge</span>
+          </div>
+          <h2 class="text-2xl font-bold text-primary-dark" data-i18n="membership.title">Únete a ACIKY</h2>
+        </div>
+
+        <!-- KRI-certified members card -->
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 mb-4">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary text-lg">verified</span>
+            </div>
+            <h3 class="font-bold text-primary-dark text-base" data-i18n="membership.member.title">¿Eres instructor certificado KRI?</h3>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed mb-5" data-i18n="membership.member.description">
+            ACIKY acepta como miembros a instructores de Kundalini Yoga con certificación KRI. Si tienes tu certificación y deseas formar parte de nuestra alianza, escríbenos.
+          </p>
+          <a id="membershipWhatsappBtn" href="https://wa.me/5350759360"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-5 py-3 bg-primary-dark text-white text-sm font-bold rounded-2xl hover:bg-primary transition-colors">
+            <span class="material-symbols-outlined text-base">chat</span>
+            <span data-i18n="membership.member.button">Solicitar membresía</span>
+          </a>
+        </div>
+
+        <!-- Become KRI-certified card -->
+        <div class="bg-primary/5 border border-primary/20 rounded-3xl p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary text-lg">school</span>
+            </div>
+            <h3 class="font-bold text-primary-dark text-base" data-i18n="membership.certify.title">¿Quieres convertirte en instructor certificado?</h3>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed mb-5" data-i18n="membership.certify.description">
+            Si el Kundalini Yoga ha transformado tu vida y sientes el llamado a enseñar, el camino comienza con la formación KRI. Contáctanos para orientarte sobre cómo dar ese paso.
+          </p>
+          <a id="certifyWhatsappBtn" href="https://wa.me/5350759360"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-5 py-3 bg-primary-dark text-white text-sm font-bold rounded-2xl hover:bg-primary transition-colors">
+            <span class="material-symbols-outlined text-base">chat</span>
+            <span data-i18n="membership.certify.button">Saber más</span>
+          </a>
+        </div>
+      </section>
+
       <!-- Nuestros Valores Section -->
       <section class="px-6 mb-12">
         <h3 class="text-2xl font-bold text-primary-dark mb-6" data-i18n="values.title">Nuestros Valores</h3>
@@ -228,6 +276,22 @@
             <h4 class="font-bold text-primary-dark text-sm mb-1" data-i18n="values.compassion.title">Compasión</h4>
             <p class="text-[10px] text-slate-500" data-i18n="values.compassion.description">Amor y respeto por la vida.</p>
           </div>
+        </div>
+      </section>
+
+      <!-- Donation CTA Section -->
+      <section class="px-6 mb-12">
+        <div class="relative bg-gradient-to-br from-primary/10 to-primary-light/10 rounded-3xl p-8 text-center border border-primary/20">
+          <span class="material-symbols-outlined text-primary text-4xl mb-3 block">volunteer_activism</span>
+          <h3 class="text-2xl font-bold text-primary-dark mb-3" data-i18n="donate.title">Apoya Nuestra Misión</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-6 max-w-xs mx-auto" data-i18n="donate.description">
+            Tu contribución hace posible que el Kundalini Yoga siga llegando a más personas en Cuba. Cada donación es un acto de amor a la comunidad.
+          </p>
+          <a href="{{basePath}}/pages/donations.html"
+             class="inline-flex items-center gap-2 px-6 py-3 bg-primary-dark text-white font-bold text-sm rounded-2xl hover:bg-primary transition-colors shadow-md">
+            <span class="material-symbols-outlined text-base">favorite</span>
+            <span data-i18n="donate.button">Donar ahora</span>
+          </a>
         </div>
       </section>
 

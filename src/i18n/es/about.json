@@ -45,10 +45,30 @@
     "retry": "Reintentar",
     "empty": "Pronto conocerás al Comité Directivo",
     "photoAlt": "Foto de {{name}}",
-    "joinTitle": "¿Quieres ser parte del Comité?",
-    "joinDescription": "Si sientes el llamado a contribuir al crecimiento de ACIKY, escríbenos. Nos encantaría tenerte con nosotros!.",
+    "joinTitle": "¿Quieres ser parte del Comité Directivo?",
+    "joinDescription": "El Comité Directivo está abierto exclusivamente a miembros de ACIKY. Si ya eres miembro y sientes el llamado a contribuir al crecimiento de la organización, escríbenos.",
     "joinButton": "Preguntar por WhatsApp",
     "whatsappMessage": "Hola, me gustaría saber más sobre cómo ser parte del Comité Directivo de ACIKY (este mensaje es desde el sitio web de ACIKY)"
+  },
+  "membership": {
+    "title": "Únete a ACIKY",
+    "member": {
+      "title": "¿Eres instructor certificado KRI?",
+      "description": "ACIKY acepta como miembros a instructores de Kundalini Yoga con certificación KRI (Kundalini Research Institute). Si tienes tu certificación y deseas formar parte de nuestra alianza, escríbenos. Solo los maestros certificados pueden ser miembros oficiales.",
+      "button": "Solicitar membresía",
+      "whatsappMessage": "Hola, soy instructor certificado KRI y me gustaría solicitar mi membresía en ACIKY (este mensaje es desde el sitio web de ACIKY)"
+    },
+    "certify": {
+      "title": "¿Quieres convertirte en instructor certificado?",
+      "description": "Si el Kundalini Yoga ha transformado tu vida y sientes el llamado a enseñar, el camino comienza con la formación KRI. Contáctanos para orientarte sobre cómo dar ese paso.",
+      "button": "Saber más",
+      "whatsappMessage": "Hola, me gustaría saber más sobre cómo convertirme en instructor certificado KRI para poder unirme a ACIKY (este mensaje es desde el sitio web de ACIKY)"
+    }
+  },
+  "donate": {
+    "title": "Apoya Nuestra Misión",
+    "description": "Tu contribución hace posible que el Kundalini Yoga siga llegando a más personas en Cuba. Cada donación, grande o pequeña, es un acto de amor a la comunidad.",
+    "button": "Donar ahora"
   },
   "values": {
     "title": "Nuestros Valores",
