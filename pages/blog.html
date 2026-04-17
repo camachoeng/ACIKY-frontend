@@ -101,14 +101,19 @@
         </div>
         <article class="max-w-3xl mx-auto">
           <h2 id="blogDetailTitle" class="text-3xl font-bold text-primary-dark"></h2>
-          <div class="flex items-center gap-3 mt-4 text-sm text-slate-500">
-            <div class="flex items-center gap-2">
-              <img id="blogDetailAuthorImg" src="" alt="" class="w-7 h-7 rounded-full object-cover flex-shrink-0 hidden" />
-              <span id="blogDetailAuthorIcon" class="material-symbols-outlined text-sm hidden">person</span>
-              <span id="blogDetailAuthor"></span>
+          <div class="flex items-start gap-3 mt-4">
+            <div class="flex items-center gap-2 shrink-0">
+              <img id="blogDetailAuthorImg" src="" alt="" class="w-9 h-9 rounded-full object-cover flex-shrink-0 hidden" />
+              <span id="blogDetailAuthorIcon" class="material-symbols-outlined text-slate-400 hidden">person</span>
             </div>
-            <span>&middot;</span>
-            <time id="blogDetailDate"></time>
+            <div>
+              <div class="flex items-center gap-2 text-sm text-slate-500">
+                <span id="blogDetailAuthor" class="font-medium text-slate-700"></span>
+                <span>&middot;</span>
+                <time id="blogDetailDate"></time>
+              </div>
+              <p id="blogDetailAuthorBio" class="hidden text-xs text-slate-400 leading-relaxed mt-0.5 max-w-lg"></p>
+            </div>
           </div>
           <div id="blogDetailContent" class="mt-8 text-text leading-relaxed"></div>
           <div id="blogDetailPdf" class="hidden mt-8 pt-8 border-t border-slate-100"></div>

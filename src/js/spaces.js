@@ -154,11 +154,22 @@ function renderSpaces() {
     const hasMultipleInstructors = activeInstructors.length > 1
     const instructorLabel = hasMultipleInstructors ? t('card.instructors') : t('card.instructor')
 
-    // Show bio only when there is a single instructor with a bio
-    const singleInstructor = activeInstructors.length === 1 ? activeInstructors[0] : null
-    const instructorBio = singleInstructor
-      ? escapeHtml(isEnglish && singleInstructor.bio_en ? singleInstructor.bio_en : (singleInstructor.bio || ''))
-      : ''
+    const instructorsHtml = activeInstructors.length > 0
+      ? activeInstructors.map(i => {
+          const bio = escapeHtml(isEnglish && i.bio_en ? i.bio_en : (i.bio || ''))
+          const avatar = i.profile_image_url
+            ? `<img src="${escapeHtml(i.profile_image_url)}" alt="${escapeHtml(formatUserName(i))}" class="w-7 h-7 rounded-full object-cover flex-shrink-0" />`
+            : `<div class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-primary" style="font-size:14px">person</span></div>`
+          return `
+            <div class="flex items-start gap-2">
+              ${avatar}
+              <div class="min-w-0">
+                <p class="text-sm text-slate-600 font-medium">${escapeHtml(formatUserName(i))}</p>
+                ${bio ? `<p class="text-xs text-slate-400 leading-relaxed">${bio}</p>` : ''}
+              </div>
+            </div>`
+        }).join('')
+      : `<p class="text-sm text-slate-600">-</p>`
 
     return `
       <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
@@ -171,18 +182,10 @@ function renderSpaces() {
 
           <div class="space-y-2 mb-4">
             <div class="flex items-start gap-2">
-              <div class="flex-shrink-0 flex -space-x-1.5 mt-0.5">
-                ${activeInstructors.length > 0
-                  ? activeInstructors.map(i => i.profile_image_url
-                    ? `<img src="${escapeHtml(i.profile_image_url)}" alt="${escapeHtml(formatUserName(i))}" class="w-6 h-6 rounded-full object-cover border border-white" />`
-                    : `<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border border-white"><span class="material-symbols-outlined text-primary" style="font-size:12px">person</span></div>`
-                  ).join('')
-                  : `<span class="material-symbols-outlined text-primary text-sm">person</span>`}
-              </div>
+              <span class="material-symbols-outlined text-primary text-sm mt-0.5">person</span>
               <div class="flex-1 min-w-0">
-                <p class="text-xs font-semibold text-slate-400">${instructorLabel}</p>
-                <p class="text-sm text-slate-600">${escapeHtml(instructorNames)}</p>
-                ${instructorBio ? `<p class="text-xs text-slate-400 leading-relaxed mt-1">${instructorBio}</p>` : ''}
+                <p class="text-xs font-semibold text-slate-400 mb-1.5">${instructorLabel}</p>
+                <div class="space-y-2">${instructorsHtml}</div>
               </div>
             </div>
 
