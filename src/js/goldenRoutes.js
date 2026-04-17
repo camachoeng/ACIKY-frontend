@@ -3,13 +3,17 @@ import { getUser } from './auth.js'
 import { localized, t, getLanguage } from './i18n.js'
 import { formatUserName } from './utils/formatUserName.js'
 import { shareContent } from './utils/share.js'
+import { getWhatsAppNumber, buildWhatsAppUrl } from './utils/whatsapp.js'
 
 let allRoutes = []
+let waPhone = '5350759360'
 
 export async function initGoldenRoutes() {
+  waPhone = await getWhatsAppNumber()
   await loadRoutes()
   loadVisionSettings()
   initRoutesContactCta()
+  updateInvolveLinks()
 
   document.getElementById('routesRetry')
     ?.addEventListener('click', loadRoutes)
@@ -27,6 +31,7 @@ export async function initGoldenRoutes() {
   window.addEventListener('languageChanged', () => {
     if (allRoutes.length > 0) renderAll()
     loadVisionSettings()
+    updateInvolveLinks()
   })
 }
 
@@ -50,6 +55,19 @@ async function loadVisionSettings() {
     })
   } catch {
     // silently keep i18n defaults
+  }
+}
+
+function updateInvolveLinks() {
+  const map = {
+    involveInstructorBtn: 'involve.instructor.whatsappMessage',
+    involveHostBtn: 'involve.host.whatsappMessage',
+    involveLeaderBtn: 'involve.leader.whatsappMessage',
+    involveSponsorBtn: 'involve.sponsor.whatsappMessage',
+  }
+  for (const [id, key] of Object.entries(map)) {
+    const btn = document.getElementById(id)
+    if (btn) btn.href = buildWhatsAppUrl(waPhone, t(key))
   }
 }
 

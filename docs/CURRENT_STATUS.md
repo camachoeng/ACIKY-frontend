@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-04-13
+Last updated: 2026-04-17
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,16 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **About page: membership CTAs + donation section + principles carousel - COMPLETE** (2026-04-17)
+  - `pages/about.html`: added "Únete a ACIKY" membership section (KRI-certified member card + become-certified card, both with WhatsApp CTAs); added donation inspiration section linking to `pages/donations.html`; converted guiding principles `<ol>` to horizontal scrollable carousel with prev/next nav buttons
+  - `src/js/about.js`: merged WhatsApp link updates into single `updateWhatsAppLinks()`; added `initPrinciplesCarousel()` with scroll/disabled-state logic
+  - `src/i18n/es|en/about.json`: added `membership.*`, `donate.*` keys; updated `team.joinTitle/joinDescription` to clarify Committee is for members only
+- [x] **Golden Routes: "Únete" WhatsApp buttons per role - COMPLETE** (2026-04-17)
+  - `pages/golden-routes.html`: added "Quiero participar" WhatsApp button to each of the 4 involve cards (instructor, host, leader, sponsor)
+  - `src/js/goldenRoutes.js`: imported `getWhatsAppNumber`/`buildWhatsAppUrl`; added `updateInvolveLinks()` called on init and language change
+  - `src/i18n/es|en/golden-routes.json`: added `involve.joinButton` and `whatsappMessage` per role
+- [x] **Fix: admin-role users assignable to spaces - COMPLETE** (2026-04-17)
+  - `backend-specs/space-instructors-allow-admin-role.md`: spec — backend implemented: removed `AND u.role = 'instructor'` filter from `spaceRepository.findInstructorsBySpaceId` (line 53) and `findInstructorsBySpaceIds` (line 68); admin-role users assigned to a space are now returned alongside instructors
 - [x] **Instructor bio self-edit on profile page - COMPLETE** (2026-04-13)
   - `backend-specs/instructor-bio-self-edit.md`: spec — backend implemented: `PUT /api/users/profile` now accepts `bio` and `bio_en`, saved only for instructor/admin role, empty strings stored as null
   - `pages/dashboard.html`: bio (ES) + bio_en (EN) textareas added to profile form inside `#profileBioSection`, hidden by default
