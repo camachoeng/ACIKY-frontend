@@ -45,10 +45,30 @@
     "retry": "Retry",
     "empty": "You will soon meet the Board Committee",
     "photoAlt": "Photo of {{name}}",
-    "joinTitle": "Want to join the Committee?",
-    "joinDescription": "If you feel the calling to contribute to ACIKY's growth, reach out. We'd love to have you with us!.",
+    "joinTitle": "Want to join the Board Committee?",
+    "joinDescription": "The Board Committee is open exclusively to ACIKY members. If you are already a member and feel called to contribute to the organization's growth, reach out to us.",
     "joinButton": "Ask via WhatsApp",
     "whatsappMessage": "Hello, I'd like to know more about joining ACIKY's Board Committee (este mensaje es desde el sitio web de ACIKY)"
+  },
+  "membership": {
+    "title": "Join ACIKY",
+    "member": {
+      "title": "Are you a KRI-certified instructor?",
+      "description": "ACIKY accepts as members Kundalini Yoga instructors with KRI (Kundalini Research Institute) certification. If you hold your certification and wish to join our alliance, reach out. Only certified teachers can become official members.",
+      "button": "Apply for membership",
+      "whatsappMessage": "Hello, I am a KRI-certified instructor and I'd like to apply for ACIKY membership (este mensaje es desde el sitio web de ACIKY)"
+    },
+    "certify": {
+      "title": "Want to become a certified instructor?",
+      "description": "If Kundalini Yoga has transformed your life and you feel called to teach, the journey begins with KRI training. Contact us for guidance on how to take that step.",
+      "button": "Learn more",
+      "whatsappMessage": "Hello, I'd like to know more about becoming a KRI-certified instructor to join ACIKY (este mensaje es desde el sitio web de ACIKY)"
+    }
+  },
+  "donate": {
+    "title": "Support Our Mission",
+    "description": "Your contribution makes it possible for Kundalini Yoga to keep reaching more people in Cuba. Every donation, big or small, is an act of love for the community.",
+    "button": "Donate now"
   },
   "values": {
     "title": "Our Values",
