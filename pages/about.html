@@ -96,59 +96,67 @@
       </section>
 
       <!-- Guiding Principles Section -->
-      <section class="px-6 mb-12">
-        <div class="flex items-center gap-3 mb-6">
+      <section class="mb-12">
+        <div class="flex items-center gap-3 mb-6 px-6">
           <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
             <span class="material-symbols-outlined text-primary">balance</span>
           </div>
           <h2 class="text-2xl font-bold text-primary-dark" data-i18n="principles.title">Principios Rectores</h2>
         </div>
-        <ol class="space-y-3">
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">1</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p1"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">2</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p2"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">3</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p3"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">4</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p4"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">5</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p5"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">6</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p6"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">7</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p7"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">8</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p8"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">9</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p9"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">10</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p10"></p>
-          </li>
-          <li class="bg-white rounded-2xl shadow-sm border border-slate-100 px-5 py-4 flex items-start gap-4">
-            <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center mt-0.5">11</span>
-            <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p11"></p>
-          </li>
-        </ol>
+        <div class="relative">
+          <button id="principlesPrevBtn" class="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200 text-primary-dark hover:bg-primary-dark hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Anterior">
+            <span class="material-symbols-outlined text-xl">chevron_left</span>
+          </button>
+          <button id="principlesNextBtn" class="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200 text-primary-dark hover:bg-primary-dark hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Siguiente">
+            <span class="material-symbols-outlined text-xl">chevron_right</span>
+          </button>
+          <div id="principlesCarousel" class="flex overflow-x-auto gap-4 px-6 pb-4 hide-scrollbar scroll-smooth">
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">1</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p1"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">2</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p2"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">3</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p3"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">4</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p4"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">5</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p5"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">6</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p6"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">7</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p7"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">8</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p8"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">9</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p9"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">10</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p10"></p>
+            </div>
+            <div class="min-w-[260px] max-w-[260px] bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col gap-3">
+              <span class="w-8 h-8 bg-primary/10 text-primary font-bold text-sm rounded-full flex items-center justify-center flex-shrink-0">11</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="principles.p11"></p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Comité Directivo Section (Dynamic) -->

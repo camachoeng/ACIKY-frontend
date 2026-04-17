@@ -87,13 +87,15 @@
   "involve": {
     "title": "Join the Golden Routes",
     "subtitle": "Be part of this spiritual expansion movement",
+    "joinButton": "I want to join",
     "instructor": {
       "title": "As a Traveling Instructor",
       "text": "If you're a certified instructor, join our routes and share your knowledge across Cuba.",
       "req1": "Valid KRI certification",
       "req2": "Minimum 1 year experience",
       "req3": "Availability to travel",
-      "req4": "Commitment to the mission"
+      "req4": "Commitment to the mission",
+      "whatsappMessage": "Hello, I am a KRI-certified instructor and I'd like to join as a Traveling Instructor in ACIKY's Golden Routes (este mensaje es desde el sitio web de ACIKY)"
     },
     "host": {
       "title": "As a Local Host",
@@ -101,7 +103,8 @@
       "req1": "Offer space for classes",
       "req2": "Coordinate local participants",
       "req3": "Lodging support",
-      "req4": "Community outreach"
+      "req4": "Community outreach",
+      "whatsappMessage": "Hello, I'd like to become a Local Host for ACIKY's Golden Routes in my province (este mensaje es desde el sitio web de ACIKY)"
     },
     "leader": {
       "title": "As an Emerging Leader",
@@ -109,7 +112,8 @@
       "req1": "Free specialized training",
       "req2": "Materials and resources",
       "req3": "Continuous ACIKY support",
-      "req4": "National contact network"
+      "req4": "National contact network",
+      "whatsappMessage": "Hello, I'd like to train as an Emerging Leader to maintain Kundalini Yoga practice in my region with ACIKY's support (este mensaje es desde el sitio web de ACIKY)"
     },
     "sponsor": {
       "title": "As a Sponsor",
@@ -117,7 +121,8 @@
       "req1": "Full route sponsorship",
       "req2": "Transportation costs",
       "req3": "Educational materials",
-      "req4": "Space equipment"
+      "req4": "Space equipment",
+      "whatsappMessage": "Hello, I'd like to support ACIKY's Golden Routes as a Sponsor (este mensaje es desde el sitio web de ACIKY)"
     }
   },
   "vision": {

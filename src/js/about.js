@@ -50,6 +50,7 @@ export async function initAbout() {
 
   loadTeam()
   updateWhatsAppLinks()
+  initPrinciplesCarousel()
 }
 
 function updateWhatsAppLinks() {
@@ -84,6 +85,27 @@ function renderTeamCard(instructor) {
       ${bio ? `<p class="text-xs text-slate-400 leading-relaxed mt-2">${bio}</p>` : ''}
     </div>
   `
+}
+
+function initPrinciplesCarousel() {
+  const carousel = document.getElementById('principlesCarousel')
+  const prevBtn = document.getElementById('principlesPrevBtn')
+  const nextBtn = document.getElementById('principlesNextBtn')
+  if (!carousel || !prevBtn || !nextBtn) return
+
+  const scrollAmount = 280
+
+  function updateButtonStates() {
+    const isAtStart = carousel.scrollLeft <= 10
+    const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10
+    prevBtn.disabled = isAtStart
+    nextBtn.disabled = isAtEnd
+  }
+
+  prevBtn.addEventListener('click', () => carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' }))
+  nextBtn.addEventListener('click', () => carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' }))
+  carousel.addEventListener('scroll', updateButtonStates)
+  updateButtonStates()
 }
 
 function escapeHtml(str) {

@@ -87,13 +87,15 @@
   "involve": {
     "title": "Únete a las Rutas Doradas",
     "subtitle": "Forma parte de este movimiento de expansión espiritual",
+    "joinButton": "Quiero participar",
     "instructor": {
       "title": "Como Instructor Viajero",
       "text": "Si eres instructor certificado, únete a nuestras rutas y comparte tu conocimiento por toda Cuba.",
       "req1": "Certificación KRI válida",
       "req2": "Experiencia mínima de 1 año",
       "req3": "Disponibilidad para viajar",
-      "req4": "Compromiso con la misión"
+      "req4": "Compromiso con la misión",
+      "whatsappMessage": "Hola, soy instructor certificado KRI y me gustaría unirme como Instructor Viajero en las Rutas Doradas de ACIKY (este mensaje es desde el sitio web de ACIKY)"
     },
     "host": {
       "title": "Como Anfitrión Local",
@@ -101,7 +103,8 @@
       "req1": "Ofrecer espacio para clases",
       "req2": "Coordinar participantes locales",
       "req3": "Apoyo con alojamiento",
-      "req4": "Promoción en la comunidad"
+      "req4": "Promoción en la comunidad",
+      "whatsappMessage": "Hola, me gustaría ser Anfitrión Local para las Rutas Doradas de ACIKY en mi provincia (este mensaje es desde el sitio web de ACIKY)"
     },
     "leader": {
       "title": "Como Líder Emergente",
@@ -109,7 +112,8 @@
       "req1": "Formación especializada gratuita",
       "req2": "Materiales y recursos",
       "req3": "Apoyo continuo de ACIKY",
-      "req4": "Red nacional de contactos"
+      "req4": "Red nacional de contactos",
+      "whatsappMessage": "Hola, me gustaría formarme como Líder Emergente para mantener la práctica del Kundalini Yoga en mi región con el apoyo de ACIKY (este mensaje es desde el sitio web de ACIKY)"
     },
     "sponsor": {
       "title": "Como Patrocinador",
@@ -117,7 +121,8 @@
       "req1": "Patrocinio completo de ruta",
       "req2": "Gastos de transporte",
       "req3": "Materiales educativos",
-      "req4": "Equipamiento para espacios"
+      "req4": "Equipamiento para espacios",
+      "whatsappMessage": "Hola, me gustaría apoyar como Patrocinador de las Rutas Doradas de ACIKY (este mensaje es desde el sitio web de ACIKY)"
     }
   },
   "vision": {
