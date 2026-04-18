@@ -10,10 +10,13 @@ _None._
 
 ## Recently Completed
 - [x] **Blog author bio + spaces instructor bio - COMPLETE** (2026-04-17)
-  - `backend-specs/blog-author-fix-and-bio.md`: spec — backend implemented: added `u.bio AS author_bio` and `u.bio_en AS author_bio_en` to all three SELECT queries in `blogRepository.js` (`findAllPublished`, `findAll`, `findById`); `author_id` was confirmed to never be overwritten on edit
+  - `backend-specs/blog-author-fix-and-bio.md`: spec — backend implemented (v135): `u.bio AS author_bio` + `u.bio_en AS author_bio_en` added to `findAllPublished`, `findAll`, `findById` in `blogRepository.js`; `author_id` confirmed never overwritten on edit
   - `pages/blog.html`: restructured author header in detail view — larger avatar, name + date inline, `#blogDetailAuthorBio` element below (hidden when empty)
-  - `src/js/blog.js`: `showPostDetail` now renders `post.author_bio`/`post.author_bio_en` into `#blogDetailAuthorBio`, respects current language
-  - `src/js/spaces.js`: replaced stacked-avatars layout with per-instructor rows; each instructor now shows avatar + name + bio regardless of how many instructors a space has
+  - `src/js/blog.js`: `showPostDetail` renders `post.author_bio`/`post.author_bio_en`; `getAuthorName()` helper uses `formatUserName` fallback (`first_name`/`last_name` → `name` → `username`) — awaiting backend to add those three fields to the same SELECTs
+  - `src/js/spaces.js`: per-instructor rows with avatar + name + bio for all instructors
+- [x] **Fix: instructor/admin bio on space cards - COMPLETE** (2026-04-18)
+  - `backend-specs/space-instructors-include-bio.md`: spec — backend fix: added `bio` and `bio_en` to instructor mapping object in `spaceService.js:31` inside `getAllSpaces`; `getSpaceById` already returned raw rows so it was unaffected
+  - `src/js/blog.js`: `getAuthorName()` helper uses `formatUserName` fallback — awaiting backend to add `author_first_name`, `author_last_name`, `author_username` to the three SELECT queries in `blogRepository.js` (same queries as bio fix) — frontend already wired
 
 ## Recently Completed
 - [x] **About page: membership CTAs + donation section + principles carousel - COMPLETE** (2026-04-17)

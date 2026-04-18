@@ -1,8 +1,18 @@
 import { apiFetch, API_BASE } from './api.js'
 import { localized, t } from './i18n.js'
 import { shareContent } from './utils/share.js'
+import { formatUserName } from './utils/formatUserName.js'
 
 const POSTS_PER_PAGE = 9
+
+function getAuthorName(post) {
+  return formatUserName({
+    first_name: post.author_first_name,
+    last_name: post.author_last_name,
+    name: post.author_name,
+    username: post.author_username,
+  })
+}
 
 let allPosts = []
 let filteredPosts = []
@@ -79,7 +89,7 @@ function applySearch() {
     }
     if (query) {
       const title = (localized(post, 'title') || '').toLowerCase()
-      const author = (post.author_name || '').toLowerCase()
+      const author = getAuthorName(post).toLowerCase()
       let content = (localized(post, 'content') || '').toLowerCase()
       if (post.content_blocks) {
         try {
@@ -214,9 +224,9 @@ function renderCard(post) {
         <h3 class="font-bold text-primary-dark text-lg">${escapeHtml(title)}</h3>
         <div class="flex items-center gap-2 mt-2 text-xs text-slate-400">
           ${post.author_profile_image_url
-            ? `<img src="${escapeHtml(post.author_profile_image_url)}" alt="${escapeHtml(post.author_name || '')}" class="w-5 h-5 rounded-full object-cover flex-shrink-0" />`
+            ? `<img src="${escapeHtml(post.author_profile_image_url)}" alt="${escapeHtml(getAuthorName(post))}" class="w-5 h-5 rounded-full object-cover flex-shrink-0" />`
             : `<span class="material-symbols-outlined text-xs">person</span>`}
-          <span>${escapeHtml(post.author_name || '')}</span>
+          <span>${escapeHtml(getAuthorName(post))}</span>
           <span>&middot;</span>
           <time>${escapeHtml(date)}</time>
         </div>
@@ -253,7 +263,7 @@ function showPostDetail(id) {
   const content = localized(post, 'content') || ''
 
   document.getElementById('blogDetailTitle').textContent = title
-  document.getElementById('blogDetailAuthor').textContent = post.author_name || ''
+  document.getElementById('blogDetailAuthor').textContent = getAuthorName(post)
   document.getElementById('blogDetailDate').textContent = formatDate(post.created_at)
 
   const authorImg = document.getElementById('blogDetailAuthorImg')
@@ -261,7 +271,7 @@ function showPostDetail(id) {
   if (authorImg && authorIcon) {
     if (post.author_profile_image_url) {
       authorImg.src = post.author_profile_image_url
-      authorImg.alt = post.author_name || ''
+      authorImg.alt = getAuthorName(post)
       authorImg.classList.remove('hidden')
       authorIcon.classList.add('hidden')
     } else {
