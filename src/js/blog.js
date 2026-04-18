@@ -7,9 +7,8 @@ const POSTS_PER_PAGE = 9
 
 function getAuthorName(post) {
   return formatUserName({
-    first_name: post.author_first_name,
+    name: post.author_first_name,
     last_name: post.author_last_name,
-    name: post.author_name,
     username: post.author_username,
   })
 }
@@ -226,7 +225,7 @@ function renderCard(post) {
           ${post.author_profile_image_url
             ? `<img src="${escapeHtml(post.author_profile_image_url)}" alt="${escapeHtml(getAuthorName(post))}" class="w-5 h-5 rounded-full object-cover flex-shrink-0" />`
             : `<span class="material-symbols-outlined text-xs">person</span>`}
-          <span>${escapeHtml(getAuthorName(post))}</span>
+          <span>${escapeHtml(getAuthorName(post))}${post.author_spiritual_name ? ` · <em class="not-italic text-primary-dark/60">${escapeHtml(post.author_spiritual_name)}</em>` : ''}</span>
           <span>&middot;</span>
           <time>${escapeHtml(date)}</time>
         </div>
@@ -263,7 +262,11 @@ function showPostDetail(id) {
   const content = localized(post, 'content') || ''
 
   document.getElementById('blogDetailTitle').textContent = title
-  document.getElementById('blogDetailAuthor').textContent = getAuthorName(post)
+  const authorEl = document.getElementById('blogDetailAuthor')
+  authorEl.textContent = getAuthorName(post)
+  if (post.author_spiritual_name) {
+    authorEl.innerHTML = `${escapeHtml(getAuthorName(post))} <em class="not-italic text-primary-dark/60 text-xs">${escapeHtml(post.author_spiritual_name)}</em>`
+  }
   document.getElementById('blogDetailDate').textContent = formatDate(post.created_at)
 
   const authorImg = document.getElementById('blogDetailAuthorImg')
