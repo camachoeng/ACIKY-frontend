@@ -39,7 +39,7 @@
   },
   "team": {
     "title": "Comité Directivo",
-    "description": "En ACIKY no hay un líder máximo: las decisiones se toman en conjunto. Cada miembro del Comité aporta su voz y su visión, guiando el camino de la asociación con horizontalidad y respeto mutuo.",
+    "description": "ACIKY está dirigida por un Presidente y un Vicepresidente, acompañados por el Comité Directivo. Juntos toman las decisiones que guían el rumbo de la organización, velando por el crecimiento y la integridad de la comunidad.",
     "loading": "Cargando equipo...",
     "error": "No se pudo cargar el equipo",
     "retry": "Reintentar",

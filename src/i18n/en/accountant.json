@@ -30,5 +30,21 @@
     "expense": "Expense"
   },
   "empty": "No transactions recorded.",
-  "donationBadge": "Donation"
+  "donationBadge": "Donation",
+  "report": {
+    "button": "Generate report",
+    "title": "Financial Report",
+    "organization": "ACIKY — Cuban Alliance of Instructors in Kundalini Yoga",
+    "period": "Period",
+    "allMonths": "All months",
+    "generatedOn": "Generated on",
+    "summaryTitle": "Fund summary",
+    "transactionsTitle": "Transactions",
+    "noTransactions": "No transactions in this period.",
+    "income": "Income",
+    "expenses": "Expenses",
+    "balance": "Balance",
+    "total": "Total equivalent",
+    "exchangeRate": "Exchange rate"
+  }
 }

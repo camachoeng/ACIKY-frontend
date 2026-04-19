@@ -39,7 +39,7 @@
   },
   "team": {
     "title": "Board Committee",
-    "description": "At ACIKY there is no single leader: decisions are made together. Each Committee member brings their voice and vision, guiding the association with horizontality and mutual respect.",
+    "description": "ACIKY is led by a President and a Vice President, supported by the Board Committee. Together they make the decisions that guide the organization, overseeing the growth and integrity of the community.",
     "loading": "Loading team...",
     "error": "Could not load team",
     "retry": "Retry",
