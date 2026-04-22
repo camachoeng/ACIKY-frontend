@@ -35,9 +35,13 @@ export async function initDashboard() {
       document.getElementById('profileBio').value = profile.bio || ''
       document.getElementById('profileBioEn').value = profile.bio_en || ''
     }
-    if (profile.is_accountant) {
-      const financesLink = document.getElementById('financesLink')
-      if (financesLink) financesLink.href = '/pages/admin/accountant.html'
+    const dashFinancesLink = document.getElementById('financesLink')
+    if (dashFinancesLink) {
+      if (profile.is_accountant) {
+        dashFinancesLink.href = '/pages/admin/accountant.html'
+      } else if (profile.role !== 'admin') {
+        dashFinancesLink.classList.add('hidden')
+      }
     }
   } catch (err) {
     // Fallback: populate from the auth user object
@@ -51,9 +55,13 @@ export async function initDashboard() {
       instructorSection.classList.remove('hidden')
       document.getElementById('profileBioSection').classList.remove('hidden')
     }
-    if (user.is_accountant) {
-      const financesLink = document.getElementById('financesLink')
-      if (financesLink) financesLink.href = '/pages/admin/accountant.html'
+    const dashFinancesLinkFallback = document.getElementById('financesLink')
+    if (dashFinancesLinkFallback) {
+      if (user.is_accountant) {
+        dashFinancesLinkFallback.href = '/pages/admin/accountant.html'
+      } else if (user.role !== 'admin') {
+        dashFinancesLinkFallback.classList.add('hidden')
+      }
     }
   }
 
