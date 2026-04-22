@@ -22,6 +22,7 @@
     "logoutMobile": "Sign Out",
     "admin": "Admin",
     "adminPanel": "Admin Panel",
+    "finances": "Finances",
     "greeting": "Hello, {{name}}",
     "openMenu": "Open menu"
   },

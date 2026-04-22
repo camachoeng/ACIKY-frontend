@@ -1,4 +1,3 @@
-// Accountant public view (instructor + admin only)
 import { t } from './i18n.js'
 import { apiFetch } from './api.js'
 import { requireAuth } from './auth.js'
@@ -14,7 +13,7 @@ export async function initAccountant() {
   const user = await requireAuth()
   if (!user) return
 
-  if (user.role === 'user') {
+  if (user.role !== 'admin' && !user.is_accountant) {
     window.location.replace('/')
     return
   }
