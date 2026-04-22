@@ -43,7 +43,7 @@ export async function initAccountant() {
     })
   })
 
-  if (user.role === 'admin') {
+  if (user.role === 'admin' || user.is_accountant) {
     document.getElementById('generateReportBtn')?.addEventListener('click', generateReport)
   } else {
     document.getElementById('generateReportBtn')?.classList.add('hidden')

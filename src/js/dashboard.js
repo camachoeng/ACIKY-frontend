@@ -35,6 +35,10 @@ export async function initDashboard() {
       document.getElementById('profileBio').value = profile.bio || ''
       document.getElementById('profileBioEn').value = profile.bio_en || ''
     }
+    if (profile.is_accountant) {
+      const financesLink = document.getElementById('financesLink')
+      if (financesLink) financesLink.href = '/pages/admin/accountant.html'
+    }
   } catch (err) {
     // Fallback: populate from the auth user object
     document.getElementById('profileName').value = user.name || ''
@@ -46,6 +50,10 @@ export async function initDashboard() {
     if (['instructor', 'admin'].includes(user.role)) {
       instructorSection.classList.remove('hidden')
       document.getElementById('profileBioSection').classList.remove('hidden')
+    }
+    if (user.is_accountant) {
+      const financesLink = document.getElementById('financesLink')
+      if (financesLink) financesLink.href = '/pages/admin/accountant.html'
     }
   }
 

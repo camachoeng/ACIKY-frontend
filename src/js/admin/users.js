@@ -115,7 +115,7 @@ function renderUsers(tbody, list = users) {
   const roleColors = {
     admin: 'bg-accent-rose/20 text-accent-rose',
     instructor: 'bg-accent-teal/20 text-accent-teal',
-    user: 'bg-slate-100 text-slate-600'
+user: 'bg-slate-100 text-slate-600'
   }
 
   tbody.innerHTML = list.map(user => {
@@ -129,8 +129,9 @@ function renderUsers(tbody, list = users) {
         <td class="px-6 py-4">${profileImage}</td>
         <td class="px-6 py-4 text-sm font-medium text-primary-dark">${escapeHtml(formatUserName(user))}</td>
         <td class="px-6 py-4 text-sm text-slate-500">${escapeHtml(user.email)}</td>
-        <td class="px-6 py-4">
+        <td class="px-6 py-4 flex items-center gap-1 flex-wrap">
           <span class="px-3 py-1 rounded-full text-xs font-bold ${roleClass}">${user.role}</span>
+          ${user.is_accountant ? `<span class="px-2 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary" title="Contabilidad">$</span>` : ''}
         </td>
         <td class="px-6 py-4 text-right">
           <button data-action="edit" data-id="${user.id}" class="p-1 text-primary hover:text-primary-dark transition-colors" title="Editar">
@@ -156,6 +157,8 @@ function openCreateModal() {
   if (form) form.reset()
   document.getElementById('userId').value = ''
   document.getElementById('userProfileImageUrl').value = ''
+  const isAccountantCheck = document.getElementById('userIsAccountant')
+  if (isAccountantCheck) isAccountantCheck.checked = false
   const preview = document.getElementById('userProfileImagePreview')
   if (preview) preview.src = '/images/default-avatar.svg'
   if (passwordFields) passwordFields.style.display = 'block'
@@ -192,6 +195,8 @@ async function openEditModal(id) {
     document.getElementById('userBio').value = user.bio || ''
     document.getElementById('userBioEn').value = user.bio_en || ''
     document.getElementById('userProfileImageUrl').value = user.profile_image_url || ''
+    const isAccountantCheck = document.getElementById('userIsAccountant')
+    if (isAccountantCheck) isAccountantCheck.checked = !!user.is_accountant
     const preview = document.getElementById('userProfileImagePreview')
     if (preview) preview.src = user.profile_image_url || '/images/default-avatar.svg'
     togglePositionField()
@@ -239,8 +244,9 @@ async function saveUser(e) {
   const bioEn = document.getElementById('userBioEn').value.trim()
 
   const profile_image_url = document.getElementById('userProfileImageUrl').value.trim() || null
+  const is_accountant = document.getElementById('userIsAccountant')?.checked ? 1 : 0
 
-  const body = { name, last_name, spiritual_name, email, role, profile_image_url }
+  const body = { name, last_name, spiritual_name, email, role, profile_image_url, is_accountant }
   if (password) body.password = password
   if (role !== 'user') {
     body.position = position || null

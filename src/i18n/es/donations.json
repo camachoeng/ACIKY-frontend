@@ -11,7 +11,9 @@
   "paypal": {
     "title": "Donar por PayPal",
     "instructions": "Haz clic en el botón para ir a la página de pago de PayPal. Una vez completado el pago, regresa aquí y completa el formulario de confirmación.",
-    "button": "Donar por PayPal"
+    "button": "Donar por PayPal",
+    "notice": "Nota sobre nuestra cuenta de PayPal",
+    "noticeText": "Debido a las restricciones financieras que enfrentamos como organización cubana, no nos es posible contar con una cuenta de PayPal propia en estos momentos. Por eso, un maestro que cree profundamente en nuestra misión nos brinda generosamente el uso de su cuenta personal para recibir donaciones internacionales en nombre de ACIKY ( Debes poner exactamente: \"Donación ACIKY\" ). Cada centavo donado se destina íntegramente a nuestra comunidad. Agradecemos profundamente tu comprensión y tu confianza."
   },
   "cup": {
     "title": "Donar en CUP (transferencia bancaria)",
