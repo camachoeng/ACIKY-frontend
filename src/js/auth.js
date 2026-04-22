@@ -139,6 +139,17 @@ export async function requireAdmin() {
   return user
 }
 
+/** Redirect to home if not admin, accountant role, or is_accountant flag. Returns the user or null. */
+export async function requireAccountantAccess() {
+  const user = await requireAuth()
+  if (!user) return null
+  if (user.role !== 'admin' && !user.is_accountant) {
+    window.location.href = import.meta.env.BASE_URL
+    return null
+  }
+  return user
+}
+
 /** Redirect to home if not instructor or admin. Returns the user or null. */
 export async function requireInstructor() {
   const user = await requireAuth()

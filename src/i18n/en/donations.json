@@ -11,7 +11,9 @@
   "paypal": {
     "title": "Donate via PayPal",
     "instructions": "Click the button to go to the PayPal payment page. Once the payment is complete, come back here and fill out the confirmation form.",
-    "button": "Donate via PayPal"
+    "button": "Donate via PayPal",
+    "notice": "A note about our PayPal account",
+    "noticeText": "Due to the financial restrictions we face as a Cuban organization, we are currently unable to hold a PayPal account of our own. For this reason, a teacher who deeply believes in our mission generously allows us to use his personal account to receive international donations on behalf of ACIKY ( You must put exactly: \"Donation ACIKY\" ). Every cent donated goes entirely to our community. We are deeply grateful for your understanding and your trust."
   },
   "cup": {
     "title": "Donate in CUP (bank transfer)",

@@ -1,4 +1,4 @@
-import { requireAdmin } from '../auth.js'
+import { requireAccountantAccess } from '../auth.js'
 import { apiFetch } from '../api.js'
 import { t } from '../i18n.js'
 
@@ -10,8 +10,14 @@ let filterMonth = ''
 let editingId = null
 
 export async function initAdminAccountant() {
-  const user = await requireAdmin()
+  const user = await requireAccountantAccess()
   if (!user) return
+
+  if (user.role !== 'admin') {
+    document.querySelector('nav.bg-primary-dark')?.classList.add('hidden')
+    const backLink = document.getElementById('accountantBackLink')
+    if (backLink) backLink.classList.replace('hidden', 'inline-flex')
+  }
 
   await loadExchangeRate()
   await loadTransactions()

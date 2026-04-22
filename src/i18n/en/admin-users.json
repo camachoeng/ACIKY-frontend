@@ -34,6 +34,8 @@
     "roleUser": "User",
     "roleInstructor": "Instructor",
     "roleAdmin": "Admin",
+    "isAccountant": "Accounting access",
+    "isAccountantHint": "Allows managing finances regardless of role",
     "position": "Position / Title",
     "positionPlaceholder": "E.g.: Kundalini Yoga Instructor",
     "bio": "Brief description (ES)",
