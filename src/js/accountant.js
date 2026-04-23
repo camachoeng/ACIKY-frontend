@@ -13,7 +13,7 @@ export async function initAccountant() {
   const user = await requireAuth()
   if (!user) return
 
-  if (user.role !== 'admin' && !user.is_accountant) {
+  if (user.role === 'user') {
     window.location.replace('/')
     return
   }
