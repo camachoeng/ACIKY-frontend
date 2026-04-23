@@ -70,6 +70,22 @@
   },
   "donationBadge": "Donation",
   "convertButton": "Convert CUP → USD",
+  "report": {
+    "button": "Generate report",
+    "title": "Financial Report",
+    "organization": "ACIKY — Cuban Alliance of Instructors in Kundalini Yoga",
+    "period": "Period",
+    "allMonths": "All months",
+    "generatedOn": "Generated on",
+    "summaryTitle": "Fund summary",
+    "transactionsTitle": "Transactions",
+    "noTransactions": "No transactions in this period.",
+    "income": "Income",
+    "expenses": "Expenses",
+    "balance": "Balance",
+    "total": "Total equivalent",
+    "exchangeRate": "Exchange rate"
+  },
   "conversion": {
     "title": "Convert CUP → USD",
     "subtitle": "Record the CUP outflow and USD inflow in one step.",

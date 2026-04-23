@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-04-22
+Last updated: 2026-04-23
 
 ## In Progress
 _No active work at this time._
@@ -9,19 +9,24 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Accountant report button fix + GET transactions access - COMPLETE** (2026-04-23)
+  - `pages/accountant.html`: removed "Generar informe" button (was wrongly visible to plain instructors)
+  - `pages/admin/accountant.html`: added "Generar informe" button (visible to all who can reach the page: accountant instructors + admins)
+  - `src/js/admin/accountant.js`: added `lastTransactions`, `generateReport()` function, wired `generateReportBtn` listener
+  - `src/js/accountant.js`: removed `generateReport()`, `lastTransactions`, and report button logic entirely
+  - `src/i18n/es|en/admin-accountant.json`: added `report.*` keys
+  - `backend-specs/accountant-role.md`: spec — `GET /api/transactions` must use `requireInstructor` (not `requireAccountantOrAdmin`) so plain instructors can view the read-only ledger; backend fix applied to dev
 - [x] **Accountant access flag + finance report - COMPLETE** (2026-04-22)
-  - `backend-specs/accountant-role.md`: spec — backend implemented on dev: `is_accountant TINYINT(1)` added to users table; `findAll`/`findTeamMembers`/`update` include the field; `checkAuth` returns it; `requireAccountantOrAdmin` middleware added; all 4 transaction routes + `PUT /api/settings` (exchange rate only for non-admins) use it
-  - `src/js/auth.js`: added `requireAccountantAccess()` (admin or is_accountant); `updateAuthUI` shows finances header link for both; admin link href redirected to accountant page for is_accountant users
-  - `src/js/admin/accountant.js`: uses `requireAccountantAccess()` instead of `requireAdmin()`
-  - `src/js/admin/users.js` + `pages/admin/users.html`: `is_accountant` checkbox in user modal (admin-only page); checkbox resets on create; flag included in save body; `$` badge shown in user table
-  - `src/js/accountant.js`: "Generate report" button hidden for plain instructors, visible to admin and is_accountant users only
+  - `backend-specs/accountant-role.md`: spec — backend implemented on dev: `is_accountant TINYINT(1)` added to users table; `findAll`/`findTeamMembers`/`update` include the field; `checkAuth` returns it; `requireAccountantOrAdmin` middleware added; POST/PUT/DELETE transaction routes use it; `GET /api/transactions` uses `requireInstructor`
+  - `src/js/auth.js`: added `requireAccountantAccess()` (admin or is_accountant)
+  - `src/js/admin/accountant.js`: uses `requireAccountantAccess()` instead of `requireAdmin()`; hides admin nav + shows back link for non-admin accountants; edit/delete buttons gated on `canEditDelete` (admin only)
+  - `src/js/admin/users.js` + `pages/admin/users.html`: `is_accountant` checkbox in user modal (admin-only page); `$` badge shown in user table
+  - `src/js/dashboard.js` + `pages/dashboard.html`: finances button routes accountant instructors to admin accountant page, hides for plain instructors
   - `src/i18n/es|en/admin-users.json`: added `isAccountant` and `isAccountantHint` keys
 - [x] **Board Committee description update - COMPLETE** (2026-04-22)
   - `src/i18n/es|en/about.json`: `team.description` updated to reflect President + Vice President + Board Committee structure
 - [x] **Accountant monthly report generator - COMPLETE** (2026-04-21)
-  - `pages/accountant.html`: added "Generar informe" button in header (admin + accountant only)
-  - `src/js/accountant.js`: `generateReport()` opens a print-ready window with ACIKY branding, fund summary (CUP/USD/total), full transaction list; respects active month filter; auto-triggers browser print dialog
-  - `src/i18n/es|en/accountant.json`: added `report.*` keys
+  - `src/i18n/es|en/accountant.json`: added `report.*` keys (retained for read-only page i18n)
 - [x] **Online Sadhana: Amrit Vela explanation updated - COMPLETE** (2026-04-21)
   - `src/i18n/es|en/onlinesadhana.json`: `overview.card1` updated to explain true Ambrosial Hours (4–7 AM/PM, why they're special) and clarify ACIKY practices 7:30–9:00 AM because guided by a master from Mexico
 - [x] **Donations: PayPal transparency note - COMPLETE** (2026-04-22)
