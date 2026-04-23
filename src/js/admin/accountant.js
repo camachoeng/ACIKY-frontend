@@ -8,12 +8,16 @@ let totalCurrency = 'CUP'
 let filterType = 'all'
 let filterMonth = ''
 let editingId = null
+let canEditDelete = false
 
 export async function initAdminAccountant() {
   const user = await requireAccountantAccess()
   if (!user) return
 
-  if (user.role !== 'admin') {
+  const isAdmin = user.role === 'admin'
+  canEditDelete = isAdmin
+
+  if (!isAdmin) {
     document.querySelector('nav.bg-primary-dark')?.classList.add('hidden')
     const backLink = document.getElementById('accountantBackLink')
     if (backLink) backLink.classList.replace('hidden', 'inline-flex')
@@ -107,7 +111,7 @@ async function loadTransactions() {
     const data = await apiFetch(`/api/transactions${qs}`)
     summary = data.summary || summary
     renderSummary()
-    renderTransactions(data.data || [])
+    renderTransactions(data.data || [], canEditDelete)
   } catch (err) {
     list.innerHTML = `<p class="text-center text-red-500 text-sm py-8">${t('errors.loadError')}: ${escapeHtml(err.message)}</p>`
   }
@@ -140,7 +144,7 @@ function renderSummary() {
   if (label) label.textContent = totalCurrency === 'CUP' ? `1 USD = ${exchangeRate} CUP` : `1 USD = ${exchangeRate} CUP`
 }
 
-function renderTransactions(transactions) {
+function renderTransactions(transactions, canEditDelete = false) {
   const list = document.getElementById('transactionsList')
   if (!list) return
 
@@ -169,12 +173,13 @@ function renderTransactions(transactions) {
         </div>
         <div class="flex items-center gap-3 flex-shrink-0">
           <span class="font-bold ${amountStyle}">${sign}${Number(tx.amount).toLocaleString('es-CU', { minimumFractionDigits: 2 })} ${tx.currency}</span>
+          ${canEditDelete ? `
           <button data-action="edit" data-id="${tx.id}" class="text-slate-400 hover:text-primary transition-colors">
             <span class="material-symbols-outlined text-sm">edit</span>
           </button>
           <button data-action="delete" data-id="${tx.id}" class="text-slate-400 hover:text-accent-terracotta transition-colors">
             <span class="material-symbols-outlined text-sm">delete</span>
-          </button>
+          </button>` : ''}
         </div>
       </div>`
   }).join('')

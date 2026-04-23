@@ -54,8 +54,6 @@ export function updateAuthUI(isAuthenticated, user) {
   const mobileUserGreeting = document.getElementById('mobileUserGreeting')
   const adminLink = document.getElementById('adminLink')
   const mobileAdminLink = document.getElementById('mobileAdminLink')
-  const financesLink = document.getElementById('financesLink')
-  const mobileFinancesLink = document.getElementById('mobileFinancesLink')
 
   if (isAuthenticated && user) {
     // Hide auth buttons when logged in
@@ -78,7 +76,6 @@ export function updateAuthUI(isAuthenticated, user) {
     }
     // Show admin links only for admins (desktop and mobile)
     const isAdmin = user.role === 'admin'
-    const hasFinancesAccess = isAdmin || !!user.is_accountant
     if (adminLink) {
       if (isAdmin) {
         adminLink.classList.remove('hidden')
@@ -95,24 +92,6 @@ export function updateAuthUI(isAuthenticated, user) {
       } else {
         mobileAdminLink.classList.add('hidden')
         mobileAdminLink.classList.remove('flex')
-      }
-    }
-    if (financesLink) {
-      if (hasFinancesAccess) {
-        financesLink.classList.remove('hidden')
-        financesLink.classList.add('inline-flex')
-      } else {
-        financesLink.classList.add('hidden')
-        financesLink.classList.remove('inline-flex')
-      }
-    }
-    if (mobileFinancesLink) {
-      if (hasFinancesAccess) {
-        mobileFinancesLink.classList.remove('hidden')
-        mobileFinancesLink.classList.add('flex')
-      } else {
-        mobileFinancesLink.classList.add('hidden')
-        mobileFinancesLink.classList.remove('flex')
       }
     }
   } else {
@@ -135,14 +114,6 @@ export function updateAuthUI(isAuthenticated, user) {
     if (mobileAdminLink) {
       mobileAdminLink.classList.add('hidden')
       mobileAdminLink.classList.remove('flex')
-    }
-    if (financesLink) {
-      financesLink.classList.add('hidden')
-      financesLink.classList.remove('inline-flex')
-    }
-    if (mobileFinancesLink) {
-      mobileFinancesLink.classList.add('hidden')
-      mobileFinancesLink.classList.remove('flex')
     }
   }
 }
