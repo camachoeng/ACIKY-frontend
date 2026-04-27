@@ -1,0 +1,41 @@
+{
+  "pageTitle": "Email Broadcast - ACIKY Admin",
+  "title": "Email Broadcast",
+  "subtitle": "Send an HTML message to registered members",
+  "recipients": {
+    "title": "Recipients",
+    "users": "Users",
+    "instructors": "Instructors",
+    "count": "{{count}} recipients selected",
+    "none": "Select at least one group"
+  },
+  "form": {
+    "subjectTitle": "Subject",
+    "subjectEs": "Asunto (Español) *",
+    "subjectEsPlaceholder": "E.g.: Novedades de ACIKY",
+    "subjectEn": "Subject (English) *",
+    "subjectEnPlaceholder": "E.g.: ACIKY Updates",
+    "bodyTitle": "Email content",
+    "bodyHint": "Use the toolbar to format your text.",
+    "bodyEs": "Body (Español) *",
+    "bodyEsPlaceholder": "Write the content in Spanish...",
+    "bodyEn": "Body (English) *",
+    "bodyEnPlaceholder": "Write the content in English...",
+    "preview": "Preview",
+    "send": "Send emails",
+    "sending": "Sending..."
+  },
+  "preview": {
+    "title": "Email preview"
+  },
+  "success": {
+    "title": "Emails sent!",
+    "count": "{{sent}} sent successfully · {{errors}} errors",
+    "sendAnother": "Send another"
+  },
+  "errors": {
+    "allFieldsRequired": "Fill in the subject and content in both languages.",
+    "noRoles": "Select at least one recipient group.",
+    "sendFailed": "Error sending emails. Please try again."
+  }
+}

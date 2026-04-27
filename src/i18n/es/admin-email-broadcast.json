@@ -1,0 +1,41 @@
+{
+  "pageTitle": "Envío de Emails - ACIKY Admin",
+  "title": "Envío de Emails",
+  "subtitle": "Envía un mensaje HTML a miembros registrados",
+  "recipients": {
+    "title": "Destinatarios",
+    "users": "Usuarios",
+    "instructors": "Instructores",
+    "count": "{{count}} destinatarios seleccionados",
+    "none": "Selecciona al menos un grupo"
+  },
+  "form": {
+    "subjectTitle": "Asunto",
+    "subjectEs": "Asunto (Español) *",
+    "subjectEsPlaceholder": "Ej: Novedades de ACIKY",
+    "subjectEn": "Asunto (English) *",
+    "subjectEnPlaceholder": "E.g.: ACIKY Updates",
+    "bodyTitle": "Contenido del email",
+    "bodyHint": "Usa la barra de herramientas para dar formato al texto.",
+    "bodyEs": "Cuerpo (Español) *",
+    "bodyEsPlaceholder": "Escribe el contenido en español...",
+    "bodyEn": "Body (English) *",
+    "bodyEnPlaceholder": "Write the content in English...",
+    "preview": "Vista previa",
+    "send": "Enviar emails",
+    "sending": "Enviando..."
+  },
+  "preview": {
+    "title": "Vista previa del email"
+  },
+  "success": {
+    "title": "¡Emails enviados!",
+    "count": "{{sent}} enviados correctamente · {{errors}} errores",
+    "sendAnother": "Enviar otro"
+  },
+  "errors": {
+    "allFieldsRequired": "Completa el asunto y el contenido en ambos idiomas.",
+    "noRoles": "Selecciona al menos un grupo de destinatarios.",
+    "sendFailed": "Error al enviar los emails. Intenta de nuevo."
+  }
+}

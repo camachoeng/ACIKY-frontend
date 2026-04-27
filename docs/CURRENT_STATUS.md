@@ -1,12 +1,25 @@
 # Current Project Status
 
-Last updated: 2026-04-23
+Last updated: 2026-04-27
 
 ## In Progress
 _No active work at this time._
 
 ## Pending Actions
 _None._
+
+## Recently Completed
+- [x] **Email broadcast + admin user creation + donations split - COMPLETE** (2026-04-27)
+  - `pages/admin/email-broadcast.html` + `src/js/admin/emailBroadcast.js`: new admin page — role checkboxes (users/instructors) with live recipient count, bilingual subject + HTML body fields, email preview modal, send with success/error count
+  - `src/i18n/es|en/admin-email-broadcast.json`: new translation files
+  - `backend-specs/email-broadcast.md`: spec — `POST /api/emails/broadcast` (admin-only), bilingual HTML email template, returns `{ sent, errors }`; `POST /api/users` sets `email_verified = 1` for admin-created users automatically
+  - Backend implemented: broadcast sends bilingual HTML to verified users by role; admin-created users skip email verification
+  - `pages/donations.html` split into appeal page (why donate, uses, impact, quote, benefits, promise + CTA) and `pages/donate.html` (PayPal + CUP + confirmation form)
+  - `src/js/donate.js`: new module with PayPal loading + form submission; `src/js/donations.js` simplified to description loader only
+  - `src/i18n/es|en/donate.json`: new translation files; `donations.json` updated with new content sections (uses, impact, quote, benefits, promise, cta)
+  - `pages/about.html` + `src/i18n/es|en/about.json`: updated history, mission, membership to reflect ACIKY as Cuba's NKYTA affiliated with IKYTA; tone aligned with IKYTA's "uplift and empower" language
+  - `src/partials/admin-nav.html` + `src/i18n/es|en/common.json`: "Emails" nav link added
+  - `vite.config.js`, `src/main.js`, `src/js/i18n.js`: registered `donate` and `adminEmailBroadcast` pages
 
 ## Recently Completed
 - [x] **Accountant report button fix + GET transactions access - COMPLETE** (2026-04-23)

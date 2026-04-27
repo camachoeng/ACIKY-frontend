@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="{{basePath}}/images/logo/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Envío de Emails - ACIKY Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-background">
+    {{> admin-nav}}
+
+    <main class="max-w-2xl mx-auto px-4 py-8 pb-32 lg:pb-12">
+
+      <!-- Header -->
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-primary">mail</span>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold text-primary-dark" data-i18n="title">Envío de Emails</h1>
+          <p class="text-xs text-slate-500" data-i18n="subtitle">Envía un mensaje HTML a miembros registrados</p>
+        </div>
+      </div>
+
+      <!-- Success state -->
+      <div id="successState" class="hidden bg-white rounded-2xl border border-slate-100 shadow-sm p-8 text-center mb-6">
+        <span class="material-symbols-outlined text-5xl text-primary mb-3 block">mark_email_read</span>
+        <h2 class="text-lg font-bold text-primary-dark mb-1" data-i18n="success.title">¡Emails enviados!</h2>
+        <p id="successCount" class="text-sm text-slate-500 mb-5"></p>
+        <button id="sendAnotherBtn" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-dark text-white font-bold text-sm rounded-2xl hover:bg-primary transition-colors">
+          <span class="material-symbols-outlined text-base">add</span>
+          <span data-i18n="success.sendAnother">Enviar otro</span>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form id="broadcastForm" class="space-y-6">
+
+        <!-- Recipients -->
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+          <h2 class="text-sm font-bold text-primary-dark mb-4" data-i18n="recipients.title">Destinatarios</h2>
+          <div class="flex gap-6">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="roleUser" value="user" checked
+                     class="w-4 h-4 accent-primary" />
+              <span class="text-sm text-slate-600" data-i18n="recipients.users">Usuarios</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="roleInstructor" value="instructor" checked
+                     class="w-4 h-4 accent-primary" />
+              <span class="text-sm text-slate-600" data-i18n="recipients.instructors">Instructores</span>
+            </label>
+          </div>
+          <p id="recipientCount" class="text-xs text-slate-400 mt-3"></p>
+        </div>
+
+        <!-- Subject -->
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-4">
+          <h2 class="text-sm font-bold text-primary-dark" data-i18n="form.subjectTitle">Asunto</h2>
+          <div>
+            <label class="block text-xs font-semibold text-primary-dark mb-1" data-i18n="form.subjectEs">Asunto (Español) *</label>
+            <input type="text" id="subjectEs" maxlength="200"
+                   class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
+                   data-i18n-placeholder="form.subjectEsPlaceholder" placeholder="Ej: Novedades de ACIKY" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-accent-teal mb-1" data-i18n="form.subjectEn">Subject (English) *</label>
+            <input type="text" id="subjectEn" maxlength="200"
+                   class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-accent-teal focus:ring-1 focus:ring-accent-teal outline-none transition-colors text-sm"
+                   data-i18n-placeholder="form.subjectEnPlaceholder" placeholder="E.g.: ACIKY Updates" />
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-5">
+          <h2 class="text-sm font-bold text-primary-dark" data-i18n="form.bodyTitle">Contenido del email</h2>
+
+          <!-- ES editor -->
+          <div>
+            <label class="block text-xs font-semibold text-primary-dark mb-2" data-i18n="form.bodyEs">Cuerpo (Español) *</label>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-colors">
+              <!-- Toolbar ES -->
+              <div class="flex items-center gap-0.5 px-2 py-1.5 bg-slate-50 border-b border-slate-200" data-toolbar="bodyEs">
+                <button type="button" data-cmd="bold" title="Negrita"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white font-bold text-sm text-slate-600 transition-colors">B</button>
+                <button type="button" data-cmd="italic" title="Cursiva"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white italic text-sm text-slate-600 transition-colors">I</button>
+                <button type="button" data-cmd="underline" title="Subrayado"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white underline text-sm text-slate-600 transition-colors">U</button>
+                <div class="w-px h-5 bg-slate-300 mx-1"></div>
+                <button type="button" data-cmd="insertUnorderedList" title="Lista"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white transition-colors">
+                  <span class="material-symbols-outlined text-base text-slate-600">format_list_bulleted</span>
+                </button>
+                <button type="button" data-cmd="createLink" title="Enlace"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white transition-colors">
+                  <span class="material-symbols-outlined text-base text-slate-600">link</span>
+                </button>
+                <div class="w-px h-5 bg-slate-300 mx-1"></div>
+                <button type="button" data-cmd="removeFormat" title="Limpiar formato"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white transition-colors">
+                  <span class="material-symbols-outlined text-base text-slate-600">format_clear</span>
+                </button>
+              </div>
+              <div id="bodyEs" contenteditable="true"
+                   class="min-h-[180px] px-4 py-3 text-sm text-slate-700 outline-none leading-relaxed"
+                   data-placeholder="Escribe el contenido en español..."></div>
+            </div>
+          </div>
+
+          <!-- EN editor -->
+          <div>
+            <label class="block text-xs font-semibold text-accent-teal mb-2" data-i18n="form.bodyEn">Body (English) *</label>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden focus-within:border-accent-teal focus-within:ring-1 focus-within:ring-accent-teal transition-colors">
+              <!-- Toolbar EN -->
+              <div class="flex items-center gap-0.5 px-2 py-1.5 bg-slate-50 border-b border-slate-200" data-toolbar="bodyEn">
+                <button type="button" data-cmd="bold" title="Bold"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white font-bold text-sm text-slate-600 transition-colors">B</button>
+                <button type="button" data-cmd="italic" title="Italic"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white italic text-sm text-slate-600 transition-colors">I</button>
+                <button type="button" data-cmd="underline" title="Underline"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white underline text-sm text-slate-600 transition-colors">U</button>
+                <div class="w-px h-5 bg-slate-300 mx-1"></div>
+                <button type="button" data-cmd="insertUnorderedList" title="List"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white transition-colors">
+                  <span class="material-symbols-outlined text-base text-slate-600">format_list_bulleted</span>
+                </button>
+                <button type="button" data-cmd="createLink" title="Link"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white transition-colors">
+                  <span class="material-symbols-outlined text-base text-slate-600">link</span>
+                </button>
+                <div class="w-px h-5 bg-slate-300 mx-1"></div>
+                <button type="button" data-cmd="removeFormat" title="Clear format"
+                        class="toolbar-btn w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white transition-colors">
+                  <span class="material-symbols-outlined text-base text-slate-600">format_clear</span>
+                </button>
+              </div>
+              <div id="bodyEn" contenteditable="true"
+                   class="min-h-[180px] px-4 py-3 text-sm text-slate-700 outline-none leading-relaxed"
+                   data-placeholder="Write the content in English..."></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview button -->
+        <div class="flex justify-end">
+          <button type="button" id="previewBtn"
+                  class="inline-flex items-center gap-2 px-5 py-2 border border-primary text-primary font-semibold text-sm rounded-2xl hover:bg-primary/5 transition-colors">
+            <span class="material-symbols-outlined text-base">preview</span>
+            <span data-i18n="form.preview">Vista previa</span>
+          </button>
+        </div>
+
+        <!-- Error -->
+        <div id="formError" class="hidden p-4 bg-red-50 border border-red-200 rounded-2xl text-red-600 text-sm"></div>
+
+        <!-- Submit -->
+        <button type="submit" id="sendBtn"
+                class="w-full flex items-center justify-center gap-2 bg-primary-dark text-white font-bold px-8 py-4 rounded-2xl shadow-md hover:bg-primary transition-colors active:scale-95">
+          <span class="material-symbols-outlined">send</span>
+          <span data-i18n="form.send">Enviar emails</span>
+        </button>
+
+      </form>
+
+      <!-- Preview modal -->
+      <div id="previewModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[80vh] flex flex-col">
+          <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 flex-shrink-0">
+            <h3 class="font-bold text-primary-dark" data-i18n="preview.title">Vista previa del email</h3>
+            <button id="closePreviewBtn" class="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center">
+              <span class="material-symbols-outlined text-slate-500">close</span>
+            </button>
+          </div>
+          <div id="previewContent" class="overflow-y-auto p-6 text-sm"></div>
+        </div>
+      </div>
+
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
