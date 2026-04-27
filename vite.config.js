@@ -71,9 +71,11 @@ export default defineConfig(() => {
           notFound: resolve(__dirname, 'pages/404.html'),
           adminSettings: resolve(__dirname, 'pages/admin/settings.html'),
           donations: resolve(__dirname, 'pages/donations.html'),
+          donate: resolve(__dirname, 'pages/donate.html'),
           adminDonations: resolve(__dirname, 'pages/admin/donations.html'),
           accountant: resolve(__dirname, 'pages/accountant.html'),
-          adminAccountant: resolve(__dirname, 'pages/admin/accountant.html')
+          adminAccountant: resolve(__dirname, 'pages/admin/accountant.html'),
+          adminEmailBroadcast: resolve(__dirname, 'pages/admin/email-broadcast.html')
         }
       }
     }

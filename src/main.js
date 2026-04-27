@@ -719,9 +719,15 @@ async function initPage() {
   } else if (path.includes('/pages/admin/donations.html')) {
     const { initAdminDonations } = await import('./js/admin/donations.js')
     initAdminDonations()
+  } else if (path.includes('/pages/donate.html')) {
+    const { initDonate } = await import('./js/donate.js')
+    initDonate()
   } else if (path.includes('/pages/donations.html')) {
     const { initDonations } = await import('./js/donations.js')
     initDonations()
+  } else if (path.includes('/pages/admin/email-broadcast.html')) {
+    const { initEmailBroadcast } = await import('./js/admin/emailBroadcast.js')
+    initEmailBroadcast()
   } else if (path.includes('/pages/admin/accountant.html')) {
     const { initAdminAccountant } = await import('./js/admin/accountant.js')
     initAdminAccountant()

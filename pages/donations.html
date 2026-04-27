@@ -42,150 +42,173 @@
         </div>
       </section>
 
-      <!-- PayPal section -->
-      <section id="paypalSection" class="px-4 md:px-8 lg:px-16 py-6 hidden">
-        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center">
-              <span class="material-symbols-outlined text-primary">payments</span>
-            </div>
-            <h2 class="text-lg font-bold text-primary-dark" data-i18n="paypal.title">Donar por PayPal</h2>
-          </div>
-          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-i18n="paypal.instructions">
-            Haz clic en el botón para ir a la página de pago de PayPal.
-          </p>
-          <a id="paypalBtn" href="#" target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-2 bg-primary-dark text-white font-bold px-8 py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary">
-            <span class="material-symbols-outlined">open_in_new</span>
-            <span data-i18n="paypal.button">Donar por PayPal</span>
-          </a>
-          <div class="mt-6 flex items-start gap-3 bg-primary/5 border border-primary/20 rounded-2xl p-4">
-            <span class="material-symbols-outlined text-primary text-lg flex-shrink-0 mt-0.5">info</span>
-            <div>
-              <p class="text-xs font-semibold text-primary-dark mb-1" data-i18n="paypal.notice">Nota sobre nuestra cuenta de PayPal</p>
-              <p class="text-xs text-slate-500 leading-relaxed" data-i18n="paypal.noticeText">Debido a las restricciones financieras que enfrentamos como organización cubana...</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CUP section -->
-      <section class="px-4 md:px-8 lg:px-16 py-6">
-        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center">
-              <span class="material-symbols-outlined text-primary">account_balance</span>
-            </div>
-            <h2 class="text-lg font-bold text-primary-dark" data-i18n="cup.title">Donar en CUP (transferencia bancaria)</h2>
-          </div>
-          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-i18n="cup.instructions">
-            Realiza una transferencia bancaria o Transfermóvil a los datos siguientes. Luego completa el formulario de confirmación con la referencia de la operación.
-          </p>
-          <div class="space-y-3">
-            <div class="flex items-center gap-3 bg-background rounded-xl px-4 py-3">
-              <span class="material-symbols-outlined text-primary text-base flex-shrink-0">credit_card</span>
-              <div class="min-w-0">
-                <p class="text-xs text-slate-500 mb-0.5" data-i18n="cup.cardLabel">Número de tarjeta</p>
-                <p class="text-sm font-bold text-primary-dark tracking-widest select-all">9205-9598-7644-2634</p>
-              </div>
-            </div>
-            <div class="flex items-center gap-3 bg-background rounded-xl px-4 py-3">
-              <span class="material-symbols-outlined text-primary text-base flex-shrink-0">smartphone</span>
-              <div class="min-w-0">
-                <p class="text-xs text-slate-500 mb-0.5" data-i18n="cup.phoneLabel">Teléfono (Transfermóvil)</p>
-                <p class="text-sm font-bold text-primary-dark select-all">+53 5 3200499</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Confirmation form -->
+      <!-- Use of donations -->
       <section class="px-4 md:px-8 lg:px-16 py-6">
         <div class="max-w-2xl mx-auto">
-
-          <!-- Success state -->
-          <div id="successState" class="hidden bg-white rounded-2xl shadow-sm border border-slate-100 p-10 text-center">
-            <span class="material-symbols-outlined text-5xl text-primary mb-4 block">check_circle</span>
-            <h2 class="text-xl font-bold text-primary-dark mb-3" data-i18n="confirm.successTitle">¡Gracias por tu donación!</h2>
-            <p class="text-slate-600 text-sm leading-relaxed" data-i18n="confirm.successMessage">
-              Hemos recibido tu confirmación. Verificaremos el pago y nos pondremos en contacto contigo si es necesario.
-            </p>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">volunteer_activism</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="uses.title">¿En qué usaremos tu donación?</h2>
           </div>
-
-          <!-- Form -->
-          <div id="confirmForm" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 space-y-5">
-            <div class="flex items-center gap-3 mb-2">
-              <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary">fact_check</span>
+          <div class="space-y-4">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex gap-4 items-start">
+              <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-primary">school</span>
               </div>
               <div>
-                <h2 class="text-lg font-bold text-primary-dark" data-i18n="confirm.title">Confirmar tu donación</h2>
-                <p class="text-xs text-slate-500" data-i18n="confirm.subtitle">Completa este formulario después de pagar</p>
+                <h3 class="font-bold text-primary-dark text-sm mb-1" data-i18n="uses.trainers.title"></h3>
+                <p class="text-xs text-slate-500 leading-relaxed" data-i18n="uses.trainers.description"></p>
               </div>
             </div>
-
-            <!-- Name -->
-            <div>
-              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="confirm.name">Nombre completo <span class="text-accent-terracotta">*</span></label>
-              <input type="text" id="donorName" maxlength="200"
-                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                     data-i18n-placeholder="confirm.namePlaceholder" placeholder="Tu nombre" />
-            </div>
-
-            <!-- Email -->
-            <div>
-              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="confirm.email">Correo electrónico <span class="text-accent-terracotta">*</span></label>
-              <input type="email" id="donorEmail" maxlength="255"
-                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                     data-i18n-placeholder="confirm.emailPlaceholder" placeholder="tu@correo.com" />
-            </div>
-
-            <!-- Amount + Currency -->
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="confirm.amount">Monto <span class="text-accent-terracotta">*</span></label>
-                <input type="number" id="donorAmount" min="0.01" step="0.01" maxlength="10"
-                       class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                       data-i18n-placeholder="confirm.amountPlaceholder" placeholder="10.00" />
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex gap-4 items-start">
+              <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-primary">celebration</span>
               </div>
               <div>
-                <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="confirm.currency">Moneda</label>
-                <select id="donorCurrency" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm bg-white">
-                  <option value="CUP" data-i18n="currencies.CUP">CUP - Peso Cubano</option>
-                  <option value="USD" data-i18n="currencies.USD">USD - Dólar</option>
-                  <option value="EUR" data-i18n="currencies.EUR">EUR - Euro</option>
-                  <option value="CLP" data-i18n="currencies.CLP">CLP - Peso Chileno</option>
-                </select>
+                <h3 class="font-bold text-primary-dark text-sm mb-1" data-i18n="uses.festival.title"></h3>
+                <p class="text-xs text-slate-500 leading-relaxed" data-i18n="uses.festival.description"></p>
               </div>
             </div>
-
-            <!-- Transaction ref -->
-            <div>
-              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="confirm.transactionRef">Referencia de la transacción</label>
-              <input type="text" id="donorTransactionRef" maxlength="255"
-                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm"
-                     data-i18n-placeholder="confirm.transactionRefPlaceholder" placeholder="Ej: 1AB23456CD789012E o MM6047Q4FA987" />
-              <p class="text-xs text-slate-400 mt-1" data-i18n="confirm.transactionRefHint">ID de PayPal o número de operación bancaria (ej: MM6047Q4FA987).</p>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex gap-4 items-start">
+              <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-primary">explore</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-primary-dark text-sm mb-1" data-i18n="uses.routes.title"></h3>
+                <p class="text-xs text-slate-500 leading-relaxed" data-i18n="uses.routes.description"></p>
+              </div>
             </div>
-
-            <!-- Notes -->
-            <div>
-              <label class="block text-sm font-medium text-primary-dark mb-1" data-i18n="confirm.notes">Mensaje opcional</label>
-              <textarea id="donorNotes" rows="2" maxlength="500"
-                        class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors text-sm resize-none"
-                        data-i18n-placeholder="confirm.notesPlaceholder" placeholder="¿Quieres dejar algún mensaje?"></textarea>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex gap-4 items-start">
+              <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-primary">menu_book</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-primary-dark text-sm mb-1" data-i18n="uses.classes.title"></h3>
+                <p class="text-xs text-slate-500 leading-relaxed" data-i18n="uses.classes.description"></p>
+              </div>
             </div>
-
-            <!-- Error -->
-            <div id="formError" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm"></div>
-
-            <!-- Submit -->
-            <button id="submitDonationBtn" class="w-full bg-primary-dark text-white font-bold px-8 py-4 rounded-2xl shadow-md transition-transform active:scale-95 hover:bg-primary">
-              <span data-i18n="confirm.submit">Enviar confirmación</span>
-            </button>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex gap-4 items-start">
+              <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-primary">restaurant</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-primary-dark text-sm mb-1" data-i18n="uses.langar.title"></h3>
+                <p class="text-xs text-slate-500 leading-relaxed" data-i18n="uses.langar.description"></p>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex gap-4 items-start">
+              <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-primary">local_fire_department</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-primary-dark text-sm mb-1" data-i18n="uses.ceremonies.title"></h3>
+                <p class="text-xs text-slate-500 leading-relaxed" data-i18n="uses.ceremonies.description"></p>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
 
+      <!-- Impact -->
+      <section class="px-4 md:px-8 lg:px-16 py-6">
+        <div class="max-w-2xl mx-auto bg-primary/5 border border-primary/20 rounded-2xl p-8">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">auto_awesome</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="impact.title"></h2>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">self_improvement</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="impact.i1"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">volunteer_activism</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="impact.i2"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">public</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="impact.i3"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">favorite</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="impact.i4"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">spa</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="impact.i5"></p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Yogi Bhajan quote -->
+      <section class="px-4 md:px-8 lg:px-16 py-6">
+        <div class="max-w-2xl mx-auto relative p-8 bg-white rounded-2xl shadow-sm border-l-4 border-primary">
+          <span class="absolute top-4 left-4 text-primary/10 text-6xl font-serif">"</span>
+          <p class="italic text-sm leading-relaxed text-slate-600 relative z-10" data-i18n="quote.text"></p>
+          <p class="mt-4 text-right text-xs font-bold text-primary-dark">— <span data-i18n="quote.author">Yogi Bhajan</span></p>
+        </div>
+      </section>
+
+      <!-- Benefits -->
+      <section class="px-4 md:px-8 lg:px-16 py-6">
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 bg-background rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-primary">workspace_premium</span>
+            </div>
+            <h2 class="text-lg font-bold text-primary-dark" data-i18n="benefits.title"></h2>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">campaign</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="benefits.b1"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">description</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="benefits.b2"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">notifications_active</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="benefits.b3"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">event</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="benefits.b4"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">auto_awesome</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="benefits.b5"></p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-base flex-shrink-0 mt-0.5">people</span>
+              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="benefits.b6"></p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Promise -->
+      <section class="px-4 md:px-8 lg:px-16 py-6">
+        <div class="max-w-2xl mx-auto bg-gradient-to-br from-primary/10 to-primary-light/10 border border-primary/20 rounded-2xl p-8 text-center">
+          <span class="material-symbols-outlined text-primary text-4xl mb-3 block">verified</span>
+          <h2 class="text-lg font-bold text-primary-dark mb-3" data-i18n="promise.title"></h2>
+          <p class="text-sm text-slate-600 leading-relaxed" data-i18n="promise.description"></p>
+        </div>
+      </section>
+
+      <!-- Donate CTA -->
+      <section class="px-4 md:px-8 lg:px-16 py-8 pb-12">
+        <div class="max-w-2xl mx-auto text-center">
+          <a href="{{basePath}}/pages/donate.html"
+             class="inline-flex items-center gap-2 px-10 py-4 bg-primary-dark text-white font-bold text-base rounded-2xl hover:bg-primary transition-colors shadow-md">
+            <span class="material-symbols-outlined">favorite</span>
+            <span data-i18n="cta.button">Donar ahora</span>
+          </a>
+          <p class="text-xs text-slate-400 mt-4 italic" data-i18n="cta.hint">Sat Nam · Con gratitud infinita</p>
         </div>
       </section>
 

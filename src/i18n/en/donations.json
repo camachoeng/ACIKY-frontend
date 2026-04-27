@@ -6,7 +6,63 @@
   },
   "intro": {
     "title": "Why donate?",
-    "description": "Your donation directly supports our community of Kundalini Yoga instructors and practitioners in Cuba. Every contribution helps us organize events, maintain practice spaces, and bring yoga to more people."
+    "description": "We are at a decisive moment. Kundalini Yoga is not a spiritual luxury — it is a profound human need. In times of stress, disconnection, and emotional crisis, Kundalini Yoga offers ancestral tools that transform lives, heal trauma, and elevate consciousness. But to reach more people, we need your help."
+  },
+  "uses": {
+    "title": "How will your donation be used?",
+    "trainers": {
+      "title": "Teacher Development & Training",
+      "description": "Advanced workshops for certified teachers, ongoing training, international certifications, and building a strengthened community of instructors dedicated to service."
+    },
+    "festival": {
+      "title": "Festival Faro de Luz",
+      "description": "Our annual event bringing together instructors and practitioners across Cuba. Teachings from internationally recognized teachers and expanding to more participants every year."
+    },
+    "routes": {
+      "title": "Golden Routes",
+      "description": "Bringing Kundalini Yoga directly to provinces and remote communities in Cuba, reaching populations without access to these teachings."
+    },
+    "classes": {
+      "title": "Regular Classes & Programs",
+      "description": "Accessible classes for the whole community, programs for children, youth, and adults, and safe spaces to learn, grow, and transform."
+    },
+    "langar": {
+      "title": "Langar (Sacred Food)",
+      "description": "Nutritious food for participants at activities and events. An act of love and Karma Yoga — ensuring no one goes without nourishment while practicing."
+    },
+    "ceremonies": {
+      "title": "Ceremonies & Special Events",
+      "description": "Transformative rebirths, deep meditation retreats, and community events that strengthen bonds among practitioners and create spaces for collective healing."
+    }
+  },
+  "impact": {
+    "title": "The real impact of your donation",
+    "i1": "Transforming minds lost in darkness",
+    "i2": "Empowering teachers who dedicate their lives to service",
+    "i3": "Expanding light and consciousness across Cuba",
+    "i4": "Healing families through conscious practice",
+    "i5": "Honoring the sacred technology of Kundalini Yoga"
+  },
+  "quote": {
+    "text": "The science of reality is to find the sound and resonate in that sound. Then the soul shall prevail and God shall dwell within you.",
+    "author": "Yogi Bhajan"
+  },
+  "benefits": {
+    "title": "Benefits for donors",
+    "b1": "Public recognition on our website and social media",
+    "b2": "Donation certificate for your personal records",
+    "b3": "Regular updates on the projects your donation funds",
+    "b4": "Special invitation to ACIKY events and ceremonies",
+    "b5": "Infinite blessings and gratitude from our entire community",
+    "b6": "The knowledge that you are transforming lives"
+  },
+  "promise": {
+    "title": "Our Promise",
+    "description": "We will use every peso, every dollar, with absolute transparency, unwavering integrity, and spiritual devotion. Every contribution will go directly to expanding the practice, creating spaces of transformation, and serving the community with selfless love."
+  },
+  "cta": {
+    "button": "Donate now",
+    "hint": "Sat Nam · With infinite gratitude"
   },
   "paypal": {
     "title": "Donate via PayPal",

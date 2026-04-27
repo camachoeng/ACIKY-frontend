@@ -51,6 +51,7 @@
     "events": "Events",
     "accountant": "Accounting",
     "donations": "Donations",
+    "emailBroadcast": "Emails",
     "cleanup": "Cleanup",
     "settings": "Settings",
     "backToSite": "Back to site"

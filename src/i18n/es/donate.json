@@ -1,0 +1,50 @@
+{
+  "pageTitle": "Donar - ACIKY",
+  "hero": {
+    "title": "Hacer una donación",
+    "subtitle": "Tu acto de amor llega directamente a la comunidad"
+  },
+  "back": "Ver por qué donar",
+  "paypal": {
+    "title": "Donar por PayPal",
+    "instructions": "Haz clic en el botón para ir a la página de pago de PayPal. Una vez completado el pago, regresa aquí y completa el formulario de confirmación.",
+    "button": "Donar por PayPal",
+    "notice": "Nota sobre nuestra cuenta de PayPal",
+    "noticeText": "Debido a las restricciones financieras que enfrentamos como organización cubana, no nos es posible contar con una cuenta de PayPal propia en estos momentos. Por eso, un maestro que cree profundamente en nuestra misión nos brinda generosamente el uso de su cuenta personal para recibir donaciones internacionales en nombre de ACIKY (debes poner exactamente: \"Donación ACIKY\"). Cada centavo donado se destina íntegramente a nuestra comunidad. Agradecemos profundamente tu comprensión y tu confianza."
+  },
+  "cup": {
+    "title": "Donar en CUP (transferencia bancaria)",
+    "instructions": "Realiza una transferencia bancaria o Transfermóvil a los datos siguientes. Luego completa el formulario de confirmación con la referencia de la operación.",
+    "cardLabel": "Número de tarjeta",
+    "phoneLabel": "Teléfono (Transfermóvil)"
+  },
+  "confirm": {
+    "title": "Confirmar tu donación",
+    "subtitle": "Después de realizar el pago, completa este formulario para que podamos registrar tu donación.",
+    "name": "Nombre completo",
+    "namePlaceholder": "Tu nombre",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "tu@correo.com",
+    "amount": "Monto donado",
+    "amountPlaceholder": "Ej: 10.00",
+    "currency": "Moneda",
+    "transactionRef": "Referencia de la transacción",
+    "transactionRefPlaceholder": "Ej: 1AB23456CD789012E o MM6047Q4FA987",
+    "transactionRefHint": "ID de PayPal o número de operación bancaria (ej: MM6047Q4FA987).",
+    "notes": "Mensaje opcional",
+    "notesPlaceholder": "¿Quieres dejar algún mensaje? (opcional)",
+    "submit": "Enviar confirmación",
+    "submitting": "Enviando...",
+    "successTitle": "¡Gracias por tu donación!",
+    "successMessage": "Hemos recibido tu confirmación. Verificaremos el pago y nos pondremos en contacto contigo si es necesario.",
+    "errorRequired": "Por favor completa los campos obligatorios: nombre, correo y monto.",
+    "errorAmount": "El monto debe ser un número mayor a 0.",
+    "errorSubmit": "Error al enviar. Por favor intenta de nuevo."
+  },
+  "currencies": {
+    "CUP": "CUP - Peso Cubano",
+    "USD": "USD - Dólar",
+    "EUR": "EUR - Euro",
+    "CLP": "CLP - Peso Chileno"
+  }
+}
