@@ -27,6 +27,7 @@
   "card": {
     "minutes": "minutos",
     "free": "Gratis",
+    "memberPrice": "Miembros",
     "book": "Reservar",
     "bookMessage": "Hola, quiero reservar la clase de {{name}} con el instructor {{instructor}} (este mensaje es desde el sitio web ACIKY)"
   },

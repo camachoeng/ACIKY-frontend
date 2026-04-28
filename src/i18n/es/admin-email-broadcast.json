@@ -31,6 +31,7 @@
   "success": {
     "title": "¡Emails enviados!",
     "count": "{{sent}} enviados correctamente · {{errors}} errores",
+    "queued": "{{queued}} emails en camino — llegarán en breve.",
     "sendAnother": "Enviar otro"
   },
   "errors": {

@@ -259,6 +259,7 @@ async function openEditModal(id) {
     instructorOrderedIds = []
     populateInstructorCheckboxes(selectedIds)
     document.getElementById('activityPrice').value = a.price || ''
+    document.getElementById('activityMemberPrice').value = a.member_price || ''
     document.getElementById('activityIcon').value = a.icon || ''
     document.getElementById('activityDifficulty').value = a.difficulty_level || 'all'
     document.getElementById('activityActive').checked = !!a.active
@@ -306,6 +307,7 @@ async function saveActivity(e) {
       ? [...instructorOrderedIds]
       : Array.from(document.querySelectorAll('input[name="activityInstructorIds"]:checked')).map(cb => parseInt(cb.value)),
     price: document.getElementById('activityPrice').value || null,
+    member_price: document.getElementById('activityMemberPrice').value || null,
     icon: document.getElementById('activityIcon').value.trim(),
     difficulty_level: document.getElementById('activityDifficulty').value,
     active: document.getElementById('activityActive').checked,

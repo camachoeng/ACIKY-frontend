@@ -179,10 +179,17 @@ async function sendBroadcast(e) {
     })
 
     const resultData = result.data || result
-    const sent = resultData.sent ?? 0
-    const errors = resultData.errors ?? 0
     const countEl = document.getElementById('successCount')
-    if (countEl) countEl.textContent = t('success.count').replace('{{sent}}', sent).replace('{{errors}}', errors)
+    if (countEl) {
+      // Backend may respond with { queued } (async) or { sent, errors } (sync)
+      if (resultData.queued !== undefined) {
+        countEl.textContent = t('success.queued').replace('{{queued}}', resultData.queued)
+      } else {
+        const sent = resultData.sent ?? 0
+        const errors = resultData.errors ?? 0
+        countEl.textContent = t('success.count').replace('{{sent}}', sent).replace('{{errors}}', errors)
+      }
+    }
 
     document.getElementById('broadcastForm')?.classList.add('hidden')
     document.getElementById('successState')?.classList.remove('hidden')

@@ -55,6 +55,7 @@
     "member": {
       "title": "¿Eres instructor certificado KRI?",
       "description": "ACIKY acepta como miembros a instructores con certificación KRI. Al unirte, formas parte de una red de maestros que se apoyan mutuamente y quedas conectado con IKYTA — la comunidad global de instructores certificados de Kundalini Yoga. Escríbenos para dar el paso.",
+      "infoButton": "Ver guía de membresía",
       "button": "Solicitar membresía",
       "whatsappMessage": "Hola, soy instructor certificado KRI y me gustaría solicitar mi membresía en ACIKY (este mensaje es desde el sitio web de ACIKY)"
     },

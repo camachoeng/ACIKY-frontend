@@ -1,0 +1,75 @@
+{
+  "pageTitle": "Membership - ACIKY",
+  "back": "Back",
+  "printHint": "Print or save as PDF from your browser",
+  "printButton": "Print / Save as PDF",
+  "doc": {
+    "nkyta": "NKYTA · National Association · IKYTA",
+    "fullName": "Cuban Alliance of Instructors in Kundalini Yoga",
+    "tagline": "Kundalini Yoga as taught by Yogi Bhajan®",
+    "title": "Information for Instructors",
+    "subtitle": "Membership guide for KRI-certified instructors",
+    "footer": "ACIKY · Cuban Alliance of Instructors in Kundalini Yoga · aciky.org",
+    "lineage": "Kundalini Yoga as taught by Yogi Bhajan®"
+  },
+  "who": {
+    "title": "Who we are",
+    "p1": "ACIKY is Cuba's National Kundalini Yoga Teachers Association (NKYTA), affiliated with IKYTA — the International Kundalini Yoga Teachers Association. We are the official community of KRI-certified instructors in Cuba, internationally recognized.",
+    "p2": "Our mission is to uplift and empower Kundalini Yoga teachers in Cuba — supporting their practice, expanding yoga communities, and sharing the sacred science of Kundalini Yoga across every corner of the country."
+  },
+  "requirements": {
+    "title": "Essential requirement",
+    "kri": "KRI (Kundalini Research Institute) Level 1 certification or higher",
+    "yb": "ACIKY exclusively supports and represents the practice of Kundalini Yoga as taught by Master Yogi Bhajan. This is the framework from which we work and the lineage we honor."
+  },
+  "participation": {
+    "title": "Participation",
+    "description": "Participation in ACIKY activities is not mandatory, but it is deeply valued. There are many ways to contribute, and each one adds to the growth of the community:",
+    "p1": "Organizing events and activities",
+    "p2": "Leading classes and sessions",
+    "p3": "Serving the community",
+    "p4": "Attending events",
+    "p5": "Promoting Kundalini Yoga",
+    "p6": "Sharing experiences and suggesting improvements"
+  },
+  "leadership": {
+    "title": "Leadership structure",
+    "description": "ACIKY has a leadership structure that oversees the growth and integrity of the organization. All members are invited to be part of it:",
+    "president": "President",
+    "vp": "Vice President",
+    "board": "Board Committee Members",
+    "invite": "The Board Committee is open to all members who feel called to contribute to ACIKY's growth. If you feel that call, reach out to us."
+  },
+  "activities": {
+    "title": "Our main activities",
+    "festival": {
+      "title": "Festival Faro de Luz",
+      "description": "Annual event bringing together instructors and practitioners with teachings from internationally recognized teachers."
+    },
+    "routes": {
+      "title": "Golden Routes",
+      "description": "Missions to bring Kundalini Yoga to provinces and remote communities across Cuba."
+    },
+    "sadhana": {
+      "title": "Online Sadhana",
+      "description": "Collective practice during the Ambrosial Hours. Guided by a certified teacher from Mexico."
+    },
+    "classes": {
+      "title": "Classes and Workshops",
+      "description": "Regular classes and specialized workshops taught by KRI-certified instructors across different provinces."
+    },
+    "rebirthing": {
+      "title": "Rebirthing",
+      "description": "Rebirthing Breathwork sessions facilitated by certified instructors for healing and expansion of consciousness."
+    }
+  },
+  "quote": {
+    "text": "\"Love is the ultimate experience. There is no obstacle that love cannot overcome.\""
+  },
+  "join": {
+    "title": "How to join?",
+    "description": "If you hold your KRI certification and feel called to be part of ACIKY, reach out through any of these channels:",
+    "whatsappLabel": "WhatsApp",
+    "whatsappContact": "Reach us on WhatsApp"
+  }
+}
