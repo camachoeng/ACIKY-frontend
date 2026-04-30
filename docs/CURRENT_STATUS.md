@@ -9,6 +9,15 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Member price on class cards + membership guide page - COMPLETE** (2026-04-27)
+  - `pages/admin/schedule.html`: "Precio" renamed to "Precio público", new "Precio miembro" input added alongside it
+  - `src/js/admin/schedule.js`: reads and saves `member_price` field
+  - `src/js/schedule.js`: public card shows member price in light green below public price when set
+  - `src/i18n/es|en/schedule.json`: added `card.memberPrice` key
+  - `backend-specs/activity-member-price.md`: spec — `member_price DECIMAL(10,2)` column; backend implemented: added to `findAll`/`findByInstructor` SELECTs, `create()` INSERT, `createActivity`/`updateActivity` in service
+  - `pages/membership.html`: new printable membership guide page — browser bar with print button, ACIKY header, sections: who we are, KRI requirement, participation (6 ways), leadership structure, main activities, quote, contact
+  - `src/i18n/es|en/membership.json`: new translation files for membership guide; activities now include Festival, Rutas Doradas, Online Sadhana, Clases y Talleres, Renacimientos
+  - `pages/about.html`: "Ver guía de membresía" button added to membership section
 - [x] **Email broadcast + admin user creation + donations split - COMPLETE** (2026-04-27)
   - `pages/admin/email-broadcast.html` + `src/js/admin/emailBroadcast.js`: new admin page — role checkboxes (users/instructors) with live recipient count, bilingual subject + HTML body fields, email preview modal, send with success/error count
   - `src/i18n/es|en/admin-email-broadcast.json`: new translation files

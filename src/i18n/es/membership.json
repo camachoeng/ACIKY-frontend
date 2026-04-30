@@ -1,0 +1,93 @@
+{
+  "pageTitle": "Membresía - ACIKY",
+  "back": "Volver",
+  "printHint": "Imprime o guarda como PDF desde tu navegador",
+  "printButton": "Imprimir / Guardar PDF",
+  "doc": {
+    "nkyta": "NKYTA · Asociación Nacional · IKYTA",
+    "fullName": "Alianza Cubana de Instructores en Kundalini Yoga",
+    "tagline": "Kundalini Yoga tal como lo enseñó Yogi Bhajan®",
+    "title": "Información para Instructores",
+    "subtitle": "Guía de membresía para instructores certificados KRI",
+    "footer": "ACIKY · Alianza Cubana de Instructores en Kundalini Yoga · aciky.org",
+    "lineage": "Kundalini Yoga tal como lo enseñó Yogi Bhajan®"
+  },
+  "who": {
+    "title": "¿Quiénes somos?",
+    "p1": "ACIKY es la Asociación Nacional de Maestros de Kundalini Yoga (NKYTA) de Cuba, afiliada a IKYTA — la Asociación Internacional de Maestros de Kundalini Yoga. Somos la comunidad oficial de instructores certificados KRI en Cuba, reconocida internacionalmente.",
+    "p2": "Nuestra misión es elevar y empoderar a los maestros de Kundalini Yoga en Cuba — apoyando su práctica, fortaleciendo las comunidades de yoga y compartiendo la ciencia sagrada del Kundalini Yoga en cada rincón del país."
+  },
+  "requirements": {
+    "title": "Requisito esencial",
+    "kri": "Certificación KRI (Kundalini Research Institute) nivel 1 o superior",
+    "yb": "ACIKY únicamente apoya y representa la práctica del Kundalini Yoga tal como lo enseñó el Maestro Yogi Bhajan. Este es el marco desde el que trabajamos y el linaje que honramos."
+  },
+  "participation": {
+    "title": "Participación",
+    "description": "La participación en las actividades de ACIKY no es obligatoria, pero sí es profundamente valorada. Hay muchas formas de contribuir y cada una suma al crecimiento de la comunidad:",
+    "p1": "Organizando eventos y actividades",
+    "p2": "Dirigiendo clases y sesiones",
+    "p3": "Sirviendo a la comunidad",
+    "p4": "Asistiendo a los eventos",
+    "p5": "Promoviendo el Kundalini Yoga",
+    "p6": "Intercambiando experiencias y sugiriendo mejoras"
+  },
+  "leadership": {
+    "title": "Estructura de dirección",
+    "description": "ACIKY cuenta con una estructura de dirección que vela por el crecimiento y la integridad de la organización. Todos los miembros están invitados a formar parte de ella:",
+    "president": "Presidente",
+    "vp": "Vicepresidente",
+    "board": "Miembros del Comité Directivo",
+    "invite": "El Comité Directivo está abierto a todos los miembros que sientan el llamado a contribuir al crecimiento de ACIKY. Si sientes ese llamado, escríbenos.",
+    "loading": "Cargando equipo...",
+    "empty": "Pronto conocerás al Comité Directivo"
+  },
+  "ceu": {
+    "title": "Equipo Evaluativo CEU",
+    "p1": "Los eventos y talleres que los miembros deseen que ACIKY promueva deben ser evaluados con anticipación por el Equipo Evaluativo CEU. Este equipo verifica que exista una correcta alineación con las enseñanzas de Yogi Bhajan y asigna Créditos CEU (Unidades de Educación Continua) a quienes los imparten.",
+    "p2": "ACIKY exhorta a todos sus miembros a compartir con el Equipo Evaluativo CEU las actividades que desarrollen como instructores. Estos créditos permiten a la dirección reconocer quiénes están desempeñando una labor más activa en la alianza y premiarles con beneficios adicionales.",
+    "cat1": "Formación y enseñanza",
+    "cat2": "Seva y liderazgo",
+    "cat3": "Investigación",
+    "cat4": "Beneficios extras para los más activos"
+  },
+  "collab": {
+    "title": "Colaboración y beneficio mutuo",
+    "p1": "ACIKY exhorta a sus miembros a colaborar entre sí en sus eventos y talleres, en lugar de hacerse competencia. La comunidad crece cuando sus maestros se apoyan mutuamente, comparten su arte y se potencian unos a otros.",
+    "p2": "ACIKY está dispuesto a promover los eventos y talleres de sus miembros sobre la base de un intercambio que beneficie a ambas partes. Tanto las donaciones a ACIKY como cualquier contribución proveniente de eventos promovidos son completamente voluntarias — cada miembro aporta según su propia conciencia y su genuino deseo de sostener la misión.",
+    "ask": "Por ahora, lo único que ACIKY pide a sus miembros es ofrecer un precio especial para los miembros de la asociación en sus clases y eventos.",
+    "future": "A medida que la organización crezca y genere más valor, se explorarán acuerdos que busquen una justa retribución por el trabajo compartido — siempre desde el respeto y la transparencia."
+  },
+  "activities": {
+    "title": "Nuestras actividades principales",
+    "festival": {
+      "title": "Festival Faro de Luz",
+      "description": "Evento anual que reúne a instructores y practicantes con enseñanzas de maestros reconocidos internacionalmente."
+    },
+    "routes": {
+      "title": "Rutas Doradas",
+      "description": "Misiones para llevar el Kundalini Yoga a provincias y comunidades remotas de Cuba."
+    },
+    "sadhana": {
+      "title": "Sadhana en línea",
+      "description": "Práctica colectiva en las Horas Ambrosiales. Guiada por un maestro certificado desde México."
+    },
+    "classes": {
+      "title": "Clases y Talleres",
+      "description": "Clases regulares y talleres especializados impartidos por instructores certificados KRI en distintas provincias del país."
+    },
+    "rebirthing": {
+      "title": "Renacimientos",
+      "description": "Sesiones de Rebirthing Breathwork facilitadas por instructores certificados para la sanación y expansión de la conciencia."
+    }
+  },
+  "quote": {
+    "text": "\"El amor es la experiencia última. No hay obstáculo que el amor no pueda superar.\""
+  },
+  "join": {
+    "title": "¿Cómo unirte?",
+    "description": "Si tienes tu certificación KRI y sientes el llamado a ser parte de ACIKY, comunícate con nosotros por cualquiera de estos medios:",
+    "whatsappLabel": "WhatsApp",
+    "whatsappContact": "Escríbenos por WhatsApp"
+  }
+}

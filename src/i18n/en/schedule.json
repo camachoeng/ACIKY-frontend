@@ -27,6 +27,7 @@
   "card": {
     "minutes": "minutes",
     "free": "Free",
+    "memberPrice": "Members",
     "book": "Book",
     "bookMessage": "Hello, I want to book the {{name}} class with instructor {{instructor}} (this message is from the ACIKY website)"
   },

@@ -145,7 +145,7 @@ function renderClassCard(activity, index) {
             ${formattedDate ? `<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">${formattedDate}</span>` : ''}
           </div>
           <p class="text-sm text-slate-500 mb-2">${escapeHtml(activityLocation)}</p>
-          ${activityDescription ? `<p class="text-xs text-slate-500 mb-2 line-clamp-2">${escapeHtml(activityDescription)}</p>` : ''}
+          ${activityDescription ? `<p class="text-xs text-slate-500 mb-2">${escapeHtml(activityDescription)}</p>` : ''}
           ${activityInstructors.length > 0 ? `
           <div class="flex items-center gap-2 mb-3 flex-wrap">
             <div class="flex -space-x-2">
@@ -167,8 +167,12 @@ function renderClassCard(activity, index) {
         </div>
       </div>
       <div class="mt-4 flex items-center justify-between">
-        ${activity.price !== null && activity.price !== undefined ? `
-        <span class="text-sm font-bold text-primary-dark">${activity.price > 0 ? '$' + activity.price : t('card.free')}</span>` : '<span></span>'}
+        <div class="flex flex-col gap-0.5">
+          ${activity.price !== null && activity.price !== undefined ? `
+          <span class="text-sm font-bold text-primary-dark">${activity.price > 0 ? '$' + activity.price : t('card.free')}</span>` : '<span></span>'}
+          ${activity.member_price !== null && activity.member_price !== undefined ? `
+          <span class="text-xs text-primary-light font-semibold">${t('card.memberPrice')}: $${activity.member_price}</span>` : ''}
+        </div>
         <div class="flex items-center gap-2">
           <button class="schedule-share-btn p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-xl transition-colors"
                   data-share-name="${escapeAttr(activityName)}"
