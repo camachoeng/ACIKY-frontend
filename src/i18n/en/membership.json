@@ -38,7 +38,25 @@
     "president": "President",
     "vp": "Vice President",
     "board": "Board Committee Members",
-    "invite": "The Board Committee is open to all members who feel called to contribute to ACIKY's growth. If you feel that call, reach out to us."
+    "invite": "The Board Committee is open to all members who feel called to contribute to ACIKY's growth. If you feel that call, reach out to us.",
+    "loading": "Loading team...",
+    "empty": "You will soon meet the Board Committee"
+  },
+  "ceu": {
+    "title": "CEU Evaluation Team",
+    "p1": "Events and workshops that members wish ACIKY to promote must be evaluated in advance by the CEU Evaluation Team. This team verifies correct alignment with Yogi Bhajan's teachings and awards CEU Credits (Continuing Education Units) to those who deliver them.",
+    "p2": "ACIKY encourages all members to share with the CEU Evaluation Team the activities they carry out as instructors. These credits allow the leadership to recognize who is most actively contributing to the alliance and reward them with additional benefits.",
+    "cat1": "Training and teaching",
+    "cat2": "Seva and leadership",
+    "cat3": "Research",
+    "cat4": "Extra benefits for the most active"
+  },
+  "collab": {
+    "title": "Collaboration and mutual benefit",
+    "p1": "ACIKY encourages its members to collaborate with one another on their events and workshops, rather than compete. The community grows when its teachers support each other, share their gifts, and lift one another up.",
+    "p2": "ACIKY is glad to promote members' events and workshops on the basis of a mutually beneficial exchange. Both donations to ACIKY and any contribution from promoted events are entirely voluntary — each member gives according to their own conscience and genuine desire to support the mission.",
+    "ask": "For now, the only thing ACIKY asks of its members is to offer a special member price on their classes and events.",
+    "future": "As the organization grows and generates more value, arrangements will be explored that seek fair recognition for the shared work — always grounded in respect and transparency."
   },
   "activities": {
     "title": "Our main activities",

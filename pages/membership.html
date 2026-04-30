@@ -116,20 +116,28 @@
           </div>
           <p class="text-sm text-slate-600 leading-relaxed mb-4" data-i18n="leadership.description"></p>
           <div class="space-y-2 mb-4">
-            <div class="flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3 print:border print:border-slate-200 print:bg-white">
-              <span class="material-symbols-outlined text-primary text-base flex-shrink-0">star</span>
-              <span class="text-sm text-slate-700 font-semibold" data-i18n="leadership.president">Presidente</span>
-            </div>
-            <div class="flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3 print:border print:border-slate-200 print:bg-white">
-              <span class="material-symbols-outlined text-primary text-base flex-shrink-0">star_half</span>
-              <span class="text-sm text-slate-700 font-semibold" data-i18n="leadership.vp">Vicepresidente</span>
-            </div>
-            <div class="flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3 print:border print:border-slate-200 print:bg-white">
-              <span class="material-symbols-outlined text-primary text-base flex-shrink-0">group</span>
-              <span class="text-sm text-slate-700 font-semibold" data-i18n="leadership.board">Miembros del Comité Directivo</span>
-            </div>
+            <p id="membershipTeamLoading" class="text-xs text-slate-400" data-i18n="leadership.loading">Cargando...</p>
+            <p id="membershipTeamEmpty" class="text-xs text-slate-400 hidden" data-i18n="leadership.empty"></p>
+            <div id="membershipTeamContainer" class="space-y-2 hidden"></div>
           </div>
           <p class="text-sm text-slate-600 leading-relaxed italic" data-i18n="leadership.invite"></p>
+        </section>
+
+        <!-- Collaboration & mutual benefit -->
+        <section>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-1 h-5 bg-primary-dark rounded-full flex-shrink-0"></span>
+            <h3 class="text-base font-bold text-primary-dark" data-i18n="collab.title">Colaboración y beneficio mutuo</h3>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed mb-3" data-i18n="collab.p1"></p>
+          <p class="text-sm text-slate-600 leading-relaxed mb-3" data-i18n="collab.p2"></p>
+          <div class="bg-primary/5 border border-primary/20 rounded-2xl px-5 py-4 print:border-slate-300">
+            <div class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary text-xl flex-shrink-0 mt-0.5">sell</span>
+              <p class="text-sm text-slate-700 leading-relaxed" data-i18n="collab.ask"></p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mt-3 italic" data-i18n="collab.future"></p>
         </section>
 
         <!-- Activities -->
@@ -158,6 +166,34 @@
             <div>
               <p class="text-sm font-semibold text-primary-dark" data-i18n="activities.rebirthing.title">Renacimientos</p>
               <p class="text-xs text-slate-500 leading-relaxed" data-i18n="activities.rebirthing.description"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CEU Evaluation Team -->
+        <section>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-1 h-5 bg-primary-dark rounded-full flex-shrink-0"></span>
+            <h3 class="text-base font-bold text-primary-dark" data-i18n="ceu.title">Equipo Evaluativo CEU</h3>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed mb-3" data-i18n="ceu.p1"></p>
+          <p class="text-sm text-slate-600 leading-relaxed mb-3" data-i18n="ceu.p2"></p>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+              <span class="material-symbols-outlined text-primary-light text-base flex-shrink-0">school</span>
+              <span data-i18n="ceu.cat1">Formación y enseñanza</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+              <span class="material-symbols-outlined text-primary-light text-base flex-shrink-0">volunteer_activism</span>
+              <span data-i18n="ceu.cat2">Seva y liderazgo</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+              <span class="material-symbols-outlined text-primary-light text-base flex-shrink-0">science</span>
+              <span data-i18n="ceu.cat3">Investigación</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+              <span class="material-symbols-outlined text-primary-light text-base flex-shrink-0">workspace_premium</span>
+              <span data-i18n="ceu.cat4">Beneficios extras</span>
             </div>
           </div>
         </section>
