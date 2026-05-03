@@ -1,6 +1,6 @@
 # Current Project Status
 
-Last updated: 2026-04-27
+Last updated: 2026-04-30
 
 ## In Progress
 _No active work at this time._
@@ -9,6 +9,15 @@ _No active work at this time._
 _None._
 
 ## Recently Completed
+- [x] **Membership guide expanded + email broadcast async fix + schedule descriptions - COMPLETE** (2026-04-28–30)
+  - `pages/membership.html`: leadership section now loads dynamically from `/api/users/team` (name + spiritual name + photo + role, same data as about.html); added CEU Evaluation Team section (events must be pre-evaluated for YB alignment + CEU credits; members encouraged to share all instructor activities for credits → extra benefits); added Collaboration & Mutual Benefit section (collaborate not compete, voluntary contributions, member price as the only current ask)
+  - `src/js/membership.js`: new module — `initMembership()` fetches team, renders rows with circular photo + name + position; re-renders on language change
+  - `src/main.js`: route added for `/pages/membership.html` → `initMembership()`
+  - `src/i18n/es|en/membership.json`: added `ceu.*`, `collab.*`, `leadership.loading/empty` keys
+  - `src/js/schedule.js`: removed `line-clamp-2` from card descriptions — full text now shown
+  - `src/js/admin/emailBroadcast.js`: handles `{ queued }` response from backend in addition to `{ sent, errors }`; shows "N emails en camino" message
+  - `src/i18n/es|en/admin-email-broadcast.json`: added `success.queued` key
+  - `backend-specs/email-broadcast-async.md`: spec — respond immediately with `{ queued: N }`, send via `setImmediate` to avoid Heroku H12 30s timeout; backend implemented
 - [x] **Member price on class cards + membership guide page - COMPLETE** (2026-04-27)
   - `pages/admin/schedule.html`: "Precio" renamed to "Precio público", new "Precio miembro" input added alongside it
   - `src/js/admin/schedule.js`: reads and saves `member_price` field
